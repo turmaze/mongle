@@ -9,3 +9,6 @@ https://docs.google.com/document/d/1YInPnLVNhBtMfhHlAm2jITgXlptAgBSIJURjQbzS2rQ/
 
 # 3. 화면 설계서
 https://docs.google.com/presentation/d/1kcKHMDAgqxoWS32tg92-u9XSwSFFmpgHab4iHggCDPo/edit?usp=sharing
+
+# 4. 기능 명세서
+https://docs.google.com/document/d/1id4xTTHKi3gepJE_MYx7qUG5FDs5FYqV/edit
