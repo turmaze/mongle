@@ -13,8 +13,12 @@ public class MongleVisual {
 		
 	}
 
-	private static void menuHeader(String titleName) {
+	public static void menuHeader(String titleName) {
 		// 메뉴 헤더 화면
+		System.out.printf("%22s===================================\n"," ");
+		System.out.printf("%40s\n",titleName);
+		System.out.printf("%22s===================================\n"," ");
+		
 	}
 
 	private static void menuPage() {
