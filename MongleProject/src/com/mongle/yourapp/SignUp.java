@@ -55,9 +55,7 @@ public class SignUp {
 		//pw1을 DataBase.java의 HashMap("비밀번호",pw1)으로 저장하고 HashMap을 DataBase.java의 Arraylist에 저장하는 코드			// System.out.println(m.matches()); //testcode
 
 		
-		//test
-		System.out.printf("\n%22stest ArrayList Test : ", " ");
-		System.out.println(DataBase.getUser());
+
 		//----------------name----------------
 		
 		
@@ -65,19 +63,14 @@ public class SignUp {
 		
 		
 		//----------------final----------------
-		
 		DataBase.dataSave();
 		scan.close();
+		
+		//test
+		System.out.printf("\n\n%22snow folder Test\n", " ");
+		System.out.println(DataBase.getUser());
+		
 	}
 
 }
 
-//System.out.printf("%22s(4~12자리 영문과 숫자 조합)\n"," ");
-//System.out.printf("%22s1.아이디: "," ");		
-//String id = scan.nextLine();
-//
-//while(!DataBase.validId(id)) {
-//	System.out.printf("%22s(4~12자리 영문과 숫자 조합)\n"," ");
-//	System.out.printf("%22s1.아이디: "," ");		
-//	id = scan.nextLine();
-//}
