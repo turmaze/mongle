@@ -13,9 +13,10 @@ import com.mongle.view.MongleVisual;
 
 public class Exchange {
 	
-	static String exchangeURL =  "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=I2RthKfXSu7z1LFQH3mxZqouqGgL3KKm&searchdate=20240126&data=AP01";
 	
-	public static void exchangeService(String[] args) {
+	public static void exchangeService() {
+		
+		String exchangeURL =  "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=I2RthKfXSu7z1LFQH3mxZqouqGgL3KKm&searchdate=20240126&data=AP01";
 		
 		try {
 
@@ -88,10 +89,10 @@ public class Exchange {
 				
 				System.out.println(header);
 
-				System.out.println("6. 다음페이지");
-				System.out.println("0. 이전으로");
+				System.out.printf("%40s\n", "6. 다음페이지");
+				System.out.printf("%40s\n", "0. 이전으로");
 				System.out.println();
-				System.out.print("선택: ");
+				System.out.printf("%40s", "선택(번호): ");
 
 				String sel = scan.nextLine();
 				
