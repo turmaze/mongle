@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 import com.mongle.view.MongleVisual;
 import com.mongle.database.DataBase;
+import com.mongle.yourapp.Encrypt;
+
 
 public class SignUp {
 	public static void signUp() {
@@ -39,7 +41,9 @@ public class SignUp {
 			if (pw1.equals(pw2)) {
 				HashMap<String, String> newUser = new HashMap<String, String>();  
 				
-				newUser.put("비밀번호", pw1);  // 유효한 비밀번호를 HashMap에 저장
+				String finPw = Encrypt.encrypt(pw2); //pw 암호화
+				
+				newUser.put("비밀번호", finPw);  // 유효한 비밀번호를 HashMap에 저장
 				DataBase.setUser(newUser);  // HashMap을 ArrayList에 추가
 				break;
 			} else {
@@ -56,6 +60,13 @@ public class SignUp {
 		System.out.println(DataBase.getUser());
 		//----------------name----------------
 		
+		
+		
+		
+		
+		//----------------final----------------
+		
+		DataBase.dataSave();
 		scan.close();
 	}
 

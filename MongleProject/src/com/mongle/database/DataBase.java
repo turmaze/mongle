@@ -1,9 +1,13 @@
 package com.mongle.database;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.mongle.resource.ResourcePath;
 
 public class DataBase {
 	String name;
@@ -25,14 +29,30 @@ public class DataBase {
 		DataBase.user.add(newUser);
 	}
 
-	private static void dataSave() {
-		// TODO Auto-generated method stub
+	public static void dataSave() {
+		try {
+			File file = new File(ResourcePath.MEMBER);
+			//System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드 
+			FileWriter writer = new FileWriter(file,true);
+						
+			for(HashMap<String,String> temp : user) {
+				writer.write(temp + System.lineSeparator());
+			}
+			
+			
+			writer.close();
+			System.out.println("save 완"); // testcode
+			
+		} catch (Exception e) {
+			System.out.println("DataBase.dataSave Error");
+			e.printStackTrace();
+		}
 
+		
 	}
 
-	private static void dataLoad() {
-		// TODO Auto-generated method stub
-
+	public static void dataLoad() {
+		
 	}
 
 	public static boolean validId(String input) {
