@@ -2,7 +2,7 @@ package com.mongle.service;
 
 import java.util.Scanner;
 
-import com.mongle.service.invest.DepoSave;
+import com.mongle.asset.DepoSave;
 import com.mongle.service.invest.Exchange;
 import com.mongle.service.invest.Fund;
 import com.mongle.service.invest.Gold;
@@ -22,12 +22,11 @@ public class InvestService {
 		MongleVisual.menuHeader("투자 메뉴");
 		boolean loop = true;
 
-		System.out.printf("%22s1. 예적금\n", " ");
-		System.out.printf("%22s2. 주식\n", " ");
-		System.out.printf("%22s3. 펀드\n", " ");
-		System.out.printf("%22s4. 대출\n", " ");
-		System.out.printf("%22s5. 금 상품\n", " ");
-		System.out.printf("%22s6. 환전\n", " ");
+		System.out.printf("%22s1. 주식\n", " ");
+		System.out.printf("%22s2. 펀드\n", " ");
+		System.out.printf("%22s3. 대출\n", " ");
+		System.out.printf("%22s4. 금 상품\n", " ");
+		System.out.printf("%22s5. 환전\n", " ");
 		System.out.printf("%22s0. 이전으로\n", " ");
 		System.out.println();
 
@@ -37,21 +36,18 @@ public class InvestService {
 
 			switch (sel) {
 			case "1":
-				DepoSave.depoSaveService();
-				loop = false; break;
-			case "2":
 				Stock.stockService();
 				loop = false; break;
-			case "3":
+			case "2":
 				Fund.fundService();
 				loop = false; break;
-			case "4":
+			case "3":
 				Loan.loanService();
 				loop = false; break;
-			case "5":
+			case "4":
 				Gold.goldService();
 				loop = false; break;
-			case "6":
+			case "5":
 				Exchange.exchangeService();
 				loop = false; break;
 			case "0":

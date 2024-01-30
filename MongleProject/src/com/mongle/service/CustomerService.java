@@ -9,11 +9,11 @@ import com.mongle.view.MongleVisual;
 public class CustomerService {
 
 	public static void main(String[] args) {
-		cs();
+		csmenu();
 
 	}
 
-	public static void cs() {
+	public static void csmenu() {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuHeader("고객센터");
 		ArrayList<Inquiry> list = new ArrayList<Inquiry>();
