@@ -45,24 +45,24 @@ public class Stock {
 			while (loop) {
 				String stockURL =  "https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=S3mJZVa%2B2sPWWlGQUV7WgSNe4Fd3yYWAts4pwm9aPIOJVQY4NZqBVvp4bQT%2Fm6iH023rAE5yPGI7gi%2FAZKlxng%3D%3D&numOfRows=1&resultType=json";
 
-				System.out.printf("%30s1. 종목명으로 검색\n", " ");
-				System.out.printf("%30s2. 코드명으로 검색\n", " ");
-				System.out.printf("%30s0. 이전으로\n", " ");
+				System.out.printf("%22s1. 종목명으로 검색\n", " ");
+				System.out.printf("%22s2. 코드명으로 검색\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
 				System.out.println();
-				System.out.printf("%30s선택: ", " ");
+				System.out.printf("%22s선택: ", " ");
 
 				String sel = scan.nextLine();
 				
 				System.out.println();
 
 				if (sel.equals("1")) {
-					System.out.printf("%30s종목명: ", " ");
+					System.out.printf("%22s종목명: ", " ");
 					sel = "&itmsNm=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
 				} else if (sel.equals("2")) {
-					System.out.printf("%30s코드명: ", " ");
+					System.out.printf("%22s코드명: ", " ");
 					sel = "&srtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
 				}  else if (sel.equals("0")) {
-						System.out.printf("%30s종료 하시겠습니까? (y/n)", " ");
+						System.out.printf("%22s종료 하시겠습니까? (y/n)", " ");
 						sel = scan.nextLine();
 						if (sel.equals("y")) {
 						loop = false;
@@ -91,8 +91,8 @@ public class Stock {
 				// System.out.println(jsonObject);
 				
 				if (totalCount == 0) {
-					System.out.printf("%30s검색 결과가 없습니다.\n", " ");
-					System.out.printf("%30s계속하시려면 엔터를 눌러주세요\n", " ");
+					System.out.printf("%22s검색 결과가 없습니다.\n", " ");
+					System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
 					scan.nextLine();
 					continue;
 				}
@@ -130,49 +130,49 @@ public class Stock {
 				System.out.println();
 				System.out.println();
 				
-				System.out.printf("%30s1. 구매\n", " ");
-				System.out.printf("%30s2. 다시 검색하기\n", " ");
-				System.out.printf("%30s9. 홈으로\n", " ");
-				System.out.printf("%30s0. 이전으로\n", " ");
+				System.out.printf("%22s1. 구매\n", " ");
+				System.out.printf("%22s2. 다시 검색하기\n", " ");
+				System.out.printf("%22s9. 홈으로\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
 				System.out.println();
-				System.out.printf("%30s선택: ", " ");
+				System.out.printf("%22s선택: ", " ");
 				String sel2 = scan.nextLine();
 				if (sel2.equals("1")) {
 					String amount = "";
 					MongleVisual.menuHeader("현재가: " + String.format("%,d", nowPrice));
 					while (true) {
-						System.out.printf("%30s수량(숫자): ", " ");
+						System.out.printf("%22s수량(숫자): ", " ");
 						amount = scan.nextLine();
 						String regex = "^[0-9]+$";
 						Pattern p1 = Pattern.compile(regex);
 						Matcher m1 = p1.matcher(amount);
 						if (!m1.find()) {
-							System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
+							System.out.printf("%22s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
 						} else {
 							break;
 						}
 					}
-					System.out.printf("%30s총 구매 대금: %,d원\n", " ", nowPrice * Integer.parseInt(amount));
-					System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
-					System.out.printf("%30s선택: ", " ");
+					System.out.printf("%22s총 구매 대금: %,d원\n", " ", nowPrice * Integer.parseInt(amount));
+					System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
+					System.out.printf("%22s선택: ", " ");
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
-						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
 						scan.nextLine();
 					} else if (sel.equals("n")) {
-						System.out.printf("%35s거래가 취소되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 					} else {
-						System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 					}
 				} else if (sel2.equals("2")) {
-					System.out.printf("%30s엔터를 눌러 계속하기\n", " ");
+					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");
 					scan.nextLine();
 				} else if (sel2.equals("9")) {
 					loop = false;
