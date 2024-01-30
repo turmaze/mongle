@@ -15,8 +15,8 @@ import com.mongle.view.MongleVisual;
 
 public class Exchange {
 	
-	public static double buyPrice;
-	public static int buyAmount;
+	private static double buyPrice;
+	private static int buyAmount;
 	
 	
 	public static void exchangeService() {
@@ -47,8 +47,8 @@ public class Exchange {
 					jsonResult = (JSONArray) parser.parse(result);
 					
 				} catch (Exception e) {
-					System.out.println("연결 실패");
-					System.out.println("재시도 하시려면 엔터");
+					System.out.printf("%22s연결 실패\n", " ");
+					System.out.printf("%22s재시도 하시려면 엔터\n", " ");
 					scan.nextLine();
 					continue;
 				}
@@ -95,10 +95,10 @@ public class Exchange {
 				
 				System.out.println(header);
 
-				System.out.printf("%40s\n", "6. 다음페이지");
-				System.out.printf("%40s\n", "0. 이전으로");
+				System.out.printf("%22s6. 다음페이지\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
 				System.out.println();
-				System.out.printf("%40s", "선택(번호): ");
+				System.out.printf("%22s선택(번호): ", " ");
 
 				String sel = scan.nextLine();
 				
@@ -122,49 +122,52 @@ public class Exchange {
 				} else if (sel.equals("0")){
 					break;
 				} else {
-					System.out.printf("%30s입력이 올바르지 않습니다.\n", " ");
-					System.out.printf("%30s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
+					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+					System.out.printf("%22s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
+					index = -1;
 					scan.nextLine();
 					continue;
 				}
-				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
+				fxName = " 선택하신 외화: " + getFx(fx.get(index), "cur_nm");
 				price = (String) getFx(fx.get(index), "tts");
 				
 				MongleVisual.menuHeader(fxName);
 				
 					String amount = "";
 					while (true) {
-						System.out.printf("%30s수량(숫자): ", " ");
+						System.out.printf("%22s수량(숫자): ", " ");
 						amount = scan.nextLine();
 						String regex = "^[0-9]+$";
 						Pattern p1 = Pattern.compile(regex);
 						Matcher m1 = p1.matcher(amount);
 						if (!m1.find()) {
-							System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
+							System.out.printf("%22s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
 						} else {
 							break;
 						}
 					}
-					System.out.printf("%30s총 구매 대금: %,.2f원\n", " ", Double.parseDouble(price) * Integer.parseInt(amount));
-					System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
-					System.out.printf("%30s선택: ", " ");
+					System.out.printf("%22s총 구매 대금: %,.2f원\n", " ", Double.parseDouble(price) * Integer.parseInt(amount));
+					System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
+					System.out.printf("%22s선택: ", " ");
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
-						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						buyPrice = Double.parseDouble(price);
-						buyAmount = Integer.parseInt(amount);
+						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						setBuyPrice(Double.parseDouble(price));
+						setBuyAmount(Integer.parseInt(amount));
 						
 						scan.nextLine();
 						continue;
 					} else if (sel.equals("n")) {
-						System.out.printf("%35s거래가 취소되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						index = -1;
 						scan.nextLine();
 						continue;
 					} else {
-						System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						index = -1;
 						scan.nextLine();
 						continue;
 					}
@@ -183,6 +186,22 @@ public class Exchange {
 
 	private static Object getFx(Object obj, String element) {
 		return ((JSONObject)obj).get(element);
+	}
+
+	public static double getBuyPrice() {
+		return buyPrice;
+	}
+
+	public static int getBuyAmount() {
+		return buyAmount;
+	}
+
+	public static void setBuyPrice(double buyPrice) {
+		Exchange.buyPrice = buyPrice;
+	}
+
+	public static void setBuyAmount(int buyAmount) {
+		Exchange.buyAmount = buyAmount;
 	}
 	
 	
