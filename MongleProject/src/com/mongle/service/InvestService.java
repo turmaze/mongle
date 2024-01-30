@@ -55,7 +55,7 @@ public class InvestService {
 				Exchange.exchangeService();
 				loop = false; break;
 			case "0":
-				DepoSave.depoSaveService();
+				System.out.printf("%22s이전 화면으로 돌아갑니다.\n", " ");
 				loop = false; break;
 			default:
 				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
