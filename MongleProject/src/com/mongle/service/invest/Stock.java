@@ -31,8 +31,8 @@ public class Stock {
 	
 	static String TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6IjBkNDBmNGEwLWY5MmMtNDMwYS1hNTU1LTI3MWIxMjQ0YWUxYiIsImlzcyI6InVub2d3IiwiZXhwIjoxNzA2NjU2OTgxLCJpYXQiOjE3MDY1NzA1ODEsImp0aSI6IlBTc2VSdm1xdEhnNWt4OWNKZnM3SkZ6cGJQQlFiWHhUNFduOCJ9.Edz3sCO3a5NlSUf6mZoTd50X8A0lG_iymZ5rYDXxd39_dWIb1HTeCM-cG0LkYL4jTh1ezNTWo19S0DT2ez28Ng";
 	static String TOKENexpired = "2024-01-31 08:27:12";
-	private int price = 0;
-	private int amount = 0;
+	public static int buyPrice = 0;
+	public static int buyAmount = 0;
 	
 	public static void stockService() {
 		try {
@@ -159,7 +159,8 @@ public class Stock {
 					if (sel.equals("y")) {
 						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
 						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						//Stock.price
+						buyPrice = nowPrice;
+						buyAmount = Integer.parseInt(amount);
 						scan.nextLine();
 					} else if (sel.equals("n")) {
 						System.out.printf("%35s거래가 취소되었습니다.\n", " ");

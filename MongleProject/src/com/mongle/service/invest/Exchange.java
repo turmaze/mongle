@@ -15,6 +15,9 @@ import com.mongle.view.MongleVisual;
 
 public class Exchange {
 	
+	public static double buyPrice;
+	public static int buyAmount;
+	
 	
 	public static void exchangeService() {
 		
@@ -102,7 +105,7 @@ public class Exchange {
 				System.out.println();
 				
 				String fxName = "";
-				String buyPrice = "";
+				String price = "";
 				
 				if (sel.equals("1")) {
 					index -= 4;
@@ -125,7 +128,7 @@ public class Exchange {
 					continue;
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
-				buyPrice = (String) getFx(fx.get(index), "tts");
+				price = (String) getFx(fx.get(index), "tts");
 				
 				MongleVisual.menuHeader(fxName);
 				
@@ -142,13 +145,16 @@ public class Exchange {
 							break;
 						}
 					}
-					System.out.printf("%30s총 구매 대금: %,.2f원\n", " ", Double.parseDouble(buyPrice) * Integer.parseInt(amount));
+					System.out.printf("%30s총 구매 대금: %,.2f원\n", " ", Double.parseDouble(price) * Integer.parseInt(amount));
 					System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
 					System.out.printf("%30s선택: ", " ");
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
 						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
 						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						buyPrice = Double.parseDouble(price);
+						buyAmount = Integer.parseInt(amount);
+						
 						scan.nextLine();
 						continue;
 					} else if (sel.equals("n")) {
