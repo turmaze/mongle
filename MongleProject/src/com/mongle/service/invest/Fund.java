@@ -27,10 +27,10 @@ public class Fund {
 			
 	        System.out.println();
 	        
-			System.out.printf("%40s\n", "1. 펀드상품 검색");
-			System.out.printf("%40s\n", "9. 홈으로");
-			System.out.printf("%40s\n", "0. 이전으로");
-			System.out.printf("%40s", "선택(번호): ");
+			System.out.printf("%22s1. 펀드상품 검색\n", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 			
 			String sel = scan.nextLine();
 			
