@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,9 +26,9 @@ public class Exchange {
 			Boolean loop = true;
 			int index = -1;
 			
-			MongleVisual.menuHeader("환전");
 
 			while (loop) {
+				MongleVisual.menuHeader("환전");
 
 				System.out.println();
 				JSONArray jsonResult = new JSONArray();
@@ -63,6 +65,7 @@ public class Exchange {
 		        	fx.add(obj);
 		        }
 		        
+		        
 		        for (int i=1; i<=5; i++) {
 		        	index++;
 		        	if (index>=fx.size()) {
@@ -97,26 +100,68 @@ public class Exchange {
 				String sel = scan.nextLine();
 				
 				System.out.println();
-
+				
+				String fxName = "";
+				String buyPrice = "";
+				
 				if (sel.equals("1")) {
-					System.out.println("선택하신 외화: " + getFx(fx.get(index-4), "cur_nm"));
-					scan.nextLine();
+					index -= 4;
 				} else if (sel.equals("2")) {
-					System.out.println("선택하신 외화: " + getFx(fx.get(index-3), "cur_nm"));
-					scan.nextLine();
+					index -= 3;
 				} else if (sel.equals("3")) {
-					System.out.println("선택하신 외화: " + getFx(fx.get(index-2), "cur_nm"));
-					scan.nextLine();
+					index -= 2;
 				} else if (sel.equals("4")) {
-					System.out.println("선택하신 외화: " + getFx(fx.get(index-1), "cur_nm"));
-					scan.nextLine();
+					index -= 1;
 				} else if (sel.equals("5")) {
-					System.out.println("선택하신 외화: " + getFx(fx.get(index), "cur_nm"));
-					scan.nextLine();
+					index -= 0;
 				} else if (sel.equals("6")) {
+					continue;
+				} else if (sel.equals("0")){
+					break;
 				} else {
-					loop = false;
+					System.out.printf("%30s입력이 올바르지 않습니다.\n", " ");
+					System.out.printf("%30s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
+					scan.nextLine();
+					continue;
 				}
+				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
+				buyPrice = (String) getFx(fx.get(index), "tts");
+				
+				MongleVisual.menuHeader(fxName);
+				
+					String amount = "";
+					while (true) {
+						System.out.printf("%30s수량(숫자): ", " ");
+						amount = scan.nextLine();
+						String regex = "^[0-9]+$";
+						Pattern p1 = Pattern.compile(regex);
+						Matcher m1 = p1.matcher(amount);
+						if (!m1.find()) {
+							System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
+						} else {
+							break;
+						}
+					}
+					System.out.printf("%30s총 구매 대금: %,.2f원\n", " ", Double.parseDouble(buyPrice) * Integer.parseInt(amount));
+					System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
+					System.out.printf("%30s선택: ", " ");
+					sel = scan.nextLine();
+					if (sel.equals("y")) {
+						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
+						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						scan.nextLine();
+						continue;
+					} else if (sel.equals("n")) {
+						System.out.printf("%35s거래가 취소되었습니다.\n", " ");
+						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						scan.nextLine();
+						continue;
+					} else {
+						System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
+						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						scan.nextLine();
+						continue;
+					}
 				
 
 			}
