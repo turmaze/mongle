@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.mongle.service.AssetService;
 import com.mongle.service.InvestService;
+import com.mongle.service.invest.DepositSignUp;
 import com.mongle.service.invest.InfoProduct;
 
 public class DepoSave {

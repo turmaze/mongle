@@ -13,7 +13,7 @@ public class AssetService {
 
 	public static void main(String[] args) {
 		GiveAccount.load();
-		//DataAccount.load();
+		DataAccount.load(null, null);
 		assmenu();
 
 	}
