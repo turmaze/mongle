@@ -6,6 +6,7 @@ import java.util.Scanner;
 import com.mongle.service.invest.DepoSave;
 import com.mongle.view.MongleVisual;
 
+
 public class AssetService {
 
 	public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class AssetService {
 			System.out.printf("%22s 9.홈으로\n", " ");
 			System.out.printf("%22s 0.이전으로\n", " ");
 			System.out.printf("%22s번호를 입력하세요:", " ");
-
+			
 			Scanner sc = new Scanner(System.in);
 			String sel = sc.nextLine();
 			AssetService ass = new AssetService();
@@ -38,16 +39,15 @@ public class AssetService {
 			} else if (sel.equals("2")) {
 				ass.checkDepo();
 			} else if (sel.equals("3")) {
-				// 연동메서드();
+
 			} else if (sel.equals("4")) {
 
 			} else if (sel.equals("9")) {
-				break;
+
 			} else if (sel.equals("0")) {
 
 			} else {
-				System.out.println("올바른 번호를 입력하세요.");
-				continue;
+				loop = false;
 			}
 		}
 
@@ -57,33 +57,26 @@ public class AssetService {
 
 		String AccountNumber = "";
 
-		for (BankAccount acc : GiveAccount.glist) {
+		for (BankAccount acc : GiveAccount.list) {
 			if (bankDepo.contains(acc.getBankDepo())) {
 				AccountNumber = acc.getAccountNumber();
-				GiveAccount.glist.remove(acc);
+				GiveAccount.list.remove(acc);
 				break;
 			}
 		}
-
 		DataAccount.list.add(new BankAccount(bankDepo, titleDepo, AccountNumber, 0));
+
 	}// OpenDeposit
 
 	public static void checkDepo() {
 		// 헤더 출력
-		String header = "+---+--------------+-----------------------+-----------------+-------------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|     금융사     |         상품명    \t|      계좌번호      |     잔액     |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
-		printAsciiTable(DataAccount.list);
-		System.out.printf("%22s%s\n", " ", header);
-		// 데이터 출력
-//	    DataAccount.list.forEach(s -> {
-//	        // 각 열의 데이터 출력 포맷 지정
-//	        String formattedAmount = String.format("%,d원", s.getDepositAmount());
-//	        // 정렬된 형태로 출력
-//	        System.out.printf("%-15s %-20s %-15s %s\n", s.getBankDepo(), s.getTitleDepo(), s.getAccountNumber(), s.getDepositAmount());
-//	    });
-	}
+				String header = "+---+--------------+-----------------------+-----------------+-------------+";
+				System.out.printf("%22s%s\n", " ", header);
+				System.out.printf("%22s|번호|     금융사     |         상품명    \t|      계좌번호      |     잔액     |\n", " ");
+				System.out.printf("%22s%s\n", " ", header);
+				printAsciiTable(DataAccount.list);
+				System.out.printf("%22s%s\n", " ", header);
+			}
 
 	public static void pause() {
 
@@ -93,7 +86,7 @@ public class AssetService {
 		sc.nextLine();
 		System.out.println(); // 위 아래 구분 위해 엔터 하나씩 넣어놓음
 	}
-
+	
 	public static void printAsciiTable(ArrayList<BankAccount> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("%22s|%-3d|%-13s|%-16s\t|%12s    |%,6d원\t|\n", " ", i + 1, data.get(i).getBankDepo(),
@@ -101,4 +94,5 @@ public class AssetService {
 
 		}
 	}
+	
 }// class

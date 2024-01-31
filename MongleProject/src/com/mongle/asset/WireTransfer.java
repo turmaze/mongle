@@ -1,4 +1,4 @@
-package javaproject_Mongle;
+package com.mongle.asset;
 
 import java.util.Scanner;
 

@@ -15,13 +15,13 @@ public class DataAccount {
 	public static void load() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(DataAccount.BANKACCOUNT));
-			
+
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
 				list.add(new BankAccount(temp[0], temp[1], temp[2], Integer.parseInt(temp[3])));
 			}
-			//
+
 			reader.close();
 
 		} catch (Exception e) {
