@@ -70,6 +70,8 @@ public class SignUp {
 			name = scan.nextLine();
 			}
 			while(!DataBase.validName(name));
+		userData.setName(name);
+		newUser.put("이름", userData.getName());
 		
 		//----------------birth----------
 		String birth;
@@ -79,7 +81,8 @@ public class SignUp {
 			birth = scan.nextLine();
 			}
 			while(!DataBase.validBirth(birth));
-		
+		userData.setBirth(birth);
+		newUser.put("생일", userData.getBirth());
 		
 		
 		//---------------account---------
