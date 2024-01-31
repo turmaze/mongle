@@ -1,4 +1,5 @@
 package com.mongle.database;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,11 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.jar.Attributes.Name;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 
 import org.json.simple.JSONArray;
@@ -23,15 +26,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.mongle.resource.ResourcePath;
 
+
+
 public class DataBase {
-	String name;
-	String bank;
-	String acc;
-	String tel;
-	String birth;
-	String address;
-	String id;
-	String pw;
+	
+
 	static ArrayList<HashMap> user = new ArrayList<HashMap>();
 	
 	
@@ -44,6 +43,7 @@ public class DataBase {
 	}
 
 	public static void dataSave() {
+		
 		try {
 			
 			//set pretty printing
@@ -103,10 +103,6 @@ public class DataBase {
 		Matcher m = p.matcher(input);
 		
 		if(m.matches() && !isIdDuplicate(input)) {
-			//System.out.println(m.matches()); //testcode
-            HashMap<String, String> newUser = new HashMap<String, String>();
-            newUser.put("아이디", input);  // 사용자 아이디 저장
-            user.add(newUser);  // ArrayList에 사용자 정보 추가
 			return m.matches();			
 		}else {
 			//System.out.println(m.matches()); //testcode
@@ -119,7 +115,7 @@ public class DataBase {
 
         for (HashMap userData : user) {
             //if (userData.containsValue(id)) {
-            if(id.equals(userData.get("아이디"))) {
+            if(id.equals(userData.get("ID"))) {
         		return true; // 중복된 ID가 있음
             }
         }
@@ -140,23 +136,8 @@ public class DataBase {
 		}
 		
 	}//pw
-
-//	private static boolean validTest(String object) {
-//		//유효성 검사
-//		/*	
-//		 	이름	(name)		- Private String
-//		 	은행 (bank) 		- Private String
-//		 	계좌번호 (acc) 	- Private String
-//		 	전화번호 (tel) 	- Private String
-//		 	생년월일 (birth) - Private String
-//		 	주소 (address) 	- Private String
-//		 	아이디 (id) 		- Private String
-//		 	비밀번호 (pw) 	- Private String
-//		 */
-//		
-//		
-//		return false;
-//	}
+	
+	
 
 	private static void get(ArrayList userData) {
 		// 호출문
