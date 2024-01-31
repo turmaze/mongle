@@ -2,6 +2,10 @@ package com.mongle.resource;
 
 public class UserData {
 	
+<<<<<<< HEAD
+=======
+	private String level = "1";
+>>>>>>> origin/05
 	private String id;
 	private String pw;
 	private String name;
@@ -10,6 +14,12 @@ public class UserData {
 	public String getId() {
 		return id;
 	}
+<<<<<<< HEAD
+=======
+	public String getLevel() {
+		return level;
+	}
+>>>>>>> origin/05
 	public String getPw() {
 		return pw;
 	}

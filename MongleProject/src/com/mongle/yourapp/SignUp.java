@@ -83,6 +83,12 @@ public class SignUp {
 			while(!DataBase.validBirth(birth));
 		userData.setBirth(birth);
 		newUser.put("생일", userData.getBirth());
+<<<<<<< HEAD
+=======
+		
+		//사용자 레벨 설정
+		newUser.put("level",userData.getLevel());
+>>>>>>> origin/05
 		
 		
 		//---------------account---------
