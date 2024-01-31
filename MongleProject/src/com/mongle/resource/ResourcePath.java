@@ -4,13 +4,10 @@ public class ResourcePath {
 		/*
 		회원 정보
 		 */
-<<<<<<< HEAD
 		public final static String MEMBER = "src\\com\\mongle\\resource\\member\\member.json";
 		//public final static String MEMBER = "C:\\class\\code\\java\\mongle\\MongleProject\\src\\com\\mongle\\resource\\member\\member.json";
-=======
 		//public final static String MEMBER = "src\\com\\mongle\\resource\\member\\member.json";
-		public final static String MEMBER = "C:\\class\\code\\java\\mongle\\MongleProject\\src\\com\\mongle\\resource\\member\\member.json";
->>>>>>> origin/05
+		//public final static String MEMBER = "C:\\class\\code\\java\\mongle\\MongleProject\\src\\com\\mongle\\resource\\member\\member.json";
 		
 		/*
 		 관리자 

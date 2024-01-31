@@ -1,10 +1,8 @@
 package com.mongle.yourapp;
 
-<<<<<<< HEAD
 import java.util.Scanner;
 
 import com.mongle.database.DataBase;
-=======
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,44 +19,11 @@ import org.json.simple.parser.ParseException;
 
 import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
->>>>>>> origin/05
 import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
 
 public class LogIn {
-<<<<<<< HEAD
 	
-	public static UserData mainUser;
-
-	public static void LogIn() {
-
-		Scanner scan = new Scanner(System.in);
-
-		MongleVisual.menuHeader("로그인");
-		UserData coreUser = new UserData();
-		do {
-
-			String id;
-			String pw;
-
-			System.out.printf("\n%22s아이디: "," ");
-			
-			id = scan.nextLine();
-
-			System.out.printf("\n%22s비밀번호: "," ");
-			pw = scan.nextLine();
-
-//			coreUser = mainUser(id, pw, coreUser);
-
-			if (coreUser == null) {
-				System.out.printf("\n%22s로그인 실패"," ");
-			}
-
-		} while (coreUser == null);
-		
-		mainUser = coreUser;
-=======
-
 	//public static UserData mainUser;
 
 	public static void LogIn() throws FileNotFoundException, IOException, ParseException {
@@ -109,7 +74,6 @@ public class LogIn {
 		} while (!checkID.equals(id)||!checkPW.equals(pw));
 
 		//mainUser = coreUser;
->>>>>>> origin/05
 
 	}
 
