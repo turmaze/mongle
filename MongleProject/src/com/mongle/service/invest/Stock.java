@@ -1,6 +1,9 @@
 package com.mongle.service.invest;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,14 +26,16 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.mongle.resource.ResourcePath;
+import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
 
 import netscape.javascript.JSObject;
 
 public class Stock {
 	
-	static String TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6IjBkNDBmNGEwLWY5MmMtNDMwYS1hNTU1LTI3MWIxMjQ0YWUxYiIsImlzcyI6InVub2d3IiwiZXhwIjoxNzA2NjU2OTgxLCJpYXQiOjE3MDY1NzA1ODEsImp0aSI6IlBTc2VSdm1xdEhnNWt4OWNKZnM3SkZ6cGJQQlFiWHhUNFduOCJ9.Edz3sCO3a5NlSUf6mZoTd50X8A0lG_iymZ5rYDXxd39_dWIb1HTeCM-cG0LkYL4jTh1ezNTWo19S0DT2ez28Ng";
-	static String TOKENexpired = "2024-01-31 08:27:12";
+	public static String TOKEN;
+	public static String TOKENexpired;
 	public static int buyPrice = 0;
 	public static int buyAmount = 0;
 	
@@ -202,6 +207,10 @@ public class Stock {
 	                "&fid_input_iscd=" + cd; //FID 입력 종목코드
 		
 		getToken();
+		if (invalidToken()) {
+			serverToken();
+			setToken();
+		}
 	    
         String result = "";
         try {
@@ -257,7 +266,8 @@ public class Stock {
       }
     }
     
-    public static void getToken() {
+    public static void serverToken() {
+    	
         try {
             String APP_KEY = "PSseRvmqtHg5kx9cJfs7JFzpbPBQbXxT4Wn8";
             String APP_SECRET = "ozZWypajrAAc6Qg9XBV8Vi8qyof2EFf//16gsk3nc7XtMOjOrbtmb+v7qKBvYwJJJ/ni4TXLK2Dp0seaE4zIgak+EVrWl+02xHcAiOwRUD9q+bhOkGsBrb4ZmEKuTxrwqog8sBK19oo7ktQ9naCW0XtjNrB0g52ZhbAuIBfwFroN5szX2SY=";
@@ -265,15 +275,6 @@ public class Stock {
             String PATH = "oauth2/tokenP";
             String URL = URL_BASE + "/" + PATH;
             
-
-			LocalDate date = LocalDate.now();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			String today = date.format(formatter);
-			String[] day = TOKENexpired.split(" ");
-			if (Integer.parseInt(day[0].replace("-", "")) > Integer.parseInt(today.replace("-", ""))) {
-				return;
-			}
-
             // Request body
             String requestBody = String.format(
                 "{\"grant_type\":\"client_credentials\",\"appkey\":\"%s\",\"appsecret\":\"%s\"}",
@@ -303,6 +304,7 @@ public class Stock {
                 TOKEN = (String) jsonObject.get("access_token");
                 TOKENexpired = (String) jsonObject.get("access_token_token_expired");
             }
+            
 
             // Close the connection
             connection.disconnect();
@@ -310,5 +312,61 @@ public class Stock {
             e.printStackTrace();
         }
     }
+
+	private static boolean invalidToken() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String today = date.format(formatter);
+		if (TOKENexpired!=null) {
+		String[] day = TOKENexpired.split(" ");
+		if (Integer.parseInt(day[0].replace("-", "")) > Integer.parseInt(today.replace("-", ""))||TOKENexpired==null) {
+			return false;
+		}
+	}
+		return true;
+	}
+
+	public static void setToken() {
+		
+		try {
+			
+			String path = "C:\\class\\code\\java\\MongleProject\\src\\com\\mongle\\service\\invest\\token.dat";
+			FileWriter writer = new FileWriter(path);			
+			writer.write(TOKEN);
+			writer.write("\r\n");
+			writer.write(TOKENexpired);
+			writer.write("\r\n");
+			
+			writer.close();
+			
+		} catch (Exception e) {
+			System.out.println("Stock.setToken");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void getToken() {
+		
+		try {
+        	
+			String path = "C:\\class\\code\\java\\MongleProject\\src\\com\\mongle\\service\\invest\\token.dat";
+        	File file = new File(path);
+        	
+        	if (file.exists()) {
+        	BufferedReader reader = new BufferedReader(new FileReader(file));
+        	
+        	TOKEN = reader.readLine();
+        	TOKENexpired = reader.readLine();
+			
+			reader.close();
+        	}
+        	
+        	
+        } catch (Exception e) {
+        	System.out.println("DataBase.dataLoad Error");
+            e.printStackTrace();
+        }
+	}
 
 }
