@@ -1,42 +1,76 @@
 package com.mongle.yourapp;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PipedWriter;
+import java.lang.reflect.Member;
+import java.security.Identity;
 import java.util.Scanner;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+
 import com.mongle.database.DataBase;
+import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
 
 public class LogIn {
-	
-	public static UserData mainUser;
 
-	public static void LogIn() {
+	//public static UserData mainUser;
 
+	public static void LogIn() throws FileNotFoundException, IOException, ParseException {
+
+		JSONParser parser = new JSONParser();
 		Scanner scan = new Scanner(System.in);
-
+		
+		JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
+		
 		MongleVisual.menuHeader("로그인");
 		UserData coreUser = new UserData();
+		
+		String checkID = "";
+		String checkPW = "";
+		
+		String id = null;
+		String pw = null;
+		
 		do {
 
-			String id;
-			String pw;
-
-			System.out.printf("\n%22s아이디: "," ");
 			
+
+			System.out.printf("\n%22s아이디: ", " ");
+
 			id = scan.nextLine();
 
-			System.out.printf("\n%22s비밀번호: "," ");
+			System.out.printf("\n%22s비밀번호: ", " ");
 			pw = scan.nextLine();
-
-//			coreUser = mainUser(id, pw, coreUser);
-
-			if (coreUser == null) {
-				System.out.printf("\n%22s로그인 실패"," ");
+			
+			
+			
+			for (Object obj : list) {
+				if (((JSONObject)obj).get("ID").equals(id) ) {
+					checkID = (String) ((JSONObject)obj).get("ID");
+					System.out.println(checkID);
+					checkPW = (String) ((JSONObject)obj).get("비밀번호");
+					System.out.println(checkPW);
+				}
+						
+			}
+			
+			if(checkID.equals(id)&&checkPW.equals(Encrypt.encrypt(pw))) {
+				System.out.printf("\n%22s로그인 성공\r\n", " ");
+			}else {
+				System.out.printf("\n%22s로그인 실패\r\n", " ");
 			}
 
-		} while (coreUser == null);
-		
-		mainUser = coreUser;
+		} while (!checkID.equals(id)||!checkPW.equals(pw));
+
+		//mainUser = coreUser;
 
 	}
 

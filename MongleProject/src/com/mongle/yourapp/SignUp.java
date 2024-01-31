@@ -84,6 +84,9 @@ public class SignUp {
 		userData.setBirth(birth);
 		newUser.put("생일", userData.getBirth());
 		
+		//사용자 레벨 설정
+		newUser.put("level",userData.getLevel());
+		
 		
 		//---------------account---------
 //String acc; 
