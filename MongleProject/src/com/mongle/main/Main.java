@@ -17,7 +17,7 @@ public class Main {
 		//MainMenu.MainMenu();
 		//SignUp.signUp();
 		
-		Stock.stockService();
+		//Stock.stockService();
 		
 		
 		
