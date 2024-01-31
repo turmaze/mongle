@@ -156,32 +156,26 @@ public class DataBase {
 	
 	public static boolean validBirth(String input) {
 		
-		
-		
-		String marker ;
-		if(input.contains("/")) {
-			marker = "/";
-		}else if(input.contains("-")) {
-			marker = "-";
-		}else {
+		if(input.length()>8||input.length()<8) {
 			System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
-			return false;
+			System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n"," ");
 		}
 		
-		String [] birthSplit = input.split(marker);
-		int year = Integer.parseInt(birthSplit[0]);
-		int month = Integer.parseInt(birthSplit[1]);
+		
+		//String [] birthSplit = input.split(marker);
+		int year = Integer.parseInt(input.substring(0,3));
+		int month = Integer.parseInt(input.substring(4,5));
 		String regex;
 		
 		if(month==1||month==3||month==5||month==7||month==8||month==10||month==12) {
-			regex = "^(19|20)\\d{2}([\\/.-])(0[1-9]|1[1,2])([\\/.-])(0[1-9]|[12][0-9]|3[01])$";
+			regex = "^(19|20)\\d{2}(0[1-9]|1[1,2])(0[1-9]|[12][0-9]|3[01])$";
 		}else if(month==2){
 			if(year%4==0) {
-				regex =  "^(19|20)\\d{2}([\\/.-])(02)([\\/.-])(0[1-9]|1[0-9]|2[0-9])$";
+				regex =  "^(19|20)\\d{2}(02)(0[1-9]|1[0-9]|2[0-9])$";
 			}
-			regex =  "^(19|20)\\d{2}([\\/.-])(02)([\\/.-])(0[1-9]|1[0-9]|2[0-8])$";
+			regex =  "^(19|20)\\d{2}(02)(0[1-9]|1[0-9]|2[0-8])$";
 		}else {
-			regex =  "^(19|20)\\d{2}([\\/.-])(0[1-9]|1[1,2])([\\/.-])(0[1-9]|[12][0-9]|3[0])$";
+			regex =  "^(19|20)\\d{2}(0[1-9]|1[1,2])(0[1-9]|[12][0-9]|3[0])$";
 		}
 		
 		
