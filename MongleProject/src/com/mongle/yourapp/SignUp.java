@@ -12,7 +12,7 @@ public class SignUp {
 		Scanner scan = new Scanner(System.in);
 		
 		MongleVisual.menuHeader("회원가입");
-	/*
+	
 		//----------------id----------------
 		String id;
 		do {
@@ -36,11 +36,8 @@ public class SignUp {
 			pw2 = scan.nextLine();
 			
 			//DataBase.user pw 추가
-			if (pw1.equals(pw2)) {
-				HashMap<String, String> newUser = new HashMap<String, String>();  
-				
-				newUser.put("비밀번호", pw1);  // 유효한 비밀번호를 HashMap에 저장
-				DataBase.setUser(newUser);  // HashMap을 ArrayList에 추가
+			if (pw1.equals(pw2)) { 
+				DataBase.pwSave(pw2);
 				break;
 			} else {
 				System.out.printf("\n%22s비밀번호가 다릅니다.\n\n", " ");
@@ -58,31 +55,41 @@ public class SignUp {
 			name = scan.nextLine();
 			}
 			while(!DataBase.validName(name));
-		*/
+		
+		//----------------birth----------
+		String birth;
+		do {
+			System.out.printf("\n%22s(예시 1999/03/14)\n"," ");
+			System.out.printf("\n%22s3. 생년월일: "," ");	
+			birth = scan.nextLine();
+			}
+			while(!DataBase.validBirth(birth));
+		
+		
+		
 		//---------------account---------
-String acc; 
-		
-		do {
-			System.out.printf("\n%22s(12~14 숫자(-입력 필수))\n"," ");
-			System.out.printf("\n%22s3.계좌번호: "," ");	
-			acc = scan.nextLine();
-			}
-			while(!DataBase.validAcc(acc));
-		
-		//----------------bank ---------
-		
-		do {
-			System.out.printf("\n%22s1\n"," ");
-			System.out.printf("\n%22s3.계좌번호: "," ");	
-			acc = scan.nextLine();
-			}
-			while(!DataBase.validAcc(acc));
+//String acc; 
+//		
+//		do {
+//			System.out.printf("\n%22s(12~14 숫자(-입력 필수))\n"," ");
+//			System.out.printf("\n%22s3.계좌번호: "," ");	
+//			acc = scan.nextLine();
+//			}
+//			while(!DataBase.validAcc(acc));
+//		
+//		//----------------bank ---------
+//		
+//		do {
+//			System.out.printf("\n%22s1\n"," ");
+//			System.out.printf("\n%22s3.계좌번호: "," ");	
+//			acc = scan.nextLine();
+//			}
+//			while(!DataBase.validAcc(acc));
 		
 		
 		
 		//test
-		System.out.printf("\n%22stest ArrayList Test : ", " ");
-		System.out.println(DataBase.getUser());
+		
 		
 		
 		
