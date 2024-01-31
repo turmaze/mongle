@@ -6,7 +6,10 @@ import com.mongle.yourapp.SignUp;
 public class Main {
 	public static void main(String[] args) {
 		DataBase.dataLoad();
+		//LogIn.LogIn();
+		//MainMenu.MainMenu();
 		SignUp.signUp();
+		DataBase.dataSave();
 		
 		
 		
