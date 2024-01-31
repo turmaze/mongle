@@ -2,9 +2,15 @@ package com.mongle.resource;
 
 public class UserData {
 	
+	private String level = "1";
 	private String id;
 	private String pw;
 	private String name;
+	
+	
+	public String getLevel() {
+		return level;
+	}
 	
 	public String getId() {
 		return id;
