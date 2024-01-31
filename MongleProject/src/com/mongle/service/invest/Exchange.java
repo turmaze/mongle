@@ -130,9 +130,7 @@ public class Exchange {
 				}
 				fxName = " 선택하신 외화: " + getFx(fx.get(index), "cur_nm");
 				price = (String) getFx(fx.get(index), "tts");
-
 				price = price.replace(",", "");
-
 				
 				MongleVisual.menuHeader(fxName);
 				
