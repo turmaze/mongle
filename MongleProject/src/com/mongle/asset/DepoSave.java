@@ -207,7 +207,7 @@ public class DepoSave {
 				break;
 			}
 		}
-		DataAccount.list.add(new BankAccount(bankDepo, titleDepo, AccountNumber, 0)); // json에 추가
+		BankAccount.list.add(new BankAccount(bankDepo, titleDepo, AccountNumber, 0)); // json에 추가
 		GiveAccount.save();
 
 	}// OpenDeposit
