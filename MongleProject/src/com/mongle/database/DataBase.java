@@ -47,18 +47,18 @@ public class DataBase {
 	}
 
 	public static void setUser(HashMap<String,String> newUser) {
-		DataBase.privateUser.add(newUser);
+		DataBase.user.add(newUser);
 	}
 	
 	public static ArrayList<HashMap> getPrivateuser() {
 		return privateUser;
 	}
 
-	public static void setPrivateUsers(HashMap<String,String> newUser) {
-		DataBase.user.add(newUser);
+	public static void setPrivateUser(HashMap<String,String> newUser) {
+		DataBase.privateUser.add(newUser);
 	}
 	
-	public static void loadPrivateUsers(String primaryKey) {
+	public static void loadPrivateUser(String primaryKey) {
 		try {
             
             // JSON 파일을 읽어와 JsonArray로 파싱
@@ -71,7 +71,8 @@ public class DataBase {
                 String tempId = jsonObject.get("id").getAsString();
 
                 if (tempId.equals(LogIn.primaryKey)) {
-                    String pw = jsonObject.get("pw").getAsString();
+                
+                	String pw = jsonObject.get("pw").getAsString();
                     String name = jsonObject.get("name").getAsString();
                     String birth = jsonObject.get("birth").getAsString();
 
@@ -220,7 +221,7 @@ public class DataBase {
 
         for (HashMap userData : user) {
             //if (userData.containsValue(id)) {
-            if(id.equals(userData.get("ID"))) {
+            if(id.equals(userData.get("id"))) {
         		return true; // 중복된 ID가 있음
             }
         }
