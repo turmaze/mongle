@@ -42,4 +42,8 @@ public class SignOut {
 		}
 	}
 	
+	public static void setSignOut() {
+		
+	}
+	
 }

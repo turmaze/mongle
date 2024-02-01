@@ -32,6 +32,10 @@ public class Point {
 
 	}
 	
+	public static void getPoint() {
+		
+	}
+	
 	public static void pointList() {
 		
 	}
