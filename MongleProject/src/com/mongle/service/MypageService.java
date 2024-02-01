@@ -7,7 +7,7 @@ import com.mongle.yourapp.SignOut;
 
 public class MypageService {
 
-	public static void main(String[] args) {
+	public static void mypageService(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuHeader("MyPage");
 		boolean loop = true;
