@@ -39,10 +39,12 @@ public class Stock {
 
 			Scanner scan = new Scanner(System.in);
 			Boolean loop = true;
-			MongleVisual.menuHeader("주식");
 			
-
 			while (loop) {
+				
+				MongleVisual.pusher();
+
+				MongleVisual.menuHeader("주식");
 				String stockURL =  "https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=S3mJZVa%2B2sPWWlGQUV7WgSNe4Fd3yYWAts4pwm9aPIOJVQY4NZqBVvp4bQT%2Fm6iH023rAE5yPGI7gi%2FAZKlxng%3D%3D&numOfRows=1&resultType=json";
 
 				System.out.printf("%30s1. 종목명으로 검색\n", " ");

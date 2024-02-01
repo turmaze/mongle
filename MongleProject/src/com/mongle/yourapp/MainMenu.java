@@ -44,18 +44,23 @@ public class MainMenu {
 			switch (choice) {
 			case "1":
 				System.out.printf("%22s자산관리 화면으로 이동합니다.\n", " ");
+				continue;
 			case "2":
 				System.out.printf("%22s송금 화면으로 이동합니다.\n", " ");
+				continue;
 			case "3":
 				System.out.printf("%22s투자 화면으로 이동합니다.\n", " ");
+				continue;
 			case "4":
 				System.out.printf("%22s고객센터 화면으로 이동합니다.\n", " ");
+				continue;
 			case "5":
 				System.out.printf("%22sMyPage 화면으로 이동합니다.\n", " ");
 				r = MypageService.mypageService();
 				continue;
-			case "6":
+			case "0":
 				System.out.printf("%22s로그아웃합니다.\n", " ");
+				loop = false; return;
 			default:
 				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
 			}

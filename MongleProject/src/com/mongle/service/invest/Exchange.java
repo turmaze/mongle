@@ -31,6 +31,9 @@ public class Exchange {
 			
 
 			while (loop) {
+				
+				MongleVisual.pusher();
+				
 				MongleVisual.menuHeader("환전");
 
 				System.out.println();

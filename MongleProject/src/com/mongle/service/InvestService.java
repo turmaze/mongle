@@ -18,9 +18,11 @@ public class InvestService {
 
 	public static void investMenu() {
 		Scanner scan = new Scanner(System.in);
-		MongleVisual.menuHeader("투자 메뉴");
 		boolean loop = true;
+		
+		MongleVisual.pusher();
 
+		MongleVisual.menuHeader("투자 메뉴");
 		
 		System.out.printf("%22s1. 주식\n", " ");
 		System.out.printf("%22s2. 펀드\n", " ");
