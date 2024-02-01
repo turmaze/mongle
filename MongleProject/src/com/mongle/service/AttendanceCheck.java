@@ -45,7 +45,7 @@ public class AttendanceCheck {
 		}
 	}
 	
-	public static void attendanceCheckAuto() {
+	public static void autoAttendance() {
 		
 	}
 
