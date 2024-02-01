@@ -47,7 +47,7 @@ public class DepoSave {
 		return String.format("DepoSave [bankDepo=%s, titleDepo=%s]", bankDepo, titleDepo);
 	}
 
-	public static void depoSaveService() {
+	public static int depoSaveService() {
 		Scanner scan = new Scanner(System.in);
 		List<InfoProduct> table = new ArrayList<>(); // 예적금 정보 담을 리스트
 		boolean loop = true;
@@ -80,11 +80,10 @@ public class DepoSave {
 						break;
 					} else if (sel.equals("9")) {
 						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
-						loop = false;
+						return 9;
 					} else if (sel.equals("0")) {
 						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
-						InvestService.investMenu();
-						loop = false;
+						return 0;
 					} else {
 						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
 					}
@@ -93,6 +92,7 @@ public class DepoSave {
 				}
 			} // while
 		} // while
+		return 0;
 	}
 
 	public static List<InfoProduct> searchDepoSave(Scanner scan, List<InfoProduct> table) { // 예적금 검색 한번에 모으기

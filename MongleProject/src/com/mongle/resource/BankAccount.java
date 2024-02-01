@@ -14,6 +14,18 @@ public class BankAccount {
 	
 	public static ArrayList<BankAccount> list = new ArrayList<>();
 
+	 // findAccount 메서드 추가
+    public static BankAccount findAccount(String accountNumber) {
+        for (BankAccount account : list) {
+            if (account.getAccountNumber().equals(accountNumber)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
+	
+	
 	public BankAccount(String bankDepo, String titleDepo, String AccountNumber, int DepositAmount) {
 
 		this.accountNumber = AccountNumber;
