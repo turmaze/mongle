@@ -128,25 +128,6 @@ public class DataBase {
 		    }
 		}
 	}
-//	
-//	public static void changeData() {
-//		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
-//		for (HashMap<String, Object> user : privateUser) {
-//		    if (user.get("id").equals("asd159")) {
-//		        user.put("name", "라나다");
-//		        break; // 수정한 후에는 루프 종료
-//		    }
-//		}
-//	}
-//	
-//	public static void changeTotalData() {
-//		for (HashMap<String, Object> user : user) {
-//			if (user.get("id").equals("asd159")) {
-//	        user.put("name", "라나다");
-//	        break;
-//			}
-//		}
-//	}
 	
 
 //JsonObject로 만든거		
