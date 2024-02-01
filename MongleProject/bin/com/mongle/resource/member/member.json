@@ -14,5 +14,31 @@
     "name": "가나다",
     "birth": "19990314",
     "id": "asd123"
+  },
+  {
+    "비밀번호": "75ba703af0c323741086279f0e70a319441597cf2124bbb22d57ec590ad0e27c",
+    "ID": "true",
+    "계좌": [
+      {
+        "depositAmount": 0,
+        "titleDepo": "WON플러스예금",
+        "bankDepo": "우리은행",
+        "accountNumber": "239-739-231906"
+      },
+      {
+        "depositAmount": 0,
+        "titleDepo": "쏠편한 정기예금",
+        "bankDepo": "신한은행",
+        "accountNumber": "510-375-601804"
+      }
+    ],
+     "투자": [
+      {
+        "bankDepo": "",
+        "titleDepo": "금",
+        "price": "100000",
+        "amount": "5"
+      }
+      ]
   }
 ]
