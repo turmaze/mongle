@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
 import com.mongle.database.DataBase;
+import com.mongle.service.AttendanceCheck;
 import com.mongle.service.invest.Stock;
 import com.mongle.yourapp.LogIn;
 import com.mongle.yourapp.SignUp;
@@ -18,7 +19,7 @@ public class Main {
 		//SignUp.signUp();
 		
 		//Stock.stockService();
-		
+		AttendanceCheck.attendanceCheckService();
 		
 		
 		

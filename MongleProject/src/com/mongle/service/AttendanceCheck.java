@@ -2,6 +2,7 @@ package com.mongle.service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.mongle.view.MongleVisual;
@@ -24,9 +25,11 @@ public class AttendanceCheck {
 			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]));
 			
 			System.out.println();
+			System.out.println();
 
-			System.out.printf("%22s9. 홈으로", " ");
-			System.out.printf("%22s0. 이전으로", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
@@ -46,11 +49,12 @@ public class AttendanceCheck {
 		//System.out.println(lastDay);
 		//System.out.println(dayOfWeek);
 		
-		System.out.println("====================================================");
-		System.out.printf("                   %02d월\n", month);
-		System.out.println("====================================================");
-		System.out.println("[일]\t[월]\t[화]\t[수]\t[목]\t[금]\t[토]");
+		System.out.printf("%15s======================================================\n", " ");
+		System.out.printf("%15s                       %02d월\n", " ", month);
+		System.out.printf("%15s======================================================\n", " ");
+		System.out.printf("%8s\t[일]\t[월]\t[화]\t[수]\t[목]\t[금]\t[토]\n", " ");
 		
+		System.out.print("\t\t");
 		for (int i=0; i<dayOfWeek; i++) {
 			System.out.print("\t");
 		}
@@ -63,7 +67,20 @@ public class AttendanceCheck {
 			//if (i % 7 == 6) {
 			if ((i + dayOfWeek) % 7 == 0) {
 				System.out.println();
+				System.out.print("\t\t");
+				System.out.printf("%3s\t", "X");
+				System.out.printf("%3s\t", "X");
+				System.out.printf("%3s\t", "X");
+				System.out.printf("%3s\t", "X");
+				System.out.printf("%3s\t", "X");
+				System.out.printf("%3s\t", "X");
+				System.out.printf("%3s\t", "X");
+				
+				System.out.println();
+				System.out.printf("%8s\t", " ");
+				
 			}
+			
 		}
 		
 	}
