@@ -12,7 +12,7 @@ import com.mongle.view.MongleVisual;
 
 public class AttendanceCheck {
 
-	public static void attendanceCheckService() {
+	public static int attendanceCheckService() {
 		Scanner scan = new Scanner(System.in);
 
 		LocalDate now = LocalDate.now();
@@ -38,11 +38,12 @@ public class AttendanceCheck {
 			if (sel.equals("1")) {
 
 			} else if (sel.equals("9")) {
-				break;
+				return 9;
 			} else if (sel.equals("0")) {
-				break;
+				return 0;
 			}
 		}
+		
 	}
 	
 	public static void autoAttendance() {

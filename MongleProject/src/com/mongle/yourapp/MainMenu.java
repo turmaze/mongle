@@ -3,6 +3,11 @@ package com.mongle.yourapp;
 import java.util.Scanner;
 
 import com.mongle.main.Main;
+import com.mongle.service.MypageService;
+import com.mongle.service.mypage.AttendanceCheck;
+import com.mongle.service.mypage.CreditScore;
+import com.mongle.service.mypage.Point;
+import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.MongleVisual;
 
 public class MainMenu {
@@ -19,19 +24,42 @@ public class MainMenu {
 
 	private static void userMenu() {
 		Scanner scan = new Scanner(System.in);
+		int r = -1;
+		boolean loop = true;
 
-		MongleVisual.menuHeader("메인메뉴");
+		while (loop) {
 
-		System.out.printf("\n%22s1. 자산관리", " ");
-		System.out.printf("\n%22s2. 송금", " ");
-		System.out.printf("\n%22s3. 투자", " ");
-		System.out.printf("\n%22s4. 고객센터", " ");
-		System.out.printf("\n%22s5. MyPage", " ");
-		System.out.printf("\n%22s0. 로그아웃", " ");
-		System.out.printf("\n\r\n%22s선택번호: ", " ");
-		String choice = scan.nextLine();
+			MongleVisual.menuHeader("메인메뉴");
 
-		System.out.println(choice);
+			System.out.printf("\n%22s1. 자산관리", " ");
+			System.out.printf("\n%22s2. 송금", " ");
+			System.out.printf("\n%22s3. 투자", " ");
+			System.out.printf("\n%22s4. 고객센터", " ");
+			System.out.printf("\n%22s5. MyPage", " ");
+			System.out.printf("\n%22s0. 로그아웃", " ");
+			System.out.printf("\n\r\n%22s선택번호: ", " ");
+			String choice = scan.nextLine();
+
+			switch (choice) {
+			case "1":
+				System.out.printf("%22s자산관리 화면으로 이동합니다.\n", " ");
+			case "2":
+				System.out.printf("%22s송금 화면으로 이동합니다.\n", " ");
+			case "3":
+				System.out.printf("%22s투자 화면으로 이동합니다.\n", " ");
+			case "4":
+				System.out.printf("%22s고객센터 화면으로 이동합니다.\n", " ");
+			case "5":
+				System.out.printf("%22sMyPage 화면으로 이동합니다.\n", " ");
+				r = MypageService.mypageService();
+				continue;
+			case "6":
+				System.out.printf("%22s로그아웃합니다.\n", " ");
+			default:
+				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+			}
+
+		}
 
 	}
 
@@ -40,12 +68,10 @@ public class MainMenu {
 
 		MongleVisual.menuHeader("관리자 페이지");
 
-		
 		System.out.printf("\n%22s1. 회원 관리", " ");
 		System.out.printf("\n%22s2. 데이터 관리", " ");
 		System.out.printf("\n%22s3. 문의 처리", " ");
 		System.out.printf("\n%22s0. 로그아웃", " ");
-		
 
 		System.out.printf("\n%22s선택번호: ", " ");
 		String choice = scan.nextLine();

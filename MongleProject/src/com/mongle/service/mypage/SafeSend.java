@@ -6,7 +6,7 @@ import com.mongle.view.MongleVisual;
 
 public class SafeSend {
 
-	public static void safeSendService() {
+	public static int safeSendService() {
 		
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -34,12 +34,13 @@ public class SafeSend {
 			System.out.printf("%22s계속하시려면 엔터를 눌러주세요.\n", " ");
 			scan.nextLine();
 		} else if (sel.equals("9")) {
-			break;
+			return 9;
 		} else if (sel.equals("0")) {
-			break;
+			return 0;
 		}
 		
 		}
+		return 0;
 		
 		
 	}
