@@ -79,7 +79,8 @@ public class Exchange {
 				String header = "+----+--------------------------+---------------+---------------+---------------+";
 				System.out.println(header);
 				System.out.printf("|%4s|     국가 및 통화명  \t|%5s구매시\t|%5s판매시\t|%3s매매기준율\t|\n", "", " ", " ", " ");
-
+				System.out.println(header);				
+				
 				JSONArray fx = new JSONArray();
 
 				for (Object obj : jsonResult) {
@@ -110,11 +111,11 @@ public class Exchange {
 
 				System.out.println(header);
 
-				System.out.printf("%40s\n", "6. 다음페이지");
-				System.out.printf("%40s\n", "9. 홈으로");
-				System.out.printf("%40s\n", "0. 이전으로");
+				System.out.printf("%22s\n", "6. 다음페이지");
+				System.out.printf("%22s\n", "9. 홈으로");
+				System.out.printf("%22s\n", "0. 이전으로");
 				System.out.println();
-				System.out.printf("%40s", "선택(번호): ");
+				System.out.printf("%22s", "선택(번호): ");
 
 				String sel = scan.nextLine();
 
@@ -140,8 +141,8 @@ public class Exchange {
 				} else if (sel.equals("0")) {
 					return 0;
 				} else {
-					System.out.printf("%30s입력이 올바르지 않습니다.\n", " ");
-					System.out.printf("%30s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
+					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+					System.out.printf("%22s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
 					scan.nextLine();
 					continue;
 				}
@@ -152,21 +153,23 @@ public class Exchange {
 
 				String amount = "";
 				while (true) {
-					System.out.printf("%30s수량(숫자): ", " ");
+					System.out.printf("%22s수량(숫자): ", " ");
 					amount = scan.nextLine();
 					String regex = "^[0-9]+$";
 					Pattern p1 = Pattern.compile(regex);
 					Matcher m1 = p1.matcher(amount);
 					if (!m1.find()) {
-						System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
+						System.out.printf("%22s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
+					} else if (Integer.parseInt(amount)<100) {
+						System.out.println("");
 					} else {
 						break;
 					}
 				}
 				price = price.replace(price.substring(price.indexOf(".")), "");
-				System.out.printf("%30s총 구매 대금: %,d원\n", " ", Integer.parseInt(price) * Integer.parseInt(amount));
-				System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
-				System.out.printf("%30s선택: ", " ");
+				System.out.printf("%22s총 구매 대금: %,d원\n", " ", Integer.parseInt(price) * Integer.parseInt(amount));
+				System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
+				System.out.printf("%22s선택: ", " ");
 				sel = scan.nextLine();
 				if (sel.equals("y")) {
 					buyPrice = Integer.parseInt(price);
@@ -175,11 +178,11 @@ public class Exchange {
 					MongleVisual.stopper();
 					continue;
 				} else if (sel.equals("n")) {
-					System.out.printf("%35s거래가 취소되었습니다.\n", " ");
+					System.out.printf("%22s거래가 취소되었습니다.\n", " ");
 					MongleVisual.stopper();
 					continue;
 				} else {
-					System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
+					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
 					MongleVisual.stopper();
 					continue;
 				}
