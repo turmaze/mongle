@@ -1,0 +1,18 @@
+[
+  {
+    "level": "1",
+    "phone": "01033448899",
+    "pw": "1256fe12b0a1b193d6bce84425b316d5702a8aa459156d365a27f03f1ab9c767",
+    "name": "change",
+    "birth": "19990314",
+    "id": "asd159"
+  },
+  {
+    "level": "1",
+    "phone": "01033448899",
+    "pw": "d9d9af32b5b9892dd36e85f0b37db06c7ce8290458537fe95b114ed92b1bb4f6",
+    "name": "가나다다",
+    "birth": "19990314",
+    "id": "aasd159"
+  }
+]
