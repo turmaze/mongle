@@ -9,10 +9,8 @@ public class Encrypt {
 		Encrypt encrypt = new Encrypt();
 
 		//getSalt
-		String salt = encrypt.getSalt();
+		String salt = encrypt.getAbcJuice();
 		//System.out.println("salt : "+salt); // salt value
-		
-		
 		
 		return encrypt.getEncrypt(pw,salt);
 		
@@ -47,7 +45,7 @@ public class Encrypt {
 		return output;
 	}
 
-	private String getSalt() {
+	public String getAbcJuice() { //getSalt
 		SecureRandom secureRandom = new SecureRandom();  
 		byte[] salt = new byte[20];
 

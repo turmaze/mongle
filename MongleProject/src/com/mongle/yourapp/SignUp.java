@@ -46,9 +46,10 @@ public class SignUp {
 			
 			//DataBase.user pw 추가
 			if (pw1.equals(pw2)) {
-				
+				Encrypt encrypt = new Encrypt();
 				String finPw = Encrypt.encrypt(pw2); //pw 암호화
 				
+				newUser.put("salt", encrypt.getAbcJuice()); //get salt
 				newUser.put("pw", finPw);  // 유효한 비밀번호를 HashMap에 저장
 				//DataBase.setUser(newUser);  // HashMap을 ArrayList에 추가
 				break;
