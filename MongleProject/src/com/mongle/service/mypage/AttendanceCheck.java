@@ -21,6 +21,9 @@ public class AttendanceCheck {
 		String[] date = today.split("-");
 
 		while (true) {
+			
+			MongleVisual.pusher();
+			
 			MongleVisual.menuHeader("출석 체크");
 
 			System.out.println();

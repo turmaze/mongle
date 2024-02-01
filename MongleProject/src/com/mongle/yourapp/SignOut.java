@@ -5,11 +5,14 @@ import java.util.Scanner;
 import com.mongle.view.MongleVisual;
 
 public class SignOut {
-	
-	public static void signOutService() {
+
+	public static int signOutService() {
 		Scanner scan = new Scanner(System.in);
 
 		while (true) {
+
+			MongleVisual.pusher();
+
 			MongleVisual.menuHeader("회원 탈퇴");
 
 			System.out.println();
@@ -17,8 +20,8 @@ public class SignOut {
 			System.out.printf("%22s1. 탈퇴\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.printf("%22s선택(번호): ", " ");       
-			
+			System.out.printf("%22s선택(번호): ", " ");
+
 			System.out.println();
 
 			String sel = scan.nextLine();
@@ -33,17 +36,18 @@ public class SignOut {
 					System.out.printf("%22s탈퇴가 취소되었습니다.", " ");
 					System.out.println();
 				}
-				
+
 			} else if (sel.equals("9")) {
-				break;
+				return 9;
 			} else if (sel.equals("0")) {
-				break;
+				return 0;
 			}
 		}
+		return 0;
 	}
-	
+
 	public static void setSignOut() {
-		
+
 	}
-	
+
 }

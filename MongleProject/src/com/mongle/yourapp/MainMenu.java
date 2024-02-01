@@ -29,6 +29,7 @@ public class MainMenu {
 
 		while (loop) {
 			MongleVisual.pusher();
+			
 			MongleVisual.menuHeader("메인메뉴");
 
 			System.out.printf("\n%22s1. 자산관리", " ");

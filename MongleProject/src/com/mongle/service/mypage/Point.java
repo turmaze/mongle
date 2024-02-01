@@ -6,10 +6,13 @@ import com.mongle.view.MongleVisual;
 
 public class Point {
 
-	public static void pointService() {
+	public static int pointService() {
 		Scanner scan = new Scanner(System.in);
 
 		while (true) {
+			
+			MongleVisual.pusher();
+			
 			MongleVisual.menuHeader("포 인 트");
 
 			System.out.println();
@@ -24,9 +27,9 @@ public class Point {
 			if (sel.equals("1")) {
 
 			} else if (sel.equals("9")) {
-				break;
+				return 9;
 			} else if (sel.equals("0")) {
-				break;
+				return 0;
 			}
 		}
 

@@ -37,8 +37,12 @@ public class MypageService {
 				System.out.printf("%22s개인정보 화면으로 이동합니다.\n", " ");
 			case "2":
 				System.out.printf("%22s신용점수 화면으로 이동합니다.\n", " ");
-				CreditScore.creditScoreService();
+				r = CreditScore.creditScoreService();
+				if (r == 9) {
+					return 9;
+				} else {
 				continue;
+				}
 			case "3":
 				System.out.printf("%22s안심송금서비스 화면으로 이동합니다.\n", " ");
 				r = SafeSend.safeSendService();
@@ -57,12 +61,20 @@ public class MypageService {
 				}
 			case "5":
 				System.out.printf("%22s포인트 화면으로 이동합니다.\n", " ");
-				Point.pointService();
+				r = Point.pointService();
+				if (r == 9) {
+					return 9;
+				} else {
 				continue;
+				}
 			case "6":
 				System.out.printf("%22s회원탈퇴 화면으로 이동합니다.\n", " ");
-				SignOut.signOutService();
+				r = SignOut.signOutService();
+				if (r == 9) {
+					return 9;
+				} else {
 				continue;
+				}
 			case "0":
 				System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
 				loop = false; break;
