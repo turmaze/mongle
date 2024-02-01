@@ -15,12 +15,12 @@ import com.mongle.yourapp.SignUp;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-		DataBase.dataLoad();
-//		SignUp.signUp();
+		//DataBase.dataLoad();
+		//SignUp.signUp();
 		
 		//DataBase.changeData(DataBase.getUser(),"name","change"); //sample
 		
-		LogIn.logIn();
+		//LogIn.logIn();
 		//DataBase.loadPrivateUser(LogIn.primaryKey);
 		//MainMenu.MainMenu();
 		

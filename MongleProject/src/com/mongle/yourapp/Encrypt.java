@@ -45,7 +45,7 @@ public class Encrypt {
 		return output;
 	}
 
-	public String getAbcJuice() { //getSalt
+	public static String getAbcJuice() { //getSalt
 		SecureRandom secureRandom = new SecureRandom();  
 		byte[] salt = new byte[20];
 
@@ -60,5 +60,9 @@ public class Encrypt {
 		
 		return sb.toString();
 	}
-
+	
+	
+	public static String LogInPw(String pw) {
+		return getEncrypt(pw,getAbcJuice());	
+	}
 }
