@@ -246,7 +246,6 @@ public class DataBase {
 		if (m.matches()) {
 			return m.matches();
 		} else {
-			// System.out.println(m.matches()); //testcode
 			System.out.printf("\n%22s잘못된 입력입니다.\n\n", " ");
 			return m.matches();
 		}
@@ -263,19 +262,17 @@ public class DataBase {
 
 			return m.matches();
 		} else {
-			// getUserList().get(userList.size()-1).setName(input);// ArrayList에 사용자 정보 추가
 			return m.matches();
 		}
 	}// name
 
 	public static boolean validBirth(String input) {
 
-//		if(input.length()>8||input.length()<8) {
-//			System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
-//			System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n"," ");
-//		}
+		if(input.length()>8||input.length()<8) {
+			System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
+			System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n"," ");
+		}
 
-		// String [] birthSplit = input.split(marker);
 		int year = Integer.parseInt(input.substring(0, 4));
 		int month = Integer.parseInt(input.substring(4, 6));
 		String regex;
@@ -295,16 +292,12 @@ public class DataBase {
 		boolean matchfound = m.find();
 		System.out.println();
 		if (!matchfound) {
-			// System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
-			// System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n"," ");
+			 System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
+			 System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n"," ");
 			return false;
 		} else {
-			// HashMap<String, String> newUser = new HashMap<String, String>();
-			// getUserList().get(userList.size()-1).setBirth(input);// 사용자 생일 저장
-
 			return matchfound;
 		}
-
 	}// birth
 
 	public static boolean validPhone(String phone) {

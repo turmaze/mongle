@@ -67,19 +67,12 @@ public class LogIn {
 					//로그인 상태 
 					System.out.printf("\n%22s로그인 성공\r\n", " ");
 					primaryKey = user.getId();
-					System.out.println(primaryKey);
 					MainMenu.mainMenu(checklevel);
 					return checklevel;
 					
 				}else {
 					System.out.printf("\n%22s로그인 실패\r\n", " ");
-				
 					count++;
-					
-					System.out.println(checkSalt);
-					System.out.println(checkPW);
-					System.out.println(Encrypt.LogInPw(user.getPw(), checkSalt));
-					
 				}
 				
 				if(count==3) {
