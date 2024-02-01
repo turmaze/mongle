@@ -5,12 +5,14 @@ import java.util.Scanner;
 import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.CreditScore;
 import com.mongle.service.mypage.Point;
+import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.SignOut;
 
 public class MypageService {
 
-	public static void mypageService(String[] args) {
+	public static void mypageService() {
+		
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuHeader("MyPage");
 		boolean loop = true;
@@ -38,6 +40,7 @@ public class MypageService {
 				loop = false; break;
 			case "3":
 				System.out.printf("%22s안심송금서비스 화면으로 이동합니다.\n", " ");
+				SafeSend.safeSendService();
 				loop = false; break;
 			case "4":
 				System.out.printf("%22s출석체크 화면으로 이동합니다.\n", " ");

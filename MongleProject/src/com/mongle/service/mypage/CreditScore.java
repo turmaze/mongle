@@ -32,11 +32,6 @@ public class CreditScore {
 		
 		}
 		
-		System.out.printf("%22s계속하시려면 엔터를 눌러주세요.", " ");
-		scan.nextLine();
-		
-		System.out.println();
-		
 	}
 	
 }
