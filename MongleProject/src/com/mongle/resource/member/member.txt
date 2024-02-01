@@ -6,7 +6,15 @@
     "pw": "e8e7693313d0b2c246b65256d7383f3c57bd6699663bf785f7966040312e1289",
     "name": "마마마",
     "birth": "19991111",
-    "id": "asdf"
+    "id": "asdf",
+    "계좌": [
+      {
+        "depositAmount": 0,
+        "accountNumber": " 221819-63-604509",
+        "bankDepo": "국민은행",
+        "titleDepo": "KB Star 정기예금"
+      }
+    ]
   },
   {
     "salt": "eaf32c3c089c74eb64cb73ad3c2d577c96225b9a",

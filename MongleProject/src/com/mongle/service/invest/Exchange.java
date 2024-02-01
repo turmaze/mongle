@@ -13,14 +13,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.mongle.resource.Investment;
+import com.mongle.service.InvestService;
 import com.mongle.view.MongleVisual;
 
 public class Exchange {
-	
+
 	public static int buyPrice;
 	public static int buyAmount;
 	public static ArrayList<Investment> listExchange = new ArrayList<>();
-	
+
 	public static int getBuyPrice() {
 		return buyPrice;
 	}
@@ -38,84 +39,75 @@ public class Exchange {
 	}
 
 	public static int exchangeService() {
-		
+
 		int r = -1;
-		
-		String exchangeURL =  "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=I2RthKfXSu7z1LFQH3mxZqouqGgL3KKm&searchdate=20240126&data=AP01";
-		
+
+		String exchangeURL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=I2RthKfXSu7z1LFQH3mxZqouqGgL3KKm&searchdate=20240126&data=AP01";
+
 		try {
 
 			Scanner scan = new Scanner(System.in);
 			Boolean loop = true;
 			int index = -1;
-			
 
 			while (loop) {
-				
+
 				MongleVisual.pusher();
-				
+
 				MongleVisual.menuHeader("환전");
 
 				System.out.println();
 				JSONArray jsonResult = new JSONArray();
 				try {
-					
+
 					URL url = new URL(exchangeURL);
 					// JSON 결과
 					BufferedReader bf;
 					bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 					String result = bf.readLine();
-					
+
 					JSONParser parser = new JSONParser();
 					jsonResult = (JSONArray) parser.parse(result);
-					
+
 				} catch (Exception e) {
 					System.out.println("연결 실패");
 					System.out.println("재시도 하시려면 엔터");
 					scan.nextLine();
 					continue;
 				}
-				
+
 				String header = "+----+--------------------------+---------------+---------------+---------------+";
-		        System.out.println(header);
-		        System.out.printf(
-		        		"|%4s|     국가 및 통화명  \t|%5s구매시\t|%5s판매시\t|%3s매매기준율\t|\n"
-		        		, "", " ", " ", " ");
-				
-		        JSONArray fx = new JSONArray();
-		        
-		        for (Object obj : jsonResult) {
-		        	if (getFx(obj, "cur_nm").equals("한국 원")) {
+				System.out.println(header);
+				System.out.printf("|%4s|     국가 및 통화명  \t|%5s구매시\t|%5s판매시\t|%3s매매기준율\t|\n", "", " ", " ", " ");
+
+				JSONArray fx = new JSONArray();
+
+				for (Object obj : jsonResult) {
+					if (getFx(obj, "cur_nm").equals("한국 원")) {
 						continue;
 					}
-		        	fx.add(obj);
-		        }
-		        
-		        
-		        for (int i=1; i<=5; i++) {
-		        	index++;
-		        	if (index>=fx.size()) {
-		        		System.out.println("다음 페이지가 없습니다.");
-		        		break;
-		        	}
-		        	JSONObject obj = new JSONObject();
-		        	obj = (JSONObject) fx.get(index);
-		        	String curnm = "";
-					curnm = ((String)getFx(obj, "cur_nm")).replace(" ", "");
+					fx.add(obj);
+				}
+
+				for (int i = 1; i <= 5; i++) {
+					index++;
+					if (index >= fx.size()) {
+						System.out.println("다음 페이지가 없습니다.");
+						break;
+					}
+					JSONObject obj = new JSONObject();
+					obj = (JSONObject) fx.get(index);
+					String curnm = "";
+					curnm = ((String) getFx(obj, "cur_nm")).replace(" ", "");
 					String space = "";
-					for (int j=0; j < 9-curnm.length(); j++) {
+					for (int j = 0; j < 9 - curnm.length(); j++) {
 						space += " ";
 					}
-					System.out.printf("|%4s|%s%12s\t|%12s\t|%12s\t|%12s\t|"
-										,i
-										,space
-										,getFx(obj, "cur_nm")
-										,getFx(obj, "tts")
-										,getFx(obj, "ttb")
-										,getFx(obj, "deal_bas_r"));
+					System.out.printf("|%4s|%s%12s\t|%12s\t|%12s\t|%12s\t|", i, space, getFx(obj, "cur_nm"),
+							getFx(obj, "tts"), getFx(obj, "ttb"), getFx(obj, "deal_bas_r"));
 					System.out.println();
-		        }
-				
+				}
+
 				System.out.println(header);
 
 				System.out.printf("%40s\n", "6. 다음페이지");
@@ -125,12 +117,12 @@ public class Exchange {
 				System.out.printf("%40s", "선택(번호): ");
 
 				String sel = scan.nextLine();
-				
+
 				System.out.println();
-				
+
 				String fxName = "";
 				String price = "";
-				
+
 				if (sel.equals("1")) {
 					index -= 4;
 				} else if (sel.equals("2")) {
@@ -155,64 +147,57 @@ public class Exchange {
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
 				price = (String) getFx(fx.get(index), "tts");
-				
+
 				MongleVisual.menuHeader(fxName);
-				
-					String amount = "";
-					while (true) {
-						System.out.printf("%30s수량(숫자): ", " ");
-						amount = scan.nextLine();
-						String regex = "^[0-9]+$";
-						Pattern p1 = Pattern.compile(regex);
-						Matcher m1 = p1.matcher(amount);
-						if (!m1.find()) {
-							System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
-						} else {
-							break;
-						}
-					}
-					System.out.printf("%30s총 구매 대금: %,d원\n", " ", Integer.parseInt(price) * Integer.parseInt(amount));
-					System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
-					System.out.printf("%30s선택: ", " ");
-					sel = scan.nextLine();
-					if (sel.equals("y")) {
-						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						buyPrice = Integer.parseInt(price);
-						buyAmount = Integer.parseInt(amount);
-						
-						scan.nextLine();
-						continue;
-					} else if (sel.equals("n")) {
-						System.out.printf("%35s거래가 취소되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						scan.nextLine();
-						continue;
+
+				String amount = "";
+				while (true) {
+					System.out.printf("%30s수량(숫자): ", " ");
+					amount = scan.nextLine();
+					String regex = "^[0-9]+$";
+					Pattern p1 = Pattern.compile(regex);
+					Matcher m1 = p1.matcher(amount);
+					if (!m1.find()) {
+						System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
 					} else {
-						System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						scan.nextLine();
-						continue;
+						break;
 					}
-				
+				}
+				price = price.replace(price.substring(price.indexOf(".")), "");
+				System.out.printf("%30s총 구매 대금: %,d원\n", " ", Integer.parseInt(price) * Integer.parseInt(amount));
+				System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
+				System.out.printf("%30s선택: ", " ");
+				sel = scan.nextLine();
+				if (sel.equals("y")) {
+					buyPrice = Integer.parseInt(price);
+					buyAmount = Integer.parseInt(amount);
+					InvestService.transaction(buyPrice, buyAmount);
+					MongleVisual.stopper();
+					continue;
+				} else if (sel.equals("n")) {
+					System.out.printf("%35s거래가 취소되었습니다.\n", " ");
+					MongleVisual.stopper();
+					continue;
+				} else {
+					System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
+					MongleVisual.stopper();
+					continue;
+				}
 
 			}
-			listExchange.add(new Investment("환전","환전",Exchange.getBuyPrice(),Exchange.getBuyAmount()));
-			
+			listExchange.add(new Investment("환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 
 		} catch (Exception e) {
 			System.out.println("Exchange");
 			e.printStackTrace();
 		}
-		return 0;
+		return r;
 		
-		
-		
-	}//Exchange
+
+	}// Exchange
 
 	private static Object getFx(Object obj, String element) {
-		return ((JSONObject)obj).get(element);
+		return ((JSONObject) obj).get(element);
 	}
-	
-	
+
 }
