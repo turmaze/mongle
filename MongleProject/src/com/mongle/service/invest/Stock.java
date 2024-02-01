@@ -154,22 +154,9 @@ public class Stock {
 							break;
 						}
 					}
-					System.out.printf("%22s총 구매 대금: %,d원\n", " ", nowPrice * Integer.parseInt(amount));
-					System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
-					System.out.printf("%22s선택: ", " ");
-					sel = scan.nextLine();
-					if (sel.equals("y")) {
-						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
-						buyPrice = nowPrice;
-						buyAmount = Integer.parseInt(amount);
-						MongleVisual.stopper();
-					} else if (sel.equals("n")) {
-						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
-						MongleVisual.stopper();
-					} else {
-						System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
-						MongleVisual.stopper();
-					}
+					
+					
+					
 				} else if (sel2.equals("2")) {
 					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");
 					scan.nextLine();
