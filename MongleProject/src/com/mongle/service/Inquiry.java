@@ -3,6 +3,15 @@ package com.mongle.service;
 class Inquiry {
 	private String titleInq;
 	private String txtInq;
+	private String reply;
+
+	public String getReply() {
+		return reply;
+	}
+
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
 
 	public Inquiry(String titleInq, String txtInq) {
 		super();

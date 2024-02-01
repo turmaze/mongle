@@ -33,16 +33,10 @@ public class FindAcc {
 		}else if (choice.equals("0")) {
 			StartPage.startPage();
 		}
-		
-		
-		
-		
 	}
-
 	private static void findMyPw() {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
-		
 		try {
 			System.out.printf("\n%22s아이디(ID) 입력: ", " ");
 			user.setId(scan.nextLine());
@@ -57,7 +51,6 @@ public class FindAcc {
 				String checkPhone = "";
 				String checkName = "";
 				String findPw = "";
-				
 				for (Object obj : list) {
 					if (((JSONObject)obj).get("id").equals(user.getId()) ) {
 						findPw = (String)((JSONObject)obj).get("pw"); 
@@ -66,28 +59,20 @@ public class FindAcc {
 						checkName = (String) ((JSONObject)obj).get("name");
 					}
 				}
-				
 				if(user.getName().equals(checkName)&&user.getId().equals(checkID)&&user.getPhone().equals(checkPhone)) {
 					System.out.printf("\n%22s비밀번호: %s", " ",findPw);
 					break;
 				}
 			}while(true);
-			
-			
 		} catch (Exception e) {
 			System.out.println("FindAcc.findAcc");
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 	private static void findMyId() {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
-		
 		try {
-			
 			System.out.printf("\n%22s전화번호 입력: ", " ");
 			user.setPhone(scan.nextLine());
 			System.out.printf("\n%22s이름 입력: ", " ");
@@ -98,7 +83,6 @@ public class FindAcc {
 				String checkPhone = "";
 				String checkName = "";
 				String findPw = "";
-				
 				for (Object obj : list) {
 					if (((JSONObject)obj).get("id").equals(user.getId()) ) {
 						findPw = (String)((JSONObject)obj).get("pw"); 
@@ -106,19 +90,15 @@ public class FindAcc {
 						checkName = (String) ((JSONObject)obj).get("name");
 					}
 				}
-				
 				if(user.getName().equals(checkName)&&user.getPhone().equals(checkPhone)) {
 					System.out.printf("\n%22s비밀번호: %s", " ",findPw);
 					break;
 				}
 			}while(true);
-			
-			
 		} catch (Exception e) {
 			System.out.println("FindAcc.findAcc");
 			e.printStackTrace();
 		}
-		
 	}
 	
 }
