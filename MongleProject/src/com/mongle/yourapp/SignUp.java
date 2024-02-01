@@ -76,7 +76,7 @@ public class SignUp {
 		//----------------birth----------
 		String birth;
 		do {
-			System.out.printf("\n%22s(예시 1999/03/14)\n"," ");
+			System.out.printf("\n%22s(예시 19990314)\n"," ");
 			System.out.printf("\n%22s3. 생년월일: "," ");	
 			birth = scan.nextLine();
 			}
@@ -90,7 +90,7 @@ public class SignUp {
 		//--------phoneNumber------
 		String phone;
 		do {
-			System.out.printf("\n%22s(예시: 01033448899"," ");
+			System.out.printf("\n%22s(예시: 01033448899)"," ");
 			System.out.printf("\n%22s3. 전화번호: "," ");	
 			phone = scan.nextLine();
 			if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {

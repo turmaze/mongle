@@ -10,8 +10,6 @@ public class MainMenu {
 
 		Scanner scan = new Scanner(System.in);
 
-		MongleVisual.menuHeader("메인메뉴");
-
 		if (level.equals("1")) {
 			userMenu();
 		} else if (level.equals("2")) {

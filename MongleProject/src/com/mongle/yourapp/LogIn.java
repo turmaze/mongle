@@ -34,7 +34,7 @@ public class LogIn {
 			e.printStackTrace();
 		}
 	}
-	private static String userLogin() throws FileNotFoundException, IOException, ParseException {
+	private static String userLogin() {
 		String checklevel = "" ; 
 		try {
 			
@@ -47,10 +47,10 @@ public class LogIn {
 			String checkPW = "";
 			do {
 				System.out.printf("\n%22s아이디: ", " ");
-				user.setId(scan.nextLine());
+				user.setId(scan.nextLine()); 
 
-				System.out.printf("\n%22s비밀번호: ", " ");
-				user.setPw(scan.nextLine());
+//				System.out.printf("\n%22s비밀번호: ", " ");
+//				user.setPw(scan.nextLine());
 				
 				
 				for (Object obj : list) {
@@ -60,17 +60,18 @@ public class LogIn {
 						checkPW = (String) ((JSONObject)obj).get("pw");
 					}
 				}
-				if(checkID.equals(user.getId())&&checkPW.equals(Encrypt.encrypt(user.getPw()))) {
+				if(checkID.equals(user.getId())){//&&checkPW.equals(Encrypt.encrypt(user.getPw()))) {
 					//로그인 상태 
 					System.out.printf("\n%22s로그인 성공\r\n", " ");
 					primaryKey = user.getId();
-					//MainMenu.mainMenu(checklevel);
+					System.out.println(primaryKey);
+					MainMenu.mainMenu(checklevel);
 					
 				}else {
 					System.out.printf("\n%22s로그인 실패\r\n", " ");
 				}
 
-			} while (!checkID.equals(user.getId())||!checkPW.equals(user.getPw()));
+			} while (!checkID.equals(user.getId()));//||!checkPW.equals(user.getPw()));
 			
 			return checklevel;
 			

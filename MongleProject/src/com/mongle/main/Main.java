@@ -16,7 +16,7 @@ public class Main {
 		DataBase.dataLoad();
 		//SignUp.signUp();
 		LogIn.logIn();
-		DataBase.loadPrivateUser(LogIn.primaryKey);
+		//DataBase.loadPrivateUser(LogIn.primaryKey);
 		//MainMenu.MainMenu();
 		
 		//Stock.stockService();
