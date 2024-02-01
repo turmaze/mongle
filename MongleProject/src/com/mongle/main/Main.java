@@ -8,13 +8,13 @@ import org.json.simple.parser.ParseException;
 import com.mongle.database.DataBase;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.Investment;
-import com.mongle.service.InvestService;
 import com.mongle.yourapp.LogIn;
+import com.mongle.yourapp.SignUp;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		DataBase.dataLoad();
-//		SignUp.signUp();
+		SignUp.signUp();
 
 		// LogIn.logIn();
 		DataBase.loadPrivateUser(LogIn.primaryKey);

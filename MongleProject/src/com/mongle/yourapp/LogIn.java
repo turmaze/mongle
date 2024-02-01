@@ -67,6 +67,7 @@ public class LogIn {
 					//로그인 상태 
 					System.out.printf("\n%22s로그인 성공\r\n", " ");
 					primaryKey = user.getId();
+					DataBase.loadPrivateUser(LogIn.primaryKey);
 					MainMenu.mainMenu(checklevel);
 					//DataBase.loadPrivateUser(LogIn.primaryKey);
 					return checklevel;
