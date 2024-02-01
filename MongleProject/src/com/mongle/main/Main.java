@@ -15,7 +15,10 @@ public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		DataBase.dataLoad();
 		//SignUp.signUp();
-		LogIn.logIn();
+		
+		DataBase.changeData(DataBase.getUser());
+		DataBase.dataSave();
+		//LogIn.logIn();
 		//DataBase.loadPrivateUser(LogIn.primaryKey);
 		//MainMenu.MainMenu();
 		

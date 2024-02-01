@@ -14,7 +14,7 @@ public class SignUp {
 	public static void signUp() {
 		Scanner scan = new Scanner(System.in);
 		UserData userData = new UserData();
-		HashMap<String, String> newUser = new HashMap<String, String>();  
+		HashMap<String, Object> newUser = new HashMap<String, Object>();  
 
 		
 		MongleVisual.menuHeader("회원가입");

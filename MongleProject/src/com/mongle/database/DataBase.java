@@ -29,7 +29,7 @@ public class DataBase {
 		return user;
 	}
 
-	public static void setUser(HashMap<String, String> newUser) {
+	public static void setUser(HashMap<String, Object> newUser) {
 		DataBase.user.add(newUser);
 	}
 
@@ -37,7 +37,7 @@ public class DataBase {
 		return privateUser;
 	}
 
-	public static void setPrivateUser(HashMap<String, String> newUser) {
+	public static void setPrivateUser(HashMap<String, Object> newUser) {
 		DataBase.privateUser.add(newUser);
 	}
 
@@ -116,6 +116,38 @@ public class DataBase {
 			e.printStackTrace();
 		}
 	}
+
+	public static void changeData(ArrayList<HashMap> arrayList) {
+		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
+		for (HashMap<String, Object> user : arrayList) {
+		    if (user.get("id").equals("asd159")) {
+		        user.put("name", "change success");
+		        user.put("birth", "change success");
+		        
+		        break; // 수정한 후에는 루프 종료
+		    }
+		}
+	}
+//	
+//	public static void changeData() {
+//		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
+//		for (HashMap<String, Object> user : privateUser) {
+//		    if (user.get("id").equals("asd159")) {
+//		        user.put("name", "라나다");
+//		        break; // 수정한 후에는 루프 종료
+//		    }
+//		}
+//	}
+//	
+//	public static void changeTotalData() {
+//		for (HashMap<String, Object> user : user) {
+//			if (user.get("id").equals("asd159")) {
+//	        user.put("name", "라나다");
+//	        break;
+//			}
+//		}
+//	}
+	
 
 //JsonObject로 만든거		
 //	        try {
