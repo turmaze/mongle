@@ -19,7 +19,9 @@ public class Exchange {
 	public static int buyAmount;
 	
 	
-	public static void exchangeService() {
+	public static int exchangeService() {
+		
+		int r = -1;
 		
 		String exchangeURL =  "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=I2RthKfXSu7z1LFQH3mxZqouqGgL3KKm&searchdate=20240126&data=AP01";
 		
@@ -99,6 +101,7 @@ public class Exchange {
 				System.out.println(header);
 
 				System.out.printf("%40s\n", "6. 다음페이지");
+				System.out.printf("%40s\n", "9. 홈으로");
 				System.out.printf("%40s\n", "0. 이전으로");
 				System.out.println();
 				System.out.printf("%40s", "선택(번호): ");
@@ -122,8 +125,10 @@ public class Exchange {
 					index -= 0;
 				} else if (sel.equals("6")) {
 					continue;
-				} else if (sel.equals("0")){
-					break;
+				} else if (sel.equals("9")) {
+					return 9;
+				} else if (sel.equals("0")) {
+					return 0;
 				} else {
 					System.out.printf("%30s입력이 올바르지 않습니다.\n", " ");
 					System.out.printf("%30s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
@@ -179,6 +184,7 @@ public class Exchange {
 			System.out.println("Exchange");
 			e.printStackTrace();
 		}
+		return 0;
 		
 		
 		

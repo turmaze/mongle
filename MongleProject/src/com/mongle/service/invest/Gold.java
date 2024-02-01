@@ -35,10 +35,11 @@ public class Gold {
 		this.num = num;
 	}
 
-	public static void goldService() {
+	public static int goldService() {
 		Scanner scan = new Scanner(System.in);
 		List<InfoProduct> table = new ArrayList<>(); // 상품 정보 리스트
 		boolean loop = true;
+		int r = -1;
 
 		while (loop) {
 			table = searchGold(table); // 금상품 검색 메서드
@@ -60,16 +61,16 @@ public class Gold {
 					loop = false;
 				} else if (sel.equals("9")) {
 					System.out.printf("%22s홈 화면으로 이동합니다.");
-					loop = false;
+					return 9;
 				} else if (sel.equals("0")) {
 					System.out.printf("%22s이전 화면으로 이동합니다.");
-					InvestService.investMenu();
-					loop = false;
+					return 0;
 				} else {
 					System.out.printf("%22s올바른 번호를 입력해주세요.");
 				}
 			} // while
 		} // while
+		return 0;
 	}
 
 	public static int orderGold(double price, Scanner scan) {

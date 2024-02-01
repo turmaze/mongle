@@ -3,11 +3,14 @@ package com.mongle.yourapp;
 import java.util.Scanner;
 
 import com.mongle.main.Main;
+import com.mongle.resource.Investment;
+import com.mongle.service.InvestService;
 import com.mongle.service.MypageService;
 import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.CreditScore;
 import com.mongle.service.mypage.Point;
 import com.mongle.service.mypage.SafeSend;
+import com.mongle.view.InvestmentView;
 import com.mongle.view.MongleVisual;
 
 public class MainMenu {
@@ -50,6 +53,7 @@ public class MainMenu {
 				continue;
 			case "3":
 				System.out.printf("%22s투자 화면으로 이동합니다.\n", " ");
+				r = InvestService.investMenu();
 				continue;
 			case "4":
 				System.out.printf("%22s고객센터 화면으로 이동합니다.\n", " ");

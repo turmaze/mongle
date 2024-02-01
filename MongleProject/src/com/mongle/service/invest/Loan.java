@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.mongle.service.InvestService;
+import com.mongle.view.MongleVisual;
 
 public class Loan {
 	private static String bankLoan;
@@ -43,15 +44,18 @@ public class Loan {
 		loanService();
 	}// main
 
-	public static void loanService() {
+	public static int loanService() {
 		Scanner scan = new Scanner(System.in);
 		List<InfoProduct> table = new ArrayList<>(); // 대출 정보 담을 리스트
 		int index = 0;
 		boolean loop = true;
+		int r = -1;
 
 		while (loop) {
+			MongleVisual.pusher();
+			
 			table = searchLoan(table, index); // 대출 검색 메서드
-
+			
 			System.out.println();
 			System.out.printf("%22s대출 신청(번호로 선택)\n", " ");
 			System.out.printf("%22s8. 다음 페이지\n", " ");
@@ -79,11 +83,10 @@ public class Loan {
 						break;
 					} else if (sel.equals("9")) {
 						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
-						loop = false;
+						return 9;
 					} else if (sel.equals("0")) {
 						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
-						InvestService.investMenu();
-						loop = false;
+						return 0;
 					} else {
 						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
 					}
@@ -92,6 +95,7 @@ public class Loan {
 				}
 			} // while
 		} // while
+		return 0;
 	}
 
 	public static void applyLoan(Scanner scan, boolean loop) {

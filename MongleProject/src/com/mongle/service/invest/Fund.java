@@ -6,9 +6,10 @@ import com.mongle.view.MongleVisual;
 
 public class Fund {
 
-	public static void fundService() {
+	public static int fundService() {
 
 		boolean loop = true;
+		int r = -1;
 
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
@@ -47,9 +48,9 @@ public class Fund {
 					e.printStackTrace();
 				}
 			} else if (sel.equals("9")) {
-				loop = false;
+				return 9;
 			} else if (sel.equals("0")) {
-				loop = false;
+				return 0;
 			} else {
 				System.out.println();
 				System.out.println();
@@ -61,6 +62,7 @@ public class Fund {
 			}
 
 		}
+		return 0;
 
 	}// Fund
 
