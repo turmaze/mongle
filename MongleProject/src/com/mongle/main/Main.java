@@ -20,7 +20,7 @@ public class Main {
 		
 		//DataBase.changeData(DataBase.getUser(),"name","change"); //sample
 		
-		//LogIn.logIn();
+		LogIn.logIn();
 		//DataBase.loadPrivateUser(LogIn.primaryKey);
 		//MainMenu.MainMenu();
 		

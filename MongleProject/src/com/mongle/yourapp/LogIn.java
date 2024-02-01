@@ -36,6 +36,7 @@ public class LogIn {
 	}
 	private static String userLogin() {
 		String checklevel = "" ; 
+		int count = 0;
 		try {
 			
 			JSONParser parser = new JSONParser();
@@ -66,14 +67,32 @@ public class LogIn {
 					primaryKey = user.getId();
 					System.out.println(primaryKey);
 					MainMenu.mainMenu(checklevel);
+					return checklevel;
 					
 				}else {
 					System.out.printf("\n%22s로그인 실패\r\n", " ");
+					count++;
 				}
+				
+				if(count==3) {
+					System.out.printf("\n%22s다시 시도하시겠습니까? Y/N\r\n", " ");
+					String choice = scan.nextLine();
+					if(choice.equals("Y")||choice.equals("y")) {
+						count=0;
+					}else if(choice.equals("N")||choice.equals("n")) {
+						return checklevel;
+					}else {
+						System.out.printf("\n%22s잘못된 입력\r\n", " ");
+						
+					}
+					
+				}
+					
+					
+				
 
-			} while (!checkID.equals(user.getId()));//||!checkPW.equals(user.getPw()));
+			} while (!checkID.equals(user.getId())||count==3);//||!checkPW.equals(user.getPw()));
 			
-			return checklevel;
 			
 		} catch (Exception e) {
 			System.out.println("LogIn.userLogin");
