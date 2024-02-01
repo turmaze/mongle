@@ -29,8 +29,8 @@ import netscape.javascript.JSObject;
 
 public class Stock {
 	
-	static String TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b2tlbiIsImF1ZCI6IjBkNDBmNGEwLWY5MmMtNDMwYS1hNTU1LTI3MWIxMjQ0YWUxYiIsImlzcyI6InVub2d3IiwiZXhwIjoxNzA2NjU2OTgxLCJpYXQiOjE3MDY1NzA1ODEsImp0aSI6IlBTc2VSdm1xdEhnNWt4OWNKZnM3SkZ6cGJQQlFiWHhUNFduOCJ9.Edz3sCO3a5NlSUf6mZoTd50X8A0lG_iymZ5rYDXxd39_dWIb1HTeCM-cG0LkYL4jTh1ezNTWo19S0DT2ez28Ng";
-	static String TOKENexpired = "2024-01-31 08:27:12";
+	static String TOKEN ;
+	static String TOKENexpired ;
 	public static int buyPrice = 0;
 	public static int buyAmount = 0;
 	
