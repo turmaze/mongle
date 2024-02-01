@@ -17,7 +17,7 @@ public class SignOut {
 			System.out.printf("%22s1. 탈퇴\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.printf("%22s0. 선택(번호)", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 			
 			System.out.println();
 
