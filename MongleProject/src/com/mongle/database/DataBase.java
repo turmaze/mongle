@@ -16,8 +16,6 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.ResourcePath;
 import com.mongle.service.invest.Investment;
@@ -44,49 +42,53 @@ public class DataBase {
 	}
 
 	public static void loadPrivateUser(String primaryKey) {
+		JSONParser parser = new JSONParser();
 		try {
-            
-            // JSON 파일을 읽어와 JsonArray로 파싱
-            JsonArray jsonArray = JsonParser.parseReader(new FileReader(ResourcePath.MEMBER)).getAsJsonArray();
 
+			// JSON 파일을 읽어와 JsonArray로 파싱
+			FileReader reader = new FileReader(ResourcePath.MEMBER);
+			JSONArray jsonArray = (JSONArray) parser.parse(reader);
+
+			privateUser.clear();
 //            for (int i = 0; i < jsonArray.size(); i++) {
-            for (Object obj : jsonArray) {
+			for (Object obj : jsonArray) {
 //                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
-            	JSONObject item = (JSONObject) obj;
-                
-                // id 값을 가진 데이터 확인
+				JSONObject item = (JSONObject) obj;
+
+				// id 값을 가진 데이터 확인
 //                String tempId = jsonObject.get("id").getAsString();
 
-                if (item.get("id").equals("true")) { //LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
-                	HashMap<String, Object> userData = new HashMap<String, Object>();
+				if (item.get("id").equals("true")) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
+					HashMap<String, Object> userData = new HashMap<String, Object>();
 					for (Object key : item.keySet()) {
 						userData.put((String) key, item.get((String) key));
-						
-						if(key.equals("계좌")) {
+
+						if (key.equals("계좌")) {
 							JSONArray temp = (JSONArray) item.get("계좌");
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
-								int num = (int)((long) it.get("depositAmount"));
-								BankAccount b = new BankAccount((String) it.get("bankDepo"), (String) it.get("titleDepo"),
-										(String) it.get("accountNumber"), num);
-								
+								int num = (int) ((long) it.get("depositAmount"));
+								BankAccount b = new BankAccount((String) it.get("bankDepo"),
+										(String) it.get("titleDepo"), (String) it.get("accountNumber"), num);
+
 								BankAccount.list.add(b);
 							}
 						}
-						
-						if(key.equals("투자")) {
+
+						if (key.equals("투자")) {
 							JSONArray temp = (JSONArray) item.get("투자");
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
-								
+
 								int amount = Integer.parseInt((String) it.get("amount"));
-								double price =Double.parseDouble((String) it.get("price"));
-								Investment i = new Investment((String) it.get("bankDepo"), (String) it.get("titleDepo"), price, amount);
-								
+								double price = Double.parseDouble((String) it.get("price"));
+								Investment i = new Investment((String) it.get("bankDepo"), (String) it.get("titleDepo"),
+										price, amount);
+
 								Investment.list.add(i);
 							}
 						}
-						
+
 					}
 					privateUser.add(userData);
 //                	String pw = jsonObject.get("pw").getAsString();
@@ -100,22 +102,19 @@ public class DataBase {
 //                    tempUser.put("name", name);
 //                    tempUser.put("birth", birth);
 
-                }
-            }
+				}
+			}
 
-            if (privateUser.isEmpty()) {
-                System.out.println(primaryKey + " 값을 가진 데이터가 존재하지 않습니다.");
-            }
-            
-            // 가져온 값 출력
-            System.out.println("privateUser List test : " + privateUser);
-            System.out.println("-끝-");
-        }catch(
+			if (privateUser.isEmpty()) {
+				System.out.println(primaryKey + " 값을 가진 데이터가 존재하지 않습니다.");
+			}
 
-	IOException e)
-	{
-		e.printStackTrace();
-	}
+			// 가져온 값 출력
+			System.out.println("privateUser List test : " + privateUser);
+			System.out.println("-끝-");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 //JsonObject로 만든거		
@@ -202,7 +201,7 @@ public class DataBase {
 				HashMap<String, Object> userData = new HashMap<>();
 				// 가정: JSON 객체의 모든 키는 문자열이고, 값도 문자열임
 				for (Object key : jsonObject.keySet()) {
-					userData.put((String) key, (String) jsonObject.get(key));
+					userData.put((String) key, jsonObject.get(key));
 				}
 				user.add(userData); // 읽은 데이터를 리스트에 추가
 			}

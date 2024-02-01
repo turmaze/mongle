@@ -16,8 +16,8 @@
     "id": "asd123"
   },
   {
-    "비밀번호": "75ba703af0c323741086279f0e70a319441597cf2124bbb22d57ec590ad0e27c",
-    "ID": "true",
+    "pw": "75ba703af0c323741086279f0e70a319441597cf2124bbb22d57ec590ad0e27c",
+    "id": "true",
     "계좌": [
       {
         "depositAmount": 0,
