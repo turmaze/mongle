@@ -17,8 +17,8 @@ import org.json.simple.parser.JSONParser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongle.resource.BankAccount;
+import com.mongle.resource.Investment;
 import com.mongle.resource.ResourcePath;
-import com.mongle.service.invest.Investment;
 
 public class DataBase {
 

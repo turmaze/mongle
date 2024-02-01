@@ -1,8 +1,6 @@
-package com.mongle.service.invest;
+package com.mongle.resource;
 
 import java.util.ArrayList;
-
-import com.mongle.resource.BankAccount;
 
 public class Investment {
 
