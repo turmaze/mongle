@@ -1,7 +1,10 @@
-package com.mongle.service.mypage;
+package com.mongle.service;
 
 import java.util.Scanner;
 
+import com.mongle.service.mypage.AttendanceCheck;
+import com.mongle.service.mypage.CreditScore;
+import com.mongle.service.mypage.Point;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.SignOut;
 
