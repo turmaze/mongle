@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.security.auth.Subject;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -163,13 +164,9 @@ public class DataBase {
 		
 		
 		//String [] birthSplit = input.split(marker);
-		int year = Integer.parseInt(input.substring(0,3));
-		int month = Integer.parseInt(input.substring(4,5));
+		int year = Integer.parseInt(input.substring(0,4));
+		int month = Integer.parseInt(input.substring(4,6));
 		String regex;
-		
-		System.out.println(year);
-		System.out.println(month);
-		
 		if(month==1||month==3||month==5||month==7||month==8||month==10||month==12) {
 			regex = "^((19|20)\\d{2})(0[1-9]|1[1,2])(0[1-9]|[12][0-9]|3[01])$";
 		}else if(month==2){
@@ -199,12 +196,17 @@ public class DataBase {
 		
 	}//birth
 
-	
-	
-
-	private static void get(ArrayList userData) {
-		// 호출문
-
+	public static boolean validPhone(String phone) {
+		int size = phone.length();
+		String starter = phone.substring(0,3);
+		
+		System.out.println(starter);
+		if(size < 11 || size > 11 ||!starter.equals("010")) {
+			return false;
+		}else {
+			return true;
+		}
+		
 	}
 
 }

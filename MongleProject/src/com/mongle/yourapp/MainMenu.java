@@ -6,17 +6,17 @@ import com.mongle.main.Main;
 import com.mongle.view.MongleVisual;
 
 public class MainMenu {
-	public static void MainMenu() {
+	public static void mainMenu(String level) {
 
-//		Scanner scan = new Scanner(System.in);
-//
-//		MongleVisual.menuHeader("메인메뉴");
-//
-//		if (LogIn.mainUser.getLevel().equals("1")) {
-//			userMenu();
-//		} else if (LogIn.mainUser.getLevel().equals("2")) {
-//			adminMenu();
-//		}
+		Scanner scan = new Scanner(System.in);
+
+		MongleVisual.menuHeader("메인메뉴");
+
+		if (level.equals("1")) {
+			userMenu();
+		} else if (level.equals("2")) {
+			adminMenu();
+		}
 	}
 
 	private static void userMenu() {
