@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.mongle.resource.BankAccount;
-import com.mongle.asset.DataAccount;
 import com.mongle.asset.DepoCalculator;
 import com.mongle.asset.DepoSave;
 import com.mongle.asset.GiveAccount;
@@ -57,7 +56,7 @@ public class AssetService {
 		System.out.printf("%22s%s\n", " ", header);
 		System.out.printf("%22s|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
-		printAsciiTable(DataAccount.list); //json 에서 가져온 데이터
+		printAsciiTable(BankAccount.list); //json 에서 가져온 데이터
 		System.out.printf("%22s%s\n", " ", header);
 
 	}
