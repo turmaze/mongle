@@ -14,9 +14,9 @@ public class SignOut {
 
 			System.out.println();
 
-			System.out.printf("%22s1. 탈퇴", " ");
-			System.out.printf("%22s9. 홈으로", " ");
-			System.out.printf("%22s0. 이전으로", " ");
+			System.out.printf("%22s1. 탈퇴\n", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.printf("%22s0. 선택(번호)", " ");
 			
 			System.out.println();
@@ -26,7 +26,9 @@ public class SignOut {
 				System.out.printf("%22s정말로 탈퇴 하시겠습니까?(y/n)", " ");
 				String in = scan.nextLine();
 				if (in.equals("y")) {
-					
+					System.out.printf("%22s탈퇴가 완료되었습니다.\n", " ");
+					System.out.printf("%22s그동안 이용해 주셔서 감사합니다.", " ");
+					break;
 				}
 				
 			} else if (sel.equals("9")) {

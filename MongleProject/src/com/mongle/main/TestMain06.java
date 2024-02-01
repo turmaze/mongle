@@ -1,5 +1,13 @@
 package com.mongle.main;
 
-public class TestMain06 {
+import com.mongle.yourapp.SignOut;
 
+public class TestMain06 {
+	
+	public static void main(String[] args) {
+		
+		SignOut.signOutService();
+		
+	}
+	
 }
