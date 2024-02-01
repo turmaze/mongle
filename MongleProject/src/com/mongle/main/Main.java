@@ -2,49 +2,32 @@ package com.mongle.main;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.json.simple.parser.ParseException;
 
 import com.mongle.database.DataBase;
+import com.mongle.resource.BankAccount;
+import com.mongle.resource.Investment;
 import com.mongle.service.InvestService;
-import com.mongle.service.invest.Stock;
-import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.yourapp.LogIn;
-import com.mongle.yourapp.SignUp;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		DataBase.dataLoad();
-		//SignUp.signUp();
-		
-		//DataBase.changeData(DataBase.getUser(),"name","change"); //sample
-		
-		LogIn.logIn();
-		//DataBase.loadPrivateUser(LogIn.primaryKey);
-//		DataBase.dataLoad();
 //		SignUp.signUp();
-		
-		//DataBase.changeData(DataBase.getUser(),"name","change"); //sample
-		
-		//LogIn.logIn();
+
+		// LogIn.logIn();
 		DataBase.loadPrivateUser(LogIn.primaryKey);
-		InvestService.investMenu();
-		
-		//MainMenu.MainMenu();
-		
-		//Stock.stockService();
-		//AttendanceCheck.attendanceCheckService();
-		
-//		DataBase.dataSave();
-		
-		
-		
-		
-		
-		
-		
-		
-	}//main
+//		InvestService.investMenu();
+
+		// MainMenu.MainMenu();
+
+		// Stock.stockService();
+		// AttendanceCheck.attendanceCheckService();
+		System.out.println(Investment.list);
+		DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list); // sample
+		DataBase.changeData(DataBase.getUser(), "투자", Investment.list); // sample
+		DataBase.dataSave();
+
+	}// main
 }

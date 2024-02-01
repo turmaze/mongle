@@ -84,7 +84,7 @@ public class InvestService {
 		return 0;
 	}
 	
-	public static int transaction(double price, int num) {
+	public static int transaction(int price, int num) {
 		Scanner scan = new Scanner(System.in);
 		
 		MongleVisual.pusher();
@@ -104,7 +104,7 @@ public class InvestService {
 		while (loop) {
 			System.out.printf("%22s선택(번호) : ", " ");
 			String sel = scan.nextLine();
-			double totalPrice = price * num;
+			int totalPrice = price * num;
 			
 			if (sel.equals("0")) {
 				return 0;
@@ -118,12 +118,12 @@ public class InvestService {
 								.equals(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber())) {
 							if (acc.getDepositAmount() > totalPrice) {
 
-								double rest = acc.getDepositAmount() - totalPrice;
+								int rest = acc.getDepositAmount() - totalPrice;
 								BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
-										acc.getTitleDepo(), acc.getAccountNumber(), (int) rest));
+										acc.getTitleDepo(), acc.getAccountNumber(), rest));
 								
 								System.out.println();
-								System.out.printf("%22s주문가격 %,.0f원(시장가) / 주문 수량 : %s\n", " ", price, num);
+								System.out.printf("%22s주문가격 %,d원(시장가) / 주문 수량 : %s\n", " ", price, num);
 								System.out.printf("%22s거래가 완료되었습니다.\n", " ");
 								System.out.printf("%22s거래 후 잔액은 %,.0f원입니다.\n", " ", rest);
 								System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");

@@ -3,7 +3,6 @@ package com.mongle.service.invest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,21 +12,21 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.mongle.resource.BankAccount;
 import com.mongle.resource.Investment;
+import com.mongle.service.InvestService;
 import com.mongle.view.MongleVisual;
 
 public class Gold {
 
 	public static ArrayList<Investment> listGold = new ArrayList<>();
-	private static double price;
+	private static int price;
 	private static int num;
 
 	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -64,7 +63,7 @@ public class Gold {
 				String sel = scan.nextLine();
 				if (sel.equals("1")) {
 					Gold gold = new Gold();
-					gold.setPrice((table.get(0).getRate() + table.get(0).getMaxRate()) / 2);
+					gold.setPrice((int)(table.get(0).getRate() + table.get(0).getMaxRate()) / 2);
 					System.out.println();
 					gold.setNum(orderGold(gold.price, scan));
 					loop = false;
@@ -84,7 +83,7 @@ public class Gold {
 		return 0;
 	}
 
-	public static int orderGold(double price, Scanner scan) {
+	public static int orderGold(int price, Scanner scan) {
 		boolean loop = true;
 		MongleVisual.pusher();
 		System.out.printf("%22s===================================\n", " ");

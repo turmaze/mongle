@@ -58,7 +58,7 @@ public class DataBase {
 				// id 값을 가진 데이터 확인
 //                String tempId = jsonObject.get("id").getAsString();
 
-				if (item.get("id").equals(LogIn.primaryKey)) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
+				if (item.get("id").equals("true")) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
 					HashMap<String, Object> userData = new HashMap<String, Object>();
 					for (Object key : item.keySet()) {
 						userData.put((String) key, item.get((String) key));
@@ -80,8 +80,8 @@ public class DataBase {
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
 
-								int amount = Integer.parseInt((String) it.get("amount"));
-								double price = Double.parseDouble((String) it.get("price"));
+								int amount = (int)((long) it.get("amount"));
+								int price = (int)((long) it.get("price"));
 								Investment i = new Investment((String) it.get("bankDepo"), (String) it.get("titleDepo"),
 										price, amount);
 
@@ -109,7 +109,7 @@ public class DataBase {
 	public static void changeData(ArrayList<HashMap> arrayList, String key, Object value) {
 		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
 		for (HashMap<String, Object> user : arrayList) {
-		    if (user.get("id").equals("asd159")) {//PrimaryKey 로 바꾸기!!!!!!!!!!!!!!!!!!
+		    if (user.get("id").equals("true")) {//PrimaryKey 로 바꾸기!!!!!!!!!!!!!!!!!!
 		        user.put(key, value);
 		        
 		        break; // 수정한 후에는 루프 종료
@@ -162,7 +162,6 @@ public class DataBase {
 //		}
 
 	public static void dataSave() {
-
 		try {
 
 			// set pretty printing

@@ -21,13 +21,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-<<<<<<< HEAD
 import com.mongle.resource.Investment;
-=======
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
 import com.mongle.service.InvestService;
->>>>>>> 9117361546f7289c7997907018f842ea6c5e1d04
 import com.mongle.view.MongleVisual;
 
 public class Stock {
@@ -179,7 +176,6 @@ public class Stock {
 							break;
 						}
 					}
-<<<<<<< HEAD
 					System.out.printf("%22s총 구매 대금: %,d원\n", " ", nowPrice * Integer.parseInt(amount));
 					System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
 					System.out.printf("%22s선택: ", " ");
@@ -197,11 +193,9 @@ public class Stock {
 						System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
 						MongleVisual.stopper();
 					}
-=======
 					
 					InvestService.transaction(nowPrice, Integer.parseInt(amount));
 					
->>>>>>> 9117361546f7289c7997907018f842ea6c5e1d04
 				} else if (sel2.equals("2")) {
 					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");
 					scan.nextLine();

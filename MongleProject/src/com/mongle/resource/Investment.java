@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Investment {
 
-	private double price;
+	private int price;
 	private int amount;
 
 	private String bankDepo;
@@ -12,7 +12,7 @@ public class Investment {
 
 	public static ArrayList<Investment> list = new ArrayList<>();
 
-	public Investment(String bankDepo, String titleDepo, double price, int amount) {
+	public Investment(String bankDepo, String titleDepo, int price, int amount) {
 		this.bankDepo = bankDepo;
 		this.titleDepo = titleDepo;
 		this.price = price;
@@ -26,7 +26,7 @@ public class Investment {
 	}
 
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
