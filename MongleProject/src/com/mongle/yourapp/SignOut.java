@@ -29,6 +29,9 @@ public class SignOut {
 					System.out.printf("%22s탈퇴가 완료되었습니다.\n", " ");
 					System.out.printf("%22s그동안 이용해 주셔서 감사합니다.", " ");
 					break;
+				} else if (in.equals("n")) {
+					System.out.printf("%22s탈퇴가 취소되었습니다.", " ");
+					System.out.println();
 				}
 				
 			} else if (sel.equals("9")) {

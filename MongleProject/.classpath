@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/jdom-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/class/code/java/MongleProject/mongle/MongleProject/lib/gson-2.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/class/mongle/MongleProject/lib/gson-2.10.1.jar"/>
 	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
