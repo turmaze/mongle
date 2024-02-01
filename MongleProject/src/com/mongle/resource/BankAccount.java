@@ -9,8 +9,8 @@ public class BankAccount {
 
 	private int depositAmount; // 잔액
 	private String accountNumber; // 계좌 번호
-	private String bankDepo;
-	private String titleDepo;
+	private String bankDepo; //금융사
+	private String titleDepo; //예적금명
 	
 	public static ArrayList<BankAccount> list = new ArrayList<>();
 
