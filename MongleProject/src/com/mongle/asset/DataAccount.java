@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import com.mongle.resource.BankAccount;
+
 public class DataAccount {
 
 	private static final String BANKACCOUNT = "dat\\" + "aaa" + "\\bankAccount.txt";

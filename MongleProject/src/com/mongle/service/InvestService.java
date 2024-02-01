@@ -2,7 +2,6 @@ package com.mongle.service;
 
 import java.util.Scanner;
 
-import com.mongle.service.invest.DepoSave;
 import com.mongle.service.invest.Exchange;
 import com.mongle.service.invest.Fund;
 import com.mongle.service.invest.Gold;
@@ -37,21 +36,18 @@ public class InvestService {
 
 			switch (sel) {
 			case "1":
-				DepoSave.depoSaveService();
-				loop = false; break;
-			case "2":
 				Stock.stockService();
 				loop = false; break;
-			case "3":
+			case "2":
 				Fund.fundService();
 				loop = false; break;
-			case "4":
+			case "3":
 				Loan.loanService();
 				loop = false; break;
-			case "5":
+			case "4":
 				Gold.goldService();
 				loop = false; break;
-			case "6":
+			case "5":
 				Exchange.exchangeService();
 				loop = false; break;
 			case "0":

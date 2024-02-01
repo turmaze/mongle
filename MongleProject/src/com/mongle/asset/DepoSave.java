@@ -11,6 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.mongle.resource.BankAccount;
 import com.mongle.service.InvestService;
 import com.mongle.service.invest.InfoProduct;
 
@@ -18,15 +19,12 @@ public class DepoSave {
 	private static String bankDepo;
 	private static String titleDepo;
 
-
 	public DepoSave(String bankDepo, String titleDepo) {
 		super();
 		this.bankDepo = bankDepo;
 		this.titleDepo = titleDepo;
-		
-	}
 
-	
+	}
 
 	public String getBankDepo() {
 		return bankDepo;
@@ -70,8 +68,8 @@ public class DepoSave {
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
 						DepoSave acc = new DepoSave(table.get(Integer.parseInt(sel) - 1).getBank(),
-													table.get(Integer.parseInt(sel) - 1).getTitle()); 
-													;
+								table.get(Integer.parseInt(sel) - 1).getTitle());
+						;
 						System.out.printf("%22s가입 화면으로 이동합니다.\n", "  ");
 						System.out.println();
 						System.out.printf("%22s%s / %s\n", " ", acc.bankDepo, acc.titleDepo);
@@ -165,64 +163,55 @@ public class DepoSave {
 	public static void printAsciiTable(List<InfoProduct> data) { // 표에 반복해서 출력하는 메서드
 		if (data.size() > 7) {
 			for (int i = 0; i < 7; i++) {
-				System.out.printf("%22s|%-3d|%-14s|%-20s\t|%4s개월|%6s%%|%6s%%|\n", " ", i + 1, 
-												data.get(i).getBank(),
-												data.get(i).getTitle(), 
-												data.get(i).getPeriod(), 
-												data.get(i).getRate(),
-												data.get(i).getMaxRate());
+				System.out.printf("%22s|%-3d|%-14s|%-20s\t|%4s개월|%6s%%|%6s%%|\n", " ", i + 1, data.get(i).getBank(),
+						data.get(i).getTitle(), data.get(i).getPeriod(), data.get(i).getRate(),
+						data.get(i).getMaxRate());
 			}
 		} else {
 			for (int i = 0; i < data.size(); i++) {
-				System.out.printf("%22s|%-3d|%-14s|%-20s\t|%4s개월|%6s%%|%6s%%|\n", " ", i + 1,
-												data.get(i).getBank(),
-												data.get(i).getTitle(),
-												data.get(i).getPeriod(),
-												data.get(i).getRate(),
-												data.get(i).getMaxRate());
+				System.out.printf("%22s|%-3d|%-14s|%-20s\t|%4s개월|%6s%%|%6s%%|\n", " ", i + 1, data.get(i).getBank(),
+						data.get(i).getTitle(), data.get(i).getPeriod(), data.get(i).getRate(),
+						data.get(i).getMaxRate());
 			}
 		}
 	}
 
 	public static void signUp(String bankDepo, String titleDepo) {
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)"," ");
+
+		System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)", " ");
 		String answer = sc.nextLine();
 		if (answer.equals("y") || answer.equals("Y")) {
 //		Reconfirm(); ///비밀번호 검사 
-			 	//일치하면
-			System.out.printf("%22s가입 성공\n"," ");	
-			
+			// 일치하면
+			System.out.printf("%22s가입 성공\n", " ");
+
 			openDepo(bankDepo, titleDepo);
-		
+
 		} else {
-			System.out.printf("%22s비밀번호가 불일치 합니다."," ");
+			System.out.printf("%22s비밀번호가 불일치 합니다.", " ");
 			// 돌아가기
 		}
 
 	}// DepositSignUp
 
-
 	public static void openDepo(String bankDepo, String titleDepo) {
 		GiveAccount.load();
-		
+
 		String AccountNumber = "";
 
-		for (BankAccount acc : GiveAccount.list) {
+		for (BankAccount acc : GiveAccount.glist) {
 			if (bankDepo.contains(acc.getBankDepo())) {
 				AccountNumber = acc.getAccountNumber();
-				GiveAccount.list.remove(acc);
+				GiveAccount.glist.remove(acc);
 				break;
 			}
 		}
-		DataAccount.list.add(new BankAccount(bankDepo, titleDepo, AccountNumber, 0)); //json에 추가
+		DataAccount.list.add(new BankAccount(bankDepo, titleDepo, AccountNumber, 0)); // json에 추가
 		GiveAccount.save();
-		
+
 	}// OpenDeposit
 
-	
-	
 //	public boolean Reconfirm() {
 //		Scanner sc = new Scanner(System.in);
 //		System.out.println("비밀번호를 입력해 주세요:");
@@ -239,5 +228,4 @@ public class DepoSave {
 //		}
 //	}// Reconfirm
 
-
-}//class
+}// class

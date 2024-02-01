@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.mongle.service.invest.DepoSave;
+import com.mongle.asset.DepoSave;
 import com.mongle.service.invest.InfoProduct;
+import com.mongle.service.AssetService;
 
 public class DepoCalculator {
 	private static String bankDepo;

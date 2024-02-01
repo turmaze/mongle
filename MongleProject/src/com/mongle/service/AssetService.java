@@ -3,7 +3,7 @@ package com.mongle.service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.mongle.asset.BankAccount;
+import com.mongle.resource.BankAccount;
 import com.mongle.asset.DataAccount;
 import com.mongle.asset.DepoCalculator;
 import com.mongle.asset.DepoSave;
