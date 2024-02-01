@@ -3,7 +3,6 @@ package com.mongle.database;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -19,6 +18,7 @@ import com.google.gson.GsonBuilder;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.Investment;
 import com.mongle.resource.ResourcePath;
+import com.mongle.yourapp.LogIn;
 
 public class DataBase {
 
@@ -58,7 +58,7 @@ public class DataBase {
 				// id 값을 가진 데이터 확인
 //                String tempId = jsonObject.get("id").getAsString();
 
-				if (item.get("id").equals("true")) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
+				if (item.get("id").equals(LogIn.primaryKey)) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
 					HashMap<String, Object> userData = new HashMap<String, Object>();
 					for (Object key : item.keySet()) {
 						userData.put((String) key, item.get((String) key));

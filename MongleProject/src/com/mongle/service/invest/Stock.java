@@ -28,6 +28,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
+import com.mongle.service.InvestService;
 import com.mongle.view.MongleVisual;
 
 import netscape.javascript.JSObject;
@@ -155,7 +156,7 @@ public class Stock {
 						}
 					}
 					
-					
+					InvestService.transaction(nowPrice, Integer.parseInt(amount));
 					
 				} else if (sel2.equals("2")) {
 					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");

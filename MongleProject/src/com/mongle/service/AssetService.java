@@ -51,9 +51,9 @@ public class AssetService {
 				DepoCalculator.depoSaveService();
 				
 			} else if (sel.equals("9")) {
-
+				return 9;
 			} else if (sel.equals("0")) {
-
+				return 0;
 			} else {
 				loop = false;
 			}
