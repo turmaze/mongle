@@ -1,5 +1,7 @@
 package com.mongle.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import com.mongle.view.MongleVisual;
@@ -8,13 +10,18 @@ public class AttendanceCheck {
 	
 	public static void attendanceCheckService() {
 		Scanner scan = new Scanner(System.in);
+		
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String today = now.format(formatter);
+		String[] date = today.split("-");
 
 		while (true) {
 			MongleVisual.menuHeader("출석 체크");
 
 			System.out.println();
 			
-			printCalendar(2024, 2);
+			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]));
 			
 			System.out.println();
 
@@ -40,7 +47,7 @@ public class AttendanceCheck {
 		//System.out.println(dayOfWeek);
 		
 		System.out.println("====================================================");
-		System.out.printf("                   %d년 %02d월\n", year, month);
+		System.out.printf("                   %02d월\n", month);
 		System.out.println("====================================================");
 		System.out.println("[일]\t[월]\t[화]\t[수]\t[목]\t[금]\t[토]");
 		
