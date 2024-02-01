@@ -3,6 +3,7 @@ package com.mongle.service;
 import java.util.Scanner;
 
 import com.mongle.view.MongleVisual;
+import com.mongle.yourapp.SignOut;
 
 public class MypageService {
 
@@ -30,18 +31,22 @@ public class MypageService {
 				loop = false; break;
 			case "2":
 				System.out.printf("%22s신용점수 화면으로 이동합니다.\n", " ");
+				CreditScore.creditScoreService();
 				loop = false; break;
 			case "3":
 				System.out.printf("%22s안심송금서비스 화면으로 이동합니다.\n", " ");
 				loop = false; break;
 			case "4":
 				System.out.printf("%22s출석체크 화면으로 이동합니다.\n", " ");
+				AttendanceCheck.attendanceCheckService();
 				loop = false; break;
 			case "5":
 				System.out.printf("%22s포인트 화면으로 이동합니다.\n", " ");
+				Point.pointService();
 				loop = false; break;
 			case "6":
 				System.out.printf("%22s회원탈퇴 화면으로 이동합니다.\n", " ");
+				SignOut.signOutService();
 				loop = false; break;
 			case "0":
 				System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
