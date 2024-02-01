@@ -11,10 +11,6 @@ import com.mongle.view.MongleVisual;
 
 public class InvestService {
 
-	public static void main(String[] args) {
-		investMenu();
-
-	}
 
 	public static int investMenu() {
 		Scanner scan = new Scanner(System.in);

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import org.json.simple.parser.ParseException;
 
 import com.mongle.database.DataBase;
+import com.mongle.service.InvestService;
 import com.mongle.service.invest.Stock;
 import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.yourapp.LogIn;
@@ -22,12 +23,21 @@ public class Main {
 		
 		LogIn.logIn();
 		//DataBase.loadPrivateUser(LogIn.primaryKey);
+//		DataBase.dataLoad();
+//		SignUp.signUp();
+		
+		//DataBase.changeData(DataBase.getUser(),"name","change"); //sample
+		
+		//LogIn.logIn();
+		DataBase.loadPrivateUser(LogIn.primaryKey);
+		InvestService.investMenu();
+		
 		//MainMenu.MainMenu();
 		
 		//Stock.stockService();
 		//AttendanceCheck.attendanceCheckService();
 		
-		DataBase.dataSave();
+//		DataBase.dataSave();
 		
 		
 		
