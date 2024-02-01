@@ -117,12 +117,11 @@ public class DataBase {
 		}
 	}
 
-	public static void changeData(ArrayList<HashMap> arrayList) {
+	public static void changeData(ArrayList<HashMap> arrayList, String key, Object value) {
 		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
 		for (HashMap<String, Object> user : arrayList) {
-		    if (user.get("id").equals("asd159")) {
-		        user.put("name", "change success");
-		        user.put("birth", "change success");
+		    if (user.get("id").equals("asd159")) {//PrimaryKey 로 바꾸기!!!!!!!!!!!!!!!!!!
+		        user.put(key, value);
 		        
 		        break; // 수정한 후에는 루프 종료
 		    }

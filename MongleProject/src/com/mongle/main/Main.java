@@ -16,7 +16,7 @@ public class Main {
 		DataBase.dataLoad();
 		//SignUp.signUp();
 		
-		DataBase.changeData(DataBase.getUser());
+//		DataBase.changeData(DataBase.getUser()); //sample
 		DataBase.dataSave();
 		//LogIn.logIn();
 		//DataBase.loadPrivateUser(LogIn.primaryKey);
