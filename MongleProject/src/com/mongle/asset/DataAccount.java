@@ -7,11 +7,11 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class DataAccount {
-	// score.txt > 어떤 자료형? 구조?로 > 메모리
+
 	private static final String BANKACCOUNT = "dat\\" + "aaa" + "\\bankAccount.txt";
 	public static ArrayList<BankAccount> list = new ArrayList<>();
 
-	// 프로그램 시작시 score.txt > 메모리로
+
 	public static void load() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(DataAccount.BANKACCOUNT));

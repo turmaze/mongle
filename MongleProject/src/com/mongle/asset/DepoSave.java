@@ -11,20 +11,22 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.mongle.service.AssetService;
 import com.mongle.service.InvestService;
-import com.mongle.service.invest.DepositSignUp;
 import com.mongle.service.invest.InfoProduct;
 
 public class DepoSave {
 	private static String bankDepo;
 	private static String titleDepo;
 
+
 	public DepoSave(String bankDepo, String titleDepo) {
 		super();
 		this.bankDepo = bankDepo;
 		this.titleDepo = titleDepo;
+		
 	}
+
+	
 
 	public String getBankDepo() {
 		return bankDepo;
@@ -68,11 +70,12 @@ public class DepoSave {
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
 						DepoSave acc = new DepoSave(table.get(Integer.parseInt(sel) - 1).getBank(),
-													table.get(Integer.parseInt(sel) - 1).getTitle());
+													table.get(Integer.parseInt(sel) - 1).getTitle()); 
+													;
 						System.out.printf("%22s가입 화면으로 이동합니다.\n", "  ");
 						System.out.println();
 						System.out.printf("%22s%s / %s\n", " ", acc.bankDepo, acc.titleDepo);
-						DepositSignUp.signUp(acc.bankDepo, acc.titleDepo);
+						signUp(acc.bankDepo, acc.titleDepo);
 						loop = false;
 					} else if (sel.equals("8")) {
 						table.clear();
@@ -82,7 +85,7 @@ public class DepoSave {
 						loop = false;
 					} else if (sel.equals("0")) {
 						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
-						AssetService.assmenu();
+						InvestService.investMenu();
 						loop = false;
 					} else {
 						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
@@ -94,7 +97,7 @@ public class DepoSave {
 		} // while
 	}
 
-	private static List<InfoProduct> searchDepoSave(Scanner scan, List<InfoProduct> table) { // 예적금 검색 한번에 모으기
+	public static List<InfoProduct> searchDepoSave(Scanner scan, List<InfoProduct> table) { // 예적금 검색 한번에 모으기
 		String apiDepo = "https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=e06ef138c067a4ff1a42504d0fefda36&topFinGrpNo=020000&pageNo=1";
 		String apiSave = "https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=efebe52a92c17a5bcee4c231f829a349&topFinGrpNo=020000&pageNo=1";
 
@@ -180,4 +183,61 @@ public class DepoSave {
 			}
 		}
 	}
-}
+
+	public static void signUp(String bankDepo, String titleDepo) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)"," ");
+		String answer = sc.nextLine();
+		if (answer.equals("y") || answer.equals("Y")) {
+//		Reconfirm(); ///비밀번호 검사 
+			 	//일치하면
+			System.out.printf("%22s가입 성공\n"," ");	
+			
+			openDepo(bankDepo, titleDepo);
+		
+		} else {
+			System.out.printf("%22s비밀번호가 불일치 합니다."," ");
+			// 돌아가기
+		}
+
+	}// DepositSignUp
+
+
+	public static void openDepo(String bankDepo, String titleDepo) {
+		GiveAccount.load();
+		
+		String AccountNumber = "";
+
+		for (BankAccount acc : GiveAccount.list) {
+			if (bankDepo.contains(acc.getBankDepo())) {
+				AccountNumber = acc.getAccountNumber();
+				GiveAccount.list.remove(acc);
+				break;
+			}
+		}
+		DataAccount.list.add(new BankAccount(bankDepo, titleDepo, AccountNumber, 0)); //json에 추가
+		GiveAccount.save();
+		
+	}// OpenDeposit
+
+	
+	
+//	public boolean Reconfirm() {
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("비밀번호를 입력해 주세요:");
+//		String rpw = sc.nextLine();
+//		if (rpw == pw) {
+//			// 가입성공
+//			return true;
+//
+//		} else {
+//			// 비밀번호 불일치
+//			System.out.println("비밀번호가 불일치합니다.");
+//			return false;
+//			// 이전화면으로 돌아가기
+//		}
+//	}// Reconfirm
+
+
+}//class
