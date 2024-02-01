@@ -12,15 +12,16 @@ import com.mongle.service.invest.Stock;
 import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.yourapp.LogIn;
 import com.mongle.yourapp.SignUp;
+import com.mongle.yourapp.StartPage;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		DataBase.dataLoad();
-//		SignUp.signUp();
+		//SignUp.signUp();
 		
 		//DataBase.changeData(DataBase.getUser(),"name","change"); //sample
-		
-		LogIn.logIn();
+		StartPage.startPage();
+		//LogIn.logIn();
 		//DataBase.loadPrivateUser(LogIn.primaryKey);
 		//MainMenu.MainMenu();
 		
