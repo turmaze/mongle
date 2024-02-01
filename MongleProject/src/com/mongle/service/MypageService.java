@@ -14,11 +14,12 @@ public class MypageService {
 	public static int mypageService() {
 		
 		Scanner scan = new Scanner(System.in);
-		MongleVisual.menuHeader("MyPage");
 		boolean loop = true;
 
 		while (loop) {
+			MongleVisual.pusher();
 			int r = -1;
+			MongleVisual.menuHeader("MyPage");
 		System.out.printf("%22s1. 개인정보 조회 및 수정\n", " ");
 		System.out.printf("%22s2. 신용점수\n", " ");
 		System.out.printf("%22s3. 안심송금서비스 설정\n", " ");

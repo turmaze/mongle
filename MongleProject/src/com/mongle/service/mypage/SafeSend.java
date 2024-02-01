@@ -12,6 +12,7 @@ public class SafeSend {
 		boolean loop = true;
 		
 		while (loop) {
+			MongleVisual.pusher();
 		
 		MongleVisual.menuHeader("안심송금");
 		

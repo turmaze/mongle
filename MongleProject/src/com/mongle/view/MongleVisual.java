@@ -1,6 +1,12 @@
 package com.mongle.view;
 
 public class MongleVisual {
+	
+	public static void pusher() {
+		for (int i=0; i<30; i++) {
+			System.out.println();
+		}
+	}
 
 	private static void menuList(String menu, int menuType) {
 		// menuType 0 -> 가운데 + 세로 한줄
