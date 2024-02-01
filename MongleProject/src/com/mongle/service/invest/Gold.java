@@ -13,13 +13,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.mongle.asset.DepoSave;
 import com.mongle.resource.BankAccount;
-import com.mongle.service.InvestService;
+import com.mongle.resource.Investment;
 import com.mongle.view.MongleVisual;
 
 public class Gold {
 
+	public static ArrayList<Investment> listGold = new ArrayList<>();
 	private static double price;
 	private static int num;
 
@@ -79,6 +79,8 @@ public class Gold {
 				}
 			} // while
 		} // while
+		
+		listGold.add(new Investment("금","금",price,num));
 		return 0;
 	}
 

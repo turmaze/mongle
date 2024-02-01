@@ -11,12 +11,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.mongle.service.InvestService;
+import com.mongle.resource.Investment;
 import com.mongle.view.MongleVisual;
 
 public class Loan {
 	private static String bankLoan;
 	private static String titleLoan;
+	
+	public static ArrayList<Investment> listLoan = new ArrayList<>();
 
 	public Loan(String bankLoan, String titleLoan) {
 		super();
@@ -75,6 +77,7 @@ public class Loan {
 														loan.titleLoan,
 														table.get(Integer.parseInt(sel) - 1 + index).getRate());
 						applyLoan(scan, loop);
+						listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0.0,0));
 						loop = false;
 					} else if (sel.equals("8")) {
 						index += 7;

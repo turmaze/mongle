@@ -3,6 +3,7 @@ package com.mongle.service.invest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,14 +12,31 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.mongle.resource.Investment;
 import com.mongle.view.MongleVisual;
 
 public class Exchange {
 	
 	public static double buyPrice;
 	public static int buyAmount;
+	public static ArrayList<Investment> listExchange = new ArrayList<>();
 	
-	
+	public static double getBuyPrice() {
+		return buyPrice;
+	}
+
+	public static void setBuyPrice(double buyPrice) {
+		Exchange.buyPrice = buyPrice;
+	}
+
+	public static int getBuyAmount() {
+		return buyAmount;
+	}
+
+	public static void setBuyAmount(int buyAmount) {
+		Exchange.buyAmount = buyAmount;
+	}
+
 	public static int exchangeService() {
 		
 		int r = -1;
@@ -179,6 +197,8 @@ public class Exchange {
 				
 
 			}
+			listExchange.add(new Investment("환전","환전",Exchange.getBuyPrice(),Exchange.getBuyAmount()));
+			
 
 		} catch (Exception e) {
 			System.out.println("Exchange");

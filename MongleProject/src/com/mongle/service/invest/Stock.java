@@ -5,19 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,11 +21,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.mongle.resource.ResourcePath;
-import com.mongle.resource.UserData;
+import com.mongle.resource.Investment;
 import com.mongle.view.MongleVisual;
-
-import netscape.javascript.JSObject;
 
 public class Stock {
 	
@@ -38,7 +30,34 @@ public class Stock {
 	public static String TOKENexpired;
 	public static int buyPrice = 0;
 	public static int buyAmount = 0;
+	public static String sel= "";
 	
+	public static ArrayList<Investment> listStock = new ArrayList<>();
+	
+	public static int getBuyPrice() {
+		return buyPrice;
+	}
+
+	public static void setBuyPrice(int buyPrice) {
+		Stock.buyPrice = buyPrice;
+	}
+
+	public static int getBuyAmount() {
+		return buyAmount;
+	}
+
+	public static void setBuyAmount(int buyAmount) {
+		Stock.buyAmount = buyAmount;
+	}
+
+	public static String getSel() {
+		return sel;
+	}
+
+	public static void setSel(String sel) {
+		Stock.sel = sel;
+	}
+
 	public static int stockService() {
 		try {
 
@@ -162,6 +181,7 @@ public class Stock {
 						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
+						listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));
 						MongleVisual.stopper();
 					} else if (sel.equals("n")) {
 						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
