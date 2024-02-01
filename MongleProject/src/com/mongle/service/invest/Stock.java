@@ -181,7 +181,7 @@ public class Stock {
 					System.out.printf("%22s선택: ", " ");
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
-						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
+						InvestService.transaction(nowPrice, Integer.parseInt(amount));
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
 						listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));
@@ -194,7 +194,6 @@ public class Stock {
 						MongleVisual.stopper();
 					}
 					
-					InvestService.transaction(nowPrice, Integer.parseInt(amount));
 					
 				} else if (sel2.equals("2")) {
 					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");

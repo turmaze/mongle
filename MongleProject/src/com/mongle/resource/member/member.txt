@@ -7,5 +7,15 @@
     "name": "마마마",
     "birth": "19991111",
     "id": "asdf"
+  },
+  {
+    "salt": "eaf32c3c089c74eb64cb73ad3c2d577c96225b9a",
+    "level": "1",
+    "phone": "01011111111",
+    "pw": "6651783917e946ba12c38e76885de53ac972d251078c0a67127c9db0caa3c5ac",
+    "name": "가가가",
+    "birth": "19991111",
+    "id": "qwer",
+    "계좌": []
   }
 ]
