@@ -91,17 +91,6 @@ public class DataBase {
 
 					}
 					privateUser.add(userData);
-//                	String pw = jsonObject.get("pw").getAsString();
-//                    String name = jsonObject.get("name").getAsString();
-//                    String birth = jsonObject.get("birth").getAsString();
-//
-//                    // HashMap에 값 추가
-//                    HashMap<String, String> tempUser = new HashMap<>();
-//                    tempUser.put("id", tempId);
-//                    tempUser.put("pw", pw);
-//                    tempUser.put("name", name);
-//                    tempUser.put("birth", birth);
-
 				}
 			}
 
@@ -126,7 +115,7 @@ public class DataBase {
 		        break; // 수정한 후에는 루프 종료
 		    }
 		}
-	}
+	} //loadPrivateUser
 	
 
 //JsonObject로 만든거		
