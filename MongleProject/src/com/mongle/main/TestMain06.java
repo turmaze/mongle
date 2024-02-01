@@ -13,8 +13,8 @@ public class TestMain06 {
 		//StartPage.startPage();
 		//SignOut.signOutService();
 		//MypageService.mypageService();
-		//MainMenu.mainMenu("1");
-		Stock.stockService();
+		MainMenu.mainMenu("1");
+		//Stock.stockService();
 		
 	}
 	
