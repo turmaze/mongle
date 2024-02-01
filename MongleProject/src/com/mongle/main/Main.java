@@ -14,9 +14,9 @@ import com.mongle.yourapp.SignUp;
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		DataBase.dataLoad();
-		SignUp.signUp();
+		//SignUp.signUp();
+		LogIn.logIn();
 		DataBase.loadPrivateUser(LogIn.primaryKey);
-		//LogIn.LogIn();
 		//MainMenu.MainMenu();
 		
 		//Stock.stockService();

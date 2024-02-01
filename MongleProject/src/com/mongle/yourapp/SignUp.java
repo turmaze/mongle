@@ -98,7 +98,7 @@ public class SignUp {
 				phone = phone.replace(" ", "");
 				phone = phone.replace(".", "");
 			}
-			System.out.println(phone);
+			//System.out.println(phone); //testcode
 			}
 			while(!DataBase.validPhone(phone));
 		userData.setPhone(phone);
@@ -127,7 +127,7 @@ public class SignUp {
 //			while(!DataBase.validAcc(acc));
 		
 		
-		System.out.println("newuser = "+newUser);
+		System.out.println("newuser = "+ newUser);
 		
 		//----------------final----------------
 		DataBase.dataSave();
