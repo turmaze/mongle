@@ -24,7 +24,7 @@ public class Fund {
 
 			String header = "+---------------------------------+";
 			System.out.printf("%22s%s\n", " ", header);
-			System.out.printf("%22s|\t펀드상품 검색은 브라우저를 통해\t|\n", " ");
+			System.out.printf("%22s|\t   펀드상품 검색은 브라우저를 통해\t|\n", " ");
 			System.out.printf("%22s|   \t외부 사이트를 이용합니다.\t|\n", " ");
 			System.out.printf("%22s%s\n", " ", header);
 

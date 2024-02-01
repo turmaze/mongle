@@ -87,7 +87,7 @@ public class Gold {
 		boolean loop = true;
 		MongleVisual.pusher();
 		System.out.printf("%22s===================================\n", " ");
-		System.out.printf("%22s   \t  호가 %,.0f원\n", " ", price);
+		System.out.printf("%22s   \t  호가 %,d원\n", " ", price);
 		System.out.printf("%22s===================================\n", " ");
 		while (loop) {
 			System.out.printf("%22s주문 수량 입력(숫자):", " ");

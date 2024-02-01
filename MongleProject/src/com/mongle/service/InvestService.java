@@ -125,7 +125,7 @@ public class InvestService {
 								System.out.println();
 								System.out.printf("%22s주문가격 %,d원(시장가) / 주문 수량 : %s\n", " ", price, num);
 								System.out.printf("%22s거래가 완료되었습니다.\n", " ");
-								System.out.printf("%22s거래 후 잔액은 %,.0f원입니다.\n", " ", rest);
+								System.out.printf("%22s거래 후 잔액은 %,d원입니다.\n", " ", rest);
 								System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 								scan.nextLine();
 								loop = false;
