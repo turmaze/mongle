@@ -24,70 +24,58 @@ import com.mongle.view.MongleVisual;
 
 public class LogIn {
 	
-	//public static UserData mainUser;
-
-	public static void LogIn() throws FileNotFoundException, IOException, ParseException {
-
+	public static String primaryKey;
+	
+	public static void logIn() {
+		try {
+			userLogin();
+		} catch (Exception e) {
+			System.out.println("LogIn.logIn");
+		}
+	}
+	private static String userLogin() throws FileNotFoundException, IOException, ParseException {
 		JSONParser parser = new JSONParser();
+		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
-		
 		JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
-		
 		MongleVisual.menuHeader("로그인");
-		UserData coreUser = new UserData();
-		
 		String checkID = "";
 		String checkPW = "";
-		
-		String id = null;
-		String pw = null;
-		
+		String checklevel = "" ; 
 		do {
-
-			
-
 			System.out.printf("\n%22s아이디: ", " ");
-
-			id = scan.nextLine();
+			user.setId(scan.nextLine());
 
 			System.out.printf("\n%22s비밀번호: ", " ");
-			pw = scan.nextLine();
-			
+			user.setPw(scan.nextLine());
 			
 			
 			for (Object obj : list) {
-				if (((JSONObject)obj).get("ID").equals(id) ) {
-					checkID = (String) ((JSONObject)obj).get("ID");
-					System.out.println(checkID);
-					checkPW = (String) ((JSONObject)obj).get("비밀번호");
-					System.out.println(checkPW);
+				if (((JSONObject)obj).get("ID").equals(user.getId()) ) {
+					checklevel = (String) ((JSONObject)obj).get("level");
+					
+					checkID = (String) ((JSONObject)obj).get("id");
+					//System.out.println(checkID);
+					checkPW = (String) ((JSONObject)obj).get("pw");
+					//System.out.println(checkPW);
 				}
-						
 			}
 			
-			if(checkID.equals(id)&&checkPW.equals(Encrypt.encrypt(pw))) {
+			if(checkID.equals(user.getId())&&checkPW.equals(Encrypt.encrypt(user.getPw()))) {
+				//로그인 상태 
 				System.out.printf("\n%22s로그인 성공\r\n", " ");
+				primaryKey = user.getId();
+				//MainMenu.mainMenu(checklevel);
+				
 			}else {
 				System.out.printf("\n%22s로그인 실패\r\n", " ");
 			}
 
-		} while (!checkID.equals(id)||!checkPW.equals(pw));
-
-		//mainUser = coreUser;
-
+		} while (!checkID.equals(user.getId())||!checkPW.equals(user.getPw()));
+		
+		return checklevel;
+		
 	}
 
-//	private static UserData mainUser(String id, String pw, UserData mainUser) {
-//		for (UserData userData : DataBase.getUserList()) {
 //
-//			if (id.equals(userData.getId()) && pw.equals(userData.getPw())) {
-//				mainUser = userData;
-//				System.out.printf("\n%22s로그인 성공\r\n"," ");
-//				return mainUser;
-//
-//			}
-//			
-//		}
-//		return null;
-//	}
 }

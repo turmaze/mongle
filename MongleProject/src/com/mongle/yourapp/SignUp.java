@@ -26,7 +26,7 @@ public class SignUp {
 			userData.setId(scan.nextLine());
 		}
 		while(!DataBase.validId(userData.getId()));
-		newUser.put("ID", userData.getId());
+		newUser.put("id", userData.getId());
 		DataBase.setUser(newUser);  // HashMap을 ArrayList에 추가
 		
 
@@ -49,7 +49,7 @@ public class SignUp {
 				
 				String finPw = Encrypt.encrypt(pw2); //pw 암호화
 				
-				newUser.put("비밀번호", finPw);  // 유효한 비밀번호를 HashMap에 저장
+				newUser.put("pw", finPw);  // 유효한 비밀번호를 HashMap에 저장
 				//DataBase.setUser(newUser);  // HashMap을 ArrayList에 추가
 				break;
 			} else {
@@ -71,7 +71,7 @@ public class SignUp {
 			}
 			while(!DataBase.validName(name));
 		userData.setName(name);
-		newUser.put("이름", userData.getName());
+		newUser.put("name", userData.getName());
 		
 		//----------------birth----------
 		String birth;
@@ -82,10 +82,29 @@ public class SignUp {
 			}
 			while(!DataBase.validBirth(birth));
 		userData.setBirth(birth);
-		newUser.put("생일", userData.getBirth());
+		newUser.put("birth", userData.getBirth());
 		
 		//사용자 레벨 설정
 		newUser.put("level",userData.getLevel());
+		
+		//--------phoneNumber------
+		String phone;
+		do {
+			System.out.printf("\n%22s(예시: 01033448899"," ");
+			System.out.printf("\n%22s3. 전화번호: "," ");	
+			phone = scan.nextLine();
+			if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
+				phone = phone.replace("-", "");
+				phone = phone.replace(" ", "");
+				phone = phone.replace(".", "");
+			}
+			System.out.println(phone);
+			}
+			while(!DataBase.validPhone(phone));
+		userData.setPhone(phone);
+		newUser.put("phone", userData.getPhone());
+		
+		
 		
 		
 		//---------------account---------

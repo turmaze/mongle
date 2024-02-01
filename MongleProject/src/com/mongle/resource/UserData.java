@@ -7,7 +7,10 @@ public class UserData {
 	private String pw;
 	private String name;
 	private String birth;
+	private String phone;
 	
+
+
 	public String getId() {
 		return id;
 	}
@@ -24,6 +27,9 @@ public class UserData {
 	public String getBirth() {
 		return birth;
 	}
+	public String getPhone() {
+		return phone;
+	}
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -35,6 +41,9 @@ public class UserData {
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 	
