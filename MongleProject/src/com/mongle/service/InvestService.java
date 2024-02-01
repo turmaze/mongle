@@ -84,7 +84,7 @@ public class InvestService {
 		return 0;
 	}
 	
-	public static void transaction(double price, int num) {
+	public static int transaction(double price, int num) {
 		Scanner scan = new Scanner(System.in);
 		
 		MongleVisual.pusher();
@@ -98,12 +98,17 @@ public class InvestService {
 		print(filteredList); // json 에서 가져온 데이터
 		System.out.printf("%22s%s\n", " ", header);
 		System.out.printf("%22s주문 내역을 결제할 계좌를 선택해주세요.\n", " ");
+		System.out.printf("%22s0. 이전으로\n", " ");
 		boolean loop = true;
 
 		while (loop) {
 			System.out.printf("%22s선택(번호) : ", " ");
 			String sel = scan.nextLine();
 			double totalPrice = price * num;
+			
+			if (sel.equals("0")) {
+				return 0;
+			}
 
 			try {
 				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
@@ -137,6 +142,7 @@ public class InvestService {
 				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
 			}
 		}
+		return 0;
 
 	}
 	
