@@ -11,6 +11,8 @@ public class BankAccount {
 	private String accountNumber; // 계좌 번호
 	private String bankDepo;
 	private String titleDepo;
+	
+	public static ArrayList<BankAccount> list = new ArrayList<>();
 
 	public BankAccount(String bankDepo, String titleDepo, String AccountNumber, int DepositAmount) {
 
