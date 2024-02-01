@@ -19,7 +19,7 @@ public class Main {
 		//SignUp.signUp();
 		
 		//Stock.stockService();
-		AttendanceCheck.attendanceCheckService();
+		//AttendanceCheck.attendanceCheckService();
 		
 		
 		
