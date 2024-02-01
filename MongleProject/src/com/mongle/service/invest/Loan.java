@@ -40,10 +40,6 @@ public class Loan {
 		this.titleLoan = titleLoan;
 	}
 
-	public static void main(String[] args) {
-		loanService();
-	}// main
-
 	public static int loanService() {
 		Scanner scan = new Scanner(System.in);
 		List<InfoProduct> table = new ArrayList<>(); // 대출 정보 담을 리스트
@@ -53,6 +49,8 @@ public class Loan {
 
 		while (loop) {
 			MongleVisual.pusher();
+			
+			MongleVisual.menuHeader("대출");
 			
 			table = searchLoan(table, index); // 대출 검색 메서드
 			

@@ -13,6 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.mongle.service.InvestService;
+import com.mongle.view.MongleVisual;
 
 public class Gold {
 
@@ -42,6 +43,11 @@ public class Gold {
 		int r = -1;
 
 		while (loop) {
+			
+			MongleVisual.pusher();
+			
+			MongleVisual.menuHeader("금");
+			
 			table = searchGold(table); // 금상품 검색 메서드
 
 			System.out.println();
@@ -60,13 +66,13 @@ public class Gold {
 					gold.setNum(orderGold(gold.price, scan));
 					loop = false;
 				} else if (sel.equals("9")) {
-					System.out.printf("%22s홈 화면으로 이동합니다.");
+					System.out.printf("%22s홈 화면으로 이동합니다.", " ");
 					return 9;
 				} else if (sel.equals("0")) {
-					System.out.printf("%22s이전 화면으로 이동합니다.");
+					System.out.printf("%22s이전 화면으로 이동합니다.", " ");
 					return 0;
 				} else {
-					System.out.printf("%22s올바른 번호를 입력해주세요.");
+					System.out.printf("%22s올바른 번호를 입력해주세요.", " ");
 				}
 			} // while
 		} // while
