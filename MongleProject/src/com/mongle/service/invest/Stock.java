@@ -39,7 +39,7 @@ public class Stock {
 	public static int buyPrice = 0;
 	public static int buyAmount = 0;
 	
-	public static void stockService() {
+	public static int stockService() {
 		try {
 
 			Scanner scan = new Scanner(System.in);
@@ -182,11 +182,9 @@ public class Stock {
 					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");
 					scan.nextLine();
 				} else if (sel2.equals("9")) {
-					loop = false;
-					break;
+					return 9;
 				} else if (sel2.equals("0")) {
-					loop = false;
-					break;
+					return 0;
 				}
 				
 				System.out.println();
@@ -197,6 +195,7 @@ public class Stock {
 			System.out.println("Stock.main");
 			e.printStackTrace();
 		}
+		return 0;
 
 	}// stock
 	
