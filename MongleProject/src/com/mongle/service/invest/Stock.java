@@ -95,8 +95,7 @@ public class Stock {
 				
 				if (totalCount == 0) {
 					System.out.printf("%22s검색 결과가 없습니다.\n", " ");
-					System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
-					scan.nextLine();
+					MongleVisual.stopper();
 					continue;
 				}
 				
@@ -161,18 +160,15 @@ public class Stock {
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
 						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
-						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
-						scan.nextLine();
+						MongleVisual.stopper();
 					} else if (sel.equals("n")) {
 						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
-						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						scan.nextLine();
+						MongleVisual.stopper();
 					} else {
 						System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
-						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						scan.nextLine();
+						MongleVisual.stopper();
 					}
 				} else if (sel2.equals("2")) {
 					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");

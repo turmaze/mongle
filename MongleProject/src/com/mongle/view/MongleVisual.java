@@ -1,11 +1,19 @@
 package com.mongle.view;
 
+import java.util.Scanner;
+
 public class MongleVisual {
 	
 	public static void pusher() {
 		for (int i=0; i<30; i++) {
 			System.out.println();
 		}
+	}
+	
+	public static void stopper() {
+		Scanner scan = new Scanner(System.in);
+		System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
+		scan.nextLine();
 	}
 
 	private static void menuList(String menu, int menuType) {
@@ -14,8 +22,6 @@ public class MongleVisual {
 		// menuType 2 -> 위에 + 세로 한줄
 		
 		// menu -> 변수명 ex) 투자관리, 대출관리
-		
-		
 		
 	}
 
