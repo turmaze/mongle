@@ -26,6 +26,13 @@ public class FindAcc {
 			StartPage.startPage();
 		}
 		
+		try {
+			
+		} catch (Exception e) {
+			System.out.println("FindAcc.findAcc");
+			e.printStackTrace();
+		}
+		
 		
 	}
 
@@ -36,7 +43,10 @@ public class FindAcc {
 		user.setId(scan.nextLine());
 		System.out.printf("\n%22s전화번호 입력: ", " ");
 		user.setPhone(scan.nextLine());
-
+		System.out.printf("\n%22s이름 입력: ", " ");
+		user.setName(scan.nextLine());
+		
+		
 		
 	}
 
