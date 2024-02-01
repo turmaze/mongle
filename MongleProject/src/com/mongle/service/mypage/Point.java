@@ -1,4 +1,4 @@
-package com.mongle.service;
+package com.mongle.service.mypage;
 
 import java.util.Scanner;
 
