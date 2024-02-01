@@ -5,14 +5,18 @@ import java.security.SecureRandom;
 
 
 public class Encrypt {
+	
+	public static String AbcSalt;
+	
 	public static String encrypt(String pw) {
 		Encrypt encrypt = new Encrypt();
 
 		//getSalt
-		String salt = encrypt.getAbcJuice();
+		String salt = Encrypt.getAbcJuice();
 		//System.out.println("salt : "+salt); // salt value
+		AbcSalt = salt;
 		
-		return encrypt.getEncrypt(pw,salt);
+		return Encrypt.getEncrypt(pw,salt);
 		
 	}
 
@@ -62,7 +66,7 @@ public class Encrypt {
 	}
 	
 	
-	public static String LogInPw(String pw) {
-		return getEncrypt(pw,getAbcJuice());	
+	public static String LogInPw(String pw , String salt) {
+		return getEncrypt(pw,salt);	
 	}
 }

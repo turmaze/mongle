@@ -49,7 +49,7 @@ public class SignUp {
 				Encrypt encrypt = new Encrypt();
 				String finPw = Encrypt.encrypt(pw2); //pw 암호화
 				
-				newUser.put("salt", encrypt.getAbcJuice()); //get salt
+				newUser.put("salt", Encrypt.AbcSalt); //get salt
 				newUser.put("pw", finPw);  // 유효한 비밀번호를 HashMap에 저장
 				//DataBase.setUser(newUser);  // HashMap을 ArrayList에 추가
 				break;

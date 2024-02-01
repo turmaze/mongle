@@ -46,12 +46,13 @@ public class LogIn {
 			MongleVisual.menuHeader("로그인");
 			String checkID = "";
 			String checkPW = "";
+			String checkSalt= "";
 			do {
 				System.out.printf("\n%22s아이디: ", " ");
 				user.setId(scan.nextLine()); 
 
-//				System.out.printf("\n%22s비밀번호: ", " ");
-//				user.setPw(scan.nextLine());
+				System.out.printf("\n%22s비밀번호: ", " ");
+				user.setPw(scan.nextLine());
 				
 				
 				for (Object obj : list) {
@@ -59,9 +60,10 @@ public class LogIn {
 						checklevel = (String) ((JSONObject)obj).get("level");
 						checkID = (String) ((JSONObject)obj).get("id");
 						checkPW = (String) ((JSONObject)obj).get("pw");
+						checkSalt = (String)((JSONObject)obj).get("salt");
 					}
 				}
-				if(checkID.equals(user.getId())){//&&checkPW.equals(Encrypt.encrypt(user.getPw()))) {
+				if(checkID.equals(user.getId())&&checkPW.equals(Encrypt.LogInPw(user.getPw(), checkSalt))) {
 					//로그인 상태 
 					System.out.printf("\n%22s로그인 성공\r\n", " ");
 					primaryKey = user.getId();
@@ -71,7 +73,13 @@ public class LogIn {
 					
 				}else {
 					System.out.printf("\n%22s로그인 실패\r\n", " ");
+				
 					count++;
+					
+					System.out.println(checkSalt);
+					System.out.println(checkPW);
+					System.out.println(Encrypt.LogInPw(user.getPw(), checkSalt));
+					
 				}
 				
 				if(count==3) {
@@ -83,15 +91,9 @@ public class LogIn {
 						return checklevel;
 					}else {
 						System.out.printf("\n%22s잘못된 입력\r\n", " ");
-						
 					}
-					
 				}
-					
-					
-				
-
-			} while (!checkID.equals(user.getId())||count==3);//||!checkPW.equals(user.getPw()));
+			} while (!checkID.equals(user.getId())||count==3||!checkPW.equals(user.getPw()));
 			
 			
 		} catch (Exception e) {
