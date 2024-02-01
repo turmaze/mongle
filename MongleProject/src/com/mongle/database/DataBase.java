@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.jar.Attributes.Name;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,8 +25,12 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mongle.resource.ResourcePath;
+import com.mongle.resource.UserData;
+import com.mongle.yourapp.LogIn;
 
 
 
@@ -33,6 +38,8 @@ public class DataBase {
 	
 
 	static ArrayList<HashMap> user = new ArrayList<HashMap>();
+	static ArrayList<HashMap> privateUser = new ArrayList<HashMap>();
+	
 	
 	
 	public static ArrayList<HashMap> getUser() {
@@ -40,8 +47,105 @@ public class DataBase {
 	}
 
 	public static void setUser(HashMap<String,String> newUser) {
+		DataBase.privateUser.add(newUser);
+	}
+	
+	public static ArrayList<HashMap> getPrivateuser() {
+		return privateUser;
+	}
+
+	public static void setPrivateUsers(HashMap<String,String> newUser) {
 		DataBase.user.add(newUser);
 	}
+	
+	public static void loadPrivateUsers(String primaryKey) {
+		try {
+            
+            // JSON 파일을 읽어와 JsonArray로 파싱
+            JsonArray jsonArray = JsonParser.parseReader(new FileReader(ResourcePath.MEMBER)).getAsJsonArray();
+
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+                
+                // id 값을 가진 데이터 확인
+                String tempId = jsonObject.get("id").getAsString();
+
+                if (tempId.equals(LogIn.primaryKey)) {
+                    String pw = jsonObject.get("pw").getAsString();
+                    String name = jsonObject.get("name").getAsString();
+                    String birth = jsonObject.get("birth").getAsString();
+
+                    // HashMap에 값 추가
+                    HashMap<String, String> tempUser = new HashMap<>();
+                    tempUser.put("id", tempId);
+                    tempUser.put("pw", pw);
+                    tempUser.put("name", name);
+                    tempUser.put("birth", birth);
+
+                    privateUser.add(tempUser);
+                }
+            }
+
+            if (privateUser.isEmpty()) {
+                System.out.println(primaryKey + " 값을 가진 데이터가 존재하지 않습니다.");
+            }
+            
+            // 가져온 값 출력
+            System.out.println("privateUser List test : " + privateUser);
+            System.out.println("-끝-");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+		
+//JsonObject로 만든거		
+//	        try {
+//	            Gson gson = new Gson();
+//	            // JSON 파일을 읽어와 JsonObject로 파싱
+//	            JsonObject jsonObject = JsonParser.parseReader(new FileReader(ResourcePath.MEMBER)).getAsJsonObject();
+//
+//	            // id 값을 가진 데이터 확인
+//	            JsonObject targetData = jsonObject.getAsJsonObject(LogIn.primaryKey);
+//
+//	            if (targetData != null) {
+//	            	String tempId = targetData.get("id").getAsString();
+//	                String pw = targetData.get("pw").getAsString();
+//	                String name = targetData.get("name").getAsString();              
+//	                String birth = targetData.get("birth").getAsString();
+//	                //String phone = targetData.get("phone").getAsString();
+//
+//	                HashMap<String, String> tempUser = new HashMap<>();
+//	                tempUser.put("id", tempId);
+//	                tempUser.put("pw", pw);
+//	                tempUser.put("name", name);
+//	                tempUser.put("birth", birth);
+//	               // tempUser.put("phone", phone);
+//	                
+//	                privateUser.add(tempUser);
+//	                // 가져온 값 출력
+//	                System.out.println("privateUser List test : "+tempUser);
+//	            
+//            	} else {
+//                System.out.println("qwerty123 값을 가진 데이터가 존재하지 않습니다.");
+//            	}
+//	        } catch (IOException e) {
+//	        	e.printStackTrace();
+//	        }
+	
+		
+		
+//		for(HashMap privateData : user) {
+//			if(id.equals(privateData.get("ID"))) { //ID값이 맞으면
+//				privateUser.get
+//				
+//				
+//			}
+//			
+//		}
+		
+
+	
+	
 
 	public static void dataSave() {
 		
@@ -83,7 +187,7 @@ public class DataBase {
             Iterator<Object> iterator = userList.iterator();
             while (iterator.hasNext()) {
                 JSONObject jsonObject = (JSONObject) iterator.next();
-                HashMap<String, String> userData = new HashMap<>();
+                HashMap<String, Object> userData = new HashMap<>();
                 // 가정: JSON 객체의 모든 키는 문자열이고, 값도 문자열임
                 for (Object key : jsonObject.keySet()) {
                     userData.put((String) key, (String) jsonObject.get(key));
