@@ -1,6 +1,9 @@
 package com.mongle.service.invest;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -23,18 +26,20 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.mongle.resource.ResourcePath;
+import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
 
 import netscape.javascript.JSObject;
 
 public class Stock {
 	
-	static String TOKEN ;
-	static String TOKENexpired ;
+	public static String TOKEN;
+	public static String TOKENexpired;
 	public static int buyPrice = 0;
 	public static int buyAmount = 0;
 	
-	public static int stockService() {
+	public static void stockService() {
 		try {
 
 			Scanner scan = new Scanner(System.in);
@@ -43,31 +48,35 @@ public class Stock {
 			while (loop) {
 				
 				MongleVisual.pusher();
-
+				
 				MongleVisual.menuHeader("주식");
 				String stockURL =  "https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?serviceKey=S3mJZVa%2B2sPWWlGQUV7WgSNe4Fd3yYWAts4pwm9aPIOJVQY4NZqBVvp4bQT%2Fm6iH023rAE5yPGI7gi%2FAZKlxng%3D%3D&numOfRows=1&resultType=json";
 
-				System.out.printf("%30s1. 종목명으로 검색\n", " ");
-				System.out.printf("%30s2. 코드명으로 검색\n", " ");
-				System.out.printf("%30s9. 홈으로\n", " ");
-				System.out.printf("%30s0. 이전으로\n", " ");
+				System.out.printf("%22s1. 종목명으로 검색\n", " ");
+				System.out.printf("%22s2. 코드명으로 검색\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
 				System.out.println();
-				System.out.printf("%30s선택: ", " ");
+				System.out.printf("%22s선택: ", " ");
 
 				String sel = scan.nextLine();
 				
 				System.out.println();
 
 				if (sel.equals("1")) {
-					System.out.printf("%30s종목명: ", " ");
+					System.out.printf("%22s종목명: ", " ");
 					sel = "&itmsNm=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
 				} else if (sel.equals("2")) {
-					System.out.printf("%30s코드명: ", " ");
+					System.out.printf("%22s코드명: ", " ");
 					sel = "&srtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
-				}  else if (sel.equals("9")) {
-					return 9;
-				} else if (sel.equals("0")) {
-					return 0;
+				}  else if (sel.equals("0")) {
+						System.out.printf("%22s종료 하시겠습니까? (y/n)", " ");
+						sel = scan.nextLine();
+						if (sel.equals("y")) {
+						loop = false;
+						break;
+					} else if (sel.equals("n")) {
+						continue;
+					}
 				}
 				System.out.println();
 				
@@ -89,8 +98,8 @@ public class Stock {
 				// System.out.println(jsonObject);
 				
 				if (totalCount == 0) {
-					System.out.printf("%30s검색 결과가 없습니다.\n", " ");
-					System.out.printf("%30s계속하시려면 엔터를 눌러주세요\n", " ");
+					System.out.printf("%22s검색 결과가 없습니다.\n", " ");
+					System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
 					scan.nextLine();
 					continue;
 				}
@@ -128,54 +137,56 @@ public class Stock {
 				System.out.println();
 				System.out.println();
 				
-				System.out.printf("%30s1. 구매\n", " ");
-				System.out.printf("%30s2. 다시 검색하기\n", " ");
-				System.out.printf("%30s9. 홈으로\n", " ");
-				System.out.printf("%30s0. 이전으로\n", " ");
+				System.out.printf("%22s1. 구매\n", " ");
+				System.out.printf("%22s2. 다시 검색하기\n", " ");
+				System.out.printf("%22s9. 홈으로\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
 				System.out.println();
-				System.out.printf("%30s선택: ", " ");
+				System.out.printf("%22s선택: ", " ");
 				String sel2 = scan.nextLine();
 				if (sel2.equals("1")) {
 					String amount = "";
 					MongleVisual.menuHeader("현재가: " + String.format("%,d", nowPrice));
 					while (true) {
-						System.out.printf("%30s수량(숫자): ", " ");
+						System.out.printf("%22s수량(숫자): ", " ");
 						amount = scan.nextLine();
 						String regex = "^[0-9]+$";
 						Pattern p1 = Pattern.compile(regex);
 						Matcher m1 = p1.matcher(amount);
 						if (!m1.find()) {
-							System.out.printf("%27s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
+							System.out.printf("%22s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
 						} else {
 							break;
 						}
 					}
-					System.out.printf("%30s총 구매 대금: %,d원\n", " ", nowPrice * Integer.parseInt(amount));
-					System.out.printf("%30s구매하시겠습니까? (y/n)\n", " ");
-					System.out.printf("%30s선택: ", " ");
+					System.out.printf("%22s총 구매 대금: %,d원\n", " ", nowPrice * Integer.parseInt(amount));
+					System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
+					System.out.printf("%22s선택: ", " ");
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
-						System.out.printf("%35s거래가 완료되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
 						scan.nextLine();
 					} else if (sel.equals("n")) {
-						System.out.printf("%35s거래가 취소되었습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 					} else {
-						System.out.printf("%35s입력이 올바르지 않습니다.\n", " ");
-						System.out.printf("%27s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 					}
 				} else if (sel2.equals("2")) {
-					System.out.printf("%30s엔터를 눌러 계속하기\n", " ");
+					System.out.printf("%22s엔터를 눌러 계속하기\n", " ");
 					scan.nextLine();
 				} else if (sel2.equals("9")) {
-					return 9;
+					loop = false;
+					break;
 				} else if (sel2.equals("0")) {
-					return 0;
+					loop = false;
+					break;
 				}
 				
 				System.out.println();
@@ -186,7 +197,6 @@ public class Stock {
 			System.out.println("Stock.main");
 			e.printStackTrace();
 		}
-		return 0;
 
 	}// stock
 	
@@ -199,6 +209,10 @@ public class Stock {
 	                "&fid_input_iscd=" + cd; //FID 입력 종목코드
 		
 		getToken();
+		if (invalidToken()) {
+			serverToken();
+			setToken();
+		}
 	    
         String result = "";
         try {
@@ -254,7 +268,8 @@ public class Stock {
       }
     }
     
-    public static void getToken() {
+    public static void serverToken() {
+    	
         try {
             String APP_KEY = "PSseRvmqtHg5kx9cJfs7JFzpbPBQbXxT4Wn8";
             String APP_SECRET = "ozZWypajrAAc6Qg9XBV8Vi8qyof2EFf//16gsk3nc7XtMOjOrbtmb+v7qKBvYwJJJ/ni4TXLK2Dp0seaE4zIgak+EVrWl+02xHcAiOwRUD9q+bhOkGsBrb4ZmEKuTxrwqog8sBK19oo7ktQ9naCW0XtjNrB0g52ZhbAuIBfwFroN5szX2SY=";
@@ -262,15 +277,6 @@ public class Stock {
             String PATH = "oauth2/tokenP";
             String URL = URL_BASE + "/" + PATH;
             
-
-			LocalDate date = LocalDate.now();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			String today = date.format(formatter);
-			String[] day = TOKENexpired.split(" ");
-			if (Integer.parseInt(day[0].replace("-", "")) > Integer.parseInt(today.replace("-", ""))) {
-				return;
-			}
-
             // Request body
             String requestBody = String.format(
                 "{\"grant_type\":\"client_credentials\",\"appkey\":\"%s\",\"appsecret\":\"%s\"}",
@@ -296,10 +302,11 @@ public class Stock {
             	String response = br.readLine();
             	JSONParser parser = new JSONParser();
 				JSONObject jsonObject = (JSONObject) parser.parse(response);
-            	
+				
                 TOKEN = (String) jsonObject.get("access_token");
                 TOKENexpired = (String) jsonObject.get("access_token_token_expired");
             }
+            
 
             // Close the connection
             connection.disconnect();
@@ -307,5 +314,61 @@ public class Stock {
             e.printStackTrace();
         }
     }
+
+	private static boolean invalidToken() {
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String today = date.format(formatter);
+		if (TOKENexpired!=null) {
+		String[] day = TOKENexpired.split(" ");
+		if (Integer.parseInt(day[0].replace("-", "")) > Integer.parseInt(today.replace("-", ""))||TOKENexpired==null) {
+			return false;
+		}
+	}
+		return true;
+	}
+
+	public static void setToken() {
+		
+		try {
+			
+			String path = "src\\com\\mongle\\service\\invest\\token.dat";
+			FileWriter writer = new FileWriter(path);			
+			writer.write(TOKEN);
+			writer.write("\r\n");
+			writer.write(TOKENexpired);
+			writer.write("\r\n");
+			
+			writer.close();
+			
+		} catch (Exception e) {
+			System.out.println("Stock.setToken");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void getToken() {
+		
+		try {
+        	
+			String path = "src\\com\\mongle\\service\\invest\\token.dat";
+        	File file = new File(path);
+        	
+        	if (file.exists()) {
+        	BufferedReader reader = new BufferedReader(new FileReader(file));
+        	
+        	TOKEN = reader.readLine();
+        	TOKENexpired = reader.readLine();
+			
+			reader.close();
+        	}
+        	
+        	
+        } catch (Exception e) {
+        	System.out.println("DataBase.dataLoad Error");
+            e.printStackTrace();
+        }
+	}
 
 }
