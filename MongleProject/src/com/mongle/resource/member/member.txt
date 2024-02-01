@@ -1,0 +1,11 @@
+[
+  {
+    "salt": "b62f7cadf43d7ed3dbd0484682507843d41ab895",
+    "level": "1",
+    "phone": "01011111111",
+    "pw": "d62ec5e0a60d1181294b4a24589f084b5873b7d6f1ba0e06cffba2dd1a6e6e74",
+    "name": "마마마",
+    "birth": "19991111",
+    "id": "asdf"
+  }
+]

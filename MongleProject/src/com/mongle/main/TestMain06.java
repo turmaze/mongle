@@ -10,10 +10,10 @@ public class TestMain06 {
 	
 	public static void main(String[] args) {
 		
-		//StartPage.startPage();
+		StartPage.startPage();
 		//SignOut.signOutService();
 		//MypageService.mypageService();
-		MainMenu.mainMenu("1");
+		//MainMenu.mainMenu("1");
 		//Stock.stockService();
 		
 	}

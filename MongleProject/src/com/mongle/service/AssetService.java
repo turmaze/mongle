@@ -12,9 +12,10 @@ import com.mongle.view.MongleVisual;
 public class AssetService {
 
 
-	public static void assmenu() {
+	public static int assmenu() {
 		// 메뉴 헤더 화면
 		boolean loop = true;
+		int r = -1;
 		while (loop) {
 			MongleVisual.menuHeader("계좌 관리");
 			System.out.println();
@@ -30,9 +31,19 @@ public class AssetService {
 			String sel = sc.nextLine();
 			//
 			if (sel.equals("1")) {
-				DepoSave.depoSaveService();
+				r = DepoSave.depoSaveService();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("2")) {
-				checkDepo();
+				r = checkDepo();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("3")) {
 				//연동
 			} else if (sel.equals("4")) {
@@ -47,17 +58,35 @@ public class AssetService {
 				loop = false;
 			}
 		}
+		return 0;
 
 	}// choice
 
-	public static void checkDepo() {
+	public static int checkDepo() {
 		// 헤더 출력
+		Scanner scan = new Scanner(System.in);
+		
+		while (true) {
+		
 		String header = "+---+---------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%22s%s\n", " ", header);
 		System.out.printf("%22s|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		printAsciiTable(BankAccount.list); //json 에서 가져온 데이터
 		System.out.printf("%22s%s\n", " ", header);
+		
+		System.out.printf("%22s9. 홈으로\n", " ");
+		System.out.printf("%22s0. 이전으로\n", " ");
+		String sel = scan.nextLine();
+		
+		if (sel.equals("9")) {
+			return 9;
+		} else if (sel.equals("0")) {
+			return 0;
+		}
+		
+		}
+		
 
 	}
 
