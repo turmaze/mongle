@@ -172,12 +172,12 @@ public class DataBase {
 //			
 //		}
 
-	public static void dataSave(String path) {
+	public static void dataSave() {
 		try {
 
 			// set pretty printing
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			File file = new File(path);
+			File file = new File(ResourcePath.MEMBER);
 			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
 			FileWriter writer = new FileWriter(file, false); // 덮쓰
 
@@ -196,12 +196,12 @@ public class DataBase {
 	}
 
 	// 파일에서 사용자 데이터 읽기
-	public static void dataLoad(String path) {
+	public static void dataLoad() {
 
 		JSONParser parser = new JSONParser();
 		try {
 			// FileReader 객체 생성
-			FileReader reader = new FileReader(path);
+			FileReader reader = new FileReader(ResourcePath.MEMBER);
 			// JSON 데이터를 파싱하여 JSONArray로 변환
 			JSONArray userList = (JSONArray) parser.parse(reader);
 
