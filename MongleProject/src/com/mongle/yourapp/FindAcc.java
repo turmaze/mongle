@@ -72,7 +72,7 @@ public class FindAcc {
 						if (user.getName().equals(checkName) && user.getId().equals(checkID)
 								&& user.getPhone().equals(checkPhone)) {
 							System.out.printf("\n%22s변경할 비밀번호 입력: ", " ");
-							String setPW = scan.nextLine();
+							String setPW = SignUp.pwCheck();
 							System.out.printf("\n%22s변경할 비밀번호 다시입력: ", " ");
 							String checksetPW = scan.nextLine();
 							if (setPW.equals(checksetPW)) {

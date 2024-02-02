@@ -34,12 +34,7 @@ public class SignUp {
 		//----------------pw----------------
 		String pw1, pw2;
 		do {
-			do {
-				System.out.printf("\n%22s(10~16자리 영문과 숫자 조합)\n"," ");
-				System.out.printf("%22s2.비밀번호: "," ");		
-				userData.setPw(scan.nextLine());
-				pw1 = userData.getPw();
-			} while(!Validate.validPw(pw1));
+			pw1 = pwCheck();
 	
 			System.out.printf("\n%22s3.비밀번호 재확인: "," ");		
 			pw2 = scan.nextLine();
@@ -112,6 +107,17 @@ public class SignUp {
 		System.out.printf("\n\n%22snow folder Test\n", " ");
 		System.out.println(DataBase.getUser());
 		
+	}
+
+	public static String pwCheck() {
+		Scanner scan = new Scanner(System.in);
+		String pw1;
+		do {
+			System.out.printf("\n%22s(10~16자리 영문과 숫자 조합)\n"," ");
+			System.out.printf("%22s2.비밀번호: "," ");		
+			pw1 = scan.nextLine();
+		} while(!Validate.validPw(pw1));
+		return pw1;
 	}
 
 	public static String phoneCheck() {
