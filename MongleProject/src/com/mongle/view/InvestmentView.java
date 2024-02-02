@@ -21,7 +21,7 @@ public class InvestmentView {
 		boolean loop = true;
 		while(loop) {
 			
-			menuHeader("투자 관리");
+			MongleVisual.menuHeader("투자 관리");
 			
 			System.out.println("1. 주식");
 			System.out.println("2. 골드");
@@ -174,7 +174,9 @@ public class InvestmentView {
 				// 삭제 후 상세 불러오기
 				System.out.println("해제하고싶은 번호를 입력해주세요 :");
 				int removeN = scan.nextInt();
-			//	removeLoanInvestmentByJ(Investment.list, removeN);
+			removeLoanInvestmentByJ(Investment.list, removeN);
+			printAsciiTable(Investment.list,"금");
+			break;
 			}else if(num3.equals("2")) {
 				loop = false;
 				
@@ -255,26 +257,22 @@ public class InvestmentView {
 		}
 	}
 	
-//private static void removeLoanInvestmentByJ(ArrayList<Investment> data, int removeN) {
-//		int j = 0;
-//	 for (int i = 0; i < data.size(); i++) {
-//         if ("대출".equals(data.get(i).getRealTitle())) {
-//             count++;
-//             if (count == userJValue) {
-//                 data.remove(i);
-//                 return; // 삭제 후 바로 메서드 종료
-//             }
-//	}
+	private static void removeLoanInvestmentByJ(ArrayList<Investment> data, int removeN) {
+			int j = 0;
+		 for (int i = 0; i < data.size(); i++) {
+	         if ("금".equals(data.get(i).getRealTitle())) {
+	            j++;
+	             if (j == removeN) {
+	                 data.remove(i);
+	                 return; // 삭제 후 바로 메서드 종료
+	             }
+	         }
+		 }
+	}
 	
 
 
-	public static void menuHeader(String titleName) {
-	    // 메뉴 헤더 화면
-	    System.out.printf("%22s===================================\n"," ");
-	    System.out.printf("%40s\n",titleName);
-	    System.out.printf("%22s===================================\n"," ");
 
-	}
 	
 
 }
