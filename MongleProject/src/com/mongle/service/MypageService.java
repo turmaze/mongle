@@ -6,8 +6,8 @@ import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.CreditScore;
 import com.mongle.service.mypage.Point;
 import com.mongle.service.mypage.SafeSend;
+import com.mongle.sign.SignOut;
 import com.mongle.view.MongleVisual;
-import com.mongle.yourapp.SignOut;
 
 public class MypageService {
 
