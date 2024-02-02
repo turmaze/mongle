@@ -14,17 +14,17 @@ public class TestMain02 {
 //		DataBase.dataLoad(ResourcePath.ADMIN);
 		
 		
-		SignUp.signUp();
+	//	SignUp.signUp();
 
-		// LogIn.logIn();
-		DataBase.loadPrivateUser(LogIn.primaryKey);
+	 LogIn.logIn();
+	//	DataBase.loadPrivateUser(LogIn.primaryKey);
 //		InvestService.investMenu();
 
 		// MainMenu.MainMenu();
 
 		// Stock.stockService();
 		// AttendanceCheck.attendanceCheckService();
-		System.out.println(Investment.list);
+	//	System.out.println(Investment.list);
 		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
 		DataBase.changeData(DataBase.getUser(), "invest", Investment.list); // sample
 		DataBase.dataSave();

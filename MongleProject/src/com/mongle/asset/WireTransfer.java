@@ -15,7 +15,7 @@ public class WireTransfer {
 	
 	boolean loop = true;
 	while(loop) {
-		MongleVisual.menuHeader("계좌 관리");
+		MongleVisual.menuHeader("송금");
 		System.out.println();
 		System.out.printf("%22s 1.송금하기\n", " ");
 		System.out.printf("%22s 2.더치페이\n", " ");
@@ -26,7 +26,7 @@ public class WireTransfer {
 		
 		if(sel.equals("1")) {
 			//송금하기
-			
+			transaction();
 		}else if(sel.equals("2")) {
 			//더치페이
 			dutchpay();
@@ -34,6 +34,8 @@ public class WireTransfer {
 			//예약송금
 		}else if(sel.equals("0")) {
 			//이전으로
+			loop = false; 
+			
 		}
 	}
 		
@@ -167,8 +169,11 @@ public class WireTransfer {
 
 	}
 	
-	public static int transaction(int price, int num) {
+	public static int transaction() {
 		Scanner scan = new Scanner(System.in);
+		System.out.printf("%22s송금할 금액을 입력 하세요:"," ");
+		int money = scan.nextInt();
+		scan.nextLine();
 		
 		MongleVisual.pusher();
 
@@ -180,15 +185,15 @@ public class WireTransfer {
 				.collect(Collectors.toList());
 		print(filteredList); // json 에서 가져온 데이터
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s송금할 계좌를 선택해 주세요.\n", " ");
-		System.out.printf("%22s0. 이전으로\n", " ");
+		System.out.println();
+		System.out.printf("%22s송금할 계좌를 선택해 주세요.\n"," ");	
+		System.out.printf("%22s선택(번호) :", " ");
+		String sel = scan.nextLine();
+		
 		boolean loop = true;
-
-		while (loop) {
-			System.out.printf("%22s선택(번호) : ", " ");
-			String sel = scan.nextLine();
-			int totalPrice = price * num;
-			
+		while (loop) {	
+		System.out.println();
+		
 			if (sel.equals("0")) {
 				return 0;
 			}
@@ -199,20 +204,19 @@ public class WireTransfer {
 					for (BankAccount acc : BankAccount.list) {
 						if (acc.getAccountNumber()
 								.equals(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber())) {
-							if (acc.getDepositAmount() > totalPrice) {
+							if (acc.getDepositAmount() >= money) {
 
-								int rest = acc.getDepositAmount() - totalPrice;
+								int rest = acc.getDepositAmount() - money;
 								BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
 										acc.getTitleDepo(), acc.getAccountNumber(), rest));
 								
 								System.out.println();
-								System.out.printf("%22s주문가격 %,d원(시장가) / 주문 수량 : %s\n", " ", price, num);
-								System.out.printf("%22s거래가 완료되었습니다.\n", " ");
-								System.out.printf("%22s거래 후 잔액은 %,d원입니다.\n", " ", rest);
+								System.out.printf("%22s송금이 완료되었습니다.\n", " ");
+								System.out.printf("%22s송금 후 잔액은 %,d원입니다.\n", " ", rest);
 								System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 								scan.nextLine();
 								loop = false;
-							} else if (acc.getDepositAmount() < totalPrice) {
+							} else if (acc.getDepositAmount() < money) {
 								System.out.printf("%22s계좌의 잔액이 부족합니다.\n", " ");
 								System.out.printf("%22s다시 선택해주세요.\n", " ");
 							}

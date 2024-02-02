@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.mongle.resource.BankAccount;
+import com.mongle.asset.AccountConnection;
 import com.mongle.asset.DepoCalculator;
 import com.mongle.asset.DepoSave;
 import com.mongle.asset.GiveAccount;
@@ -46,6 +47,7 @@ public class AssetService {
 				}
 			} else if (sel.equals("3")) {
 				//연동
+				AccountConnection.connection();
 			} else if (sel.equals("4")) {
 				//이자 계산기
 				DepoCalculator.depoSaveService();
