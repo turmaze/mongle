@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.Investment;
-import com.mongle.resource.PointItem;
+import com.mongle.resource.AttendList;
 import com.mongle.resource.ResourcePath;
 import com.mongle.service.mypage.Point;
 import com.mongle.yourapp.LogIn;
@@ -99,7 +99,6 @@ public class DataBase {
 			}
 
 			// 가져온 값 출력
-			System.out.println("privateUser List test : " + privateUser);
 			System.out.println("-끝-");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,7 +124,7 @@ public class DataBase {
 		for (HashMap map : privateUser) {
 			map.put("account", BankAccount.list);
 			map.put("invest", Investment.list);
-			map.put("pointlist", PointItem.list);
+			map.put("attenddate", AttendList.list);
 		}
 
 		for (HashMap map : user) {

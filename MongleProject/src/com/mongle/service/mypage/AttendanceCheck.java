@@ -1,15 +1,26 @@
 package com.mongle.service.mypage;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.mongle.asset.GiveAccount;
 import com.mongle.database.DataBase;
+import com.mongle.resource.AttendList;
+import com.mongle.resource.BankAccount;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
 
@@ -52,15 +63,60 @@ public class AttendanceCheck {
 		
 	}
 	
+	public static void attendanceload() {
+		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attenddate");
+		if (arr.size()>0) {
+		AttendList.list.add(new AttendList(
+				(ArrayList<String>) ((JSONObject) arr.get(0)).get("attenddate")
+				, (String)((JSONObject) arr.get(0)).get("stratedate"))
+				);
+		return;
+		}
+	}
+	
 	public static void autoAttendance() {
 		
-		int point = Integer.parseInt((String) DataBase.getPrivateUser().get(0).get("point"));
-		point += 10;
+		Calendar yesterdate = Calendar.getInstance();
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String today = date.format(formatter);
+		String[] day = today.split("-");
+		yesterdate.add(Calendar.DATE, -1);
+		String yesterday = yesterdate.get(Calendar.YEAR) + "-"
+							+ (yesterdate.get(Calendar.MONTH)+1) + "-"
+							+yesterdate.get(Calendar.DATE);
+		ArrayList<String> pointdate = new ArrayList<String>() {
+			{add(today);}
+		};
 		
-		DataBase.getPrivateUser().get(0).replace("point", point+"");
+		attendanceload();
+		
+		if (AttendList.list.size()==0) {
+			AttendList.list.add(new AttendList(pointdate, "1"));
+			return;
+		}
+		
+		for (String str : AttendList.list.get(0).getAttenddate()) {
+			if (str.equals(today)) {
+				return;
+			}
+		}
+		
+		int strate = Integer.parseInt(AttendList.list.get(0).getStratedate());
+		System.out.println(yesterday);
+		
+		for (String str : AttendList.list.get(0).getAttenddate()) {
+			if (str.equals(yesterday)) {
+				strate++;
+				AttendList.list.get(0).setStratedate(strate+"");
+				return;
+			}
+		}
+		
+		AttendList.list.get(0).getAttenddate().add(today);
 		
 	}
-
+	
 	private static void printCalendar(int year, int month) {
 		int lastDay = getLastDay(year, month);
 		int dayOfWeek = getDayOfWeek(year, month);
