@@ -14,7 +14,7 @@ import com.mongle.yourapp.LogIn;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-		DataBase.dataLoad(ResourcePath.MEMBER);
+		DataBase.dataLoad();
 //		DataBase.dataLoad(ResourcePath.ADMIN);
 		
 		
@@ -31,7 +31,7 @@ public class Main {
 		System.out.println(Investment.list);
 		DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list); // sample
 		DataBase.changeData(DataBase.getUser(), "투자", Investment.list); // sample
-		DataBase.dataSave(ResourcePath.MEMBER);
+		DataBase.dataSave();
 //		DataBase.dataSave(ResourcePath.ADMIN);
 		
 
