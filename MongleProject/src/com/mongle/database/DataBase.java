@@ -115,16 +115,17 @@ public class DataBase {
 		}
 	} //loadPrivateUser
 	
-	public static void changeData(ArrayList<HashMap> arrayList) {
+	public static void changeData() {	//user데이터 중 로그인 중인 primaryuser의 데이터를 갱신
 		
-		for (HashMap<String, Object> user : arrayList) {
-			if (user.get("id").equals(LogIn.primaryKey)) {
-				for (Object obj : user.keySet()) {
-					
+		for (HashMap map : user) {
+			if (map.get("id").equals(LogIn.primaryKey)) {
+				for (HashMap obj : privateUser) {
+					map.replace(obj, privateUser.get(0).get(obj));
 				}
-		        break;
-		    }
+			}
 		}
+		
+		
 	}
 	
 
@@ -171,12 +172,12 @@ public class DataBase {
 //			
 //		}
 
-	public static void dataSave() {
+	public static void dataSave(String path) {
 		try {
 
 			// set pretty printing
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			File file = new File(ResourcePath.MEMBER);
+			File file = new File(path);
 			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
 			FileWriter writer = new FileWriter(file, false); // 덮쓰
 
