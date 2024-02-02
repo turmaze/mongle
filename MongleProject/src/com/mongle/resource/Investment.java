@@ -9,10 +9,12 @@ public class Investment {
 
 	private String bankDepo;
 	private String titleDepo;
+	private String realTitle;
 
 	public static ArrayList<Investment> list = new ArrayList<>();
 
-	public Investment(String bankDepo, String titleDepo, int price, int amount) {
+	public Investment(String realTitle , String bankDepo, String titleDepo, int price, int amount) {
+		this.realTitle = realTitle;
 		this.bankDepo = bankDepo;
 		this.titleDepo = titleDepo;
 		this.price = price;
