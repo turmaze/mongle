@@ -1,0 +1,71 @@
+[
+  {
+    "salt": "b58503ac4cb03ebb99aa799ea2a5d19776452d1a",
+    "level": "3",
+    "phone": "01011111111",
+    "pw": "e232f9a2c346adf833a0033e1c023b968b1094859e3eb3754b6435e41d6ee99c",
+    "invest": [
+      {
+        "amount": 100,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "",
+        "price": 74700
+      },
+      {
+        "amount": 100,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "",
+        "price": 74700
+      }
+    ],
+    "name": "가가가",
+    "birth": "19991111",
+    "id": "asdf",
+    "safesendsetting": "0",
+    "credscore": "616",
+    "point": "0",
+    "account": [
+      {
+        "depositAmount": 85060000,
+        "titleDepo": "KB Star 정기예금",
+        "bankDepo": "국민은행",
+        "accountNumber": " 179105-03-223819"
+      },
+      {
+        "depositAmount": 0,
+        "titleDepo": "KB Star 정기예금",
+        "bankDepo": "국민은행",
+        "accountNumber": " 224735-61-320470"
+      }
+    ]
+  },
+  {
+    "salt": "f2fb6072d75e0065d4d4f4323d08f45888778151",
+    "level": "2",
+    "pointlist": [],
+    "pw": "08844c843b6ff25b14d2e2175ba7ab8bde14eb9668deb635ff2afbfddfc8184d",
+    "invest": [],
+    "birth": "19990314",
+    "safesendsetting": "0",
+    "point": "0",
+    "phone": "01057576868",
+    "name": "김수홍",
+    "id": "admin",
+    "credscore": "879",
+    "account": []
+  },
+  {
+    "salt": "58e5b47e1809f654ed103d546d4cc08db65f27fa",
+    "level": "1",
+    "phone": "01047475858",
+    "pw": "df90c12019e25f5c9d287b407943aebcf6e84d06aba8cd37d185f0eea5967c4e",
+    "name": "수수수",
+    "birth": "20040301",
+    "id": "blacklist",
+    "safesendsetting": "0",
+    "credscore": "695",
+    "point": "0"
+  }
+]
