@@ -15,7 +15,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.Investment;
+import com.mongle.resource.PointItem;
 import com.mongle.resource.ResourcePath;
+import com.mongle.service.mypage.Point;
 import com.mongle.yourapp.LogIn;
 
 public class DataBase {
@@ -78,10 +80,10 @@ public class DataBase {
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
 
-								int amount = (int)((long) it.get("amount"));
-								int price = (int)((long) it.get("price"));
-								Investment i = new Investment((String) it.get("realTitle"),(String) it.get("bankDepo"), (String) it.get("titleDepo"),
-										price, amount);
+								int amount = (int) ((long) it.get("amount"));
+								int price = (int) ((long) it.get("price"));
+								Investment i = new Investment((String) it.get("realTitle"), (String) it.get("bankDepo"),
+										(String) it.get("titleDepo"), price, amount);
 
 								Investment.list.add(i);
 							}
@@ -107,24 +109,25 @@ public class DataBase {
 	public static void changeData(ArrayList<HashMap> arrayList, String key, Object value) {
 		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
 		for (HashMap<String, Object> user : arrayList) {
-		    if (user.get("id").equals(LogIn.primaryKey)) {//LogIn.primaryKey 로 바꾸기!!!!!!!!!!!!!!!!!!
-		        user.put(key, value);
-		        
-		        break; // 수정한 후에는 루프 종료
-		    }
+			if (user.get("id").equals(LogIn.primaryKey)) {// LogIn.primaryKey 로 바꾸기!!!!!!!!!!!!!!!!!!
+				user.put(key, value);
+
+				break; // 수정한 후에는 루프 종료
+			}
 		}
-	} //loadPrivateUser
-	
-	public static void changeData() {	//user데이터 중 로그인 중인 primaryuser의 데이터를 갱신
-		
+	} // loadPrivateUser
+
+	public static void changeData() { // user데이터 중 로그인 중인 primaryuser의 데이터를 갱신
+
 //		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
 //		DataBase.changeData(DataBase.getUser(), "invest", Investment.list); // sample
-		
+
 		for (HashMap map : privateUser) {
 			map.put("account", BankAccount.list);
 			map.put("invest", Investment.list);
+			map.put("pointlist", PointItem.list);
 		}
-		
+
 		for (HashMap map : user) {
 			if (map.get("id").equals(LogIn.primaryKey)) {
 				for (Object obj : privateUser.get(0).keySet()) {
@@ -132,10 +135,8 @@ public class DataBase {
 				}
 			}
 		}
-		
-		
+
 	}
-	
 
 //JsonObject로 만든거		
 //	        try {

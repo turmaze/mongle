@@ -1,11 +1,13 @@
 package com.mongle.service.mypage;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.mongle.database.DataBase;
 import com.mongle.view.MongleVisual;
 
 public class Point {
-
+	
 	public static int pointService() {
 		Scanner scan = new Scanner(System.in);
 
@@ -35,12 +37,4 @@ public class Point {
 
 	}
 	
-	public static void getPoint() {
-		
-	}
-	
-	public static void pointList() {
-		
-	}
-
 }
