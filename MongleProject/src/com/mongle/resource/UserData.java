@@ -8,13 +8,26 @@ public class UserData {
 	private String name;
 	private String birth;
 	private String phone;
+	private String credScore;
+	private String safeSendSetting = "0";
+	private String point;
 	
 
 
+
+
+	public String getCredScore() {
+		return credScore;
+	}
+	public String getSafeSendSetting() {
+		return safeSendSetting;
+	}
+	public String getPoint() {
+		return point;
+	}
 	public String getId() {
 		return id;
 	}
-	
 	public String getLevel() {
 		return level;
 	}
@@ -44,6 +57,19 @@ public class UserData {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public void setPoint(String point) {
+		this.point = point;
+	}
+	
+	public void setLevel(String level) {
+		this.level = level;
+	}
+	public void setCredScore(String credScore) {
+		this.credScore = credScore;
+	}
+	public void setSafeSendSetting(String safeSendSetting) {
+		this.safeSendSetting = safeSendSetting;
 	}
 	
 	

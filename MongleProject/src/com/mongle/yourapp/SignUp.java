@@ -108,24 +108,20 @@ public class SignUp {
 		
 		
 		
-		//---------------account---------
-//String acc; 
-//		
-//		do {
-//			System.out.printf("\n%22s(12~14 숫자(-입력 필수))\n"," ");
-//			System.out.printf("\n%22s3.계좌번호: "," ");	
-//			acc = scan.nextLine();
-//			}
-//			while(!DataBase.validAcc(acc));
-//		
-//		//----------------bank ---------
-//		
-//		do {
-//			System.out.printf("\n%22s1\n"," ");
-//			System.out.printf("\n%22s3.계좌번호: "," ");	
-//			acc = scan.nextLine();
-//			}
-//			while(!DataBase.validAcc(acc));
+		//---------------CredScore---------
+		
+		int s = (int)(Math.random()*400+599);
+		String score = Integer.toString(s);
+		userData.setCredScore(score);
+		newUser.put("credscore", userData.getCredScore());
+		
+		//---------------SafeSendSetting---------
+		newUser.put("safesendsetting", userData.getSafeSendSetting());
+		
+		//---------------Point---------
+		
+		userData.setPoint("0");
+		newUser.put("point", userData.getPoint());
 		
 		
 		System.out.println("newuser = "+ newUser);
