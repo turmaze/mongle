@@ -83,9 +83,12 @@ public class AttendanceCheck {
 		String today = date.format(formatter);
 		String[] day = today.split("-");
 		yesterdate.add(Calendar.DATE, -1);
-		String yesterday = yesterdate.get(Calendar.YEAR) + "-"
-							+ (yesterdate.get(Calendar.MONTH)+1) + "-"
-							+yesterdate.get(Calendar.DATE);
+		String yesterday = String.format("%02d-%02d-%02d"
+				, yesterdate.get(Calendar.YEAR)
+				, (yesterdate.get(Calendar.MONTH)+1)
+				, yesterdate.get(Calendar.DATE));
+		boolean b = true;
+		
 		ArrayList<String> pointdate = new ArrayList<String>() {
 			{add(today);}
 		};
@@ -104,16 +107,19 @@ public class AttendanceCheck {
 		}
 		
 		int strate = Integer.parseInt(AttendList.list.get(0).getStratedate());
-		System.out.println(yesterday);
 		
 		for (String str : AttendList.list.get(0).getAttenddate()) {
 			if (str.equals(yesterday)) {
 				strate++;
-				AttendList.list.get(0).setStratedate(strate+"");
-				return;
+				b=false;
 			}
 		}
 		
+		if (b) {
+			strate = 1;
+		}
+		
+		AttendList.list.get(0).setStratedate(strate+"");
 		AttendList.list.get(0).getAttenddate().add(today);
 		
 	}
