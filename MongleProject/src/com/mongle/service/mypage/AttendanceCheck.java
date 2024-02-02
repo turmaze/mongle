@@ -6,9 +6,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Scanner;
 
+import com.mongle.database.DataBase;
 import com.mongle.view.MongleVisual;
+import com.mongle.yourapp.LogIn;
 
 public class AttendanceCheck {
 
@@ -50,6 +53,11 @@ public class AttendanceCheck {
 	}
 	
 	public static void autoAttendance() {
+		
+		int point = Integer.parseInt((String) DataBase.getPrivateUser().get(0).get("point"));
+		point += 10;
+		
+		DataBase.getPrivateUser().get(0).replace("point", point+"");
 		
 	}
 

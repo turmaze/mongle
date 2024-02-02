@@ -20,6 +20,8 @@ import org.json.simple.parser.ParseException;
 import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
+import com.mongle.service.mypage.AttendanceCheck;
+import com.mongle.service.mypage.Point;
 import com.mongle.view.MongleVisual;
 
 public class LogIn {
@@ -68,6 +70,7 @@ public class LogIn {
 					System.out.printf("\n%22s로그인 성공\r\n", " ");
 					primaryKey = user.getId();
 					DataBase.loadPrivateUser(LogIn.primaryKey);
+					Point.getPoint();
 					MainMenu.mainMenu(checklevel);
 					//DataBase.loadPrivateUser(LogIn.primaryKey);
 					return checklevel;
