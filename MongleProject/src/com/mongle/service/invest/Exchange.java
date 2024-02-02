@@ -110,12 +110,13 @@ public class Exchange {
 				}
 
 				System.out.println(header);
-
-				System.out.printf("%22s\n", "6. 다음페이지");
-				System.out.printf("%22s\n", "9. 홈으로");
-				System.out.printf("%22s\n", "0. 이전으로");
 				System.out.println();
-				System.out.printf("%22s", "선택(번호): ");
+
+				System.out.printf("%22s6. 다음페이지\n", " ");
+				System.out.printf("%22s9. 홈으로\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
+				System.out.println();
+				System.out.printf("%22s선택(번호): ", " ");
 
 				String sel = scan.nextLine();
 
@@ -161,12 +162,13 @@ public class Exchange {
 					if (!m1.find()) {
 						System.out.printf("%22s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
 					} else if (Integer.parseInt(amount)<100) {
-						System.out.println("");
+						System.out.printf("%22s최소 구매 수량(100) 이상을 입력해주세요\n", " ");
 					} else {
 						break;
 					}
 				}
 				price = price.replace(price.substring(price.indexOf(".")), "");
+				price = price.replace(",", "");
 				System.out.printf("%22s총 구매 대금: %,d원\n", " ", Integer.parseInt(price) * Integer.parseInt(amount));
 				System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
 				System.out.printf("%22s선택: ", " ");
@@ -176,6 +178,7 @@ public class Exchange {
 					buyAmount = Integer.parseInt(amount);
 					InvestService.transaction(buyPrice, buyAmount);
 					MongleVisual.stopper();
+					index = -1;
 					continue;
 				} else if (sel.equals("n")) {
 					System.out.printf("%22s거래가 취소되었습니다.\n", " ");
@@ -184,6 +187,7 @@ public class Exchange {
 				} else {
 					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
 					MongleVisual.stopper();
+					index = -1;
 					continue;
 				}
 
