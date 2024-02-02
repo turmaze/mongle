@@ -31,7 +31,7 @@ public class DataBase {
 		DataBase.user.add(newUser);
 	}
 
-	public static ArrayList<HashMap> getPrivateuser() {
+	public static ArrayList<HashMap> getPrivateUser() {
 		return privateUser;
 	}
 
