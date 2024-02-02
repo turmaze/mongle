@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,78 +25,85 @@ public class Inquiry {
 	private static ArrayList<HashMap> annList = new ArrayList<HashMap>();
 	private static ArrayList<HashMap> inqList = new ArrayList<HashMap>();
 
-	private static String title;
-	private static String detail;
-	
-	
+	private static ArrayList<String> TitleList = new ArrayList<String>();
 	
 	public static void announcement() {
 		try {
 			Scanner scanner = new Scanner(System.in);
-	
+
+			
+		String input = "7"; //1,2,3,0이 아닌 값	
+		while(!input.equals("0")) {	//
 //			//level 탐색
 //			HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
 //			Object levelValue = selectedMap.get("level");
 //		
 //			//관리자
 //			if(levelValue.equals("2")) {
-			if(true) {
+			if(true) { //testcode
 				Inquiry inquiry = new Inquiry();
 				inquiry.loadInq(annList,ResourcePath.ANNO);
 				
+				System.out.println();
 				MongleVisual.menuHeader("관리자 공지사항");
-				//공지사항 제목 목록
-				System.out.printf("\n%22s1. 생성\n"," ");
-				System.out.printf("%22s2. 수정\n"," ");
-				System.out.printf("%22s3. 삭제\n\n"," ");
+
+				System.out.printf("\n%22s1. 공지사항 확인\n"," ");
+				System.out.printf("%22s2. 생성\n"," ");
+				System.out.printf("%22s3. 수정\n"," ");
+				System.out.printf("%22s4. 삭제\n\n"," ");
 				System.out.printf("%22s0. 이전으로\n\n"," ");
 				
 				
-				String input = "7"; //1,2,3,0이 아닌 값
+				System.out.printf("%22s입력: ", " ");
 				do {
 					switch(input = scanner.nextLine()) {
 						case "1":
-							System.out.printf("%22s\n"," ");
-							inquiry.createInq();
-							inquiry.saveInq(annList,ResourcePath.ANNO);
+							inquiry.showTxt(annList);
+							
 							break;
 						case "2":
-							System.out.printf("%22s\n"," ");
-							inquiry.editInq();
+							inquiry.createInq(annList);
 							inquiry.saveInq(annList,ResourcePath.ANNO);
 							break;
 						case "3":
-							System.out.printf("%22s\n"," ");
-							inquiry.deleteInq();
+							inquiry.editInq(annList);
+							inquiry.saveInq(annList,ResourcePath.ANNO);
+							break;
+						case "4":
+							inquiry.deleteInq(annList);
 							inquiry.saveInq(annList,ResourcePath.ANNO);
 							break;
 						case "0":
-							System.out.printf("%22s0.입력 됨\n"," ");
-
+							//이전으로 감
 							break;
 							
 						default :
-							System.out.printf("%22s잘못된 번호입니다.\n 다시 입력해주세요\n"," ");
+							System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
 						}
-				} while(!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("0")) );
+				} while(!(input.equals("1") || input.equals("2") ||
+						  input.equals("3") || input.equals("4") || input.equals("0")) );
 
-				
+			}	//if(levelValue.equals("2"))
 							
-				
-			} //if(levelValue.equals("2"))
-			
 //			else { // 회원,  블랙리스트"3"은 여기까지 안옴 //문의사항에서 사용할 code
-//				
-//				System.out.println("문의사항에 필요한 else문");
-//			}
-
-//			writer.write(gson.toJson(annList));
-//			inquiry.loadInq(annList);
 //			
-//			writer.flush(); // 버퍼 비우기
-//
-//			writer.close();
+//			System.out.println("문의사항에 필요한 else문");
+//		}
 
+//		writer.write(gson.toJson(annList));
+//		inquiry.loadInq(annList);
+//		
+//		writer.flush(); // 버퍼 비우기
+//
+//		writer.close();
+
+
+			
+			
+		} //while(true)
+					
+		//이전으로 가는 코드
+		
 			
 		} catch (Exception e) {
 			System.out.println("announcement Error");
@@ -103,19 +112,23 @@ public class Inquiry {
 
 	}
 	
-	private void createInq() {
+	
+	/**
+	 	생성
+	 */
+	private void createInq(ArrayList<HashMap> arrayList) {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Object> inq = new HashMap<>();
 		String value;
 		
 		
-		//inq.put("id", LogIn.primaryKey);
-		inq.put("id", "primaryKey");
+		inq.put("id", LogIn.primaryKey);
+		//inq.put("id", "primaryKey"); //test
 		
 		
 		System.out.print("제목: ");
 		value = scanner.nextLine();
-		while (value.contains(":q!")) {
+		while ( (value.contains(":q!")|| titleExists(arrayList,value)) ) {
 		    System.out.print("오류. 재입력.\n");
 		    System.out.printf("제목: ");
 		    value = scanner.nextLine();
@@ -140,16 +153,203 @@ public class Inquiry {
         inq.put("txt", content);
 
         annList.add(inq);
-        System.out.println(annList);
+        //System.out.println(arrayList); //testcode
 	}
 	
 	
-	private void editInq() {
-		Scanner scanner = new Scanner(System.in);		
+	
+	/**
+		중복 제목 확인
+	 */
+	private boolean titleExists(ArrayList<HashMap> arrayList, String title) {
+	    for (HashMap<String, Object> map : arrayList) {
+	        if (map.containsKey("title")) {
+	            String existingTitle = (String) map.get("title");
+	            if (existingTitle.equalsIgnoreCase(title)) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
+	}
+	
+	
+	/**
+	 	수정
+	 */
+	private void editInq(ArrayList<HashMap> arrayList) {
+	    Scanner scanner = new Scanner(System.in);
+	    boolean found = false;
+	    Inquiry inquiry = new Inquiry();
+	    
+	    
+		inquiry.showTitleList(annList);	    
+	    do {
+	        System.out.printf("%22s수정할 글의 제목을 입력해주세요\n"," ");
+	        System.out.printf("%22s제목: "," ");
+	        
+	        String input = scanner.nextLine();
+	        
+	        for (HashMap<String, Object> map : arrayList) {
+	            if (map.containsKey("title")) {  //title이라는 키가 있으면
+	                String title = (String) map.get("title"); //title의 value를 가져오고
+	                if (title.equalsIgnoreCase(input)) { //문자열 비교해서 맞으면
+	                    found = true;
+
+	                    System.out.printf("%22s제목 \"%s\"를 찾았습니다.\n"," ", input);                    
+	                    System.out.printf("첫 줄에서 ':q!' 시 종료\n");
+	                    System.out.printf("수정: ");
+
+	                    StringBuilder contentBuilder = new StringBuilder(); // 내용을 저장할 StringBuilder를 생성합니다.
+	                    while (true) {
+	                        input = scanner.nextLine();
+	                        if (input.equals(":q!")) {
+	                            break; // :q!를 입력하면 루프를 종료합니다.
+	                        }
+	                        contentBuilder.append(input).append("\n"); // 내용을 StringBuilder에 추가하고 개행 문자를 넣습니다.
+	                    }
+
+	                    String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
+	                    map.put("txt", content);
+
+	                    //annList.add(map);
+	                    System.out.printf("%22s수정되었습니다.\n"," ");                    
+
+	                    return;
+	                }
+	            }
+	        }
+	         
+	        if (!found) { //찾지 못했으면
+	            System.out.printf("%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n", " ", input);
+	        }
+	        
+	    } while (!found); //찾을때 까지
+	    	    
+	}
+
+	
+	
+	/**
+	 	삭제
+	 */
+	private void deleteInq(ArrayList<HashMap> arrayList) {
+		Scanner scanner = new Scanner(System.in);
+		Inquiry inquiry = new Inquiry();
+		
+		System.out.printf("%22s1.선택 삭제\n2. 전체 삭제\n", " ");
+		System.out.printf("%22s입력: ", " ");
+		
+		String input = "7";
+		do {
+			switch(input = scanner.nextLine()) {
+				case "1":
+					
+					break;
+				case "2":
+					arrayList.removeAll(arrayList);
+					System.out.printf("%22s전부 삭제되었습니다.", " ");
+					break;
+
+				case "0":
+					//이전으로 감
+					break;
+					
+				default :
+					System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
+				}
+		} while(!(input.equals("1") || input.equals("2") ||input.equals("0")) );
+	
+		
 		
 	}
-	private void deleteInq() {
-		Scanner scanner = new Scanner(System.in);
+	
+	
+	
+	/**
+	  	제목 확인
+	 */
+	private void showTitleList(ArrayList<HashMap> arrayList) {
+		TitleList.clear();
+		int count=1;
+
+	    for (HashMap<String, Object> map : arrayList) {
+	        if (map.containsKey("title")) {
+	            String title = (String) map.get("title");
+	            TitleList.add(title);
+	        }
+	    }
+
+	    System.out.printf("\n%22s-----------------------------------\n"," ");
+	    System.out.printf("%22s\t\t     목록\n"," ");
+	    for (String title : TitleList) {
+		    System.out.printf("%22s%d. %s\n"," ",count++, title);
+		    
+		}
+	    System.out.printf("\n%22s-----------------------------------\n\n"," ");
+	    	
+	}
+	
+	
+	/**
+	 	내용 확인
+	 */
+	private void showTxt(ArrayList<HashMap> arrayList) {
+		Scanner scanner = new Scanner(System.in); 
+		Inquiry inquiry = new Inquiry();
+
+		boolean found = false;
+		
+		String select;
+		do {
+			System.out.println();
+			System.out.printf("%22s1. 내용확인\n%22s0. 이전으로\n\n", " "," ");
+			System.out.printf("%22s입력: ", " ");
+			
+			switch(select = scanner.nextLine()) {
+				case "1":
+					do {
+						inquiry.showTitleList(arrayList);
+						
+						
+				
+
+						
+				        System.out.printf("%22s확인할 글의 제목을 입력해주세요\n"," ");
+				        System.out.printf("%22s제목: "," ");
+				        
+				        String input = scanner.nextLine();
+				        
+				        for (HashMap<String, Object> map : arrayList) {
+				            if (map.containsKey("title")) {  //title이라는 키가 있으면
+				            	String title = (String) map.get("title"); //title의 value를 가져오고
+				                if (title.equalsIgnoreCase(input)) { //문자열 비교해서 맞으면
+				                    found = true;
+				                    System.out.println("\n---------------------------------------------------------------");
+				                    System.out.println(map.get("txt")); //txt출력
+				                    System.out.println("\n---------------------------------------------------------------");	                 
+				                }
+				            }
+				        }
+				         
+				        if (!found) { //찾지 못했으면
+				            System.out.printf("%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n", " ", input);
+				        }
+				        
+				    } while (!found); //찾을때 까지
+					
+					break;
+				case "0":
+					//이전으로 감
+					break;
+					
+				default :
+					System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
+			}	
+		} while(!(select.equals("1") || select.equals("0")) );
+		
+		
+	    
 		
 	}
 	
@@ -175,7 +375,7 @@ public class Inquiry {
 			writer.flush(); // 버퍼 비우기
 
 			writer.close();
-			System.out.printf("\n%22s저장완료 ", " "); // testcode
+			System.out.printf("\n%22s저장완료\n\n", " "); // testcode
 
 		} catch (Exception e) {
 			System.out.println("DataBase.dataSave Error");
@@ -212,7 +412,7 @@ public class Inquiry {
 	
 	
 	private void inquiry() {
-		
+	
 	}
 	
 
