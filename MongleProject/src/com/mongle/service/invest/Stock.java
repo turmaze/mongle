@@ -88,6 +88,8 @@ public class Stock {
 				if (sel.equals("1")) {
 					System.out.printf("%22s종목명: ", " ");
 					sel = "&itmsNm=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
+				
+					
 				} else if (sel.equals("2")) {
 					System.out.printf("%22s코드명: ", " ");
 					sel = "&srtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
@@ -131,7 +133,7 @@ public class Stock {
 				int highPrice = Integer.parseInt((String) body.get("stck_hgpr"));
 				int lowPrice = Integer.parseInt((String) body.get("stck_lwpr"));
 				String name = (String) ((JSONObject) item.get(0)).get("itmsNm");
-				
+				Stock.setSel(name);
 				MongleVisual.pusher();
 				
 				String midHeader = "+---------------+---------------+---------------+---------------+---------------+";
@@ -195,7 +197,7 @@ public class Stock {
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
 						//listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));
-						Investment.list.add(new Investment("주식", Stock.getSel(),"주식", Stock.getBuyPrice(), Stock.getBuyAmount()));
+//						Investment.list.add(new Investment("주식", Stock.getSel(),"주식", Stock.getBuyPrice(), Stock.getBuyAmount()));
 						
 					} else if (sel.equals("n")) {
 						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
@@ -216,7 +218,7 @@ public class Stock {
 				}
 				
 				System.out.println();
-
+				Investment.list.add(new Investment("주식", Stock.getSel(),"주식", Stock.getBuyPrice(), Stock.getBuyAmount()));
 			}
 
 		} catch (Exception e) {
