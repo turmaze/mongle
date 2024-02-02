@@ -196,12 +196,12 @@ public class DataBase {
 	}
 
 	// 파일에서 사용자 데이터 읽기
-	public static void dataLoad() {
+	public static void dataLoad(String path) {
 
 		JSONParser parser = new JSONParser();
 		try {
 			// FileReader 객체 생성
-			FileReader reader = new FileReader(ResourcePath.MEMBER);
+			FileReader reader = new FileReader(path);
 			// JSON 데이터를 파싱하여 JSONArray로 변환
 			JSONArray userList = (JSONArray) parser.parse(reader);
 
