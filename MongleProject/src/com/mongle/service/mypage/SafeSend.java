@@ -1,7 +1,10 @@
 package com.mongle.service.mypage;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
+import com.mongle.database.DataBase;
+import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
 
 public class SafeSend {
@@ -29,9 +32,19 @@ public class SafeSend {
 
 			if (sel.equals("1")) {
 				System.out.printf("%22s안심송금 서비스 사용으로 설정되었습니다.\n", " ");
+				for (HashMap map : DataBase.getPrivateUser()) {
+					System.out.println(map);
+				}
+				for (HashMap map : DataBase.getPrivateUser()) {
+					map.replace("safesendsetting", 1);
+				}
+				for (HashMap map : DataBase.getPrivateUser()) {
+					System.out.println(map);
+				}
 				MongleVisual.stopper();
 			} else if (sel.equals("2")) {
 				System.out.printf("%22s안심송금 서비스 미사용으로 설정되었습니다.\n", " ");
+				
 				MongleVisual.stopper();
 			} else if (sel.equals("9")) {
 				return 9;

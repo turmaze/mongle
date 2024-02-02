@@ -56,7 +56,7 @@ public class DataBase {
 				// id 값을 가진 데이터 확인
 //                String tempId = jsonObject.get("id").getAsString();
 
-				if (item.get("id").equals(LogIn.primaryKey)) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
+				if (item.get("id").equals(primaryKey)) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
 					HashMap<String, Object> userData = new HashMap<String, Object>();
 					for (Object key : item.keySet()) {
 						userData.put((String) key, item.get((String) key));
@@ -80,7 +80,7 @@ public class DataBase {
 
 								int amount = (int)((long) it.get("amount"));
 								int price = (int)((long) it.get("price"));
-								Investment i = new Investment((String) it.get("bankDepo"), (String) it.get("titleDepo"),
+								Investment i = new Investment((String) it.get("realTitle"),(String) it.get("bankDepo"), (String) it.get("titleDepo"),
 										price, amount);
 
 								Investment.list.add(i);
@@ -114,6 +114,18 @@ public class DataBase {
 		    }
 		}
 	} //loadPrivateUser
+	
+	public static void changeData(ArrayList<HashMap> arrayList) {
+		
+		for (HashMap<String, Object> user : arrayList) {
+			if (user.get("id").equals(LogIn.primaryKey)) {
+				for (Object obj : user.keySet()) {
+					
+				}
+		        break;
+		    }
+		}
+	}
 	
 
 //JsonObject로 만든거		
