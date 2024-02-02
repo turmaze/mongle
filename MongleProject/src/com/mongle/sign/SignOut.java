@@ -1,4 +1,4 @@
-package com.mongle.yourapp;
+package com.mongle.sign;
 
 import java.util.Scanner;
 

@@ -6,9 +6,9 @@ import com.mongle.database.DataBase;
 import com.mongle.resource.BankAccount;
 import com.mongle.service.MypageService;
 import com.mongle.service.invest.Stock;
+import com.mongle.sign.SignOut;
 import com.mongle.yourapp.LogIn;
 import com.mongle.yourapp.MainMenu;
-import com.mongle.yourapp.SignOut;
 import com.mongle.yourapp.StartPage;
 
 public class TestMain06 {
@@ -18,7 +18,7 @@ public class TestMain06 {
 		StartPage.startPage();
 //		LogIn.logIn();
 		
-		DataBase.changeData(DataBase.getPrivateuser(), "계좌", BankAccount.list);
+		DataBase.changeData(DataBase.getPrivateUser(), "계좌", BankAccount.list);
 		DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list);
 		DataBase.dataSave();
 		//SignOut.signOutService();

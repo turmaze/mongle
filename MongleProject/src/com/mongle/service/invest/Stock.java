@@ -83,8 +83,8 @@ public class Stock {
 
 				String sel = scan.nextLine();
 				
-				System.out.println();
-
+				MongleVisual.pusher();
+				
 				if (sel.equals("1")) {
 					System.out.printf("%22s종목명: ", " ");
 					sel = "&itmsNm=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
@@ -132,6 +132,8 @@ public class Stock {
 				int lowPrice = Integer.parseInt((String) body.get("stck_lwpr"));
 				String name = (String) ((JSONObject) item.get(0)).get("itmsNm");
 				
+				MongleVisual.pusher();
+				
 				String midHeader = "+---------------+---------------+---------------+---------------+---------------+";
 				String header = "+-------------------------------------------------------------------------------+";
 		        System.out.println(header);
@@ -162,8 +164,16 @@ public class Stock {
 				System.out.printf("%22s선택: ", " ");
 				String sel2 = scan.nextLine();
 				if (sel2.equals("1")) {
+					
+					MongleVisual.pusher();
+					
 					String amount = "";
-					MongleVisual.menuHeader("현재가: " + String.format("%,d", nowPrice));
+					
+					System.out.println(header);
+			        System.out.printf("|%36s%s\t\t\t\t\t|\n", " ", name);
+			        System.out.printf("|%36s%s\t\t\t\t|\n", " ", "현재가: " + String.format("%,d", nowPrice));
+			        System.out.println(header);
+			        
 					while (true) {
 						System.out.printf("%22s수량(숫자): ", " ");
 						amount = scan.nextLine();
@@ -185,7 +195,6 @@ public class Stock {
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
 						listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));
-						MongleVisual.stopper();
 					} else if (sel.equals("n")) {
 						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
 						MongleVisual.stopper();

@@ -17,6 +17,7 @@ public class FindAcc {
 	public static void findAcc() {
 		Scanner scan = new Scanner(System.in); 
 		
+		MongleVisual.pusher();
 		MongleVisual.menuHeader("아이디 / 비밀번호 찾기");
 
 		

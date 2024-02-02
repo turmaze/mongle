@@ -2,6 +2,7 @@ package com.mongle.yourapp;
 
 import java.util.Scanner;
 
+import com.mongle.sign.SignUp;
 import com.mongle.view.MongleVisual;
 
 public class StartPage {

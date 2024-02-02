@@ -8,8 +8,8 @@ import org.json.simple.parser.ParseException;
 import com.mongle.database.DataBase;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.Investment;
+import com.mongle.sign.SignUp;
 import com.mongle.yourapp.LogIn;
-import com.mongle.yourapp.SignUp;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
