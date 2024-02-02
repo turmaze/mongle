@@ -63,8 +63,8 @@ public class DataBase {
 					for (Object key : item.keySet()) {
 						userData.put((String) key, item.get((String) key));
 
-						if (key.equals("계좌")) {
-							JSONArray temp = (JSONArray) item.get("계좌");
+						if (key.equals("account")) {
+							JSONArray temp = (JSONArray) item.get("account");
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
 								int num = (int) ((long) it.get("depositAmount"));
@@ -75,8 +75,8 @@ public class DataBase {
 							}
 						}
 
-						if (key.equals("투자")) {
-							JSONArray temp = (JSONArray) item.get("투자");
+						if (key.equals("invest")) {
+							JSONArray temp = (JSONArray) item.get("invest");
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
 
