@@ -23,15 +23,15 @@ public class InvestmentView {
 			
 			MongleVisual.menuHeader("투자 관리");
 			
-			System.out.println("1. 주식" );
-			System.out.println("2. 골드" );
-			System.out.println("3. 펀드");
-			System.out.println("4. 환전");
-			System.out.println("5. 대출");
-			System.out.println("6. 이전으로");
+			System.out.printf("%22s1. 주식\n", " " );
+			System.out.printf("%22s2. 골드\n", " " );
+			System.out.printf("%22s3. 펀드\n", " ");
+			System.out.printf("%22s4. 환전\n", " ");
+			System.out.printf("%22s5. 대출\n", " ");
+			System.out.printf("%22s6. 이전으로\n", " ");
 			 
 			
-			System.out.println("사용자 입력 : ");
+			System.out.printf("%22s사용자 입력 : ", " ");
 			String num = scan.nextLine();
 			
 			if(num.equals("1")) { // 주식
@@ -60,7 +60,7 @@ public class InvestmentView {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		System.out.println();
-		System.out.println("상세 보기");
+		System.out.printf("%22s상세 보기\n", " ");
 	
 		
 		printAsciiTable(Investment.list,"대출");
@@ -68,16 +68,16 @@ public class InvestmentView {
 		
 		while(loop) {
 			
-			System.out.println(" 옵션 : ");
-			System.out.println("1. 해제 ");
-			System.out.println("2. 이전으로");
+			System.out.printf("%22s 옵션 : \n", " ");
+			System.out.printf("%22s1. 해제 \n", " ");
+			System.out.printf("%22s2. 이전으로\n", " ");
 			System.out.println();
-			System.out.print("사용자 입력 : ");
+			System.out.printf("%22s사용자 입력 : ", " ");
 			String num4 = scan.nextLine();
 			
 			if(num4.equals("1")) {
 				// 삭제 후 상세 불러오기
-				System.out.println("해제하고싶은 번호를 입력해주세요 :");
+				System.out.printf("%22s해제하고 싶은 상품 번호를 입력해 주세요 :", " ");
 				int removeN = scan.nextInt();
 			removeLoanInvestmentByJ(Investment.list, removeN,"대출");
 			printAsciiTable(Investment.list,"대출");
@@ -101,23 +101,23 @@ public class InvestmentView {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		System.out.println();
-		System.out.println("상세 보기");
+		System.out.printf("%22s상세 보기\n", " ");
 		
 		printAsciiTable(Investment.list,"환전");
 	
 		
 		while(loop) {
 			
-			System.out.println(" 옵션 : ");
-			System.out.println("1. 해제 ");
-			System.out.println("2. 이전으로");
+			System.out.printf("%22s 옵션 : \n", " ");
+			System.out.printf("%22s1. 해제 \n", " ");
+			System.out.printf("%22s2. 이전으로\n", " ");
 			System.out.println();
-			System.out.print("사용자 입력 : ");
+			System.out.printf("%22s사용자 입력 : ", " ");
 			String num4 = scan.nextLine();
 			
 			if(num4.equals("1")) {
 				// 삭제 후 상세 불러오기
-				System.out.println("해제하고싶은 번호를 입력해주세요 :");
+				System.out.printf("%22s해제하고 싶은 상품 번호를 입력해 주세요 :", " ");
 				int removeN = scan.nextInt();
 			removeLoanInvestmentByJ(Investment.list, removeN,"환전");
 			printAsciiTable(Investment.list,"환전");
@@ -169,22 +169,23 @@ public class InvestmentView {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		System.out.println();
-		System.out.println("상세정보");
+		System.out.printf("%22s상세 보기\n", " ");
+		
 		
 		printAsciiTable(Investment.list,"금");
 		
 		while(loop) {
 			
-			System.out.println(" 옵션 : ");
-			System.out.println("1. 해제 ");
-			System.out.println("2. 이전으로");
+			System.out.printf("%22s 옵션 : \n", " ");
+			System.out.printf("%22s1. 해제 \n", " ");
+			System.out.printf("%22s2. 이전으로\n", " ");
 			System.out.println();
-			System.out.print("사용자 입력 : ");
+			System.out.printf("%22s사용자 입력 : ", " ");
 			String num3 = scan.nextLine();
 			
 			if(num3.equals("1")) {
 				// 삭제 후 상세 불러오기
-				System.out.println("해제하고싶은 번호를 입력해주세요 :");
+				System.out.printf("%22s해제하고 싶은 상품 번호를 입력해 주세요 :", " ");
 				int removeN = scan.nextInt();
 			removeLoanInvestmentByJ(Investment.list, removeN,"금");
 			printAsciiTable(Investment.list,"금");
@@ -206,7 +207,7 @@ public class InvestmentView {
 		Scanner scan = new Scanner(System.in);
 		boolean loop2 = true;
 		System.out.println();
-		System.out.println("상세정보");
+		System.out.printf("%22s상세 보기\n", " ");
 		
 		
 		printAsciiTable(Investment.list,"주식");
@@ -215,12 +216,12 @@ public class InvestmentView {
 		
 		while(loop2) { 
 			
-			System.out.println(" 옵션 : ");
-			System.out.println("1. 매수 ");
-			System.out.println("2. 일괄매도");
-			System.out.println("3. 이전으로");
+			System.out.printf("%22s 옵션 : ", " ");
+			System.out.printf("%22s1. 매수 " , " ");
+			System.out.printf("%22s2. 일괄매도", " ");
+			System.out.printf("%22s3. 이전으로", " ");
 			System.out.println();
-			System.out.print("사용자 입력 : ");
+			System.out.printf("%22s사용자 입력 : " , " ");
 			String num2 = scan.nextLine();
 			
 			if(num2.equals("1")) { // 매수
