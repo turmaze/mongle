@@ -1,0 +1,39 @@
+[
+  {
+    "salt": "8d4dfc544964fe7f742093f8b77d8e91cec845d0",
+    "level": "1",
+    "phone": "01011111111",
+    "pw": "efae0119ea1e0766ba0fa952967a69fa2b1f95492bc3bd0b0f3cfd46a8006b99",
+    "name": "가가가",
+    "birth": "19991111",
+    "id": "asdf",
+    "safesendsetting": 1,
+    "계좌": [],
+    "credscore": "707",
+    "point": "0"
+  },
+  {
+    "salt": "74d73a50b35643742d5c4e0f1ab14846b075b7e3",
+    "level": "1",
+    "phone": "01011111111",
+    "pw": "2cc8c6c26454c223e4d4e23201a7ab54762c96dd878697e7fd9ebc4dbfc81f2a",
+    "name": "가가가",
+    "birth": "19991111",
+    "id": "qwer",
+    "safesendsetting": "0",
+    "credscore": "910",
+    "point": "0"
+  },
+  {
+    "salt": "119b31afedfefb5ef10965e09091d4400de409a5",
+    "level": "1",
+    "phone": "01011111111",
+    "pw": "a7fd3e286000dca0c37b36ededead514014e00a7d510ca6bec3773f68d63925f",
+    "name": "나나나",
+    "birth": "19991111",
+    "id": "zxcv",
+    "safesendsetting": "0",
+    "credscore": "873",
+    "point": "0"
+  }
+]

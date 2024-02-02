@@ -15,15 +15,17 @@ import com.mongle.yourapp.StartPage;
 public class TestMain06 {
 	
 	public static void main(String[] args) {
-		DataBase.dataLoad();
+		DataBase.dataLoad(ResourcePath.MEMBER);
 		StartPage.startPage();
 //		LogIn.logIn();
 		
 		//DataBase.changeData(DataBase.getPrivateUser(), "계좌", BankAccount.list);
 		//DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list);
 		System.out.println(DataBase.getUser());
+		System.out.println(DataBase.getPrivateUser());
 		DataBase.changeData();
 		System.out.println(DataBase.getUser());
+		System.out.println(DataBase.getPrivateUser());
 		
 		DataBase.dataSave(ResourcePath.MEMBER);
 		//SignOut.signOutService();

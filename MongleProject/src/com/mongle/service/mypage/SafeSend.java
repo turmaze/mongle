@@ -31,34 +31,24 @@ public class SafeSend {
 			String sel = scan.nextLine();
 
 			if (sel.equals("1")) {
-				System.out.printf("%22s안심송금 서비스 사용으로 설정되었습니다.\n", " ");
 				
-				for (HashMap map : DataBase.getPrivateUser()) {
-					System.out.println(map);
-				}
+				MongleVisual.pusher();
+				
+				System.out.printf("%22s안심송금 서비스 사용으로 설정되었습니다.\n", " ");
 				
 				for (HashMap map : DataBase.getPrivateUser()) {
 					map.replace("safesendsetting", "1");
 				}
 				
-				for (HashMap map : DataBase.getPrivateUser()) {
-					System.out.println(map);
-				}
-				
 				MongleVisual.stopper();
 			} else if (sel.equals("2")) {
+				
+				MongleVisual.pusher();
+				
 				System.out.printf("%22s안심송금 서비스 미사용으로 설정되었습니다.\n", " ");
 				
 				for (HashMap map : DataBase.getPrivateUser()) {
-					System.out.println(map);
-				}
-				
-				for (HashMap map : DataBase.getPrivateUser()) {
 					map.replace("safesendsetting", "0");
-				}
-				
-				for (HashMap map : DataBase.getPrivateUser()) {
-					System.out.println(map);
 				}
 				
 				MongleVisual.stopper();
