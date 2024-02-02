@@ -31,6 +31,9 @@ public class AssertManagementView {
 			}else if(sel.equals("2")) {
 				InvestmentView.addmenu();
 				
+			}else {
+				loop = false;
+				
 			}
 	
 			
