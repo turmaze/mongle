@@ -10,7 +10,7 @@ import com.mongle.yourapp.LogIn;
 public class TestMain02 {
 
 	public static void main(String[] args) {
-		DataBase.dataLoad(ResourcePath.MEMBER);
+		DataBase.dataLoad();
 //		DataBase.dataLoad(ResourcePath.ADMIN);
 		
 		
@@ -27,7 +27,7 @@ public class TestMain02 {
 		System.out.println(Investment.list);
 		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
 		DataBase.changeData(DataBase.getUser(), "invest", Investment.list); // sample
-		DataBase.dataSave(ResourcePath.MEMBER);
+		DataBase.dataSave();
 //		DataBase.dataSave(ResourcePath.ADMIN);
 	}
 

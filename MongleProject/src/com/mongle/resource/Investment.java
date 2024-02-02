@@ -23,6 +23,16 @@ public class Investment {
 	}
 
 
+	public String getRealTitle() {
+		return realTitle;
+	}
+
+
+	public void setRealTitle(String realTitle) {
+		this.realTitle = realTitle;
+	}
+
+
 	public double getPrice() {
 		return price;
 	}

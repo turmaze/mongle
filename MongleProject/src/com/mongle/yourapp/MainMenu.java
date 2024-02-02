@@ -50,7 +50,7 @@ public class MainMenu {
 			case "1":
 				System.out.printf("%22s자산관리 화면으로 이동합니다.\n", " ");
 				
-				//AssetService.assmenu();
+			
 				AssertManagementView.assertadd();
 				
 				continue;
