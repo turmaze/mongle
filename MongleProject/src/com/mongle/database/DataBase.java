@@ -119,7 +119,7 @@ public class DataBase {
 		
 		for (HashMap map : user) {
 			if (map.get("id").equals(LogIn.primaryKey)) {
-				for (HashMap obj : privateUser) {
+				for (Object obj : privateUser.get(0).keySet()) {
 					map.replace(obj, privateUser.get(0).get(obj));
 				}
 			}

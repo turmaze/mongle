@@ -22,10 +22,8 @@ public class TestMain06 {
 		//DataBase.changeData(DataBase.getPrivateUser(), "계좌", BankAccount.list);
 		//DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list);
 		System.out.println(DataBase.getUser());
-		System.out.println(DataBase.getPrivateUser());
 		DataBase.changeData();
 		System.out.println(DataBase.getUser());
-		System.out.println(DataBase.getPrivateUser());
 		
 		DataBase.dataSave(ResourcePath.MEMBER);
 		//SignOut.signOutService();
