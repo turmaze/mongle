@@ -72,38 +72,41 @@ public class EditInfo {
 				setPhone = setPhone.replace(" ", "");
 				setPhone = setPhone.replace(".", "");
 			}
-			// System.out.println(phone); //testcode
 		} while (!Validate.validPhone(setPhone));
-		
+
 		DataBase.changeData(DataBase.getPrivateUser(), "phone", setPhone);
 		System.out.printf("%22s전화번호 변경완료\n", " ");
+	}
+
+	public static String check() {
+		Scanner scan = new Scanner(System.in);
+		String pw1;
+		do {
+			System.out.printf("\n%22s(10~16자리 영문과 숫자 조합)\n", " ");
+			System.out.printf("%22s변경할 비밀번호 입력: ", " ");
+			pw1 = scan.nextLine();
+		} while (!Validate.validPw(pw1));
+		return pw1;
 	}
 
 	public static void changePw() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		try {
-			ArrayList<HashMap> list = DataBase.getUser();
 			do {
-				for (HashMap obj : list) {
-					if (obj.get("id").equals(LogIn.primaryKey)) {
-					System.out.printf("%22s변경할 비밀번호 입력: ", " ");
-					String setPW = scan.nextLine();
-					System.out.printf("%22s변경할 비밀번호 다시입력: ", " ");
-					String checksetPW = scan.nextLine();
-					if (setPW.equals(checksetPW)) {
-						Encrypt encrypt = new Encrypt();
-						String finPw = Encrypt.encrypt(setPW);
-						(obj).replace("salt", Encrypt.AbcSalt);
-						(obj).replace("pw", finPw);
-						System.out.printf("%22s비밀번호 변경완료", " ");
-						loop = false;
-						break;
-					} else {
-						System.out.printf("%22s다시입력하세요\n", " ");
-					}
-				}
-				break;
+				String setPW = check();
+				System.out.printf("%22s변경할 비밀번호 다시입력: ", " ");
+				String checksetPW = scan.nextLine();
+				if (setPW.equals(checksetPW)) {
+					Encrypt encrypt = new Encrypt();
+					String finPw = Encrypt.encrypt(setPW);
+					DataBase.changeData(DataBase.getPrivateUser(), "salt", Encrypt.AbcSalt);
+					DataBase.changeData(DataBase.getPrivateUser(), "pw", finPw);
+					System.out.printf("\n%22s비밀번호 변경완료", " ");
+					loop = false;
+					break;
+				} else {
+					System.out.printf("\n%22s다시입력하세요\n", " ");
 				}
 			} while (loop);
 		} catch (Exception e) {
