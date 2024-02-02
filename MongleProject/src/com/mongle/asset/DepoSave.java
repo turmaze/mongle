@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,9 +12,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.mongle.database.DataBase;
 import com.mongle.resource.BankAccount;
-import com.mongle.service.InvestService;
 import com.mongle.service.invest.InfoProduct;
+import com.mongle.yourapp.Encrypt;
 
 public class DepoSave {
 	private static String bankDepo;
@@ -178,19 +180,17 @@ public class DepoSave {
 
 	public static void signUp(String bankDepo, String titleDepo) {
 		Scanner sc = new Scanner(System.in);
-
+		boolean tf = true;
 		System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)", " ");
 		String answer = sc.nextLine();
-		if (answer.equals("y") || answer.equals("Y")) {
-//		Reconfirm(); ///비밀번호 검사 
-			// 일치하면
-			System.out.printf("%22s가입 성공\n", " ");
 
-			openDepo(bankDepo, titleDepo);
+		if (answer.equals("y") || answer.equals("Y")) {
+
+			Reconfirm(); /// 비밀번호 검사
 
 		} else {
-			System.out.printf("%22s비밀번호가 불일치 합니다.", " ");
-			// 돌아가기
+			System.out.println("이전 화면으로 돌아갑니다.");
+
 		}
 
 	}// DepositSignUp
@@ -212,20 +212,37 @@ public class DepoSave {
 
 	}// OpenDeposit
 
-//	public boolean Reconfirm() {
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println("비밀번호를 입력해 주세요:");
-//		String rpw = sc.nextLine();
-//		if (rpw == pw) {
-//			// 가입성공
-//			return true;
-//
-//		} else {
-//			// 비밀번호 불일치
-//			System.out.println("비밀번호가 불일치합니다.");
-//			return false;
-//			// 이전화면으로 돌아가기
-//		}
-//	}// Reconfirm
+	public static void Reconfirm() {
+		Scanner sc = new Scanner(System.in);
+		
+		HashMap<String, Object> userData = new HashMap<String, Object>();
+		for (int i = 0; i < DataBase.getPrivateUser().size(); i++) {
+
+			for (Object key : DataBase.getPrivateUser().get(i).keySet()) {
+				userData.put((String) key, DataBase.getPrivateUser().get(i).get((String) key));
+			}
+		}
+
+		String checkPW = "";
+		int count = 0;		
+		for (int i = 6; i > count; i--) {
+
+			System.out.println("비밀번호를 입력해 주세요:");
+			checkPW = sc.nextLine();
+			if (userData.get("pw").equals(Encrypt.LogInPw(checkPW, (String) userData.get("salt")))) {
+				// 가입성공
+				System.out.printf("%22s가입이 완료 되었습니다.\n"," ");
+				openDepo(bankDepo, titleDepo);
+				i -= 6;
+
+			} else {
+				// 비밀번호 불일치
+				System.out.printf("%22s불일치\n"," ");
+				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.", " ", i-1);
+
+			}
+
+		}
+	}// Reconfirm
 
 }// class
