@@ -60,10 +60,7 @@ public class InvestmentView {
 		boolean loop = true;
 		System.out.println();
 		System.out.println("상세 보기");
-		
-//		Loan.listLoan.stream().forEach(l -> {
-//			System.out.printf("%d\t%,d원\n", l.getPrice(), l.getAmount());
-//		});
+	
 		
 		printAsciiTable(Investment.list,"대출");
 	
@@ -100,9 +97,6 @@ public class InvestmentView {
 		System.out.println();
 		System.out.println("상세 보기");
 		
-//		Exchange.listExchange.stream().forEach(e -> {
-//			System.out.printf("%d\t%,d원\n", e.getPrice(), e.getAmount());
-//		});
 		printAsciiTable(Investment.list,"환전");
 	
 		
@@ -166,13 +160,32 @@ public class InvestmentView {
 		System.out.println("상세정보");
 		
 		printAsciiTable(Investment.list,"금");
-//		Gold.listGold.stream().forEach(g -> {
-//			System.out.printf("%d\t%d원\n",  g.getPrice(), g.getAmount());
-//		});
-//		
+		
+		while(loop) {
+			
+			System.out.println(" 옵션 : ");
+			System.out.println("1. 해제 ");
+			System.out.println("2. 이전으로");
+			System.out.println();
+			System.out.print("사용자 입력 : ");
+			String num3 = scan.nextLine();
+			
+			if(num3.equals("1")) {
+				// 삭제 후 상세 불러오기
+				System.out.println("해제하고싶은 번호를 입력해주세요 :");
+				int removeN = scan.nextInt();
+			//	removeLoanInvestmentByJ(Investment.list, removeN);
+			}else if(num3.equals("2")) {
+				loop = false;
+				
+			}
+		}
+	
 	}
 
 
+
+	
 
 	private static void stocksave() {
 		
@@ -181,16 +194,8 @@ public class InvestmentView {
 		System.out.println();
 		System.out.println("상세정보");
 		
-		// 받아와서 상세로 보여주기..
-//		Investment.list.stream().forEach(s -> {
-//			System.out.printf("%s\t%s\t%,d원\n", s.getTitleDepo(), s.getPrice(), s.getAmount());
-//		});
-//		
-//		Stock.listStock.stream().forEach(s -> {
-//			System.out.printf("%s\t%s\t%,d원\n", s.getBankDepo(), s.getPrice(), s.getAmount());
-//		});
 		
-		printAsciiTable2(Investment.list,"주식");
+		printAsciiTable(Investment.list,"주식");
 		
 		            
 		
@@ -239,21 +244,28 @@ public class InvestmentView {
 
 
 	public static void printAsciiTable(ArrayList<Investment> data,String invest) { // 표에 반복해서 출력하는 메서드
+			int j = 0;
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())){
-			System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", i + 1, data.get(i).getBankDepo(),
+			System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", j + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getPrice(), data.get(i).getAmount());
+			j++;
 			}
+			
 		}
 	}
-	public static void printAsciiTable2(ArrayList<Investment> data,String invest) { // 표에 반복해서 출력하는 메서드
-		for (int i = 0; i < data.size(); i++) {
-			if (invest.equals(data.get(i).getRealTitle())){
-			System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", i + 1, data.get(i).getBankDepo(),
-					data.get(i).getTitleDepo(), data.get(i).getPrice(), data.get(i).getAmount());
-			}
-		}
-	}
+	
+//private static void removeLoanInvestmentByJ(ArrayList<Investment> data, int removeN) {
+//		int j = 0;
+//	 for (int i = 0; i < data.size(); i++) {
+//         if ("대출".equals(data.get(i).getRealTitle())) {
+//             count++;
+//             if (count == userJValue) {
+//                 data.remove(i);
+//                 return; // 삭제 후 바로 메서드 종료
+//             }
+//	}
+	
 
 
 	public static void menuHeader(String titleName) {
