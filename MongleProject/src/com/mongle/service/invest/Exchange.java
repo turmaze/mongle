@@ -180,6 +180,7 @@ public class Exchange {
 					buyAmount = Integer.parseInt(amount);
 					InvestService.transaction(buyPrice, buyAmount);
 					index = -1;
+					Investment.list.add(new Investment("환전", "", "", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 					continue;
 				} else if (sel.equals("n")) {
 					MongleVisual.pusher();
