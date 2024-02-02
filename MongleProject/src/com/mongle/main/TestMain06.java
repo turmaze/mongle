@@ -18,7 +18,7 @@ public class TestMain06 {
 		StartPage.startPage();
 //		LogIn.logIn();
 		
-		DataBase.changeData(DataBase.getPrivateuser(), "계좌", BankAccount.list);
+		DataBase.changeData(DataBase.getPrivateUser(), "계좌", BankAccount.list);
 		DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list);
 		DataBase.dataSave();
 		//SignOut.signOutService();
