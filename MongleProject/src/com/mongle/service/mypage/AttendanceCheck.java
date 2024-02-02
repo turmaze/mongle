@@ -65,13 +65,14 @@ public class AttendanceCheck {
 	
 	public static void attendanceload() {
 		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attenddate");
+		if (arr!=null) {
 		if (arr.size()>0) {
 		AttendList.list.add(new AttendList(
 				(ArrayList<String>) ((JSONObject) arr.get(0)).get("attenddate")
 				, (String)((JSONObject) arr.get(0)).get("stratedate"))
 				);
 		return;
-		}
+		}}
 	}
 	
 	public static void autoAttendance() {
