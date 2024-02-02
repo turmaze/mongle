@@ -23,14 +23,15 @@ public class InvestmentView {
 			
 			MongleVisual.menuHeader("투자 관리");
 			
-			System.out.println("1. 주식");
-			System.out.println("2. 골드");
+			System.out.println("1. 주식" );
+			System.out.println("2. 골드" );
 			System.out.println("3. 펀드");
 			System.out.println("4. 환전");
 			System.out.println("5. 대출");
 			System.out.println("6. 이전으로");
+			 
 			
-			System.out.print("사용자 입력 : ");
+			System.out.println("사용자 입력 : ");
 			String num = scan.nextLine();
 			
 			if(num.equals("1")) { // 주식
@@ -75,7 +76,12 @@ public class InvestmentView {
 			String num4 = scan.nextLine();
 			
 			if(num4.equals("1")) {
-				// 삭제후 상세 불러오기
+				// 삭제 후 상세 불러오기
+				System.out.println("해제하고싶은 번호를 입력해주세요 :");
+				int removeN = scan.nextInt();
+			removeLoanInvestmentByJ(Investment.list, removeN,"대출");
+			printAsciiTable(Investment.list,"대출");
+			break;
 			}else if(num4.equals("2")) {
 				loop = false;
 				
@@ -110,7 +116,13 @@ public class InvestmentView {
 			String num4 = scan.nextLine();
 			
 			if(num4.equals("1")) {
-				// 삭제후 상세 불러오기
+				// 삭제 후 상세 불러오기
+				System.out.println("해제하고싶은 번호를 입력해주세요 :");
+				int removeN = scan.nextInt();
+			removeLoanInvestmentByJ(Investment.list, removeN,"환전");
+			printAsciiTable(Investment.list,"환전");
+			break;
+				
 			}else if(num4.equals("2")) {
 				loop = false;
 				
@@ -174,7 +186,7 @@ public class InvestmentView {
 				// 삭제 후 상세 불러오기
 				System.out.println("해제하고싶은 번호를 입력해주세요 :");
 				int removeN = scan.nextInt();
-			removeLoanInvestmentByJ(Investment.list, removeN);
+			removeLoanInvestmentByJ(Investment.list, removeN,"금");
 			printAsciiTable(Investment.list,"금");
 			break;
 			}else if(num3.equals("2")) {
@@ -257,10 +269,10 @@ public class InvestmentView {
 		}
 	}
 	
-	private static void removeLoanInvestmentByJ(ArrayList<Investment> data, int removeN) {
+	private static void removeLoanInvestmentByJ(ArrayList<Investment> data, int removeN, String invest) {
 			int j = 0;
 		 for (int i = 0; i < data.size(); i++) {
-	         if ("금".equals(data.get(i).getRealTitle())) {
+	         if (invest.equals(data.get(i).getRealTitle())) {
 	            j++;
 	             if (j == removeN) {
 	                 data.remove(i);
