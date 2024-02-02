@@ -1,11 +1,13 @@
 package com.mongle.yourapp;
 
 import java.io.FileReader;
+import java.security.Signature;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
+import javax.xml.crypto.dsig.SignedInfo;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,6 +16,8 @@ import org.json.simple.parser.JSONParser;
 import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
+import com.mongle.sign.SignUp;
+import com.mongle.sign.Validate;
 import com.mongle.view.MongleVisual;
 
 public class FindAcc {
@@ -45,10 +49,13 @@ public class FindAcc {
 		try {
 			System.out.printf("\n%22s아이디(ID) 입력: ", " ");
 			user.setId(scan.nextLine());
-			System.out.printf("\n%22s전화번호 입력: ", " ");
-			user.setPhone(scan.nextLine());
-			System.out.printf("\n%22s이름 입력: ", " ");
-			user.setName(scan.nextLine());
+			
+			String phone = SignUp.phoneCheck();
+			user.setPhone(phone);
+			
+			String name = SignUp.nameCheck();
+			user.setName(name);
+			
 			JSONParser parser = new JSONParser();
 			ArrayList<HashMap> list = DataBase.getUser();
 			do {
@@ -69,12 +76,10 @@ public class FindAcc {
 							System.out.printf("\n%22s변경할 비밀번호 다시입력: ", " ");
 							String checksetPW = scan.nextLine();
 							if (setPW.equals(checksetPW)) {
-								System.out.println(obj);
 								Encrypt encrypt = new Encrypt();
 								String finPw = Encrypt.encrypt(setPW);
 								(obj).replace("salt", Encrypt.AbcSalt);
 								(obj).replace("pw", finPw);
-								System.out.println(obj);
 								System.out.printf("\n%22s비밀번호 변경완료", " ");
 								loop = false;
 								break;
@@ -96,10 +101,11 @@ public class FindAcc {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
 		try {
-			System.out.printf("\n%22s전화번호 입력: ", " ");
-			user.setPhone(scan.nextLine());
-			System.out.printf("\n%22s이름 입력: ", " ");
-			user.setName(scan.nextLine());
+			String phone = SignUp.phoneCheck();
+			user.setPhone(phone);
+			String name = SignUp.nameCheck();
+			user.setName(name);
+			
 			JSONParser parser = new JSONParser();
 			JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
 			do {
