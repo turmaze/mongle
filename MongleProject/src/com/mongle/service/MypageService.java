@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.CreditScore;
+import com.mongle.service.mypage.EditInfo;
 import com.mongle.service.mypage.Point;
 import com.mongle.service.mypage.SafeSend;
 import com.mongle.sign.SignOut;
@@ -35,6 +36,7 @@ public class MypageService {
 			switch (sel) {
 			case "1":
 				System.out.printf("%22s개인정보 화면으로 이동합니다.\n", " ");
+				EditInfo.edit();
 			case "2":
 				System.out.printf("%22s신용점수 화면으로 이동합니다.\n", " ");
 				r = CreditScore.creditScoreService();
