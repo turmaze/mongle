@@ -1,7 +1,9 @@
 package com.mongle.service.mypage;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
+import com.mongle.database.DataBase;
 import com.mongle.view.MongleVisual;
 
 public class CreditScore {
@@ -15,11 +17,24 @@ public class CreditScore {
 
 			MongleVisual.pusher();
 
-			MongleVisual.menuHeader("신용 점수");
+			HashMap<String, Object> userData = new HashMap<String, Object>();
+			for (int i = 0; i < DataBase.getPrivateUser().size(); i++) {
 
+				for (Object key : DataBase.getPrivateUser().get(i).keySet()) {
+					userData.put((String) key, DataBase.getPrivateUser().get(i).get((String) key));
+				}
+			}
+			
 			System.out.println();
-			System.out.printf("%22s현재 신용 점수: \n", " ");
+			MongleVisual.menuHeader("\t현재 신용 점수 : "+userData.get("credscore"));
+			System.out.printf("%30s◡̈신용점수 올리는 팁◡̈\n", " ");
 			System.out.println();
+			System.out.printf("%22s- 정기적으로 신용카드를 사용하세요.\n", " ");
+			System.out.printf("%22s- 연체하지 마세요.\n", " ");
+			System.out.printf("%22s- 대출은 자주 이용하지 마세요.\n", " ");
+			System.out.printf("%22s- 사금융 이용은 자제하세요.\n", " ");
+			System.out.printf("%22s- 주거래 은행의 신용거래 실적을 늘리세요.\n", " ");
+			System.out.printf("%22s\n", " ");
 
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
