@@ -107,6 +107,9 @@ public class InvestService {
 			int totalPrice = price * num;
 			
 			if (sel.equals("0")) {
+				MongleVisual.pusher();
+				System.out.printf("%22s이전으로 돌아갑니다.\n", " ");
+				MongleVisual.stopper();
 				return 0;
 			}
 
@@ -126,8 +129,7 @@ public class InvestService {
 								System.out.printf("%22s주문가격 %,d원(시장가) / 주문 수량 : %s\n", " ", price, num);
 								System.out.printf("%22s거래가 완료되었습니다.\n", " ");
 								System.out.printf("%22s거래 후 잔액은 %,d원입니다.\n", " ", rest);
-								System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-								scan.nextLine();
+								MongleVisual.stopper();
 								loop = false;
 							} else if (acc.getDepositAmount() < totalPrice) {
 								System.out.printf("%22s계좌의 잔액이 부족합니다.\n", " ");

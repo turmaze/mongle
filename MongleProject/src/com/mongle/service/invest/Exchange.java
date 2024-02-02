@@ -149,6 +149,8 @@ public class Exchange {
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
 				price = (String) getFx(fx.get(index), "tts");
+				
+				MongleVisual.pusher();
 
 				MongleVisual.menuHeader(fxName);
 
@@ -177,14 +179,16 @@ public class Exchange {
 					buyPrice = Integer.parseInt(price);
 					buyAmount = Integer.parseInt(amount);
 					InvestService.transaction(buyPrice, buyAmount);
-					MongleVisual.stopper();
 					index = -1;
 					continue;
 				} else if (sel.equals("n")) {
+					MongleVisual.pusher();
 					System.out.printf("%22s거래가 취소되었습니다.\n", " ");
 					MongleVisual.stopper();
+					index = -1;
 					continue;
 				} else {
+					MongleVisual.pusher();
 					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
 					MongleVisual.stopper();
 					index = -1;
