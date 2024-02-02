@@ -65,7 +65,7 @@ public class InvestmentView {
 //			System.out.printf("%d\t%,d원\n", l.getPrice(), l.getAmount());
 //		});
 		
-		printAsciiTable(Investment.list);
+		printAsciiTable(Investment.list,"대출");
 	
 		
 		while(loop) {
@@ -103,7 +103,7 @@ public class InvestmentView {
 //		Exchange.listExchange.stream().forEach(e -> {
 //			System.out.printf("%d\t%,d원\n", e.getPrice(), e.getAmount());
 //		});
-		printAsciiTable(Investment.list);
+		printAsciiTable(Investment.list,"환전");
 	
 		
 		while(loop) {
@@ -165,7 +165,7 @@ public class InvestmentView {
 		System.out.println();
 		System.out.println("상세정보");
 		
-		printAsciiTable(Investment.list);
+		printAsciiTable(Investment.list,"금");
 //		Gold.listGold.stream().forEach(g -> {
 //			System.out.printf("%d\t%d원\n",  g.getPrice(), g.getAmount());
 //		});
@@ -190,7 +190,7 @@ public class InvestmentView {
 //			System.out.printf("%s\t%s\t%,d원\n", s.getBankDepo(), s.getPrice(), s.getAmount());
 //		});
 		
-		printAsciiTable(Investment.list);
+		printAsciiTable(Investment.list,"주식");
 		
 		            
 		
@@ -238,11 +238,12 @@ public class InvestmentView {
 
 
 
-	public static void printAsciiTable(ArrayList<Investment> data) { // 표에 반복해서 출력하는 메서드
+	public static void printAsciiTable(ArrayList<Investment> data,String invest) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {
+			if (invest.equals(data.get(i).getRealTitle())){
 			System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", i + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getPrice(), data.get(i).getAmount());
-
+			}
 		}
 	}
 
