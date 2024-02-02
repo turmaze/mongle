@@ -2,6 +2,7 @@ package com.mongle.yourapp;
 
 import java.util.Scanner;
 
+import com.mongle.asset.WireTransfer;
 import com.mongle.main.Main;
 import com.mongle.resource.Investment;
 import com.mongle.service.AssetService;
@@ -56,6 +57,7 @@ public class MainMenu {
 				continue;
 			case "2":
 				System.out.printf("%22s송금 화면으로 이동합니다.\n", " ");
+				WireTransfer.extracted();
 				continue;
 			case "3":
 				System.out.printf("%22s투자 화면으로 이동합니다.\n", " ");
