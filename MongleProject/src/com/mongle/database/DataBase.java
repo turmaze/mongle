@@ -117,10 +117,18 @@ public class DataBase {
 	
 	public static void changeData() {	//user데이터 중 로그인 중인 primaryuser의 데이터를 갱신
 		
+//		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
+//		DataBase.changeData(DataBase.getUser(), "invest", Investment.list); // sample
+		
+		for (HashMap map : privateUser) {
+			map.put("account", BankAccount.list);
+			map.put("invest", Investment.list);
+		}
+		
 		for (HashMap map : user) {
 			if (map.get("id").equals(LogIn.primaryKey)) {
 				for (Object obj : privateUser.get(0).keySet()) {
-					map.replace(obj, privateUser.get(0).get(obj));
+					map.put(obj, privateUser.get(0).get(obj));
 				}
 			}
 		}
