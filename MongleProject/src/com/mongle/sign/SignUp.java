@@ -64,24 +64,13 @@ public class SignUp {
 		
 		//----------------name----------------
 		String name; 
-		
-		do {
-			System.out.printf("\n%22s(2~5자리 한글)\n"," ");
-			System.out.printf("\n%22s3.이름: "," ");	
-			name = scan.nextLine();
-			}
-			while(!Validate.validName(name));
+		name = nameCheck();
 		userData.setName(name);
 		newUser.put("name", userData.getName());
 		
 		//----------------birth----------
 		String birth;
-		do {
-			System.out.printf("\n%22s(예시 19990314)\n"," ");
-			System.out.printf("\n%22s3. 생년월일: "," ");	
-			birth = scan.nextLine();
-			}
-			while(!Validate.validBirth(birth));
+		birth = birthCheck();
 		userData.setBirth(birth);
 		newUser.put("birth", userData.getBirth());
 		
@@ -90,18 +79,7 @@ public class SignUp {
 		
 		//--------phoneNumber------
 		String phone;
-		do {
-			System.out.printf("\n%22s(예시: 01033448899)"," ");
-			System.out.printf("\n%22s3. 전화번호: "," ");	
-			phone = scan.nextLine();
-			if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
-				phone = phone.replace("-", "");
-				phone = phone.replace(" ", "");
-				phone = phone.replace(".", "");
-			}
-			//System.out.println(phone); //testcode
-			}
-			while(!Validate.validPhone(phone));
+		phone = phoneCheck();
 		userData.setPhone(phone);
 		newUser.put("phone", userData.getPhone());
 		
@@ -134,6 +112,47 @@ public class SignUp {
 		System.out.printf("\n\n%22snow folder Test\n", " ");
 		System.out.println(DataBase.getUser());
 		
+	}
+
+	public static String phoneCheck() {
+		Scanner scan = new Scanner(System.in);
+		String phone;
+		do {
+			System.out.printf("\n%22s(예시: 01033448899)"," ");
+			System.out.printf("\n%22s3. 전화번호: "," ");	
+			phone = scan.nextLine();
+			if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
+				phone = phone.replace("-", "");
+				phone = phone.replace(" ", "");
+				phone = phone.replace(".", "");
+			}
+			//System.out.println(phone); //testcode
+			}
+			while(!Validate.validPhone(phone));
+		return phone;
+	}
+
+	public static String nameCheck() {
+		Scanner scan = new Scanner(System.in);
+		String name;
+		do {
+			System.out.printf("\n%22s(2~5자리 한글)\n"," ");
+			System.out.printf("\n%22s3.이름: "," ");	
+			name = scan.nextLine();
+			}
+			while(!Validate.validName(name));
+		return name;
+	}
+
+	public static String birthCheck() {
+		Scanner scan = new Scanner(System.in);
+		String birth;
+		do {
+			System.out.printf("\n%22s(예시 19990314)\n"," ");
+			System.out.printf("\n%22s3. 생년월일: "," ");	
+			birth = scan.nextLine();
+		}while(!Validate.validBirth(birth));
+		return birth;
 	}
 
 }
