@@ -194,7 +194,9 @@ public class Stock {
 						InvestService.transaction(nowPrice, Integer.parseInt(amount));
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
-						listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));
+						//listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));
+						Investment.list.add(new Investment("주식", Stock.getSel(),"주식", Stock.getBuyPrice(), Stock.getBuyAmount()));
+						
 					} else if (sel.equals("n")) {
 						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
 						MongleVisual.stopper();

@@ -81,7 +81,7 @@ public class Gold {
 		
 		//listGold.add(new Investment("금","금",price,num));
 		//Investment.list.add(listGold);
-		Investment.list.add(new Investment("금","금",price,num));
+		Investment.list.add(new Investment("금","금","금",price,num));
 		
 		return 0;
 	}

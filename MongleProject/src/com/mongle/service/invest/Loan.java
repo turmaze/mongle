@@ -78,7 +78,7 @@ public class Loan {
 														table.get(Integer.parseInt(sel) - 1 + index).getRate());
 						applyLoan(scan, loop);
 						//listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
-						Investment.list.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
+						Investment.list.add(new Investment("대출",loan.getBankLoan(),loan.getTitleLoan(),0,0));
 						loop = false;
 					} else if (sel.equals("8")) {
 						index += 7;

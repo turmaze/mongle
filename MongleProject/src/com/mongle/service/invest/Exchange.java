@@ -196,8 +196,8 @@ public class Exchange {
 				}
 
 			}
-			listExchange.add(new Investment("환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
-
+			//listExchange.add(new Investment("환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
+			Investment.list.add(new Investment("환전", "환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 		} catch (Exception e) {
 			System.out.println("Exchange");
 			e.printStackTrace();
