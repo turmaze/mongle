@@ -25,8 +25,8 @@ public class TestMain04 {
 		// Stock.stockService();
 		// AttendanceCheck.attendanceCheckService();
 		System.out.println(Investment.list);
-		DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list); // sample
-		DataBase.changeData(DataBase.getUser(), "투자", Investment.list); // sample
+		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
+		DataBase.changeData(DataBase.getUser(), "invest", Investment.list); // sample
 		DataBase.dataSave();
 
 	}// main
