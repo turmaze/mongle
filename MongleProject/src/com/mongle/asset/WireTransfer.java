@@ -21,7 +21,7 @@ public class WireTransfer {
 		System.out.printf("%22s 2.더치페이\n", " ");
 		System.out.printf("%22s 3.예약송금\n", " ");
 		System.out.printf("%22s 0.이전으로\n", " ");
-		System.out.printf("%22s번호를 입력하세요:", " ");
+		System.out.printf("%22s 번호를 입력하세요:", " ");
 		String sel = scanner.nextLine();
 		
 		if(sel.equals("1")) {
@@ -40,73 +40,85 @@ public class WireTransfer {
 	}
 		
 	}//extracted
-	
 	private static void dutchpay() {
 		// 더치페이 인원 설정 로직 구현
 		Scanner scanner = new Scanner(System.in);
-	System.out.print("더치페이 금액을 설정하세요 (정수형태): ");
+	System.out.printf("%22s더치페이 금액을 설정하세요 (정수형태): ", "");
     int amount = 0;
 
     // 정수 입력을 위한 예외 처리
     try {
         amount = scanner.nextInt();
     } catch (Exception e) {
-        System.out.println("[오류 발생] 정수단위로 입력해주세요.");
+        System.out.printf("%22s[오류 발생] 정수단위로 입력해주세요.", " ");
         scanner.nextLine(); // 버퍼 비우기
         return;
     }
 
     if (amount < 0) {
-        System.out.println("[오류 발생] 음수는 입력할 수 없습니다.");
+        System.out.printf("%22s[오류 발생] 음수는 입력할 수 없습니다.", " ");
         return;
     }
 
     // 더치페이 금액 설정 로직
-    System.out.println("더치페이 금액이 " + amount + "원으로 설정되었습니다.");
+    System.out.printf("%22s더치페이 금액이 " + amount + "원으로 설정되었습니다.\n", " ");
 	
     // 더치페이 금액 설정 로직 구현
 
-    System.out.print("지불 대상자를 입력하세요: ");
+    System.out.printf("%22s지불 대상자를 입력하세요:", " ");
     String who = scanner.next();
+   
+    // 정산하기 요청 출력
+    System.out.printf("%22s%s님에게 정산하기를 요청합니다.\n", " ", who);
+
+ // 요청인원 출력
+    int totalPeople = 1; // 사용자 자신을 포함하여 1명
+    System.out.printf("%22s 더치페이 총 인원: %d명\n", " ", totalPeople + 1); // 사용자 자신을 포함하여 +1명
+    // 전체금액 : amount
+    
+    
+    
+    // 더치페이 메시지 공유하기
+    shareMessage(who);
 
     // 공유하기-메세지/카카오톡으로 전송하는 창 띄우기
-    System.out.println("1. 메시지로 공유하기");
-    System.out.println("2. 카카오톡으로 공유하기");
-    System.out.print("공유 옵션을 선택하세요: ");
+    System.out.printf("%22s 1. 메시지로 공유하기\n", " ");
+    System.out.printf("%22s 2. 카카오톡으로 공유하기\n"," ");
+    System.out.printf("%22s 공유 옵션을 선택하세요: \n", " ");
     int shareChoice = scanner.nextInt();
     
     switch (shareChoice) {
         case 1:
-            shareMessage();
+            
             break;
         case 2:
         
             break;
         default:
-            System.out.println("올바른 공유 옵션을 선택하세요.");
+            System.out.printf("%22s올바른 공유 옵션을 선택하세요.", " ");
     	}
 	}//dutchpay
 	
-	private static void shareMessage() {
-		String who = "";
-	    System.out.println("메세지로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송합니다.");
+	private static void shareMessage(String who) {
+		
+	    System.out.printf("%22s메세지로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송합니다.", " ");
+	    System.out.println();
 		}
-
 
 	private static void reserveTransfer(Scanner scanner) {
 		// 예약송금 로직 구현
 		
-	  System.out.print("예약할 시간을 입력하세요.\n");
+	  System.out.printf("%22s예약할 시간을 입력하세요.\n", " ");
 
       // 년도는 수정이 불가능하므로 고정
       int year = 2024;
 
       // 이번달과 다음달까지 선택 가능하도록 설정
-      System.out.print("월을 입력하세요. 예약은 다음달까지만 가능합니다. (이번달: 1, 다음달: 2): ");
+      System.out.printf("%22s월을 입력하세요. 예약은 다음달까지만 가능합니다. (이번달: 1, 다음달: 2): ", " ");
       int month = scanner.nextInt();
 
       if (month != 1 && month != 2) {
-          System.out.println("[오류 발생] 올바른 월을 입력하세요.");
+          System.out.printf("%22s[오류 발생] 올바른 월을 입력하세요.", " ");
           return;
       }
 
@@ -117,20 +129,20 @@ public class WireTransfer {
           maxDay = 30; // 다음달의 말일
       }
 
-      System.out.print("일을 입력하세요 (1일부터 " + maxDay + "일까지): ");
+      System.out.printf("%22s일을 입력하세요 (1일부터 " + maxDay + "일까지): ", " ");
       int day = scanner.nextInt();
 
       if (day < 1 || day > maxDay) {
-          System.out.println("[오류 발생] 올바른 일을 입력하세요.");
+          System.out.printf("%22s[오류 발생] 올바른 일을 입력하세요.", " ");
           return;
       }
 
       // 시간은 정수형태로 입력받도록 함
-      System.out.print("시간을 입력하세요: "); //시간단위로만 입력받을 수 있음 ex) 13:26(x) // 13 (0)
+      System.out.printf("%22s시간을 입력하세요: ", " "); //시간단위로만 입력받을 수 있음 ex) 13:26(x) // 13 (0)
       int hour = scanner.nextInt();
 
       if (hour < 0) {
-          System.out.println("[오류 발생] 정수단위로 입력해주세요.");
+          System.out.printf("%22s[오류 발생] 정수단위로 입력해주세요."," ");
           return;
       }
 
