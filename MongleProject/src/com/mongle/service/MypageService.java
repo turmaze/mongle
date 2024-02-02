@@ -36,7 +36,12 @@ public class MypageService {
 			switch (sel) {
 			case "1":
 				System.out.printf("%22s개인정보 화면으로 이동합니다.\n", " ");
-				EditInfo.edit();
+				r = EditInfo.edit();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			case "2":
 				System.out.printf("%22s신용점수 화면으로 이동합니다.\n", " ");
 				r = CreditScore.creditScoreService();
