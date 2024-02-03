@@ -87,10 +87,10 @@ public class BankAccount {
 
 	@Override
 	public String toString() {
-		return " [계좌 번호=" + accountNumber + " " + "잔액=" + depositAmount + " " + "은행명=" + bankDepo + " " + "상품명="
-				+ titleDepo;
+		return String.format("BankAccount [depositAmount=%s, accountNumber=%s, bankDepo=%s, titleDepo=%s, history=%d]",
+				depositAmount, accountNumber, bankDepo, titleDepo, history.size());
+	}
 
-	}// toString
 
 }
 // class

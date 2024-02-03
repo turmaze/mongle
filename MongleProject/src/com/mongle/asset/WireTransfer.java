@@ -1,11 +1,11 @@
 package com.mongle.asset;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.mongle.resource.BankAccount;
+import com.mongle.resource.History;
 import com.mongle.view.MongleVisual;
 
 public class WireTransfer {
@@ -219,9 +219,9 @@ public class WireTransfer {
 							if (acc.getDepositAmount() >= money) {
 
 								int rest = acc.getDepositAmount() - money;
-								BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
-										acc.getTitleDepo(), acc.getAccountNumber(), rest));
-								
+//								BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
+//										acc.getTitleDepo(), acc.getAccountNumber(), rest));
+								History.make(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber(), "송금", -money);
 								System.out.println();
 								System.out.printf("%22s송금이 완료되었습니다.\n", " ");
 								System.out.printf("%22s송금 후 잔액은 %,d원입니다.\n", " ", rest);
