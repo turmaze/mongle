@@ -110,8 +110,12 @@ public class Inquiry {
 			e.printStackTrace();
 		}
 
-	}
+	} //announcement() 끝
 	
+	
+	private void inquiry() {
+		
+	}
 	
 	/**
 	 	생성
@@ -410,10 +414,6 @@ public class Inquiry {
 	}
 			
 	
-	
-	private void inquiry() {
-	
-	}
 	
 
 	
