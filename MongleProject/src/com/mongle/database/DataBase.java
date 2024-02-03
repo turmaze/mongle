@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongle.resource.AttendList;
 import com.mongle.resource.BankAccount;
+import com.mongle.resource.History;
 import com.mongle.resource.Investment;
 import com.mongle.resource.ResourcePath;
 import com.mongle.yourapp.LogIn;
@@ -68,11 +69,29 @@ public class DataBase {
 							JSONArray temp = (JSONArray) item.get("account");
 							for (Object ob : temp) {
 								JSONObject it = (JSONObject) ob;
-								int num = (int) ((long) it.get("depositAmount"));
-								BankAccount b = new BankAccount((String) it.get("bankDepo"),
-										(String) it.get("titleDepo"), (String) it.get("accountNumber"), num);
 
-								BankAccount.list.add(b);
+								if (it.containsKey("history")) {
+									JSONArray arr = (JSONArray) it.get("history");
+									ArrayList<History> history = new ArrayList<History>();
+									for (Object content : arr) {
+										JSONObject his = (JSONObject) content;
+										int amount = (int) ((long) his.get("amount"));
+										int balance = (int) ((long) his.get("balance"));
+										History h = new History((String) his.get("date"), (String) his.get("memo"),
+												amount, balance);
+										history.add(h);
+									}
+									int num = (int) ((long) it.get("depositAmount"));
+									BankAccount b = new BankAccount((String) it.get("bankDepo"),
+											(String) it.get("titleDepo"), (String) it.get("accountNumber"), num,
+											history);
+									BankAccount.list.add(b);
+								} else {
+									int num = (int) ((long) it.get("depositAmount"));
+									BankAccount b = new BankAccount((String) it.get("bankDepo"),
+											(String) it.get("titleDepo"), (String) it.get("accountNumber"), num);
+									BankAccount.list.add(b);
+								}
 							}
 						}
 
