@@ -27,7 +27,8 @@ public class AssetService {
 			System.out.printf("%22s 4.이자계산기\n", " ");
 			System.out.printf("%22s 9.홈으로\n", " ");
 			System.out.printf("%22s 0.이전으로\n", " ");
-			System.out.printf("%22s번호를 입력하세요:", " ");
+			System.out.println();
+			System.out.printf("%22s선택(번호):", " ");
 
 			Scanner sc = new Scanner(System.in);
 			String sel = sc.nextLine();
@@ -48,11 +49,20 @@ public class AssetService {
 				}
 			} else if (sel.equals("3")) {
 				//연동
-				AccountConnection.connection();
+				r = AccountConnection.connection();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("4")) {
 				//이자 계산기
-				DepoCalculator.depoSaveService();
-				
+				r = DepoCalculator.depoSaveService();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("9")) {
 				return 9;
 			} else if (sel.equals("0")) {
@@ -88,7 +98,7 @@ public class AssetService {
 		
 		String sel = scan.nextLine();
 		if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= BankAccount.list.size()) {
-			History.check(BankAccount.list.get(Integer.parseInt(sel) - 1).getAccountNumber());
+			r = History.check(BankAccount.list.get(Integer.parseInt(sel) - 1).getAccountNumber());
 			if (r == 9) {
 				return 9;
 			} else {

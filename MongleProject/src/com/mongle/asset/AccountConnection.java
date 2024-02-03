@@ -8,15 +8,15 @@ import com.mongle.service.AssetService;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AccountConnection {
-	public static void connection() {
+	public static int connection() {
 		// 계좌 연동(불러)오기
 		Scanner sc = new Scanner(System.in);
 
 		boolean tf = true;
-		
-			System.out.printf("%22s은행명: ", " ");
-			String bd = sc.nextLine();
-			while (tf) {
+
+		System.out.printf("%22s은행명: ", " ");
+		String bd = sc.nextLine();
+		while (tf) {
 			System.out.printf("%22s예금 or 적금 :", " ");
 			String td = sc.nextLine();
 			if (td.equals("예금") || td.equals("적금")) {
@@ -31,25 +31,23 @@ public class AccountConnection {
 			} else {
 				System.out.printf("%22s잘못된 값을 입력하셨습니다. 다시 입력해 주세요\n", " ");
 			}
-			
+
 		}
 		System.out.println();
 		System.out.printf("%22s연동이 완료되었습니다.\n", " ");
 		boolean a = true;
 		while (a) {
-			System.out.printf("%22s0.홈 화면으로: ", " ");
+			System.out.printf("%22s0.홈으로: ", " ");
 			String sel = sc.nextLine();
 			if (sel.equals("0")) {
-				AssetService.assmenu();
-				a = false;
-				break;
+				return 9;
 			} else {
-				System.out.printf("%22s0 번을 누르면 홈화면으로 갑니다.\n", " ");
+				System.out.printf("%22s올바른 번호를 입력하세요.\n", " ");
 				continue;
 			}
 
 		}
-
+		return 0;
 	}
 
 	private static int randomAmount() {
