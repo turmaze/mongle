@@ -125,7 +125,7 @@ public class DataBase {
 		for (HashMap map : privateUser) {
 			map.put("account", BankAccount.list);
 			map.put("invest", Investment.list);
-			map.put("attenddate", AttendList.list);
+			map.put("attend", AttendList.list);
 		}
 
 		for (HashMap map : user) {

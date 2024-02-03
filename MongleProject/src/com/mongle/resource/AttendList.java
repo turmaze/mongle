@@ -27,10 +27,10 @@ public class AttendList {
 	}
 	
 	public static void getPoint() {
-		int point = Integer.parseInt((String) DataBase.getPrivateUser().get(0).get("point"));
-		point += 10;
+		String point = (String) DataBase.getPrivateUser().get(0).get("point");
+		point = (Integer.parseInt(point)+10)+"";
 		
-		DataBase.getPrivateUser().get(0).replace("point", point+"");
+		DataBase.getPrivateUser().get(0).replace("point", point);
 	}
 
 	public ArrayList<String> getAttenddate() {

@@ -64,7 +64,7 @@ public class AttendanceCheck {
 	}
 	
 	public static void attendanceload() {
-		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attenddate");
+		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attend");
 		if (arr!=null) {
 		if (arr.size()>0) {
 		AttendList.list.add(new AttendList(
@@ -95,8 +95,9 @@ public class AttendanceCheck {
 		
 		attendanceload();
 		
-		if (AttendList.list.size()==0) {
+		if (AttendList.list.size()==0) { //회원가입 후 첫 로그인
 			AttendList.list.add(new AttendList(pointdate, "1"));
+			AttendList.getPoint();
 			return;
 		}
 		
@@ -121,6 +122,7 @@ public class AttendanceCheck {
 		
 		AttendList.list.get(0).setStratedate(strate+"");
 		AttendList.list.get(0).getAttenddate().add(today);
+		AttendList.getPoint();
 		
 	}
 	
