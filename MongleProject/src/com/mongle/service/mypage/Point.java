@@ -19,7 +19,8 @@ public class Point {
 			MongleVisual.menuHeader("포 인 트");
 
 			System.out.println();
-			System.out.printf("%22s보유 포인트", " ");
+			System.out.printf("%22s보유 포인트: %,d", " "
+					, Integer.parseInt((String) DataBase.getPrivateUser().get(0).get("point")));
 			System.out.println();
 
 			System.out.printf("%22s1. 포인트 내역\n", " ");
