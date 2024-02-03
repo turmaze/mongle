@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.mongle.resource.BankAccount;
+import com.mongle.resource.History;
 import com.mongle.asset.AccountConnection;
 import com.mongle.asset.DepoCalculator;
 import com.mongle.asset.DepoSave;
@@ -67,6 +68,7 @@ public class AssetService {
 	public static int checkDepo() {
 		// 헤더 출력
 		Scanner scan = new Scanner(System.in);
+		int r = -1;
 		
 		while (true) {
 		
@@ -77,11 +79,22 @@ public class AssetService {
 		printAsciiTable(BankAccount.list); //json 에서 가져온 데이터
 		System.out.printf("%22s%s\n", " ", header);
 		
+		
+		System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
 		System.out.printf("%22s9. 홈으로\n", " ");
 		System.out.printf("%22s0. 이전으로\n", " ");
-		String sel = scan.nextLine();
+		System.out.println();
+		System.out.printf("%22s선택(번호) :", " ");
 		
-		if (sel.equals("9")) {
+		String sel = scan.nextLine();
+		if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= BankAccount.list.size()) {
+			History.check(BankAccount.list.get(Integer.parseInt(sel) - 1).getAccountNumber());
+			if (r == 9) {
+				return 9;
+			} else {
+				continue;
+			}
+		} else if (sel.equals("9")) {
 			return 9;
 		} else if (sel.equals("0")) {
 			return 0;

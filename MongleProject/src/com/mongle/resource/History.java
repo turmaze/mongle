@@ -2,7 +2,13 @@ package com.mongle.resource;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Scanner;
+
+import com.mongle.service.invest.Loan;
+import com.mongle.view.MongleVisual;
 
 public class History {
 	private String date;
@@ -80,5 +86,83 @@ public class History {
 			}
 		}
 
+	}
+
+	public static int check(String accountNumber) {
+		ArrayList<History> history = new ArrayList<History>();
+		for (BankAccount acc : BankAccount.list) {
+			if (acc.getAccountNumber().equals(accountNumber)) {
+				if (acc.getHis() != null) {
+					history = acc.getHis();
+				}
+			}
+		}
+
+		Collections.sort(history, new Comparator<History>() {
+			public int compare(History o1, History o2) {
+				String date1 = o1.getDate();
+				String date2 = o2.getDate();
+
+				return date2.compareTo(date1);
+			}
+		});
+
+		Scanner scan = new Scanner(System.in);
+		int index = 0;
+		boolean loop = true;
+
+		transHistory(history, index);
+
+		while (loop) {
+			System.out.printf("%22s8. 다음 페이지\n", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
+			System.out.println();
+			while (loop) {
+				System.out.printf("%22s선택(번호) : ", " ");
+				String sel = scan.nextLine();
+				try {
+					if (sel.equals("8")) {
+						if (history.size() < 10) {
+							System.out.printf("%22s더이상 불러올 내역이 없습니다.\n", " ");
+						} else {
+							index += 10;
+							transHistory(history, index);
+						}
+						break;
+					} else if (sel.equals("9")) {
+						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
+						return 9;
+					} else if (sel.equals("0")) {
+						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
+						return 0;
+					} else {
+						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+					}
+				} catch (NumberFormatException e) {
+					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+				}
+			} // while
+		}
+		return 0;
+	}
+
+	private static void transHistory(ArrayList<History> history, int index) {
+		String header = "+-------------------------+-----------+-------------+-----------------+";
+		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%22s|           날짜    \t|    내역    |     금액     |       잔액       |\n", " ");
+		System.out.printf("%22s%s\n", " ", header);
+
+		printAsciiTable(history, index); // json 에서 가져온 데이터
+		System.out.printf("%22s%s\n", " ", header);
+	}
+
+	public static void printAsciiTable(ArrayList<History> data, int index) { // 표에 반복해서 출력하는 메서드
+
+		for (int i = index; i < ((data.size() < index + 10) ? data.size() : index + 10); i++) {
+			System.out.printf("%22s|   %-10s   |%8s  |%,10d원  |%,14d원  |\n", " ", data.get(i).getDate(),
+					data.get(i).getMemo(), data.get(i).getAmount(), data.get(i).getBalance());
+
+		}
 	}
 }
