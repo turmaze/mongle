@@ -9,30 +9,48 @@ public class BankAccount {
 
 	private int depositAmount; // 잔액
 	private String accountNumber; // 계좌 번호
-	private String bankDepo; //금융사
-	private String titleDepo; //예적금명
-	
+	private String bankDepo; // 금융사
+	private String titleDepo; // 예적금명
+	private ArrayList<History> history;
+
 	public static ArrayList<BankAccount> list = new ArrayList<>();
 
-	 // findAccount 메서드 추가
-    public static BankAccount findAccount(String accountNumber) {
-        for (BankAccount account : list) {
-            if (account.getAccountNumber().equals(accountNumber)) {
-                return account;
-            }
-        }
-        return null;
-    }
+	// findAccount 메서드 추가
+	public static BankAccount findAccount(String accountNumber) {
+		for (BankAccount account : list) {
+			if (account.getAccountNumber().equals(accountNumber)) {
+				return account;
+			}
+		}
+		return null;
+	}
 
-	
-	
+	public BankAccount(String bankDepo, String titleDepo, String AccountNumber, int DepositAmount, ArrayList<History> his) {
+
+		this.accountNumber = AccountNumber;
+		this.depositAmount = DepositAmount;
+		this.bankDepo = bankDepo;
+		this.titleDepo = titleDepo;
+		this.history = his;
+
+	}
+
 	public BankAccount(String bankDepo, String titleDepo, String AccountNumber, int DepositAmount) {
 
 		this.accountNumber = AccountNumber;
 		this.depositAmount = DepositAmount;
 		this.bankDepo = bankDepo;
 		this.titleDepo = titleDepo;
+		this.history = new ArrayList<History>();
 
+	}
+
+	public ArrayList<History> getHis() {
+		return history;
+	}
+
+	public void setHis(ArrayList<History> his) {
+		this.history = his;
 	}
 
 	public int getDepositAmount() {
