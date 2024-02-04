@@ -10,7 +10,6 @@ public class StartPage {
 		Scanner scan = new Scanner(System.in);
 
 		boolean loop = true;
-		String choice = "";
 
 		while (loop) {
 			
@@ -23,8 +22,9 @@ public class StartPage {
 			System.out.printf("\n%22s0. 프로그램 종료\n", " ");
 			MongleVisual.choiceGuidePrint();
 
-			choice = scan.nextLine();
+			String choice = "";
 
+			choice = scan.nextLine();
 
 			if (choice.equals("1")) {
 				LogIn.logIn();

@@ -35,12 +35,13 @@ public class Inquiry {
 			
 			String input = "7"; //1,2,3,0이 아닌 값	
 			while(!input.equals("0")) {	//
-				//level 탐색
-				HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
-				Object levelValue = selectedMap.get("level");
-			
-				//관리자
-				if(levelValue.equals("2")) {
+	//			//level 탐색
+	//			HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
+	//			Object levelValue = selectedMap.get("level");
+	//		
+	//			//관리자
+	//			if(levelValue.equals("2")) {
+				if(true) { //testcode
 					Inquiry inquiry = new Inquiry();
 					inquiry.loadInq(annList,ResourcePath.ANNO);
 					
@@ -74,7 +75,6 @@ public class Inquiry {
 								inquiry.saveInq(annList,ResourcePath.ANNO);
 								break;
 							case "0":
-								System.out.printf("%22s관리자 페이지로 이동합니다.\n\n"," ");
 								break;
 								
 							default :
@@ -85,12 +85,15 @@ public class Inquiry {
 	
 				}	//if(levelValue.equals("2"))
 								
-				else { // 회원,  블랙리스트"3"은 여기까지 안옴 //문의사항에서 사용할 code
-					System.out.println("회원 문의사항에 필요한 else문");
-				}
+//				else { // 회원,  블랙리스트"3"은 여기까지 안옴 //문의사항에서 사용할 code
+//				
+//				System.out.println("문의사항에 필요한 else문");
+//				}
 				
 			} //while(true)
 			
+			MainMenu.mainMenu("2");
+			return;
 			
 		} catch (Exception e) {
 			System.out.println("announcement Error");

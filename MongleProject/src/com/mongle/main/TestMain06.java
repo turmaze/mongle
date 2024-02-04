@@ -19,20 +19,22 @@ import com.mongle.yourapp.StartPage;
 public class TestMain06 {
 	
 	public static void main(String[] args) {
-		DataBase.dataLoad();
-		
-		StartPage.startPage();
-		
-		DataBase.changeData();
-		
-		DataBase.dataSave();
-//		LocalDate date = LocalDate.now();
-//		System.out.println(date);
-//		String dates = date+"";
-//		System.out.println(dates);
-//		System.out.println(dates.substring(dates.length()-2));
-//		int datei = Integer.parseInt((dates.substring(dates.length()-2)));
-//		System.out.println(datei);
+//		DataBase.dataLoad();
+//		
+//		StartPage.startPage();
+//		
+//		DataBase.changeData();
+//		
+//		DataBase.dataSave();
+		LocalDate date = LocalDate.now();
+		System.out.println(date);
+		String dates = date+"";
+		System.out.println(dates);
+		System.out.println(dates.substring(dates.length()-2));
+		int datei = Integer.parseInt((dates.substring(dates.length()-2)));
+		System.out.println(datei);
+		//int todayDate = ((String)date);
+		//System.out.println(todayDate);
 		
 	}
 	

@@ -3,7 +3,6 @@ package com.mongle.yourapp;
 import java.util.Scanner;
 
 import com.mongle.asset.WireTransfer;
-import com.mongle.database.DataBase;
 import com.mongle.main.Main;
 import com.mongle.resource.Investment;
 import com.mongle.service.AssetService;
@@ -45,7 +44,6 @@ public class MainMenu {
 			System.out.printf("\n%22s3. 투자", " ");
 			System.out.printf("\n%22s4. 고객센터", " ");
 			System.out.printf("\n%22s5. MyPage", " ");
-			System.out.printf("\n%22s9. 프로그램 종료", " ");
 			System.out.printf("\n%22s0. 로그아웃", " ");
 			System.out.printf("\n\r\n%22s선택번호: ", " ");
 			String choice = scan.nextLine();
@@ -70,32 +68,6 @@ public class MainMenu {
 			case "5":
 				System.out.printf("%22sMyPage 화면으로 이동합니다.\n\n", " ");
 				r = MypageService.mypageService();
-				continue;
-			case "9":
-				System.out.printf("%22s정말로 종료하시겠습니까?(y/n)", " ");
-				String sel = scan.nextLine();
-				sel = sel.toLowerCase();
-				if (sel.equals("y")) {
-					
-					System.out.printf("\n%22s프로그램을 종료합니다.", " ");
-					
-					DataBase.changeData();
-					
-					DataBase.dataSave();
-					
-					System.exit(0);
-					
-				} else if (sel.equals("n")) {
-					
-					MongleVisual.pusher();
-					System.out.printf("\n%22s종료를 취소합니다.\n", " ");
-					MongleVisual.stopper();
-					
-				} else {
-					
-					MongleVisual.wrongInput();
-					
-				}
 				continue;
 			case "0":
 				System.out.printf("%22s로그아웃합니다.\n\n", " ");
