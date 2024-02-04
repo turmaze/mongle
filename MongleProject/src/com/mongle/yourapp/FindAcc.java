@@ -124,6 +124,7 @@ public class FindAcc {
 					break;
 				}else {
 					System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
+					findMyId();
 				}
 			} while (true);
 		} catch (Exception e) {
