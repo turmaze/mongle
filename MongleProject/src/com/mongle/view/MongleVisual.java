@@ -32,6 +32,12 @@ public class MongleVisual {
 		System.out.println();
 		System.out.printf("%22s선택(번호): ", " ");
 	}
+	
+	public static void menuMove(String menuName) {
+		pusher();
+		System.out.printf("%22s%s로 이동합니다.\n\n", " ", menuName);
+		stopper();
+	}
 
 	private static void menuList(String menu, int menuType) {
 		// menuType 0 -> 가운데 + 세로 한줄

@@ -19,7 +19,8 @@ public class StartPage {
 			System.out.printf("\n%22s1. 로그인", " ");
 			System.out.printf("\n%22s2. 회원가입", " ");
 			System.out.printf("\n%22s3. ID/PW 찾기", " ");
-			System.out.printf("\n%22s0. 프로그램 종료 ", " ");
+			System.out.printf("\n%22s0. 프로그램 종료\n", " ");
+			MongleVisual.choiceGuidePrint();
 
 			String choice = "";
 
