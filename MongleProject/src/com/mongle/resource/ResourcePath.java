@@ -27,5 +27,7 @@ public class ResourcePath {
 
 		public final static String UA = "dat\\UA.txt";
 
-		public static final String IA = "dat\\IA.txt";
+		public final static String IA = "dat\\IA.txt";
+		
+		public final static String SAFE = "dat\\SAFE.dat";
 	}
