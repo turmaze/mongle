@@ -38,7 +38,6 @@ public class WireTransfer {
 
 			}
 		}
-<<<<<<< Updated upstream
 
 	}// extracted
 
@@ -56,109 +55,6 @@ public class WireTransfer {
 			scanner.nextLine(); // 버퍼 비우기
 			return;
 		}
-=======
-	}
-		
-	}//extracted
-	private static int dutchpay() {
-		// 더치페이 인원 설정 로직 구현
-		Scanner scanner = new Scanner(System.in);
-	System.out.printf("%22s더치페이 금액을 설정하세요 (정수형태): ", "");
-    int amount = scanner.nextInt();
-    
-    
-    // 더치페이 금액 설정 로직
-    System.out.printf("%22s더치페이 금액이 " + amount + "원으로 설정되었습니다.\n", " ");
-	
-    // 더치페이 금액 설정 로직 구현
-
-    System.out.printf("%22s지불 대상자를 입력하세요:", " ");
-    String who = scanner.next();
-   
-    // 정산하기 요청 출력
-    System.out.printf("%22s%s님에게 정산하기를 요청합니다.\n", " ", who);
-
- // 요청인원 출력
-    int totalPeople = 1; // 사용자 자신을 포함하여 1명
-    System.out.printf("%22s 더치페이 총 인원: %d명\n", " ", totalPeople + 1); // 사용자 자신을 포함하여 +1명
-    // 전체금액 : amount
-    
-
-    // 공유하기-메세지/카카오톡으로 전송하는 창 띄우기
-    System.out.printf("%22s 1. 메시지로 공유하기\n", " ");
-    System.out.printf("%22s 2. 카카오톡으로 공유하기\n"," ");
-    System.out.printf("%22s 공유 옵션을 선택하세요: \n", " ");
-    int shareChoice = scanner.nextInt();
-    
-    switch (shareChoice) {
-        case 1:
-        	System.out.printf("%22s메세지로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송합니다.", " ");
-            break;
-        case 2:
-        	 System.out.printf("%22s카카오톡 으로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송합니다.", " ");
-            break;
-        default:
-            System.out.printf("%22s올바른 공유 옵션을 선택하세요.", " ");
-    	}
-    
-    String header = "+---+---------------------+-----------------------+-----------------------+-----------------+";
-	System.out.printf("%22s%s\n", " ", header);
-	System.out.printf("%22s|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n", " ");
-	System.out.printf("%22s%s\n", " ", header);
-	List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
-			.collect(Collectors.toList());
-	print(filteredList); // json 에서 가져온 데이터
-	System.out.printf("%22s%s\n", " ", header);
-	System.out.println();
-	System.out.printf("%22s송금할 계좌를 선택해 주세요.\n"," ");	
-	System.out.printf("%22s선택(번호) :", " ");
-
-	String sel = scanner.nextLine();
-	
-	boolean loop = true;
-	while (loop) {	
-	System.out.println();
-	
-		if (sel.equals("0")) {
-			return 0;
-		}
-
-		try {
-			if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
-
-				for (BankAccount acc : BankAccount.list) {
-					if (acc.getAccountNumber()
-							.equals(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber())) {
-						if (amount>0) {
-
-							int rest = acc.getDepositAmount() + amount;
-							BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
-									acc.getTitleDepo(), acc.getAccountNumber(), rest));
-							
-							System.out.println();
-							System.out.printf("%22s송금이 완료되었습니다.\n", " ");
-							System.out.printf("%22s송금 후 잔액은 %,d원입니다.\n", " ", rest);
-							System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-							scanner.nextLine();
-							loop = false;
-						} else if (amount<0) {
-							System.out.printf("%22s 보낼 금액이 없습니다..\n", " ");
-			
-						}
-					}
-				}
-			} else {
-				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
-			}
-		} catch (NumberFormatException e) {
-			System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
-		}
-	}
-	return 0;	
-	}//dutchpay
-	
-	
->>>>>>> Stashed changes
 
 		if (amount < 0) {
 			System.out.printf("%22s[오류 발생] 음수는 입력할 수 없습니다.", " ");

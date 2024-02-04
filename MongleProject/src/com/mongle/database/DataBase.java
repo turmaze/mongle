@@ -83,8 +83,7 @@ public class DataBase {
 									}
 									int num = (int) ((long) it.get("depositAmount"));
 									BankAccount b = new BankAccount((String) it.get("bankDepo"),
-											(String) it.get("titleDepo"), (String) it.get("accountNumber"), num,
-											history);
+											(String) it.get("titleDepo"), (String) it.get("accountNumber"), num, history);
 									BankAccount.list.add(b);
 								} else {
 									int num = (int) ((long) it.get("depositAmount"));
