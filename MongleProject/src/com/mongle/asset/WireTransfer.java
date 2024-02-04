@@ -26,16 +26,22 @@ public class WireTransfer {
 
 			if (sel.equals("1")) {
 				// 송금하기
+				MongleVisual.menuMove("송금 화면");
 				transaction();
 			} else if (sel.equals("2")) {
+				MongleVisual.menuMove("더치페이 화면");
 				// 더치페이
 				dutchpay();
 			} else if (sel.equals("3")) {
+				MongleVisual.menuMove("예약송금 화면");
 				// 예약송금
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				// 이전으로
 				loop = false;
 
+			} else {
+				MongleVisual.wrongInput();
 			}
 		}
 
@@ -189,7 +195,7 @@ public class WireTransfer {
 		System.out.printf("%s\n", header);
 		System.out.println();
 		System.out.printf("%22s송금할 계좌를 선택해 주세요.\n", " ");
-		System.out.printf("%22s선택(번호) :", " ");
+		MongleVisual.choiceGuidePrint();
 		String sel = scan.nextLine();
 
 		boolean loop = true;
@@ -222,14 +228,12 @@ public class WireTransfer {
 						}
 					}
 				} else if (sel.equals("0")){
-					System.out.printf("%22s이전 화면으로 돌아갑니다..\n", " ");
+					MongleVisual.menuMove("이전 화면");
 					return 0;
 				}else {
-					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
 					MongleVisual.wrongInput();
 				}
 			} catch (NumberFormatException e) {
-				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
 				MongleVisual.wrongInput();
 			}
 		}
