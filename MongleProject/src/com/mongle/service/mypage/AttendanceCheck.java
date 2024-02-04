@@ -46,13 +46,10 @@ public class AttendanceCheck {
 
 			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]));
 
-			System.out.println();
-			System.out.println();
-
-			String emojiString = "출석 마크";
-			//String nowEmoji = AttendList.list.get(0).getEmoji();
-			System.out.printf("%22s현재%s: \n", " ", emojiString);
-			System.out.printf("%22s1. %s 변경(기본설정: \"O\")\n", " ", emojiString);
+			String emojiString = "출석 마크"; //출석 표시 마크 이름 (수정 예정?)
+			String nowEmoji = AttendList.list.get(0).getEmoji(); //현재 설정된 출석 마크
+			
+			System.out.printf("%22s1. %s 변경(현재: %s)\n", " ", emojiString, nowEmoji);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			MongleVisual.choiceGuidePrint();
@@ -92,8 +89,7 @@ public class AttendanceCheck {
 			System.out.println();
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
-			System.out.printf("%22s선택(번호): ", " ");
+			MongleVisual.choiceGuidePrint();
 
 			String sel = scan.nextLine();
 			
@@ -247,6 +243,9 @@ public class AttendanceCheck {
 				for (int j = 1; j < lastDayOfWeek; j++) {
 					System.out.printf("%3s\t", "X");
 				}
+				
+				System.out.println();
+				System.out.println();
 
 			}
 
