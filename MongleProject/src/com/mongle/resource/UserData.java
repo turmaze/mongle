@@ -11,11 +11,19 @@ public class UserData {
 	private String credScore;
 	private String safeSendSetting = "0";
 	private String point;
+	private String userAgree;
+	private String infoAgree;
 	
 
 
 
 
+	public String getUserAgree() {
+		return userAgree;
+	}
+	public String getInfoAgree() {
+		return infoAgree;
+	}
 	public String getCredScore() {
 		return credScore;
 	}
@@ -70,6 +78,12 @@ public class UserData {
 	}
 	public void setSafeSendSetting(String safeSendSetting) {
 		this.safeSendSetting = safeSendSetting;
+	}
+	public void setUserAgree(String userAgree) {
+		this.userAgree = userAgree;
+	}
+	public void setInfoAgree(String infoAgree) {
+		this.infoAgree = infoAgree;
 	}
 	
 	

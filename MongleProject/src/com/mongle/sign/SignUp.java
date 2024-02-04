@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.mongle.view.MongleVisual;
 import com.mongle.database.DataBase;
 import com.mongle.resource.UserData;
+import com.mongle.service.InfoConsent;
 import com.mongle.yourapp.Encrypt;
 
 
@@ -56,6 +57,16 @@ public class SignUp {
 		
 		//pw1을 DataBase.java의 HashMap("비밀번호",pw1)으로 저장하고 HashMap을 DataBase.java의 Arraylist에 저장하는 코드			// System.out.println(m.matches()); //testcode
 
+		
+		//----------------infoConsent
+		
+			MongleVisual.menuHeader("동의서");
+			String ua = Integer.toString(InfoConsent.useConsent("이용약관"));
+			String ia =Integer.toString(InfoConsent.useConsent("개인정보 수집이용 동의서"));
+			userData.setUserAgree(ua);
+			userData.setInfoAgree(ia);
+			newUser.put("useragree", userData.getUserAgree());
+			newUser.put("infoagree", userData.getInfoAgree());
 		
 		//----------------name----------------
 		String name; 
