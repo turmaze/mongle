@@ -115,8 +115,7 @@ public class Exchange {
 				System.out.printf("%22s6. 다음페이지\n", " ");
 				System.out.printf("%22s9. 홈으로\n", " ");
 				System.out.printf("%22s0. 이전으로\n", " ");
-				System.out.println();
-				System.out.printf("%22s선택(번호): ", " ");
+				MongleVisual.choiceGuidePrint();
 
 				String sel = scan.nextLine();
 
@@ -142,9 +141,7 @@ public class Exchange {
 				} else if (sel.equals("0")) {
 					return 0;
 				} else {
-					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
-					System.out.printf("%22s홈 화면으로 돌아가시려면 엔터를 눌러주세요.\n", " ");
-					scan.nextLine();
+					MongleVisual.wrongInput();
 					continue;
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
@@ -173,7 +170,7 @@ public class Exchange {
 				price = price.replace(",", "");
 				System.out.printf("%22s총 구매 대금: %,d원\n", " ", Integer.parseInt(price) * Integer.parseInt(amount));
 				System.out.printf("%22s구매하시겠습니까? (y/n)\n", " ");
-				System.out.printf("%22s선택: ", " ");
+				MongleVisual.choiceGuidePrint();
 				sel = scan.nextLine();
 				if (sel.equals("y")) {
 					buyPrice = Integer.parseInt(price);
@@ -189,9 +186,7 @@ public class Exchange {
 					index = -1;
 					continue;
 				} else {
-					MongleVisual.pusher();
-					System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
-					MongleVisual.stopper();
+					MongleVisual.wrongInput();
 					index = -1;
 					continue;
 				}

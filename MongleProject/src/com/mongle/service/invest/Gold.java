@@ -56,10 +56,9 @@ public class Gold {
 			System.out.printf("%22s1. 구매\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
 			while (loop) {
-				System.out.printf("%22s선택(번호) :", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				if (sel.equals("1")) {
 					Gold gold = new Gold();
