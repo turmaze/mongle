@@ -7,7 +7,7 @@ import java.util.Scanner;
 import com.github.lalyos.jfiglet.FigletFont;
 
 public class Captcha {
-    public static void main(String[] args) {
+    public static boolean captcha() {
         Scanner scanner = new Scanner(System.in);
         String captcha;
         String input;
@@ -16,14 +16,14 @@ public class Captcha {
         while (count < 3) {
             captcha = generateCaptcha();
             System.out.printf(asciiArt(captcha));
-            System.out.printf("%22s%s\n"," ",captcha);
+            //System.out.printf("%22s%s\n"," ",captcha); testcode
             System.out.printf("%22s이미지의 문자를 입력하세요.\n"," ");
             System.out.printf("%22s입력: "," ");
             input = scanner.nextLine();
             
             if (captcha.equals(input)) {
                 System.out.printf("%22s성공\n\n"," ");
-                break; //이거 return true;
+                return true;
             } else {
                 count++;
                 if (count < 3) {
@@ -34,7 +34,7 @@ public class Captcha {
                 }
             }
         } //while
-        
+        return false;        
     }
     
     private static String generateCaptcha() {
@@ -45,22 +45,16 @@ public class Captcha {
         for (int i = 0; i < 6; i++) {
             int index = random.nextInt(characters.length());
             captcha.append(characters.charAt(index));
-        }
-        
+        }        
         return captcha.toString();
     }
     
-    private static String asciiArt(String input) {
-//     
+    private static String asciiArt(String input) {     
     	String asciiArt;
-		try {
-			
-			asciiArt = FigletFont.convertOneLine(input);
-	        
+		try {		
+			asciiArt = FigletFont.convertOneLine(input);        
 	        return asciiArt;
-
-		} catch (IOException e) {
-			
+		} catch (IOException e) {		
 			e.printStackTrace();
 			return " ";
 		}     
