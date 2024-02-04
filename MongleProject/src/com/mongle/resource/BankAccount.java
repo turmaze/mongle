@@ -73,79 +73,100 @@ public class BankAccount {
 
 	/**
 	 * 거래 내역 리스트 Getter
+	 * 
 	 * @return 거래 내역 리스트
 	 */
 	public ArrayList<History> getHis() {
 		return history;
 	}
+
 	/**
 	 * 거래 내역 리스트 Setter
-	 * @return 거래 내역 리스트
+	 * 
+	 * @param history
 	 */
-	public void setHis(ArrayList<History> his) {
-		this.history = his;
+
+	public void setHis(ArrayList<History> history) {
+		this.history = history;
 	}
+
 	/**
 	 * 잔액 Getter
+	 * 
 	 * @return 잔액
 	 */
 	public int getDepositAmount() {
 		return depositAmount;
 	}
+
 	/**
 	 * 잔액 Setter
-	 * @return 잔액
+	 * 
+	 * @param depositAmount 잔액
 	 */
 	public void setDepositAmount(int depositAmount) {
 		depositAmount = depositAmount;
 	}
+
 	/**
 	 * 계좌 번호 Getter
+	 * 
 	 * @return 계좌 번호
 	 */
 	public String getAccountNumber() {
 		return accountNumber;
 	}
+
 	/**
 	 * 계좌 번호 Setter
-	 * @return 계좌 번호
+	 * 
+	 * @param accountNumber
 	 */
 	public void setAccountNumber(String accountNumber) {
 		accountNumber = accountNumber;
 	}
+
 	/**
 	 * 금융사 Getter
+	 * 
 	 * @return 금융사
 	 */
 	public String getBankDepo() {
 		return bankDepo;
 	}
+
 	/**
 	 * 금융사 Setter
-	 * @return 금융사
+	 * 
+	 * @param bankDepo 금융사
 	 */
 	public void setBankDepo(String bankDepo) {
 		this.bankDepo = bankDepo;
 	}
+
 	/**
 	 * 예적금명 Getter
+	 * 
 	 * @return 예적금명
 	 */
 	public String getTitleDepo() {
 		return titleDepo;
 	}
+
 	/**
 	 * 예적금명 Setter
-	 * @return 예적금명
+	 * 
+	 * @param titleDepo 예적금명
 	 */
 	public void setTitleDepo(String titleDepo) {
 		this.titleDepo = titleDepo;
 	}
 
 	/**
-	 * 계좌 toString()
-	 * String.format("BankAccount [depositAmount=%s, accountNumber=%s, bankDepo=%s, titleDepo=%s, history=%d]",
-				depositAmount, accountNumber, bankDepo, titleDepo, history.size());
+	 * 계좌 toString() 
+	 * String.format("BankAccount [depositAmount=%s, accountNumber=%s,
+	 * bankDepo=%s, titleDepo=%s, history=%d]", depositAmount, accountNumber,
+	 * bankDepo, titleDepo, history.size());
 	 */
 	@Override
 	public String toString() {
