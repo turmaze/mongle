@@ -122,6 +122,8 @@ public class FindAcc {
 				if (user.getName().equals(checkName) && user.getPhone().equals(checkPhone)) {
 					System.out.printf("\n%22s아이디: %s", " ", findID);
 					break;
+				}else {
+					System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
 				}
 			} while (true);
 		} catch (Exception e) {
