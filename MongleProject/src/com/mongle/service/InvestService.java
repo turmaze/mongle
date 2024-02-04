@@ -38,7 +38,7 @@ public class InvestService {
 
 			switch (sel) {
 			case "1":
-				MongleVisual.menuHeader("주식 화면");
+				MongleVisual.menuMove("주식 화면");
 				r = Stock.stockService();
 				if (r == 9) {
 					return 9;
@@ -46,7 +46,7 @@ public class InvestService {
 					continue;
 				}
 			case "2":
-				MongleVisual.menuHeader("펀드 화면");
+				MongleVisual.menuMove("펀드 화면");
 				r = Fund.fundService();
 				if (r == 9) {
 					return 9;
@@ -54,7 +54,7 @@ public class InvestService {
 					continue;
 				}
 			case "3":
-				MongleVisual.menuHeader("대출 화면");
+				MongleVisual.menuMove("대출 화면");
 				r = Loan.loanService();
 				if (r == 9) {
 					return 9;
@@ -62,7 +62,7 @@ public class InvestService {
 					continue;
 				}
 			case "4":
-				MongleVisual.menuHeader("금 상품 화면");
+				MongleVisual.menuMove("금 상품 화면");
 				r = Gold.goldService();
 				if (r == 9) {
 					return 9;
@@ -70,7 +70,7 @@ public class InvestService {
 					continue;
 				}
 			case "5":
-				MongleVisual.menuHeader("환전 화면");
+				MongleVisual.menuMove("환전 화면");
 				r = Exchange.exchangeService();
 				if (r == 9) {
 					return 9;
@@ -78,7 +78,7 @@ public class InvestService {
 					continue;
 				}
 			case "0":
-				MongleVisual.menuHeader("이전 화면");
+				MongleVisual.menuMove("이전 화면");
 				loop = false;
 				break;
 			default:
@@ -112,7 +112,7 @@ public class InvestService {
 			int totalPrice = price * num;
 
 			if (sel.equals("0")) {
-				MongleVisual.menuHeader("이전 화면");
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 

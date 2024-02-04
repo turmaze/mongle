@@ -25,7 +25,7 @@ public class AssertManagementView {
 			String sel = sc.nextLine();
 			//
 			if (sel.equals("1")) {
-				MongleVisual.menuHeader("계좌 관리 화면");
+				MongleVisual.menuMove("계좌 관리 화면");
 				r = AssetService.assmenu();
 				if (r == 9) {
 					return 9;
@@ -34,7 +34,7 @@ public class AssertManagementView {
 				}
 
 			} else if (sel.equals("2")) {
-				MongleVisual.menuHeader("투자 관리 화면");
+				MongleVisual.menuMove("투자 관리 화면");
 				r = InvestmentView.addmenu();
 				if (r == 9) {
 					return 9;
@@ -42,7 +42,7 @@ public class AssertManagementView {
 					continue;
 				}
 			} else if (sel.equals("3")) {
-				MongleVisual.menuHeader("대출 관리 화면");
+				MongleVisual.menuMove("대출 관리 화면");
 ///////////////////////////대출 관리 기능 추가
 				if (r == 9) {
 					return 9;
@@ -50,10 +50,10 @@ public class AssertManagementView {
 					continue;
 				}
 			} else if (sel.equals("9")) {
-				MongleVisual.menuHeader("홈 화면");
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
-				MongleVisual.menuHeader("이전 화면");
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			} else {
 				MongleVisual.wrongInput();

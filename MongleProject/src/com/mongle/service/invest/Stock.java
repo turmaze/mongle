@@ -93,10 +93,10 @@ public class Stock {
 					System.out.printf("%22s코드명: ", " ");
 					sel = "&srtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
 				}  else if (sel.equals("9")) {
-					MongleVisual.menuHeader("홈 화면");
+					MongleVisual.menuMove("홈 화면");
 						return 9;
 				}  else if (sel.equals("0")) {
-					MongleVisual.menuHeader("이전 화면");
+					MongleVisual.menuMove("이전 화면");
 					return 0;
 			}
 				System.out.println();
@@ -211,10 +211,10 @@ public class Stock {
 				} else if (sel2.equals("2")) {
 					MongleVisual.stopper();
 				} else if (sel2.equals("9")) {
-					MongleVisual.menuHeader("홈 화면");
+					MongleVisual.menuMove("홈 화면");
 					return 9;
 				} else if (sel2.equals("0")) {
-					MongleVisual.menuHeader("이전 화면");
+					MongleVisual.menuMove("이전 화면");
 					return 0;
 				}
 				

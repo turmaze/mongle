@@ -137,8 +137,10 @@ public class Exchange {
 				} else if (sel.equals("6")) {
 					continue;
 				} else if (sel.equals("9")) {
+					MongleVisual.menuMove("홈 화면");
 					return 9;
 				} else if (sel.equals("0")) {
+					MongleVisual.menuMove("이전 화면");
 					return 0;
 				} else {
 					MongleVisual.wrongInput();

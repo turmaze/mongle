@@ -32,7 +32,7 @@ public class AssetService {
 			String sel = sc.nextLine();
 			//
 			if (sel.equals("1")) {
-				MongleVisual.menuHeader("계좌 개설 화면");
+				MongleVisual.menuMove("계좌 개설 화면");
 				r = DepoSave.depoSaveService();
 				if (r == 9) {
 					return 9;
@@ -40,7 +40,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("2")) {
-				MongleVisual.menuHeader("계좌 조회 화면");
+				MongleVisual.menuMove("계좌 조회 화면");
 				r = checkDepo();
 				if (r == 9) {
 					return 9;
@@ -48,7 +48,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("3")) {
-				MongleVisual.menuHeader("계좌 연동 화면");
+				MongleVisual.menuMove("계좌 연동 화면");
 				r = AccountConnection.connection();
 				if (r == 9) {
 					return 9;
@@ -56,7 +56,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("4")) {
-				MongleVisual.menuHeader("이자계산기 화면");
+				MongleVisual.menuMove("이자계산기 화면");
 				r = DepoCalculator.depoSaveService();
 				if (r == 9) {
 					return 9;
@@ -64,10 +64,10 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("9")) {
-				MongleVisual.menuHeader("홈 화면");
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
-				MongleVisual.menuHeader("이전 화면");
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			} else {
 				MongleVisual.wrongInput();
@@ -105,10 +105,10 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("9")) {
-				MongleVisual.menuHeader("홈 화면");
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
-				MongleVisual.menuHeader("이전 화면");
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 

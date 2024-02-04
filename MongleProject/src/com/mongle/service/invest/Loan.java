@@ -83,10 +83,10 @@ public class Loan {
 						index += 7;
 						break;
 					} else if (sel.equals("9")) {
-						MongleVisual.menuHeader("홈 화면");
+						MongleVisual.menuMove("홈 화면");
 						return 9;
 					} else if (sel.equals("0")) {
-						MongleVisual.menuHeader("이전 화면");
+						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
 						MongleVisual.wrongInput();

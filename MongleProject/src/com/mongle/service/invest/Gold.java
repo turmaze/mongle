@@ -67,10 +67,10 @@ public class Gold {
 					gold.setNum(orderGold(gold.price, scan));
 					loop = false;
 				} else if (sel.equals("9")) {
-					System.out.printf("%22s홈 화면으로 이동합니다.", " ");
+					MongleVisual.menuMove("홈 화면");
 					return 9;
 				} else if (sel.equals("0")) {
-					System.out.printf("%22s이전 화면으로 이동합니다.", " ");
+					MongleVisual.menuMove("이전 화면");
 					return 0;
 				} else {
 					MongleVisual.wrongInput();
