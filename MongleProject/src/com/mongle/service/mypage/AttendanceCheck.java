@@ -50,7 +50,8 @@ public class AttendanceCheck {
 			System.out.println();
 
 			String emojiString = "출석 마크";
-			System.out.printf("%22s현재%s\n", " ", emojiString);
+			//String nowEmoji = AttendList.list.get(0).getEmoji();
+			System.out.printf("%22s현재%s: \n", " ", emojiString);
 			System.out.printf("%22s1. %s 변경(기본설정: \"O\")\n", " ", emojiString);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -102,7 +103,7 @@ public class AttendanceCheck {
 			
 			if (m1.find()) {
 				String nowEmoji = emoji[Integer.parseInt(sel)];
-				AttendList.list.get(0).setEmoji(nowEmoji);;
+				AttendList.list.get(0).setEmoji(nowEmoji);
 				MongleVisual.successPrint();
 			} else if (sel.equals("9")) {
 				return 9;
