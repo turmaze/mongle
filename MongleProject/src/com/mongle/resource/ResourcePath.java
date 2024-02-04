@@ -22,4 +22,8 @@ public class ResourcePath {
 		//public final static String INQUIRY = "src\\com\\mongle\\resource\\inquiry\\inquiry.json";
 		public final static String INQUIRY = "dat\\inquiry.json";
 		
+
+		public final static String UA = "dat\\UA.txt";
+
+		public static final String IA = "dat\\IA.txt";
 	}
