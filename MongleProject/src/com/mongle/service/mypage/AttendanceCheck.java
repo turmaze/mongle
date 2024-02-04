@@ -44,10 +44,10 @@ public class AttendanceCheck {
 
 			System.out.println();
 
-			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+			String nowEmoji = AttendList.list.get(0).getEmoji(); //현재 설정된 출석 마크
+			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]), nowEmoji);
 
 			String emojiString = "출석 마크"; //출석 표시 마크 이름 (수정 예정?)
-			String nowEmoji = AttendList.list.get(0).getEmoji(); //현재 설정된 출석 마크
 			
 			System.out.printf("%22s1. %s 변경(현재: %s)\n", " ", emojiString, nowEmoji);
 			System.out.printf("%22s9. 홈으로\n", " ");
@@ -179,9 +179,15 @@ public class AttendanceCheck {
 
 	}
 
-	private static void printCalendar(int year, int month) {
+	private static void printCalendar(int year, int month, String nowEmoji) {
 		int lastDay = getLastDay(year, month);
 		int dayOfWeek = getDayOfWeek(year, month);
+		int index = 1;
+		int endindex;
+		int lastindex;
+		
+		LocalDate date = LocalDate.now();
+		int todayDate = 
 
 		// System.out.println(lastDay);
 		// System.out.println(dayOfWeek);
