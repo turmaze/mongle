@@ -80,7 +80,6 @@ public class History {
 
 		BankAccount.list.set(BankAccount.list.indexOf(acc),
 				new BankAccount(acc.getBankDepo(), acc.getTitleDepo(), acc.getAccountNumber(), rest, history));
-
 	}
 
 	public static int check(String accountNumber) {

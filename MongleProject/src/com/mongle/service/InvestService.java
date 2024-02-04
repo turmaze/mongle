@@ -118,28 +118,21 @@ public class InvestService {
 
 			try {
 				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
+					BankAccount acc = BankAccount
+							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
+					if (acc.getDepositAmount() > totalPrice) {
+						int rest = acc.getDepositAmount() - totalPrice;
+						History.make(acc.getAccountNumber(), memo, -totalPrice);
 
-					for (BankAccount acc : BankAccount.list) {
-						if (acc.getAccountNumber().equals(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber())) {
-							if (acc.getDepositAmount() > totalPrice) {
-
-								int rest = acc.getDepositAmount() - totalPrice;
-//								BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
-//										acc.getTitleDepo(), acc.getAccountNumber(), rest));
-								History.make(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber(), memo,
-										-totalPrice);
-
-								System.out.println();
-								System.out.printf("%22s주문가격 %,d원(시장가) / 주문 수량 : %s\n", " ", price, num);
-								System.out.printf("%22s거래가 완료되었습니다.\n", " ");
-								System.out.printf("%22s거래 후 잔액은 %,d원입니다.\n", " ", rest);
-								MongleVisual.stopper();
-								loop = false;
-							} else if (acc.getDepositAmount() < totalPrice) {
-								System.out.printf("%22s계좌의 잔액이 부족합니다.\n", " ");
-								System.out.printf("%22s다시 선택해주세요.\n", " ");
-							}
-						}
+						System.out.println();
+						System.out.printf("%22s주문가격 %,d원(시장가) / 주문 수량 : %s\n", " ", price, num);
+						System.out.printf("%22s거래가 완료되었습니다.\n", " ");
+						System.out.printf("%22s거래 후 잔액은 %,d원입니다.\n", " ", rest);
+						MongleVisual.stopper();
+						loop = false;
+					} else if (acc.getDepositAmount() < totalPrice) {
+						System.out.printf("%22s계좌의 잔액이 부족합니다.\n", " ");
+						System.out.printf("%22s다시 선택해주세요.\n", " ");
 					}
 				} else {
 					MongleVisual.wrongInput();
