@@ -74,7 +74,9 @@ public class MainMenu {
 				System.out.printf("%22s로그아웃합니다.\n\n", " ");
 				loop = false; return;
 			default:
+				System.out.println();
 				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
+				MongleVisual.stopper();
 			}
 
 		}
