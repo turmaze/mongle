@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -44,11 +46,11 @@ public class AttendanceCheck {
 
 			System.out.println();
 
-			String nowEmoji = AttendList.list.get(0).getEmoji(); //현재 설정된 출석 마크
+			String nowEmoji = AttendList.list.get(0).getEmoji(); // 현재 설정된 출석 마크
 			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]), nowEmoji);
 
-			String emojiString = "출석 마크"; //출석 표시 마크 이름 (수정 예정?)
-			
+			String emojiString = "출석 마크"; // 출석 표시 마크 이름 (수정 예정?)
+
 			System.out.printf("%22s1. %s 변경(현재: %s)\n", " ", emojiString, nowEmoji);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -57,8 +59,10 @@ public class AttendanceCheck {
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
 				int r = attendEmojiChange(emojiString);
-				
-				if (r == 9) { return 9;	}
+
+				if (r == 9) {
+					return 9;
+				}
 			} else if (sel.equals("9")) {
 				return 9;
 			} else if (sel.equals("0")) {
@@ -92,13 +96,13 @@ public class AttendanceCheck {
 			MongleVisual.choiceGuidePrint();
 
 			String sel = scan.nextLine();
-			
-			String regex = String.format("^[1-%d]$", numEmoji) ;
+
+			String regex = String.format("^[1-%d]$", numEmoji);
 			Pattern p1 = Pattern.compile(regex);
 			Matcher m1 = p1.matcher(sel);
-			
+
 			if (m1.find()) {
-				String nowEmoji = emoji[Integer.parseInt(sel)];
+				String nowEmoji = emoji[Integer.parseInt(sel)-1];
 				AttendList.list.get(0).setEmoji(nowEmoji);
 				MongleVisual.successPrint();
 			} else if (sel.equals("9")) {
@@ -119,8 +123,7 @@ public class AttendanceCheck {
 		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attend");
 		if (arr != null) {
 			if (arr.size() > 0) {
-				AttendList.list.add(new AttendList(
-						(ArrayList<String>) ((JSONObject) arr.get(0)).get("attenddate"),
+				AttendList.list.add(new AttendList((ArrayList<String>) ((JSONObject) arr.get(0)).get("attenddate"),
 						(String) ((JSONObject) arr.get(0)).get("stratedate"),
 						(String) ((JSONObject) arr.get(0)).get("emoji")));
 				return;
@@ -181,13 +184,14 @@ public class AttendanceCheck {
 
 	private static void printCalendar(int year, int month, String nowEmoji) {
 		LocalDate date = LocalDate.now();
-		String dates = date+"";
-		dates = dates.substring(dates.length()-2);
+		String dates = date + "";
+		dates = dates.substring(dates.length() - 2);
+		int today = Integer.parseInt(dates);
 		int lastDay = getLastDay(year, month);
 		int dayOfWeek = getDayOfWeek(year, month);
-		int index = 1;
-		int endindex = 0;
-		int lastindex = Integer.parseInt(dates);
+
+		ArrayList<Integer> attendlist = new ArrayList<Integer>();
+		attendlist = attendDayList();
 
 		System.out.printf("%15s======================================================\n", " ");
 		System.out.printf("%15s                       %02d월\n", " ", month);
@@ -209,11 +213,17 @@ public class AttendanceCheck {
 					// 첫째주
 					System.out.println();
 					System.out.printf("%8s\t", " "); // 정렬 공백
-					for (int k = 0; k < dayOfWeek; k++) {
+					for (int k = 1; k <= dayOfWeek; k++) {
 						System.out.print("\t");
 					}
-					for (int k = 0; k < 7 - dayOfWeek; k++) {
-						System.out.printf("%3s\t", "X");
+					for (int k = 1; k <= 7 - dayOfWeek; k++) {
+						if (attendlist.contains(k)) {
+							System.out.printf("%3s\t", nowEmoji);
+						} else if (k >= today) {
+							System.out.printf("%3s\t", "");
+						} else {
+							System.out.printf("%3s\t", "X");
+						}
 					}
 					System.out.println();
 					System.out.printf("%8s\t", " "); // 정렬 공백
@@ -221,13 +231,15 @@ public class AttendanceCheck {
 					// 두번째주~마지막 전 주
 					System.out.println();
 					System.out.printf("%8s\t", " "); // 정렬 공백
-					System.out.printf("%3s\t", "X");
-					System.out.printf("%3s\t", "X");
-					System.out.printf("%3s\t", "X");
-					System.out.printf("%3s\t", "X");
-					System.out.printf("%3s\t", "X");
-					System.out.printf("%3s\t", "X");
-					System.out.printf("%3s\t", "X");
+					for (int k = i-6; k <= i; k++) {
+						if (attendlist.contains(k)) {
+							System.out.printf("%3s\t", nowEmoji);
+						} else if (k > today) {
+							System.out.printf("%3s\t", "");
+						} else {
+							System.out.printf("%3s\t", "X");
+						}
+					}
 					System.out.println();
 					System.out.printf("%8s\t", " "); // 정렬 공백
 				}
@@ -243,10 +255,16 @@ public class AttendanceCheck {
 
 				System.out.printf("%8s\t", " ");
 
-				for (int j = 1; j < lastDayOfWeek; j++) {
-					System.out.printf("%3s\t", "X");
+				for (int j = i-lastDayOfWeek+2; j <= i; j++) {
+					if (attendlist.contains(j)) {
+						System.out.printf("%3s\t", nowEmoji);
+					} else if (j > today) {
+						System.out.printf("%3s\t", "");
+					} else {
+						System.out.printf("%3s\t", "X");
+					}
 				}
-				
+
 				System.out.println();
 				System.out.println();
 
@@ -277,6 +295,16 @@ public class AttendanceCheck {
 //			
 //		}
 
+	}
+
+	public static ArrayList<Integer> attendDayList() {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for (String day : AttendList.list.get(0).getAttenddate()) {
+			day = day.substring(day.length() - 2);
+			list.add(Integer.parseInt(day));
+		}
+		Collections.sort(list);
+		return list;
 	}
 
 	private static int getLastDay(int year, int month) {

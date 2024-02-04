@@ -1,6 +1,7 @@
 package com.mongle.main;
 
 import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.xml.crypto.Data;
 
@@ -20,19 +21,14 @@ public class TestMain06 {
 	
 	public static void main(String[] args) {
 		DataBase.dataLoad();
-		
 		StartPage.startPage();
-		
 		DataBase.changeData();
-		
 		DataBase.dataSave();
-//		LocalDate date = LocalDate.now();
-//		System.out.println(date);
-//		String dates = date+"";
-//		System.out.println(dates);
-//		System.out.println(dates.substring(dates.length()-2));
-//		int datei = Integer.parseInt((dates.substring(dates.length()-2)));
-//		System.out.println(datei);
+//		LocalDate ldate = LocalDate.now();
+//		String dates = ldate+"";
+//		Calendar date = Calendar.getInstance();
+//		System.out.println(ldate);
+//		System.out.println(date.get(Calendar.DATE));
 		
 	}
 	
