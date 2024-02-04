@@ -1,5 +1,8 @@
 package com.mongle.service.mypage;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -61,6 +64,51 @@ public class SafeSend {
 		}
 		return 0;
 
+	}
+	
+	public static void safeSendMoney(String fromwho, String fromacc
+									, String towho, String toacc
+									, String money, String senddate) {
+		
+		Scanner scan = new Scanner(System.in);
+		
+		if (DataBase.getPrivateUser().get(0).get("safesendsetting").equals("1")) {
+			System.out.printf("%22s%s님으로부터 송금이 들어왔습니다.\n", " ", fromwho);
+			System.out.printf("%22s금액: %,d원\n", " ", money);
+			System.out.printf("%22s송금을 받으시겠습니까?(y/n)", " ");
+			String sel = scan.nextLine();
+			sel = sel.toLowerCase();
+			
+			if (sel.equals("y")) {
+				DataBase.getPrivateUser().get(0).get("acc"); //계좌에 금액 추가
+			} else if (sel.equals("n")) {
+				//fromwho의 fromacc로 money 반환 및 senddate 날짜 입력
+			} else {
+				MongleVisual.wrongInput();
+			}
+			
+		}
+		return;
+	}
+	
+	public static void safeSendAlam() {
+		String path = "송금 내역 경로"; //파일명=받는사람
+    	File file = new File(path);
+    	String wire = null;
+    	try {
+    		
+    		if (file.exists()) {
+    			BufferedReader reader = new BufferedReader(new FileReader(file));
+    			
+    			wire = reader.readLine();
+    			
+    			reader.close();
+    		}
+			
+		} catch (Exception e) {
+			System.out.println("SafeSend.safeSendAlam");
+			e.printStackTrace();
+		}
 	}
 
 }
