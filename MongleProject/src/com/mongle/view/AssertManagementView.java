@@ -7,7 +7,7 @@ import com.mongle.service.AssetService;
 
 public class AssertManagementView {
 	
-	public static void assertadd() {
+	public static int assertadd() {
 		
 		boolean loop = true;
 		int r = -1;
@@ -26,10 +26,26 @@ public class AssertManagementView {
 			String sel = sc.nextLine();
 			//
 			if(sel.equals("1")) {
-				AssetService.assmenu();
+				r = AssetService.assmenu();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 				
 			}else if(sel.equals("2")) {
-				InvestmentView.addmenu();
+				r = InvestmentView.addmenu();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
+				
+			}else if(sel.equals("9")) {
+				return 9;
+				
+			}else if(sel.equals("9")) {
+				return 0;
 				
 			}else {
 				loop = false;
@@ -40,6 +56,7 @@ public class AssertManagementView {
 		
 		
 	}
+		return 0;
 	
 	
 

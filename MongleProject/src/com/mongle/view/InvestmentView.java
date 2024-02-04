@@ -15,7 +15,7 @@ public class InvestmentView {
 	
 	
 		
-	public static void addmenu() {
+	public static int addmenu() {
 		
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -28,7 +28,8 @@ public class InvestmentView {
 			System.out.printf("%22s3. 펀드\n", " ");
 			System.out.printf("%22s4. 환전\n", " ");
 			System.out.printf("%22s5. 대출\n", " ");
-			System.out.printf("%22s6. 이전으로\n", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
 			 
 			
 			System.out.printf("%22s사용자 입력 : ", " ");
@@ -45,13 +46,18 @@ public class InvestmentView {
 			}else if(num.equals("5")) { // 대출
 				loansave();
 				
+			}else if(num.equals("9")) { // 홈으로
+				return 9;
+				
+			}else if(num.equals("0")) { // 이전으로
+				return 0;
+				
 			} else {
 				loop = false;
 				
 			}
 		}
-			
-		//return 0;
+		return 0;
 		
 	}
 
