@@ -7,6 +7,11 @@ import java.util.Scanner;
 import com.github.lalyos.jfiglet.FigletFont;
 
 public class Captcha {
+	
+	/**
+	 * capcha 실행 메서드
+	 * @return 캡챠 성공(true) 실패(false)
+	 */
     public static boolean captcha() {
         Scanner scanner = new Scanner(System.in);
         String captcha;
@@ -37,6 +42,10 @@ public class Captcha {
         return false;        
     }
     
+    /**
+     * 임의의 6자리 문자 생성
+     * @return
+     */
     private static String generateCaptcha() {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder captcha = new StringBuilder();
@@ -49,6 +58,11 @@ public class Captcha {
         return captcha.toString();
     }
     
+    /**
+     * Captcha 이미지 생성
+     * @param generateCaptcha()
+     * @return Captcha image
+     */
     private static String asciiArt(String input) {     
     	String asciiArt;
 		try {		

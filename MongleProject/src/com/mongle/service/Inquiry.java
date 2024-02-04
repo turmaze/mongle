@@ -28,6 +28,9 @@ public class Inquiry {
 
 	private static ArrayList<String> TitleList = new ArrayList<String>();
 	
+	/**
+	 * 관리자 공지사항 실행
+	 */
 	public static void adminAnnouncement() {
 		try {
 			Scanner scanner = new Scanner(System.in);
@@ -94,6 +97,9 @@ public class Inquiry {
 
 	} //adminAnnouncement() 끝
 	
+	/**
+	 * 회원 공지사항 실행
+	 */
 	public static void mebmerAnnouncement() {
 		try {
 			Scanner scanner = new Scanner(System.in);
@@ -144,7 +150,9 @@ public class Inquiry {
 
 	} //memberAnnouncement() 끝
 	
-	
+	/**
+	 * 문의사항 실행
+	 */
 	private void inquiry() {
 		//1. 목록 확인
 		//2. 글 수정 -> 수정할 글의 제목 받기 -> 수정내용 {답변:내용}으로 추가
@@ -154,7 +162,8 @@ public class Inquiry {
 	}
 	
 	/**
-	 	생성
+	 * 생성
+	 * @param arrayList -> annList || inqList
 	 */
 	private void createInq(ArrayList<HashMap> arrayList) {
 		Scanner scanner = new Scanner(System.in);
@@ -196,10 +205,12 @@ public class Inquiry {
         //System.out.println(arrayList); //testcode
 	}
 	
-	
-	
+
 	/**
-		중복 제목 확인
+	 * 	중복 제목 확인
+	 * @param annList || inqList
+	 * @param title
+	 * @return 중복인지(true) 아닌지(false)
 	 */
 	private boolean titleExists(ArrayList<HashMap> arrayList, String title) {
 	    for (HashMap<String, Object> map : arrayList) {
@@ -215,7 +226,8 @@ public class Inquiry {
 	
 	
 	/**
-	 	수정
+	 * 수정
+	 * @param arrayList -> annList || inqList
 	 */
 	private void editInq(ArrayList<HashMap> arrayList) {
 	    Scanner scanner = new Scanner(System.in);
@@ -267,11 +279,10 @@ public class Inquiry {
 	    } while (!found); //찾을때 까지
 	    	    
 	}
-
-	
 	
 	/**
-	 	삭제
+	 * 삭제
+	 * @param arrayList -> annList || inqList
 	 */
 	private void deleteInq(ArrayList<HashMap> arrayList) {
 		Scanner scanner = new Scanner(System.in);
@@ -315,15 +326,12 @@ public class Inquiry {
 					System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
 				}
 		} while(!(input.equals("1") || input.equals("2") ||input.equals("0")) );
-	
-		
-		
+				
 	}
 	
-	
-	
 	/**
-	  	제목 확인
+	 * 제목 확인
+	 * @param arrayList arrayList -> annList || inqList
 	 */
 	private void showTitleList(ArrayList<HashMap> arrayList) {
 		TitleList.clear();
@@ -348,7 +356,8 @@ public class Inquiry {
 	
 	
 	/**
-	 	내용 확인
+	 * 내용 확인
+	 * @param arrayList -> annList || inqList
 	 */
 	private void showTxt(ArrayList<HashMap> arrayList) {
 		Scanner scanner = new Scanner(System.in); 
@@ -367,10 +376,6 @@ public class Inquiry {
 				case "1":
 					do {
 						inquiry.showTitleList(arrayList);
-						
-						
-				
-
 						
 				        System.out.printf("%22s확인할 글의 제목을 입력해주세요\n"," ");
 				        System.out.printf("%22s제목: "," ");
@@ -403,20 +408,15 @@ public class Inquiry {
 				default :
 					System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
 			}	
-		} while(!(select.equals("1") || select.equals("0")) );
-		
-		
-	    
+		} while(!(select.equals("1") || select.equals("0")) );    
 		
 	}
 	
-
-		
+	
 	/**
- 
-		annList || inqList
-		ResourcePath.ANNO || ResourcePath.INQUIRY
-	 
+	 * 저장
+	 * @param list -> annList || inqList
+	 * @param path -> esourcePath.ANNO || ResourcePath.INQUIRY
 	 */
 	private void saveInq(ArrayList list, String path) {
 		try {
@@ -465,15 +465,7 @@ public class Inquiry {
 			e.printStackTrace();
 		}
 	}
-			
-	
-	
-
-	
-	
-	
-	
-	
+				
 	
 //	private String titleInq;
 //	private String txtInq;

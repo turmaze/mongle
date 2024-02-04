@@ -25,22 +25,43 @@ public class DataBase {
 	static ArrayList<HashMap> user = new ArrayList<HashMap>();
 	static ArrayList<HashMap> privateUser = new ArrayList<HashMap>();
 
+	
+	/**
+	 	user getter
+	 * @return user
+	 */
 	public static ArrayList<HashMap> getUser() {
 		return user;
 	}
 
+	/**
+	 * user setter
+	 * @param user 
+	 */
 	public static void setUser(HashMap<String, Object> newUser) {
 		DataBase.user.add(newUser);
 	}
 
+	/**
+	 * privateUser getter
+	 * @return privateUser
+	 */
 	public static ArrayList<HashMap> getPrivateUser() {
 		return privateUser;
 	}
 
+	/**
+	 * privateUser setter
+	 * @param privateUser
+	 */
 	public static void setPrivateUser(HashMap<String, Object> newUser) {
 		DataBase.privateUser.add(newUser);
 	}
 
+	/**
+	 * 로그인 된 사용자 정보 불러오기
+	 * @param primaryKey
+	 */
 	public static void loadPrivateUser(String primaryKey) {
 		JSONParser parser = new JSONParser();
 		try {
@@ -123,6 +144,13 @@ public class DataBase {
 		}
 	}
 
+	
+	/**
+	 * 특정 사용자의 특정(key) 데이터(value) 수정
+	 * @param arrayList
+	 * @param key
+	 * @param value
+	 */
 	public static void changeData(ArrayList<HashMap> arrayList, String key, Object value) {
 		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
 		for (HashMap<String, Object> user : arrayList) {
@@ -134,6 +162,9 @@ public class DataBase {
 		}
 	} // loadPrivateUser
 
+	/**
+	 * 특정 사용자의 모든 데이터 갱신
+	 */
 	public static void changeData() { // user데이터 중 로그인 중인 primaryuser의 데이터를 갱신
 
 //		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
@@ -155,6 +186,9 @@ public class DataBase {
 
 	}
 
+	/**
+	 * 사용자 데이터 저장
+	 */
 	public static void dataSave() {
 		try {
 
@@ -178,6 +212,9 @@ public class DataBase {
 
 	}
 
+	/**
+	 * 파일에서 사용자 데이터 읽기
+	 */
 	// 파일에서 사용자 데이터 읽기
 	public static void dataLoad() {
 
