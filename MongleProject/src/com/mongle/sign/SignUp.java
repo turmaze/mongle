@@ -12,6 +12,9 @@ import com.mongle.yourapp.Encrypt;
 
 
 public class SignUp {
+	/**
+	 * 회원가입 실행
+	 */
 	public static void signUp() {
 		Scanner scan = new Scanner(System.in);
 		UserData userData = new UserData();
@@ -109,7 +112,7 @@ public class SignUp {
 		
 		//capcha
 		
-		MongleVisual.menuHeader("봇 방지");
+		MongleVisual.menuHeader("자동 생성 방지");
 		boolean tF = Captcha.captcha();
 		if(tF == false)
 			return;
