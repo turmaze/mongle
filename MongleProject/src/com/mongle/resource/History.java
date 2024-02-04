@@ -10,17 +10,31 @@ import java.util.Scanner;
 import com.mongle.service.invest.Loan;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 거래 내역 클래스
+ */
 public class History {
 	private String date;
 	private String memo;
 	private int amount;
 	private int balance;
 
+	/**
+	 * 거래 내역 toString()
+	 */
 	@Override
 	public String toString() {
 		return String.format("History [date=%s, memo=%s, amount=%s, banlance=%s]", date, memo, amount, balance);
 	}
 
+	/**
+	 * 거래 내역 생성자
+	 * 
+	 * @param date    거래 날짜
+	 * @param memo    거래 내용
+	 * @param amount  거래 금액
+	 * @param balance 잔고
+	 */
 	public History(String date, String memo, int amount, int balance) {
 		super();
 		this.date = date;
@@ -29,38 +43,49 @@ public class History {
 		this.balance = balance;
 	}
 
+	/**
+	 * 거래 날짜 Getter
+	 * 
+	 * @return 거래 날짜
+	 */
 	public String getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
-	}
-
+	/**
+	 * 거래 내용 Getter
+	 * 
+	 * @return
+	 */
 	public String getMemo() {
 		return memo;
 	}
 
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-
+	/**
+	 * 거래 금액 Getter
+	 * 
+	 * @return
+	 */
 	public int getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
+	/**
+	 * 잔고 Getter
+	 * 
+	 * @return
+	 */
 	public int getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-
+	/**
+	 * 거래 내역 추가
+	 * 
+	 * @param accountNumber 거래 내역 추가할 계좌 번호
+	 * @param memo          거래 내역에 들어갈 내용
+	 * @param amount        거래 내역에 들어갈 금액
+	 */
 	public static void make(String accountNumber, String memo, int amount) {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
@@ -82,6 +107,12 @@ public class History {
 				new BankAccount(acc.getBankDepo(), acc.getTitleDepo(), acc.getAccountNumber(), rest, history));
 	}
 
+	/**
+	 * 거래 내역 확인
+	 * 
+	 * @param accountNumber 거래 내역 확인할 계좌 번호
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int check(String accountNumber) {
 		ArrayList<History> history = new ArrayList<History>();
 		BankAccount acc = BankAccount.findAccount(accountNumber);
@@ -137,17 +168,29 @@ public class History {
 		return 0;
 	}
 
+	/**
+	 * 거래 내역 출력
+	 * 
+	 * @param history 거래 내역 리스트
+	 * @param index   출력 시작값
+	 */
 	private static void transHistory(ArrayList<History> history, int index) {
 		String header = "+-------------------------+---------------+-------------+-----------------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|           날짜    \t  |      내역      |   거래 금액   |        잔액       |\n", " ");
 		System.out.printf("%s\n", header);
 
-		printAsciiTable(history, index); // json 에서 가져온 데이터
+		print(history, index); // json 에서 가져온 데이터
 		System.out.printf("%s\n", header);
 	}
 
-	public static void printAsciiTable(ArrayList<History> data, int index) { // 표에 반복해서 출력하는 메서드
+	/**
+	 * 표 형식으로 출력
+	 * 
+	 * @param data  출력할 리스트
+	 * @param index 출력 시작값
+	 */
+	public static void print(ArrayList<History> data, int index) { // 표에 반복해서 출력하는 메서드
 
 		for (int i = index; i < ((data.size() < index + 10) ? data.size() : index + 10); i++) {
 			System.out.printf("|   %-10s   |%8s\t  |%,10d   |%,14d원  |\n", data.get(i).getDate(), data.get(i).getMemo(),
