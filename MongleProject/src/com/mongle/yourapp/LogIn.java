@@ -71,6 +71,7 @@ public class LogIn {
 					primaryKey = user.getId();
 					DataBase.loadPrivateUser(LogIn.primaryKey);
 					AttendanceCheck.autoAttendance();
+					MongleVisual.stopper();
 					MainMenu.mainMenu(checklevel);
 					//DataBase.loadPrivateUser(LogIn.primaryKey);
 					return checklevel;
