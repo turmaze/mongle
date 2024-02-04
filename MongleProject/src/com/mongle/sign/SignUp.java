@@ -89,15 +89,13 @@ public class SignUp {
 		newUser.put("credscore", userData.getCredScore());
 		
 		//---------------SafeSendSetting---------
+		
 		newUser.put("safesendsetting", userData.getSafeSendSetting());
 		
 		//---------------Point---------
 		
 		userData.setPoint("0");
 		newUser.put("point", userData.getPoint());
-		
-		
-		System.out.println("newuser = "+ newUser);
 		
 		//----------------infoConsent
 		
@@ -121,11 +119,6 @@ public class SignUp {
 		
 		//----------------final----------------
 		DataBase.dataSave();
-		
-		//test
-		//System.out.printf("\n\n%22snow folder Test\n", " ");
-		//System.out.println(DataBase.getUser());
-		
 		MongleVisual.stopper();
 		
 	}
@@ -153,8 +146,8 @@ public class SignUp {
 				phone = phone.replace(" ", "");
 				phone = phone.replace(".", "");
 			}
-			}
-			while(!Validate.validPhone(phone));
+		}while(!Validate.validPhone(phone));
+			
 		return phone;
 	}
 

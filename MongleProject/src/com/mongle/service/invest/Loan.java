@@ -14,34 +14,71 @@ import org.json.simple.parser.JSONParser;
 import com.mongle.resource.Investment;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 대출 정보 클래스
+ */
 public class Loan {
 	private static String bankLoan;
 	private static String titleLoan;
-	
+
+	/**
+	 * 대출 내역
+	 */
 	public static ArrayList<Investment> listLoan = new ArrayList<>();
 
+	/**
+	 * 대출 정보 생성자
+	 * 
+	 * @param bankLoan  대출 금융사
+	 * @param titleLoan 대출명
+	 */
 	public Loan(String bankLoan, String titleLoan) {
 		super();
 		this.bankLoan = bankLoan;
 		this.titleLoan = titleLoan;
 	}
 
+	/**
+	 * 대출 금융사 Getter
+	 * 
+	 * @return 대출 금융사
+	 */
 	public String getBankLoan() {
 		return bankLoan;
 	}
 
+	/**
+	 * 대출 금융사 Setter
+	 * 
+	 * @param bankLoan 대출 금융사
+	 */
 	public void setBankLoan(String bankLoan) {
 		this.bankLoan = bankLoan;
 	}
 
+	/**
+	 * 대출명 Getter
+	 * 
+	 * @return 대출명
+	 */
 	public String getTitleLoan() {
 		return titleLoan;
 	}
 
+	/**
+	 * 대출 금융사 Setter
+	 * 
+	 * @param titleLoan 대출명
+	 */
 	public void setTitleLoan(String titleLoan) {
 		this.titleLoan = titleLoan;
 	}
 
+	/**
+	 * 대출 상품 검색 및 신청
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int loanService() {
 		Scanner scan = new Scanner(System.in);
 		List<InfoProduct> table = new ArrayList<>(); // 대출 정보 담을 리스트
@@ -51,11 +88,11 @@ public class Loan {
 
 		while (loop) {
 			MongleVisual.pusher();
-			
+
 			MongleVisual.menuHeader("대출");
-			
+
 			table = searchLoan(table, index); // 대출 검색 메서드
-			
+
 			System.out.println();
 			System.out.printf("%22s대출 신청(번호로 선택)\n", " ");
 			System.out.printf("%22s8. 다음 페이지\n", " ");
@@ -68,16 +105,14 @@ public class Loan {
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
 						Loan loan = new Loan(table.get(Integer.parseInt(sel) - 1 + index).getBank(),
-											table.get(Integer.parseInt(sel) - 1 + index).getTitle());
+								table.get(Integer.parseInt(sel) - 1 + index).getTitle());
 
 						System.out.println();
-						System.out.printf("%22s%s / %s / %s%%\n", " ", 
-														loan.bankLoan, 
-														loan.titleLoan,
-														table.get(Integer.parseInt(sel) - 1 + index).getRate());
-						applyLoan(scan);
-						//listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
-						Investment.list.add(new Investment("대출",loan.getBankLoan(),loan.getTitleLoan(),0,0));
+						System.out.printf("%22s%s / %s / %s%%\n", " ", loan.bankLoan, loan.titleLoan,
+								table.get(Integer.parseInt(sel) - 1 + index).getRate());
+						applyLoan();
+						// listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
+						Investment.list.add(new Investment("대출", loan.getBankLoan(), loan.getTitleLoan(), 0, 0));
 						return 9;
 					} else if (sel.equals("8")) {
 						index += 7;
@@ -99,7 +134,11 @@ public class Loan {
 		return 0;
 	}
 
-	public static void applyLoan(Scanner scan) {
+	/**
+	 * 대출 신청
+	 */
+	public static void applyLoan() {
+		Scanner scan = new Scanner(System.in);
 		System.out.println();
 		System.out.printf("%22s대출 신청을 진행합니다.\n", " ");
 		System.out.printf("%22s고객님의 전화번호로 필요 서류를 안내해드리는 문자를 발송했습니다.\n", " ");
@@ -111,6 +150,13 @@ public class Loan {
 		scan.nextLine();
 	}
 
+	/**
+	 * 대출 정보 검색
+	 * 
+	 * @param table 대출 정보를 담을 리스트
+	 * @param index 리스트 출력 시작값
+	 * @return 대출 정보를 담은 리스트
+	 */
 	private static List<InfoProduct> searchLoan(List<InfoProduct> table, int index) { // 대출 검색기
 		String header = "+---+------------------------+-----------------------+--------+";
 		System.out.printf("%11s%s\n", " ", header);
@@ -148,7 +194,7 @@ public class Loan {
 				InfoProduct d = new InfoProduct(bank, title, "", rate, 0);
 				table.add(d);
 			}
-			printAsciiTable(table, index);
+			print(table, index);
 
 		} catch (Exception e) {
 			System.out.println("emain");
@@ -159,13 +205,17 @@ public class Loan {
 		return table;
 	}
 
-	public static void printAsciiTable(List<InfoProduct> data, int index) { // 표에 반복해서 출력하는 메서드
+	/**
+	 * 표 형식으로 출력
+	 * 
+	 * @param data  출력할 리스트
+	 * @param index 출력 시작값
+	 */
+	public static void print(List<InfoProduct> data, int index) {
 		int printNum = 1;
 		for (int i = index; i < index + 7; i++) {
-			System.out.printf("%11s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, 
-												data.get(i).getBank(),
-												data.get(i).getTitle(),
-												data.get(i).getRate());
+			System.out.printf("%11s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, data.get(i).getBank(),
+					data.get(i).getTitle(), data.get(i).getRate());
 			printNum++;
 		}
 	}
