@@ -180,17 +180,14 @@ public class AttendanceCheck {
 	}
 
 	private static void printCalendar(int year, int month, String nowEmoji) {
+		LocalDate date = LocalDate.now();
+		String dates = date+"";
+		dates = dates.substring(dates.length()-2);
 		int lastDay = getLastDay(year, month);
 		int dayOfWeek = getDayOfWeek(year, month);
 		int index = 1;
-		int endindex;
-		int lastindex;
-		
-		LocalDate date = LocalDate.now();
-		int todayDate = 
-
-		// System.out.println(lastDay);
-		// System.out.println(dayOfWeek);
+		int endindex = 0;
+		int lastindex = Integer.parseInt(dates);
 
 		System.out.printf("%15s======================================================\n", " ");
 		System.out.printf("%15s                       %02d월\n", " ", month);
