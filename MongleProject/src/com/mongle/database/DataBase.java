@@ -118,7 +118,6 @@ public class DataBase {
 			}
 
 			// 가져온 값 출력
-			System.out.println("-끝-");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
