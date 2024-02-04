@@ -61,10 +61,9 @@ public class Loan {
 			System.out.printf("%22s8. 다음 페이지\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
 			while (loop) {
-				System.out.printf("%22s선택(번호) : ", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
@@ -76,18 +75,18 @@ public class Loan {
 														loan.bankLoan, 
 														loan.titleLoan,
 														table.get(Integer.parseInt(sel) - 1 + index).getRate());
-						applyLoan(scan, loop);
+						applyLoan(scan);
 						//listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
 						Investment.list.add(new Investment("대출",loan.getBankLoan(),loan.getTitleLoan(),0,0));
-						loop = false;
+						return 9;
 					} else if (sel.equals("8")) {
 						index += 7;
 						break;
 					} else if (sel.equals("9")) {
-						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("홈 화면");
 						return 9;
 					} else if (sel.equals("0")) {
-						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
 						MongleVisual.wrongInput();
@@ -100,7 +99,7 @@ public class Loan {
 		return 0;
 	}
 
-	public static void applyLoan(Scanner scan, boolean loop) {
+	public static void applyLoan(Scanner scan) {
 		System.out.println();
 		System.out.printf("%22s대출 신청을 진행합니다.\n", " ");
 		System.out.printf("%22s고객님의 전화번호로 필요 서류를 안내해드리는 문자를 발송했습니다.\n", " ");

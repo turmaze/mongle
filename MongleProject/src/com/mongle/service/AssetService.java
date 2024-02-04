@@ -20,19 +20,19 @@ public class AssetService {
 		while (loop) {
 			MongleVisual.menuHeader("계좌 관리");
 			System.out.println();
-			System.out.printf("%22s 1.계좌개설\n", " ");
-			System.out.printf("%22s 2.계좌조회\n", " ");
-			System.out.printf("%22s 3.연동하기\n", " ");
+			System.out.printf("%22s 1.계좌 개설\n", " ");
+			System.out.printf("%22s 2.계좌 조회\n", " ");
+			System.out.printf("%22s 3.계좌 연동\n", " ");
 			System.out.printf("%22s 4.이자계산기\n", " ");
 			System.out.printf("%22s 9.홈으로\n", " ");
 			System.out.printf("%22s 0.이전으로\n", " ");
-			System.out.println();
-			System.out.printf("%22s선택(번호):", " ");
-
+			MongleVisual.choiceGuidePrint();
+			
 			Scanner sc = new Scanner(System.in);
 			String sel = sc.nextLine();
 			//
 			if (sel.equals("1")) {
+				MongleVisual.menuMove("계좌 개설 화면");
 				r = DepoSave.depoSaveService();
 				if (r == 9) {
 					return 9;
@@ -40,6 +40,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("2")) {
+				MongleVisual.menuMove("계좌 조회 화면");
 				r = checkDepo();
 				if (r == 9) {
 					return 9;
@@ -47,7 +48,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("3")) {
-				// 연동
+				MongleVisual.menuMove("계좌 연동 화면");
 				r = AccountConnection.connection();
 				if (r == 9) {
 					return 9;
@@ -55,7 +56,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("4")) {
-				// 이자 계산기
+				MongleVisual.menuMove("이자계산기 화면");
 				r = DepoCalculator.depoSaveService();
 				if (r == 9) {
 					return 9;
@@ -63,11 +64,13 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("9")) {
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			} else {
-				loop = false;
+				MongleVisual.wrongInput();
 			}
 		}
 		return 0;
@@ -91,8 +94,7 @@ public class AssetService {
 			System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
-			System.out.printf("%22s선택(번호) :", " ");
+			MongleVisual.choiceGuidePrint();;
 
 			String sel = scan.nextLine();
 			if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= BankAccount.list.size()) {
@@ -103,8 +105,10 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("9")) {
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 
@@ -112,14 +116,14 @@ public class AssetService {
 
 	}
 
-	public static void pause() {
-
-		Scanner sc = new Scanner(System.in);
-		System.out.println();
-		System.out.print("계속하려면 엔터를 입력하세요.");
-		sc.nextLine();
-		System.out.println(); // 위 아래 구분 위해 엔터 하나씩 넣어놓음
-	}
+//	public static void pause() {
+//
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println();
+//		System.out.print("계속하려면 엔터를 입력하세요.");
+//		sc.nextLine();
+//		System.out.println(); // 위 아래 구분 위해 엔터 하나씩 넣어놓음
+//	}
 
 	public static void printAsciiTable(ArrayList<BankAccount> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {

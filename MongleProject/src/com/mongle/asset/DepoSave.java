@@ -15,6 +15,7 @@ import org.json.simple.parser.JSONParser;
 import com.mongle.database.DataBase;
 import com.mongle.resource.BankAccount;
 import com.mongle.service.invest.InfoProduct;
+import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.Encrypt;
 
 public class DepoSave {
@@ -62,18 +63,16 @@ public class DepoSave {
 			System.out.printf("%22s8. 다시 검색하기\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
 			while (loop) {
-				System.out.printf("%22s선택(번호) : ", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
 						DepoSave acc = new DepoSave(table.get(Integer.parseInt(sel) - 1).getBank(),
 								table.get(Integer.parseInt(sel) - 1).getTitle());
 						;
-						System.out.printf("%22s가입 화면으로 이동합니다.\n", "  ");
-						System.out.println();
+						MongleVisual.menuMove("가입 화면");
 						System.out.printf("%22s%s / %s\n", " ", acc.bankDepo, acc.titleDepo);
 						signUp(acc.bankDepo, acc.titleDepo);
 						loop = false;
@@ -81,16 +80,16 @@ public class DepoSave {
 						table.clear();
 						break;
 					} else if (sel.equals("9")) {
-						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("홈 화면");
 						return 9;
 					} else if (sel.equals("0")) {
-						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
-						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+						MongleVisual.wrongInput();
 					}
 				} catch (NumberFormatException e) {
-					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+					MongleVisual.wrongInput();
 				}
 			} // while
 		} // while
@@ -180,7 +179,7 @@ public class DepoSave {
 			Reconfirm(); /// 비밀번호 검사
 
 		} else {
-			System.out.println("이전 화면으로 돌아갑니다.");
+			MongleVisual.menuMove("이전 화면");
 
 		}
 

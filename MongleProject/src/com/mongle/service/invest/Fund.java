@@ -30,10 +30,10 @@ public class Fund {
 
 			System.out.println();
 
-			System.out.printf("%40s\n", "1. 펀드상품 검색");
-			System.out.printf("%40s\n", "9. 홈으로");
-			System.out.printf("%40s\n", "0. 이전으로");
-			System.out.printf("%40s", "선택(번호): ");
+			System.out.printf("%22s\n", "1. 펀드상품 검색");
+			System.out.printf("%22s\n", "9. 홈으로");
+			System.out.printf("%22s\n", "0. 이전으로");
+			MongleVisual.choiceGuidePrint();
 
 			String sel = scan.nextLine();
 
@@ -48,8 +48,10 @@ public class Fund {
 					e.printStackTrace();
 				}
 			} else if (sel.equals("9")) {
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			} else {
 				System.out.println();

@@ -32,13 +32,13 @@ public class InvestService {
 			System.out.printf("%22s4. 금 상품\n", " ");
 			System.out.printf("%22s5. 환전\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
-			System.out.printf("%22s선택(번호) :", " ");
+			MongleVisual.choiceGuidePrint();;
 
 			String sel = scan.nextLine();
 
 			switch (sel) {
 			case "1":
+				MongleVisual.menuMove("주식 화면");
 				r = Stock.stockService();
 				if (r == 9) {
 					return 9;
@@ -46,6 +46,7 @@ public class InvestService {
 					continue;
 				}
 			case "2":
+				MongleVisual.menuMove("펀드 화면");
 				r = Fund.fundService();
 				if (r == 9) {
 					return 9;
@@ -53,6 +54,7 @@ public class InvestService {
 					continue;
 				}
 			case "3":
+				MongleVisual.menuMove("대출 화면");
 				r = Loan.loanService();
 				if (r == 9) {
 					return 9;
@@ -60,6 +62,7 @@ public class InvestService {
 					continue;
 				}
 			case "4":
+				MongleVisual.menuMove("금 상품 화면");
 				r = Gold.goldService();
 				if (r == 9) {
 					return 9;
@@ -67,6 +70,7 @@ public class InvestService {
 					continue;
 				}
 			case "5":
+				MongleVisual.menuMove("환전 화면");
 				r = Exchange.exchangeService();
 				if (r == 9) {
 					return 9;
@@ -74,7 +78,7 @@ public class InvestService {
 					continue;
 				}
 			case "0":
-				System.out.printf("%22s이전 화면으로 돌아갑니다.\n", " ");
+				MongleVisual.menuMove("이전 화면");
 				loop = false;
 				break;
 			default:
@@ -103,15 +107,12 @@ public class InvestService {
 		boolean loop = true;
 
 		while (loop) {
-			System.out.println();
-			System.out.printf("%22s선택(번호) : ", " ");
+			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
 			int totalPrice = price * num;
 
 			if (sel.equals("0")) {
-				MongleVisual.pusher();
-				System.out.printf("%22s이전으로 돌아갑니다.\n", " ");
-				MongleVisual.stopper();
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 
