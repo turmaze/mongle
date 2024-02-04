@@ -193,7 +193,7 @@ public class Stock {
 					System.out.printf("%22s선택: ", " ");
 					sel = scan.nextLine();
 					if (sel.equals("y")) {
-						InvestService.transaction(nowPrice, Integer.parseInt(amount));
+						InvestService.transaction(name, nowPrice, Integer.parseInt(amount));
 						buyPrice = nowPrice;
 						buyAmount = Integer.parseInt(amount);
 						//listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(), Stock.getBuyAmount()));

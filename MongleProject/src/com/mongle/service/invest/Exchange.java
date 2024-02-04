@@ -79,8 +79,8 @@ public class Exchange {
 				String header = "+----+--------------------------+---------------+---------------+---------------+";
 				System.out.println(header);
 				System.out.printf("|%4s|     국가 및 통화명  \t|%5s구매시\t|%5s판매시\t|%3s매매기준율\t|\n", "", " ", " ", " ");
-				System.out.println(header);				
-				
+				System.out.println(header);
+
 				JSONArray fx = new JSONArray();
 
 				for (Object obj : jsonResult) {
@@ -149,7 +149,7 @@ public class Exchange {
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
 				price = (String) getFx(fx.get(index), "tts");
-				
+
 				MongleVisual.pusher();
 
 				MongleVisual.menuHeader(fxName);
@@ -163,7 +163,7 @@ public class Exchange {
 					Matcher m1 = p1.matcher(amount);
 					if (!m1.find()) {
 						System.out.printf("%22s정확한 숫자를 입력해 주시기 바랍니다.\n", " ");
-					} else if (Integer.parseInt(amount)<100) {
+					} else if (Integer.parseInt(amount) < 100) {
 						System.out.printf("%22s최소 구매 수량(100) 이상을 입력해주세요\n", " ");
 					} else {
 						break;
@@ -178,7 +178,7 @@ public class Exchange {
 				if (sel.equals("y")) {
 					buyPrice = Integer.parseInt(price);
 					buyAmount = Integer.parseInt(amount);
-					InvestService.transaction(buyPrice, buyAmount);
+					InvestService.transaction("환전", buyPrice, buyAmount);
 					index = -1;
 					Investment.list.add(new Investment("환전", "", "", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 					continue;
@@ -197,14 +197,14 @@ public class Exchange {
 				}
 
 			}
-			//listExchange.add(new Investment("환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
+			// listExchange.add(new Investment("환전", "환전", Exchange.getBuyPrice(),
+			// Exchange.getBuyAmount()));
 			Investment.list.add(new Investment("환전", "환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 		} catch (Exception e) {
 			System.out.println("Exchange");
 			e.printStackTrace();
 		}
 		return r;
-		
 
 	}// Exchange
 

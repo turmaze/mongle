@@ -98,7 +98,7 @@ public class Gold {
 				String num = scan.nextLine();
 				if (Integer.parseInt(num) > 0) {
 
-					InvestService.transaction(price, Integer.parseInt(num));
+					InvestService.transaction("금상품 구매", price, Integer.parseInt(num));
 
 					
 					return Integer.parseInt(num);
