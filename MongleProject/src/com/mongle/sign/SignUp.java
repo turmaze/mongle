@@ -58,6 +58,7 @@ public class SignUp {
 		//pw1을 DataBase.java의 HashMap("비밀번호",pw1)으로 저장하고 HashMap을 DataBase.java의 Arraylist에 저장하는 코드			// System.out.println(m.matches()); //testcode
 
 		
+
 		//----------------name----------------
 		String name; 
 		name = nameCheck();
@@ -152,7 +153,6 @@ public class SignUp {
 				phone = phone.replace(" ", "");
 				phone = phone.replace(".", "");
 			}
-			//System.out.println(phone); //testcode
 			}
 			while(!Validate.validPhone(phone));
 		return phone;
