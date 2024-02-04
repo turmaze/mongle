@@ -101,11 +101,12 @@ public class SignUp {
 		
 		//----------------final----------------
 		DataBase.dataSave();
-		scan.close();
 		
 		//test
 		System.out.printf("\n\n%22snow folder Test\n", " ");
 		System.out.println(DataBase.getUser());
+		
+		MongleVisual.stopper();
 		
 	}
 

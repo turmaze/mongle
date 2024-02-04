@@ -105,14 +105,14 @@ public class DepoSave {
 		System.out.printf("%22s검색(은행 이름) : ", " ");
 		String name = scan.nextLine();
 
-		String header = "+---+----------------+----------------------------+-------+-------+-------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|      금융사      |           상품명      \t|  기간  | 기본금리 | 최고금리 |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
+		String header = "+---+----------------+----------------------------+-------+--------+--------+";
+		System.out.printf("%s\n", header);
+		System.out.printf("|번호|      금융사      |           상품명      \t  |  기간  | 기본금리 | 최고금리 |\n");
+		System.out.printf("%s\n", header);
 		table = searchAPI(table, name, apiDepo);
 		table = searchAPI(table, name, apiSave);
 		printAsciiTable(table);
-		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%s\n", header);
 
 		return table;
 	}
@@ -163,18 +163,9 @@ public class DepoSave {
 	}
 
 	public static void printAsciiTable(List<InfoProduct> data) { // 표에 반복해서 출력하는 메서드
-		if (data.size() > 7) {
-			for (int i = 0; i < 7; i++) {
-				System.out.printf("%22s|%-3d|%-14s|%-20s\t|%4s개월|%6s%%|%6s%%|\n", " ", i + 1, data.get(i).getBank(),
-						data.get(i).getTitle(), data.get(i).getPeriod(), data.get(i).getRate(),
-						data.get(i).getMaxRate());
-			}
-		} else {
-			for (int i = 0; i < data.size(); i++) {
-				System.out.printf("%22s|%-3d|%-14s|%-20s\t|%4s개월|%6s%%|%6s%%|\n", " ", i + 1, data.get(i).getBank(),
-						data.get(i).getTitle(), data.get(i).getPeriod(), data.get(i).getRate(),
-						data.get(i).getMaxRate());
-			}
+		for (int i = 0; i < (data.size() > 7 ? 7 : data.size()); i++) {
+			System.out.printf("|%-3d|%-14s|%-20s\t  |%4s개월|%7s%%|%7s%%|\n", i + 1, data.get(i).getBank(),
+					data.get(i).getTitle(), data.get(i).getPeriod(), data.get(i).getRate(), data.get(i).getMaxRate());
 		}
 	}
 
@@ -214,7 +205,7 @@ public class DepoSave {
 
 	public static void Reconfirm() {
 		Scanner sc = new Scanner(System.in);
-		
+
 		HashMap<String, Object> userData = new HashMap<String, Object>();
 		for (int i = 0; i < DataBase.getPrivateUser().size(); i++) {
 
@@ -224,21 +215,21 @@ public class DepoSave {
 		}
 
 		String checkPW = "";
-		int count = 0;		
+		int count = 0;
 		for (int i = 6; i > count; i--) {
 
 			System.out.println("비밀번호를 입력해 주세요:");
 			checkPW = sc.nextLine();
 			if (userData.get("pw").equals(Encrypt.LogInPw(checkPW, (String) userData.get("salt")))) {
 				// 가입성공
-				System.out.printf("%22s가입이 완료 되었습니다.\n"," ");
+				System.out.printf("%22s가입이 완료 되었습니다.\n", " ");
 				openDepo(bankDepo, titleDepo);
 				i -= 6;
 
 			} else {
 				// 비밀번호 불일치
-				System.out.printf("%22s불일치\n"," ");
-				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.", " ", i-1);
+				System.out.printf("%22s불일치\n", " ");
+				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.", " ", i - 1);
 
 			}
 

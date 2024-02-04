@@ -61,10 +61,9 @@ public class Loan {
 			System.out.printf("%22s8. 다음 페이지\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
 			while (loop) {
-				System.out.printf("%22s선택(번호) : ", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
@@ -76,31 +75,31 @@ public class Loan {
 														loan.bankLoan, 
 														loan.titleLoan,
 														table.get(Integer.parseInt(sel) - 1 + index).getRate());
-						applyLoan(scan, loop);
+						applyLoan(scan);
 						//listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
 						Investment.list.add(new Investment("대출",loan.getBankLoan(),loan.getTitleLoan(),0,0));
-						loop = false;
+						return 9;
 					} else if (sel.equals("8")) {
 						index += 7;
 						break;
 					} else if (sel.equals("9")) {
-						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuHeader("홈 화면");
 						return 9;
 					} else if (sel.equals("0")) {
-						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuHeader("이전 화면");
 						return 0;
 					} else {
-						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+						MongleVisual.wrongInput();
 					}
 				} catch (NumberFormatException e) {
-					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+					MongleVisual.wrongInput();
 				}
 			} // while
 		} // while
 		return 0;
 	}
 
-	public static void applyLoan(Scanner scan, boolean loop) {
+	public static void applyLoan(Scanner scan) {
 		System.out.println();
 		System.out.printf("%22s대출 신청을 진행합니다.\n", " ");
 		System.out.printf("%22s고객님의 전화번호로 필요 서류를 안내해드리는 문자를 발송했습니다.\n", " ");
@@ -113,10 +112,10 @@ public class Loan {
 	}
 
 	private static List<InfoProduct> searchLoan(List<InfoProduct> table, int index) { // 대출 검색기
-		String header = "+---+---------------------+-----------------------+--------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|        금융사         |          상품명         | 평균금리 |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
+		String header = "+---+------------------------+-----------------------+--------+";
+		System.out.printf("%11s%s\n", " ", header);
+		System.out.printf("%11s|번호|          금융사          |          상품명         | 평균금리 |\n", " ");
+		System.out.printf("%11s%s\n", " ", header);
 		try {
 			URL url = new URL(
 					"https://finlife.fss.or.kr/finlifeapi/creditLoanProductsSearch.json?auth=e06ef138c067a4ff1a42504d0fefda36&topFinGrpNo=020000&pageNo=1");
@@ -155,7 +154,7 @@ public class Loan {
 			System.out.println("emain");
 			e.printStackTrace();
 		}
-		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%11s%s\n", " ", header);
 
 		return table;
 	}
@@ -163,7 +162,7 @@ public class Loan {
 	public static void printAsciiTable(List<InfoProduct> data, int index) { // 표에 반복해서 출력하는 메서드
 		int printNum = 1;
 		for (int i = index; i < index + 7; i++) {
-			System.out.printf("%22s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, 
+			System.out.printf("%11s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, 
 												data.get(i).getBank(),
 												data.get(i).getTitle(),
 												data.get(i).getRate());

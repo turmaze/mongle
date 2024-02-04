@@ -56,10 +56,9 @@ public class Gold {
 			System.out.printf("%22s1. 구매\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
 			while (loop) {
-				System.out.printf("%22s선택(번호) :", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				if (sel.equals("1")) {
 					Gold gold = new Gold();
@@ -74,7 +73,7 @@ public class Gold {
 					System.out.printf("%22s이전 화면으로 이동합니다.", " ");
 					return 0;
 				} else {
-					System.out.printf("%22s올바른 번호를 입력해주세요.", " ");
+					MongleVisual.wrongInput();
 				}
 			} // while
 		} // while
@@ -98,23 +97,23 @@ public class Gold {
 				String num = scan.nextLine();
 				if (Integer.parseInt(num) > 0) {
 
-					InvestService.transaction(price, Integer.parseInt(num));
+					InvestService.transaction("금상품 구매", price, Integer.parseInt(num));
 
 					
 					return Integer.parseInt(num);
 				}
 			} catch (NumberFormatException e) {
-				System.out.printf("%22s올바른 형식으로 입력해주세요.", " ");
+				MongleVisual.wrongInput();
 			}
 		} // while
 		return 0;
 	}
 
 	private static List<InfoProduct> searchGold(List<InfoProduct> table) {
-		String header = "+------------+--------------------+----------+-----------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|   고시날짜   |       상품명\t\t| 최고가(1g) | 최저가(1g) |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
+		String header = "+------------+---------------+----------+-----------+";
+		System.out.printf("%11s%s\n", " ", header);
+		System.out.printf("%11s|   고시날짜   |     상품명\t| 최고가(1g) | 최저가(1g) |\n", " ");
+		System.out.printf("%11s%s\n", " ", header);
 		try {
 			String url = "https://apis.data.go.kr/1160100/service/GetGeneralProductInfoService/getGoldPriceInfo?serviceKey=lv9bpyNMeZHwgq4vZdHVxoieUgW3b1RwSLU5oQH1MJA6BCz4Y86MVwXLcW3ij7OL%2Be9wXLIx1CEuOaAKLyzxwA%3D%3D";
 
@@ -140,14 +139,14 @@ public class Gold {
 			System.out.println("emain");
 			e.printStackTrace();
 		}
-		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%11s%s\n", " ", header);
 
 		return table;
 	}
 
 	public static void printAsciiTable(List<InfoProduct> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < 10; i += 2) {
-			System.out.printf("%22s|%-12s|%-12s\t|%9s원|%9s원|\n", " ", data.get(i).getPeriod(), data.get(i).getTitle(),
+			System.out.printf("%11s|%-12s|%-12s\t|%9s원|%9s원|\n", " ", data.get(i).getPeriod(), data.get(i).getTitle(),
 					data.get(i).getMaxRate(), data.get(i).getRate());
 		}
 	}

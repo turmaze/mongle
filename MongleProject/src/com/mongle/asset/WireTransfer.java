@@ -171,14 +171,6 @@ public class WireTransfer {
 
 	}
 
-	private static void transferMoney(String titleName) {
-		// 메뉴 헤더 화면
-		System.out.printf("%22s===================================\n", " ");
-		System.out.printf("%40s\n", titleName);
-		System.out.printf("%22s===================================\n", " ");
-
-	}
-
 	public static int transaction() {
 		Scanner scan = new Scanner(System.in);
 		System.out.printf("%22s송금할 금액을 입력 하세요:", " ");
@@ -187,14 +179,14 @@ public class WireTransfer {
 
 		MongleVisual.pusher();
 
-		String header = "+---+---------------------+-----------------------+-----------------------+-----------------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
+		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
+		System.out.printf("%s\n", header);
+		System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n");
+		System.out.printf("%s\n", header);
 		List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
 				.collect(Collectors.toList());
 		print(filteredList); // json 에서 가져온 데이터
-		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%s\n", header);
 		System.out.println();
 		System.out.printf("%22s송금할 계좌를 선택해 주세요.\n", " ");
 		System.out.printf("%22s선택(번호) :", " ");
@@ -229,11 +221,16 @@ public class WireTransfer {
 							}
 						}
 					}
-				} else {
+				} else if (sel.equals("0")){
+					System.out.printf("%22s이전 화면으로 돌아갑니다..\n", " ");
+					return 0;
+				}else {
 					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+					MongleVisual.wrongInput();
 				}
 			} catch (NumberFormatException e) {
 				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+				MongleVisual.wrongInput();
 			}
 		}
 		return 0;
@@ -242,7 +239,7 @@ public class WireTransfer {
 
 	public static void print(List<BankAccount> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {
-			System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", i + 1, data.get(i).getBankDepo(),
+			System.out.printf("|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getAccountNumber(), data.get(i).getDepositAmount());
 
 		}

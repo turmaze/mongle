@@ -13,6 +13,7 @@ public class AttendList {
 	
 	private ArrayList<String> attenddate; //출석일
 	private String stratedate; //연속 출석일
+	private String emoji; //출석 표시 이모지
 	
 	public static ArrayList<AttendList> list = new ArrayList<>();
 	 	
@@ -21,9 +22,10 @@ public class AttendList {
 		this.stratedate = stratedate;
 	}
 	
-	public AttendList(ArrayList<String> attenddate, String stratedate) {
+	public AttendList(ArrayList<String> attenddate, String stratedate, String emoji) {
 		this.attenddate = attenddate;
 		this.stratedate = stratedate;
+		this.emoji = emoji;
 	}
 	
 	public static void getPoint() {
@@ -47,6 +49,14 @@ public class AttendList {
 
 	public void setStratedate(String stratedate) {
 		this.stratedate = stratedate;
+	}
+	
+	public String getEmoji() {
+		return emoji;
+	}
+	
+	public void setEmoji(String emoji) {
+		this.emoji = emoji;
 	}
 
 	@Override

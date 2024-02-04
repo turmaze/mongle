@@ -1,5 +1,7 @@
 package com.mongle.main;
 
+import java.time.LocalDate;
+
 import javax.xml.crypto.Data;
 
 import com.mongle.database.DataBase;
@@ -24,6 +26,13 @@ public class TestMain06 {
 		DataBase.changeData();
 		
 		DataBase.dataSave();
+//		LocalDate date = LocalDate.now();
+//		System.out.println(date);
+//		String dates = date+"";
+//		System.out.println(dates);
+//		System.out.println(dates.substring(dates.length()-2));
+//		int datei = Integer.parseInt((dates.substring(dates.length()-2)));
+//		System.out.println(datei);
 		
 	}
 	
