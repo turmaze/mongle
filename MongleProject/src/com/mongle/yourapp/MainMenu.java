@@ -7,6 +7,7 @@ import com.mongle.main.Main;
 import com.mongle.resource.Investment;
 import com.mongle.service.AssetService;
 import com.mongle.service.BlackList;
+import com.mongle.service.Inquiry;
 import com.mongle.service.InvestService;
 import com.mongle.service.MypageService;
 import com.mongle.service.mypage.AttendanceCheck;
@@ -50,32 +51,30 @@ public class MainMenu {
 
 			switch (choice) {
 			case "1":
-				System.out.printf("%22s자산관리 화면으로 이동합니다.\n", " ");
-				
-			
+				System.out.printf("%22s자산관리 화면으로 이동합니다.\n\n", " ");			
 				AssertManagementView.assertadd();
 				
 				continue;
 			case "2":
-				System.out.printf("%22s송금 화면으로 이동합니다.\n", " ");
+				System.out.printf("%22s송금 화면으로 이동합니다.\n\n", " ");
 				WireTransfer.extracted();
 				continue;
 			case "3":
-				System.out.printf("%22s투자 화면으로 이동합니다.\n", " ");
+				System.out.printf("%22s투자 화면으로 이동합니다.\n\n", " ");
 				r = InvestService.investMenu();
 				continue;
 			case "4":
-				System.out.printf("%22s고객센터 화면으로 이동합니다.\n", " ");
+				System.out.printf("%22s고객센터 화면으로 이동합니다.\n\n", " ");
 				continue;
 			case "5":
-				System.out.printf("%22sMyPage 화면으로 이동합니다.\n", " ");
+				System.out.printf("%22sMyPage 화면으로 이동합니다.\n\n", " ");
 				r = MypageService.mypageService();
 				continue;
 			case "0":
-				System.out.printf("%22s로그아웃합니다.\n", " ");
+				System.out.printf("%22s로그아웃합니다.\n\n", " ");
 				loop = false; return;
 			default:
-				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n", " ");
+				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
 			}
 
 		}
@@ -91,34 +90,39 @@ public class MainMenu {
 			
 			System.out.printf("\n%22s1. 회원 관리", " ");
 			System.out.printf("\n%22s2. 데이터 관리", " ");
-			System.out.printf("\n%22s3. 문의 처리", " ");
-			System.out.printf("\n%22s4. 블랙리스트", " ");
+			System.out.printf("\n%22s3. 공지사항 관리", " ");
+			System.out.printf("\n%22s4. 문의 처리", " ");
+			System.out.printf("\n%22s5. 블랙리스트", " ");
 			System.out.printf("\n%22s0. 로그아웃", " ");
 			
 			System.out.printf("\n%22s선택번호: ", " ");
 			String choice = scan.nextLine();
 			switch (choice) {
 			case "1":
-				System.out.printf("%22s회원 관리화면으로 이동합니다.\n", " ");
+				System.out.printf("%22s회원 관리화면으로 이동합니다.\n\n", " ");
 				
 				continue;
 			case "2":
-				System.out.printf("%22s데이터 관리화면으로 이동합니다.\n", " ");
+				System.out.printf("%22s데이터 관리화면으로 이동합니다.\n\n", " ");
 				WireTransfer.extracted();
 				continue;
 			case "3":
-				System.out.printf("%22s문의 관리화면으로 이동합니다.\n", " ");
-				WireTransfer.extracted();
+				System.out.printf("%22s공지사항 관리화면으로 이동합니다.\n\n", " ");
+				Inquiry.announcement();
 				continue;
 			case "4":
-				System.out.printf("%22s블랙리스트 화면으로 이동합니다.\n", " ");
+				System.out.printf("%22s문의 관리화면으로 이동합니다.\n\n", " ");
+				WireTransfer.extracted();
+				continue;
+			case "5":
+				System.out.printf("%22s블랙리스트 화면으로 이동합니다.\n\n", " ");
 				BlackList.blackList();
 				continue;
 			case "0":
-				System.out.printf("%22s로그아웃합니다.\n", " ");
+				System.out.printf("%22s로그아웃합니다.\n\n", " ");
 				loop = false; return;
 			default:
-				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n", " ");
+				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
 			}
 			
 		}

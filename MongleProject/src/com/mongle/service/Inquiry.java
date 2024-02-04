@@ -20,6 +20,7 @@ import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
+import com.mongle.yourapp.MainMenu;
 
 public class Inquiry {
 	private static ArrayList<HashMap> annList = new ArrayList<HashMap>();
@@ -74,7 +75,7 @@ public class Inquiry {
 							inquiry.saveInq(annList,ResourcePath.ANNO);
 							break;
 						case "0":
-							//이전으로 감
+							MainMenu.mainMenu("2");
 							break;
 							
 						default :
@@ -245,7 +246,7 @@ public class Inquiry {
 		Scanner scanner = new Scanner(System.in);
 		Inquiry inquiry = new Inquiry();
 		
-		System.out.printf("%22s1.선택 삭제\n2. 전체 삭제\n", " ");
+		System.out.printf("%22s1.선택 삭제\n%22s2. 전체 삭제\n", " ");
 		System.out.printf("%22s입력: ", " ");
 		
 		String input = "7";
@@ -311,6 +312,7 @@ public class Inquiry {
 		String select;
 		do {
 			System.out.println();
+			showTitleList(arrayList);
 			System.out.printf("%22s1. 내용확인\n%22s0. 이전으로\n\n", " "," ");
 			System.out.printf("%22s입력: ", " ");
 			
