@@ -1,5 +1,8 @@
 package com.mongle.resource;
 
+/**
+ * 경로가 담긴 클래스
+ */
 public class ResourcePath {	
 		/*
 		회원 정보
