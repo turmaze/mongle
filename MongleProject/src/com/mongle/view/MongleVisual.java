@@ -27,6 +27,11 @@ public class MongleVisual {
 		System.out.printf("%22s완료되었습니다.\n\n", " ");
 		stopper();
 	}
+	
+	public static void choiceGuidePrint() {
+		System.out.println();
+		System.out.printf("%22s선택(번호): ", " ");
+	}
 
 	private static void menuList(String menu, int menuType) {
 		// menuType 0 -> 가운데 + 세로 한줄

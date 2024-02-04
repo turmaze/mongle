@@ -49,12 +49,12 @@ public class AttendanceCheck {
 			System.out.println();
 			System.out.println();
 
-			String emojiString = "출석 마크 변경";
-			System.out.printf("%22s1. %s(기본설정: \"O\")\n", " ", emojiString);
+			String emojiString = "출석 마크";
+			System.out.printf("%22s현재%s\n", " ", emojiString);
+			System.out.printf("%22s1. %s 변경(기본설정: \"O\")\n", " ", emojiString);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
-			System.out.printf("%22s선택(번호): ", " ");
+			MongleVisual.choiceGuidePrint();
 
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
@@ -82,12 +82,13 @@ public class AttendanceCheck {
 
 			MongleVisual.menuHeader(emojiString);
 
-			String[] emoji = { "O", "𖠌", "◡̎", "ᵔᴥᵔ", "(ꔷ̥̑.̮ꔷ̥̑)", "ᵕ̈́", };
+			String[] emoji = { "O", "𖠌", "◡̎", "(ꔷ̥̑.̮ꔷ̥̑)", };
 			int numEmoji = emoji.length;
 
 			for (int i = 0; i < emoji.length; i++) {
-				System.out.printf("%22s.%d: %s\n", " ", i + 1, emoji[i]);
+				System.out.printf("%22s%d. %s\n", " ", i + 1, emoji[i]);
 			}
+			System.out.println();
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.println();
