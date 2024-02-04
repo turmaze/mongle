@@ -150,7 +150,7 @@ public class History {
 	private static void transHistory(ArrayList<History> history, int index) {
 		String header = "+-------------------------+-----------+-------------+-----------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|           날짜    \t|    내역    |     금액     |       잔액       |\n", " ");
+		System.out.printf("%22s|           날짜    \t|    내역    |   거래 금액   |       잔액       |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 
 		printAsciiTable(history, index); // json 에서 가져온 데이터
@@ -160,7 +160,7 @@ public class History {
 	public static void printAsciiTable(ArrayList<History> data, int index) { // 표에 반복해서 출력하는 메서드
 
 		for (int i = index; i < ((data.size() < index + 10) ? data.size() : index + 10); i++) {
-			System.out.printf("%22s|   %-10s   |%8s  |%,10d원  |%,14d원  |\n", " ", data.get(i).getDate(),
+			System.out.printf("%22s|   %-10s   |%8s  |%,10d   |%,14d원  |\n", " ", data.get(i).getDate(),
 					data.get(i).getMemo(), data.get(i).getAmount(), data.get(i).getBalance());
 
 		}
