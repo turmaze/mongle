@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.mongle.asset.DepoSave;
 import com.mongle.service.invest.InfoProduct;
+import com.mongle.view.MongleVisual;
 import com.mongle.service.AssetService;
 
 public class DepoCalculator {
@@ -33,10 +34,9 @@ public class DepoCalculator {
 			System.out.printf("%22s이자 계산(상품 번호 선택)\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
 			while (loop) {
-				System.out.printf("%22s선택(번호) : ", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				try {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
@@ -44,8 +44,7 @@ public class DepoCalculator {
 								table.get(Integer.parseInt(sel) - 1).getTitle(),
 								table.get(Integer.parseInt(sel) - 1).getRate());
 						;
-						System.out.printf("%22s이자 계산 화면으로 이동합니다.\n", "  ");
-						System.out.println();
+						MongleVisual.menuMove("이자 계산 화면");
 						System.out.printf("%22s%s / %s / 금리: %.1f\n", " ", acc.bankDepo, acc.titleDepo, acc.rate);
 						cal(acc.bankDepo, acc.titleDepo, acc.rate);
 						
@@ -55,15 +54,16 @@ public class DepoCalculator {
 
 						break;
 					} else if (sel.equals("9")) {
+						MongleVisual.menuMove("홈 화면");
 						return 9;
 					} else if (sel.equals("0")) {
-						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
-						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+						MongleVisual.wrongInput();
 					}
 				} catch (NumberFormatException e) {
-					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+					MongleVisual.wrongInput();
 				}
 			} // while
 		} // while

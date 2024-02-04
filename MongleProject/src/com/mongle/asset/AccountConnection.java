@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.mongle.resource.BankAccount;
 import com.mongle.service.AssetService;
+import com.mongle.view.MongleVisual;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -40,9 +41,10 @@ public class AccountConnection {
 			System.out.printf("%22s0.홈으로: ", " ");
 			String sel = sc.nextLine();
 			if (sel.equals("0")) {
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else {
-				System.out.printf("%22s올바른 번호를 입력하세요.\n", " ");
+				MongleVisual.wrongInput();
 				continue;
 			}
 

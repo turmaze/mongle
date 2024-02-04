@@ -32,7 +32,7 @@ public class InvestService {
 			System.out.printf("%22s4. 금 상품\n", " ");
 			System.out.printf("%22s5. 환전\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			MongleVisual.choiceGuidePrint();;
+			MongleVisual.choiceGuidePrint();
 
 			String sel = scan.nextLine();
 

@@ -45,14 +45,18 @@ public class EditInfo {
 
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
+				System.out.println();
 				changePw();
 				loop = false;
 			} else if (sel.equals("2")) {
+				System.out.println();
 				changePhone();
 				loop = false;
 			} else if (sel.equals("9")) {
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 		}
@@ -106,7 +110,7 @@ public class EditInfo {
 					loop = false;
 					break;
 				} else {
-					System.out.printf("\n%22s다시입력하세요\n", " ");
+					MongleVisual.wrongInput();
 				}
 			} while (loop);
 		} catch (Exception e) {

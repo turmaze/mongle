@@ -22,14 +22,14 @@ public class QRCode {
 
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
-
-			System.out.printf("%22s선택(번호) :", " ");
+			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
 
 			if (sel.equals("9")) {
+				MongleVisual.menuMove("홈 화면");
 				return 9;
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 		}

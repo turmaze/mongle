@@ -117,9 +117,8 @@ public class History {
 			System.out.printf("%22s8. 다음 페이지\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 			while (loop) {
-				System.out.printf("%22s선택(번호) : ", " ");
+				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				try {
 					if (sel.equals("8")) {
@@ -131,10 +130,10 @@ public class History {
 						}
 						break;
 					} else if (sel.equals("9")) {
-						System.out.printf("%22s홈 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("홈 화면");
 						return 9;
 					} else if (sel.equals("0")) {
-						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
+						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
 						MongleVisual.wrongInput();

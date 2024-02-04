@@ -94,7 +94,7 @@ public class AssetService {
 			System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			MongleVisual.choiceGuidePrint();;
+			MongleVisual.choiceGuidePrint();
 
 			String sel = scan.nextLine();
 			if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= BankAccount.list.size()) {
