@@ -169,7 +169,7 @@ public class DataBase {
 			writer.flush(); // 버퍼 비우기
 
 			writer.close();
-			System.out.printf("\n%22ssave 완 ", " "); // testcode
+			System.out.printf("\n%22ssave\n\n", " "); // testcode
 
 		} catch (Exception e) {
 			System.out.println("DataBase.dataSave Error");

@@ -55,7 +55,7 @@ public class Validate {
 		Matcher m = p.matcher(input);
 		if (!m.matches()) {
 			System.out.printf("\n%22s잘못된 입력입니다.\n", " ");
-			System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n", " ");
+			System.out.printf("\n%22s재입력 해주세요.\n", " ");
 	
 			return m.matches();
 		} else {

@@ -58,16 +58,6 @@ public class SignUp {
 		//pw1을 DataBase.java의 HashMap("비밀번호",pw1)으로 저장하고 HashMap을 DataBase.java의 Arraylist에 저장하는 코드			// System.out.println(m.matches()); //testcode
 
 		
-		//----------------infoConsent
-		
-			MongleVisual.menuHeader("동의서");
-			String ua = Integer.toString(InfoConsent.useConsent("이용약관"));
-			String ia =Integer.toString(InfoConsent.useConsent("개인정보 수집이용 동의서"));
-			userData.setUserAgree(ua);
-			userData.setInfoAgree(ia);
-			newUser.put("useragree", userData.getUserAgree());
-			newUser.put("infoagree", userData.getInfoAgree());
-		
 		//----------------name----------------
 		String name; 
 		name = nameCheck();
@@ -88,9 +78,7 @@ public class SignUp {
 		phone = phoneCheck();
 		userData.setPhone(phone);
 		newUser.put("phone", userData.getPhone());
-		
-		
-		
+				
 		
 		//---------------CredScore---------
 		
@@ -110,12 +98,32 @@ public class SignUp {
 		
 		System.out.println("newuser = "+ newUser);
 		
+		//----------------infoConsent
+		
+		MongleVisual.menuHeader("동의서");
+		String ua = Integer.toString(InfoConsent.useConsent("이용약관"));
+		String ia =Integer.toString(InfoConsent.useConsent("개인정보 수집이용 동의서"));
+		userData.setUserAgree(ua);
+		userData.setInfoAgree(ia);
+		newUser.put("useragree", userData.getUserAgree());
+		newUser.put("infoagree", userData.getInfoAgree());
+		
+		//capcha
+		
+		MongleVisual.menuHeader("봇 방지");
+		boolean tF = Captcha.captcha();
+		if(tF == false)
+			return;
+		else {
+			System.out.printf("%22s회원가입이 완료되었습니다.\n\n"," ");
+		}
+		
 		//----------------final----------------
 		DataBase.dataSave();
 		
 		//test
-		System.out.printf("\n\n%22snow folder Test\n", " ");
-		System.out.println(DataBase.getUser());
+		//System.out.printf("\n\n%22snow folder Test\n", " ");
+		//System.out.println(DataBase.getUser());
 		
 		MongleVisual.stopper();
 		
