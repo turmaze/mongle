@@ -65,37 +65,29 @@ public class History {
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
 		String date = sdf1.format(now);
-
-		for (BankAccount acc : BankAccount.list) {
-			if (acc.getAccountNumber().equals(accountNumber)) {
-				int rest = acc.getDepositAmount() + amount;
-				ArrayList<History> history = new ArrayList<History>();
-				if (acc.getHis() != null) {
-					for (int i = 0; i < acc.getHis().size(); i++) {
-						History h = new History(acc.getHis().get(i).getDate(), acc.getHis().get(i).getMemo(),
-								acc.getHis().get(i).getAmount(), acc.getHis().get(i).getBalance());
-						history.add(h);
-					}
-				}
-				History h = new History(date, memo, amount, rest);
+		BankAccount acc = BankAccount.findAccount(accountNumber);
+		int rest = acc.getDepositAmount() + amount;
+		ArrayList<History> history = new ArrayList<History>();
+		if (acc.getHis() != null) {
+			for (int i = 0; i < acc.getHis().size(); i++) {
+				History h = new History(acc.getHis().get(i).getDate(), acc.getHis().get(i).getMemo(),
+						acc.getHis().get(i).getAmount(), acc.getHis().get(i).getBalance());
 				history.add(h);
-
-				BankAccount.list.set(BankAccount.list.indexOf(acc),
-						new BankAccount(acc.getBankDepo(), acc.getTitleDepo(), acc.getAccountNumber(), rest, history));
-
 			}
 		}
+		History h = new History(date, memo, amount, rest);
+		history.add(h);
+
+		BankAccount.list.set(BankAccount.list.indexOf(acc),
+				new BankAccount(acc.getBankDepo(), acc.getTitleDepo(), acc.getAccountNumber(), rest, history));
 
 	}
 
 	public static int check(String accountNumber) {
 		ArrayList<History> history = new ArrayList<History>();
-		for (BankAccount acc : BankAccount.list) {
-			if (acc.getAccountNumber().equals(accountNumber)) {
-				if (acc.getHis() != null) {
-					history = acc.getHis();
-				}
-			}
+		BankAccount acc = BankAccount.findAccount(accountNumber);
+		if (acc.getHis() != null) {
+			history = acc.getHis();
 		}
 
 		Collections.sort(history, new Comparator<History>() {
@@ -159,8 +151,8 @@ public class History {
 	public static void printAsciiTable(ArrayList<History> data, int index) { // 표에 반복해서 출력하는 메서드
 
 		for (int i = index; i < ((data.size() < index + 10) ? data.size() : index + 10); i++) {
-			System.out.printf("|   %-10s   |%8s\t  |%,10d   |%,14d원  |\n", data.get(i).getDate(),
-					data.get(i).getMemo(), data.get(i).getAmount(), data.get(i).getBalance());
+			System.out.printf("|   %-10s   |%8s\t  |%,10d   |%,14d원  |\n", data.get(i).getDate(), data.get(i).getMemo(),
+					data.get(i).getAmount(), data.get(i).getBalance());
 
 		}
 	}
