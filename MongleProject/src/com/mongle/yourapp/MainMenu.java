@@ -74,7 +74,7 @@ public class MainMenu {
 				loop = false;
 				break;
 			default:
-				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
+				MongleVisual.wrongInput();
 			}
 
 		}

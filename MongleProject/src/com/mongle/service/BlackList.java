@@ -89,13 +89,20 @@ public class BlackList {
 				}
 			}
 			String select = "";
-			do {
-				System.out.printf("\r\n%22s작업할 아이디를 선택해주세요\r", " ");
-				System.out.printf("\n%22s번호 선택: \r\n", " ");
-				String pick = scan.nextLine();
-				select = dark.get(Integer.parseInt(pick) - 1);
-
-			} while (select.equals(null));
+			
+			if(dark.size()==0) {
+				System.out.printf("\r\n%22s블랙리스트에 등록된 회원이 없습니다\r\n", " ");
+				blackList();
+			}else {
+				do {
+					System.out.printf("\r\n%22s작업할 아이디를 선택해주세요\r", " ");
+					System.out.printf("\n%22s번호 선택: \r\n", " ");
+					String pick = scan.nextLine();
+					select = dark.get(Integer.parseInt(pick) - 1);
+					
+				} while (select.equals(null));
+				
+			}
 
 			System.out.printf("\r\n%22s1. 블랙리스트 등급 조정하기\r\n", " ");
 			System.out.printf("\r\n%22s2. 유저 탈퇴시키기\r", " ");

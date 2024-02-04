@@ -101,8 +101,8 @@ public class Validate {
 		int size = phone.length();
 		String starter = phone.substring(0, 3);
 	
-		System.out.println(starter);
 		if (size < 11 || size > 11 || !starter.equals("010")) {
+			System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
 			return false;
 		} else {
 			return true;
