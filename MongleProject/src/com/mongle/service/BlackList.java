@@ -27,7 +27,7 @@ public class BlackList {
 
 		System.out.printf("\n%22s1. 블랙리스트 확인\r\n", " ");
 		System.out.printf("\n%22s2. 블랙리스트 등록\r\n", " ");
-		System.out.printf("\n%22s2. 퇄퇴\r\n", " ");
+		System.out.printf("\n%22s3. 회원 탈퇴\r\n", " ");
 		System.out.printf("\n%22s9. 홈으로\r\n", " ");
 		System.out.printf("\n%22s0. 이전으로\r\n", " ");
 		Scanner scan = new Scanner(System.in);
@@ -120,7 +120,7 @@ public class BlackList {
 			if (s.equals("1")) {
 				changeBlacklevel(select);
 			} else if (s.equals("2")) {
-				//kickUser(select);
+				kickUser();
 			}
 
 		} catch (Exception e) {
