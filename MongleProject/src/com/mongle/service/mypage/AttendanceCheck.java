@@ -187,7 +187,6 @@ public class AttendanceCheck {
 		int lastindex;
 		
 		LocalDate date = LocalDate.now();
-		int todayDate = 
 
 		// System.out.println(lastDay);
 		// System.out.println(dayOfWeek);
