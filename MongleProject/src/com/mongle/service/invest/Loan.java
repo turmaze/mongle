@@ -90,10 +90,10 @@ public class Loan {
 						System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
 						return 0;
 					} else {
-						System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+						MongleVisual.wrongInput();
 					}
 				} catch (NumberFormatException e) {
-					System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+					MongleVisual.wrongInput();
 				}
 			} // while
 		} // while

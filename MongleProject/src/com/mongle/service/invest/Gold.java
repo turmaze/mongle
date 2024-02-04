@@ -74,7 +74,7 @@ public class Gold {
 					System.out.printf("%22s이전 화면으로 이동합니다.", " ");
 					return 0;
 				} else {
-					System.out.printf("%22s올바른 번호를 입력해주세요.", " ");
+					MongleVisual.wrongInput();
 				}
 			} // while
 		} // while
@@ -104,7 +104,7 @@ public class Gold {
 					return Integer.parseInt(num);
 				}
 			} catch (NumberFormatException e) {
-				System.out.printf("%22s올바른 형식으로 입력해주세요.", " ");
+				MongleVisual.wrongInput();
 			}
 		} // while
 		return 0;
