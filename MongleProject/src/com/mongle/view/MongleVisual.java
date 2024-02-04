@@ -18,7 +18,7 @@ public class MongleVisual {
 	
 	public static void wrongInput() {
 		pusher();
-		System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
+		System.out.printf("%22s입력이 올바르지 않습니다.\n\n", " ");
 		stopper();
 	}
 
