@@ -20,11 +20,12 @@ public class History {
 	private int balance;
 
 	/**
-	 * 거래 내역 toString()
+	 * 거래 내역 toString() 
+	 * String.format("History [date=%s, memo=%s, amount=%s, balance=%s]", date, memo, amount, balance);
 	 */
 	@Override
 	public String toString() {
-		return String.format("History [date=%s, memo=%s, amount=%s, banlance=%s]", date, memo, amount, balance);
+		return String.format("History [date=%s, memo=%s, amount=%s, balance=%s]", date, memo, amount, balance);
 	}
 
 	/**
@@ -55,7 +56,7 @@ public class History {
 	/**
 	 * 거래 내용 Getter
 	 * 
-	 * @return
+	 * @return 거래 내용
 	 */
 	public String getMemo() {
 		return memo;
@@ -64,7 +65,7 @@ public class History {
 	/**
 	 * 거래 금액 Getter
 	 * 
-	 * @return
+	 * @return 거래 금액
 	 */
 	public int getAmount() {
 		return amount;
@@ -73,7 +74,7 @@ public class History {
 	/**
 	 * 잔고 Getter
 	 * 
-	 * @return
+	 * @return 잔고
 	 */
 	public int getBalance() {
 		return balance;
