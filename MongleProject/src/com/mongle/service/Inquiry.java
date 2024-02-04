@@ -33,78 +33,67 @@ public class Inquiry {
 			Scanner scanner = new Scanner(System.in);
 
 			
-		String input = "7"; //1,2,3,0이 아닌 값	
-		while(!input.equals("0")) {	//
-//			//level 탐색
-//			HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
-//			Object levelValue = selectedMap.get("level");
-//		
-//			//관리자
-//			if(levelValue.equals("2")) {
-			if(true) { //testcode
-				Inquiry inquiry = new Inquiry();
-				inquiry.loadInq(annList,ResourcePath.ANNO);
-				
-				System.out.println();
-				MongleVisual.menuHeader("관리자 공지사항");
-
-				System.out.printf("\n%22s1. 공지사항 확인\n"," ");
-				System.out.printf("%22s2. 생성\n"," ");
-				System.out.printf("%22s3. 수정\n"," ");
-				System.out.printf("%22s4. 삭제\n\n"," ");
-				System.out.printf("%22s0. 이전으로\n\n"," ");
-				
-				
-				System.out.printf("%22s입력: ", " ");
-				do {
-					switch(input = scanner.nextLine()) {
-						case "1":
-							inquiry.showTxt(annList);
-							
-							break;
-						case "2":
-							inquiry.createInq(annList);
-							inquiry.saveInq(annList,ResourcePath.ANNO);
-							break;
-						case "3":
-							inquiry.editInq(annList);
-							inquiry.saveInq(annList,ResourcePath.ANNO);
-							break;
-						case "4":
-							inquiry.deleteInq(annList);
-							inquiry.saveInq(annList,ResourcePath.ANNO);
-							break;
-						case "0":
-							MainMenu.mainMenu("2");
-							break;
-							
-						default :
-							System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
-						}
-				} while(!(input.equals("1") || input.equals("2") ||
-						  input.equals("3") || input.equals("4") || input.equals("0")) );
-
-			}	//if(levelValue.equals("2"))
-							
-//			else { // 회원,  블랙리스트"3"은 여기까지 안옴 //문의사항에서 사용할 code
-//			
-//			System.out.println("문의사항에 필요한 else문");
-//		}
-
-//		writer.write(gson.toJson(annList));
-//		inquiry.loadInq(annList);
-//		
-//		writer.flush(); // 버퍼 비우기
-//
-//		writer.close();
-
-
-			
-			
-		} //while(true)
+			String input = "7"; //1,2,3,0이 아닌 값	
+			while(!input.equals("0")) {	//
+	//			//level 탐색
+	//			HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
+	//			Object levelValue = selectedMap.get("level");
+	//		
+	//			//관리자
+	//			if(levelValue.equals("2")) {
+				if(true) { //testcode
+					Inquiry inquiry = new Inquiry();
+					inquiry.loadInq(annList,ResourcePath.ANNO);
 					
-		//이전으로 가는 코드
-		
+					System.out.println();
+					MongleVisual.menuHeader("관리자 공지사항");
+	
+					System.out.printf("\n%22s1. 공지사항 확인\n"," ");
+					System.out.printf("%22s2. 생성\n"," ");
+					System.out.printf("%22s3. 수정\n"," ");
+					System.out.printf("%22s4. 삭제\n\n"," ");
+					System.out.printf("%22s0. 이전으로\n\n"," ");
+					
+					
+					System.out.printf("%22s입력: ", " ");
+					do {
+						switch(input = scanner.nextLine()) {
+							case "1":
+								inquiry.showTxt(annList);
+								
+								break;
+							case "2":
+								inquiry.createInq(annList);
+								inquiry.saveInq(annList,ResourcePath.ANNO);
+								break;
+							case "3":
+								inquiry.editInq(annList);
+								inquiry.saveInq(annList,ResourcePath.ANNO);
+								break;
+							case "4":
+								inquiry.deleteInq(annList);
+								inquiry.saveInq(annList,ResourcePath.ANNO);
+								break;
+							case "0":
+								break;
+								
+							default :
+								System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
+							}
+					} while(!(input.equals("1") || input.equals("2") ||
+							  input.equals("3") || input.equals("4") || input.equals("0")) );
+	
+				}	//if(levelValue.equals("2"))
+								
+//				else { // 회원,  블랙리스트"3"은 여기까지 안옴 //문의사항에서 사용할 code
+//				
+//				System.out.println("문의사항에 필요한 else문");
+//				}
+				
+			} //while(true)
+			
+			MainMenu.mainMenu("2");
+			return;
 			
 		} catch (Exception e) {
 			System.out.println("announcement Error");
@@ -137,8 +126,8 @@ public class Inquiry {
 		
 		System.out.print("제목: ");
 		value = scanner.nextLine();
-		while ( (value.contains(":q!")|| titleExists(arrayList,value)) ) {
-		    System.out.print("오류. 재입력.\n");
+		while ( (titleExists(arrayList,value)) ) {
+		    System.out.print("중복입니다. 재입력해주세요.\n");
 		    System.out.printf("제목: ");
 		    value = scanner.nextLine();
 		}
@@ -246,21 +235,37 @@ public class Inquiry {
 		Scanner scanner = new Scanner(System.in);
 		Inquiry inquiry = new Inquiry();
 		
-		System.out.printf("%22s1.선택 삭제\n%22s2. 전체 삭제\n", " ");
+		System.out.printf("%22s1. 선택 삭제\n%22s2. 전체 삭제\n", " "," ");
 		System.out.printf("%22s입력: ", " ");
 		
 		String input = "7";
 		do {
 			switch(input = scanner.nextLine()) {
 				case "1":
-					
+					System.out.printf("%22s삭제할 글의 제목을 입력하세요.\n%22s입력: ", " "," ");
+		            String del = scanner.nextLine();
+		            boolean isDel = false;
+		            for (Iterator<HashMap> iterator = arrayList.iterator(); iterator.hasNext();) {
+		                HashMap<String, Object> map = iterator.next();
+		                if (map.get("title").equals(del)) {
+		                    iterator.remove(); // 현재 항목 삭제
+		                    isDel = true;
+		                    System.out.printf("%22s\"%s\" 제목의 글이 삭제되었습니다.\n", " ", del);
+		                    break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
+		                }
+		            }
+		            if (!isDel) {
+		                System.out.printf("%22s\"%s\" 제목의 글을 찾을 수 없습니다.\n", " ", del);
+		            }
 					break;
+					
 				case "2":
 					arrayList.removeAll(arrayList);
 					System.out.printf("%22s전부 삭제되었습니다.", " ");
 					break;
 
 				case "0":
+
 					//이전으로 감
 					break;
 					
