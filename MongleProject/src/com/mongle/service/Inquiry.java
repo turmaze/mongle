@@ -28,21 +28,20 @@ public class Inquiry {
 
 	private static ArrayList<String> TitleList = new ArrayList<String>();
 	
-	public static void announcement() {
+	public static void adminAnnouncement() {
 		try {
 			Scanner scanner = new Scanner(System.in);
-
 			
 			String input = "7"; //1,2,3,0이 아닌 값	
 			while(!input.equals("0")) {	//
 				//level 탐색
 				HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
 				Object levelValue = selectedMap.get("level");
-			
+				Inquiry inquiry = new Inquiry();
+				inquiry.loadInq(annList,ResourcePath.ANNO);
+				
 				//관리자
 				if(levelValue.equals("2")) {
-					Inquiry inquiry = new Inquiry();
-					inquiry.loadInq(annList,ResourcePath.ANNO);
 					
 					System.out.println();
 					MongleVisual.menuHeader("관리자 공지사항");
@@ -83,12 +82,8 @@ public class Inquiry {
 					} while(!(input.equals("1") || input.equals("2") ||
 							  input.equals("3") || input.equals("4") || input.equals("0")) );
 	
-				}	//if(levelValue.equals("2"))
-								
-				else { // 회원,  블랙리스트"3"은 여기까지 안옴 //문의사항에서 사용할 code
-					System.out.println("회원 문의사항에 필요한 else문");
-				}
-				
+				} //if
+												
 			} //while(true)
 			
 			
@@ -97,7 +92,57 @@ public class Inquiry {
 			e.printStackTrace();
 		}
 
-	} //announcement() 끝
+	} //adminAnnouncement() 끝
+	
+	public static void mebmerAnnouncement() {
+		try {
+			Scanner scanner = new Scanner(System.in);
+			
+			String input = "7"; //1,2,3,0이 아닌 값	
+			while(!input.equals("0")) {	//
+				//level 탐색
+				HashMap<String, Object> selectedMap = DataBase.getPrivateUser().get(0); //고정 값
+				Object levelValue = selectedMap.get("level");
+				Inquiry inquiry = new Inquiry();
+				inquiry.loadInq(annList,ResourcePath.ANNO);
+				
+				//회원
+				if(levelValue.equals("1")) {
+					
+					System.out.println();
+					MongleVisual.menuHeader("공지사항");
+	
+					System.out.printf("\n%22s1. 공지사항 확인\n"," ");
+
+					System.out.printf("%22s0. 이전으로\n\n"," ");
+					
+					
+					System.out.printf("%22s입력: ", " ");
+					do {
+						switch(input = scanner.nextLine()) {
+							case "1":
+								inquiry.showTxt(annList);								
+								break;
+							case "0":
+								System.out.printf("%22s회원 페이지로 이동합니다.\n\n"," ");
+								break;
+								
+							default :
+								System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n"," "," ");
+							}
+					} while(!(input.equals("1") || input.equals("0")) );
+	
+				} //if
+												
+			} //while(true)
+			
+			
+		} catch (Exception e) {
+			System.out.println("announcement Error");
+			e.printStackTrace();
+		}
+
+	} //memberAnnouncement() 끝
 	
 	
 	private void inquiry() {
