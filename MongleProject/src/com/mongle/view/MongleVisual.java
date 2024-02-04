@@ -15,6 +15,12 @@ public class MongleVisual {
 		System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
 		scan.nextLine();
 	}
+	
+	public static void wrongInput() {
+		pusher();
+		System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
+		stopper();
+	}
 
 	private static void menuList(String menu, int menuType) {
 		// menuType 0 -> 가운데 + 세로 한줄

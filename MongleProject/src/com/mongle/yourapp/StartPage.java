@@ -34,9 +34,7 @@ public class StartPage {
 			} else if (choice.equals("0")) {
 				return;
 			} else {
-				MongleVisual.pusher();
-				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
-				MongleVisual.stopper();
+				MongleVisual.wrongInput();
 			}
 		}
 	}
