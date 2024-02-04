@@ -13,8 +13,15 @@ import com.mongle.service.invest.Loan;
 import com.mongle.service.invest.Stock;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 투자 업무 클래스
+ */
 public class InvestService {
-
+	/**
+	 * 투자 메뉴
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int investMenu() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -89,6 +96,14 @@ public class InvestService {
 		return 0;
 	}
 
+	/**
+	 * 투자 이후 자산 내역 갱신
+	 * 
+	 * @param memo  투자한 내용
+	 * @param price 구매한 투자 상품 가격
+	 * @param num   구매한 투자 상품 수량
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int transaction(String memo, int price, int num) {
 		Scanner scan = new Scanner(System.in);
 
@@ -145,6 +160,11 @@ public class InvestService {
 
 	}
 
+	/**
+	 * 표 형식으로 출력
+	 * 
+	 * @param data 출력할 리스트
+	 */
 	public static void print(List<BankAccount> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),

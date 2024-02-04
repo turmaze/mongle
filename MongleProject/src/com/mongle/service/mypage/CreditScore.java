@@ -5,9 +5,15 @@ import java.util.Scanner;
 
 import com.mongle.database.DataBase;
 import com.mongle.view.MongleVisual;
-
+/**
+ * 신용 점수 클래스
+ */
 public class CreditScore {
 
+	/**
+	 * 신용 점수 호출 및 신용 점수 팁 안내
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int creditScoreService() {
 
 		Scanner scan = new Scanner(System.in);

@@ -14,8 +14,15 @@ import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.Encrypt;
 import com.mongle.yourapp.LogIn;
 
+/**
+ * 개인정보 클래스
+ */
 public class EditInfo {
-
+	/**
+	 * 개인정보 조회
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int edit() {
 
 		Scanner scan = new Scanner(System.in);
@@ -64,6 +71,9 @@ public class EditInfo {
 
 	}
 
+	/**
+	 * 전화번호 변경
+	 */
 	public static void changePhone() {
 		Scanner scan = new Scanner(System.in);
 		String setPhone;
@@ -82,6 +92,11 @@ public class EditInfo {
 		System.out.printf("%22s전화번호 변경완료\n", " ");
 	}
 
+	/**
+	 * 비밀번호 유효성 검사
+	 * 
+	 * @return 유효성 검사 통과한 비밀번호
+	 */
 	public static String check() {
 		Scanner scan = new Scanner(System.in);
 		String pw1;
@@ -93,6 +108,9 @@ public class EditInfo {
 		return pw1;
 	}
 
+	/**
+	 * 비밀번호 변경
+	 */
 	public static void changePw() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
