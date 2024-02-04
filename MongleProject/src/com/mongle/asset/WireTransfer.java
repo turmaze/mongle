@@ -204,33 +204,26 @@ public class WireTransfer {
 
 			try {
 				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
-
-					for (BankAccount acc : BankAccount.list) {
-						if (acc.getAccountNumber()
-								.equals(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber())) {
-							if (acc.getDepositAmount() >= money) {
-
-								int rest = acc.getDepositAmount() - money;
-//								BankAccount.list.set(BankAccount.list.indexOf(acc), new BankAccount(acc.getBankDepo(),
-//										acc.getTitleDepo(), acc.getAccountNumber(), rest));
-								History.make(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber(), "송금",
-										-money);
-								System.out.println();
-								System.out.printf("%22s송금이 완료되었습니다.\n", " ");
-								System.out.printf("%22s송금 후 잔액은 %,d원입니다.\n", " ", rest);
-								System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-								scan.nextLine();
-								loop = false;
-							} else if (acc.getDepositAmount() < money) {
-								System.out.printf("%22s계좌의 잔액이 부족합니다.\n", " ");
-								System.out.printf("%22s다시 선택해주세요.\n", " ");
-							}
-						}
+					BankAccount acc = BankAccount
+							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
+					if (acc.getDepositAmount() >= money) {
+						int rest = acc.getDepositAmount() - money;
+						History.make(acc.getAccountNumber(), "송금", -money);
+						
+						System.out.println();
+						System.out.printf("%22s송금이 완료되었습니다.\n", " ");
+						System.out.printf("%22s송금 후 잔액은 %,d원입니다.\n", " ", rest);
+						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+						scan.nextLine();
+						loop = false;
+					} else if (acc.getDepositAmount() < money) {
+						System.out.printf("%22s계좌의 잔액이 부족합니다.\n", " ");
+						System.out.printf("%22s다시 선택해주세요.\n", " ");
 					}
-				} else if (sel.equals("0")){
+				} else if (sel.equals("0")) {
 					MongleVisual.menuMove("이전 화면");
 					return 0;
-				}else {
+				} else {
 					MongleVisual.wrongInput();
 				}
 			} catch (NumberFormatException e) {
