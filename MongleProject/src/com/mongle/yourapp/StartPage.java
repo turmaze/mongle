@@ -34,8 +34,8 @@ public class StartPage {
 			} else if (choice.equals("0")) {
 				return;
 			} else {
-				System.out.println();
-				System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+				MongleVisual.pusher();
+				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
 				MongleVisual.stopper();
 			}
 		}
