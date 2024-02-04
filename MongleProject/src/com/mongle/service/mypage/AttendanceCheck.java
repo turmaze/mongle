@@ -46,14 +46,16 @@ public class AttendanceCheck {
 
 			System.out.println();
 			System.out.println();
-
+			
+			String emojiString = "출석 마크 변경";
+			System.out.printf("%22s1. %s(기본설정: \"O\")\n", " ", emojiString);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.printf("%22s선택(번호): ", " ");
 
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
-
+				attendEmojiChange(emojiString);
 			} else if (sel.equals("9")) {
 				return 9;
 			} else if (sel.equals("0")) {
@@ -63,13 +65,21 @@ public class AttendanceCheck {
 		
 	}
 	
+	private static void attendEmojiChange(String emojiString) {
+		
+		MongleVisual.menuHeader(emojiString);
+		
+		
+	}
+
 	public static void attendanceload() {
 		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attend");
 		if (arr!=null) {
 		if (arr.size()>0) {
 		AttendList.list.add(new AttendList(
 				(ArrayList<String>) ((JSONObject) arr.get(0)).get("attenddate")
-				, (String)((JSONObject) arr.get(0)).get("stratedate"))
+				, (String)((JSONObject) arr.get(0)).get("stratedate")
+				, (String)((JSONObject) arr.get(0)).get("emoji"))
 				);
 		return;
 		}}
@@ -96,7 +106,7 @@ public class AttendanceCheck {
 		attendanceload();
 		
 		if (AttendList.list.size()==0) { //회원가입 후 첫 로그인
-			AttendList.list.add(new AttendList(pointdate, "1"));
+			AttendList.list.add(new AttendList(pointdate, "1", "O"));
 			AttendList.getPoint();
 			return;
 		}
