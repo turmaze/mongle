@@ -26,7 +26,7 @@ public class LoanView {
 			}else if(sel.equals("3")) {
 				// 중도/전체 상환
 			}else if(sel.equals("0")) {
-				//이전으로
+				//
 			}else {
 				MongleVisual.wrongInput();
 			}
