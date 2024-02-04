@@ -155,49 +155,6 @@ public class DataBase {
 
 	}
 
-//JsonObject로 만든거		
-//	        try {
-//	            Gson gson = new Gson();
-//	            // JSON 파일을 읽어와 JsonObject로 파싱
-//	            JsonObject jsonObject = JsonParser.parseReader(new FileReader(ResourcePath.MEMBER)).getAsJsonObject();
-//
-//	            // id 값을 가진 데이터 확인
-//	            JsonObject targetData = jsonObject.getAsJsonObject(LogIn.primaryKey);
-//
-//	            if (targetData != null) {
-//	            	String tempId = targetData.get("id").getAsString();
-//	                String pw = targetData.get("pw").getAsString();
-//	                String name = targetData.get("name").getAsString();              
-//	                String birth = targetData.get("birth").getAsString();
-//	                //String phone = targetData.get("phone").getAsString();
-//
-//	                HashMap<String, String> tempUser = new HashMap<>();
-//	                tempUser.put("id", tempId);
-//	                tempUser.put("pw", pw);
-//	                tempUser.put("name", name);
-//	                tempUser.put("birth", birth);
-//	               // tempUser.put("phone", phone);
-//	                
-//	                privateUser.add(tempUser);
-//	                // 가져온 값 출력
-//	                System.out.println("privateUser List test : "+tempUser);
-//	            
-//            	} else {
-//                System.out.println("qwerty123 값을 가진 데이터가 존재하지 않습니다.");
-//            	}
-//	        } catch (IOException e) {
-//	        	e.printStackTrace();
-//	        }
-
-//		for(HashMap privateData : user) {
-//			if(id.equals(privateData.get("ID"))) { //ID값이 맞으면
-//				privateUser.get
-//				
-//				
-//			}
-//			
-//		}
-
 	public static void dataSave() {
 		try {
 
