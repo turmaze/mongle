@@ -13,7 +13,6 @@ import com.mongle.view.MongleVisual;
 
 public class AssetService {
 
-
 	public static int assmenu() {
 		// 메뉴 헤더 화면
 		boolean loop = true;
@@ -48,7 +47,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("3")) {
-				//연동
+				// 연동
 				r = AccountConnection.connection();
 				if (r == 9) {
 					return 9;
@@ -56,7 +55,7 @@ public class AssetService {
 					continue;
 				}
 			} else if (sel.equals("4")) {
-				//이자 계산기
+				// 이자 계산기
 				r = DepoCalculator.depoSaveService();
 				if (r == 9) {
 					return 9;
@@ -79,39 +78,37 @@ public class AssetService {
 		// 헤더 출력
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
-		
+
 		while (true) {
-		
-		String header = "+---+---------------------+-----------------------+-----------------------+-----------------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
-		printAsciiTable(BankAccount.list); //json 에서 가져온 데이터
-		System.out.printf("%22s%s\n", " ", header);
-		
-		
-		System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
-		System.out.printf("%22s9. 홈으로\n", " ");
-		System.out.printf("%22s0. 이전으로\n", " ");
-		System.out.println();
-		System.out.printf("%22s선택(번호) :", " ");
-		
-		String sel = scan.nextLine();
-		if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= BankAccount.list.size()) {
-			r = History.check(BankAccount.list.get(Integer.parseInt(sel) - 1).getAccountNumber());
-			if (r == 9) {
+
+			String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
+			System.out.printf("%s\n", header);
+			System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n", " ");
+			System.out.printf("%s\n", header);
+			printAsciiTable(BankAccount.list); // json 에서 가져온 데이터
+			System.out.printf("%s\n", header);
+
+			System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
+			System.out.println();
+			System.out.printf("%22s선택(번호) :", " ");
+
+			String sel = scan.nextLine();
+			if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= BankAccount.list.size()) {
+				r = History.check(BankAccount.list.get(Integer.parseInt(sel) - 1).getAccountNumber());
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
+			} else if (sel.equals("9")) {
 				return 9;
-			} else {
-				continue;
+			} else if (sel.equals("0")) {
+				return 0;
 			}
-		} else if (sel.equals("9")) {
-			return 9;
-		} else if (sel.equals("0")) {
-			return 0;
+
 		}
-		
-		}
-		
 
 	}
 
@@ -126,7 +123,7 @@ public class AssetService {
 
 	public static void printAsciiTable(ArrayList<BankAccount> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {
-			System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", i + 1, data.get(i).getBankDepo(),
+			System.out.printf("|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getAccountNumber(), data.get(i).getDepositAmount());
 
 		}

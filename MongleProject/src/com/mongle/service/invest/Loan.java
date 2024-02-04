@@ -113,10 +113,10 @@ public class Loan {
 	}
 
 	private static List<InfoProduct> searchLoan(List<InfoProduct> table, int index) { // 대출 검색기
-		String header = "+---+---------------------+-----------------------+--------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|        금융사         |          상품명         | 평균금리 |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
+		String header = "+---+------------------------+-----------------------+--------+";
+		System.out.printf("%11s%s\n", " ", header);
+		System.out.printf("%11s|번호|          금융사          |          상품명         | 평균금리 |\n", " ");
+		System.out.printf("%11s%s\n", " ", header);
 		try {
 			URL url = new URL(
 					"https://finlife.fss.or.kr/finlifeapi/creditLoanProductsSearch.json?auth=e06ef138c067a4ff1a42504d0fefda36&topFinGrpNo=020000&pageNo=1");
@@ -155,7 +155,7 @@ public class Loan {
 			System.out.println("emain");
 			e.printStackTrace();
 		}
-		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%11s%s\n", " ", header);
 
 		return table;
 	}
@@ -163,7 +163,7 @@ public class Loan {
 	public static void printAsciiTable(List<InfoProduct> data, int index) { // 표에 반복해서 출력하는 메서드
 		int printNum = 1;
 		for (int i = index; i < index + 7; i++) {
-			System.out.printf("%22s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, 
+			System.out.printf("%11s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, 
 												data.get(i).getBank(),
 												data.get(i).getTitle(),
 												data.get(i).getRate());
