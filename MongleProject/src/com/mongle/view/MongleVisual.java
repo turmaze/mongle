@@ -21,6 +21,12 @@ public class MongleVisual {
 		System.out.printf("%22s입력이 올바르지 않습니다.\n\n", " ");
 		stopper();
 	}
+	
+	public static void successPrint() {
+		pusher();
+		System.out.printf("%22s완료되었습니다.\n\n", " ");
+		stopper();
+	}
 
 	private static void menuList(String menu, int menuType) {
 		// menuType 0 -> 가운데 + 세로 한줄

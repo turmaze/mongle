@@ -53,11 +53,14 @@ public class AttendanceCheck {
 			System.out.printf("%22s1. %s(기본설정: \"O\")\n", " ", emojiString);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
+			System.out.println();
 			System.out.printf("%22s선택(번호): ", " ");
 
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
-				attendEmojiChange(emojiString);
+				int r = attendEmojiChange(emojiString);
+				
+				if (r == 9) { return 9;	}
 			} else if (sel.equals("9")) {
 				return 9;
 			} else if (sel.equals("0")) {
@@ -92,18 +95,20 @@ public class AttendanceCheck {
 
 			String sel = scan.nextLine();
 			
-			String regex = String.format("^[0-%d]$", numEmoji) ;
+			String regex = String.format("^[1-%d]$", numEmoji) ;
 			Pattern p1 = Pattern.compile(regex);
 			Matcher m1 = p1.matcher(sel);
 			
 			if (m1.find()) {
-				
+				String nowEmoji = emoji[Integer.parseInt(sel)];
+				AttendList.list.get(0).setEmoji(nowEmoji);;
+				MongleVisual.successPrint();
 			} else if (sel.equals("9")) {
-
+				return 9;
 			} else if (sel.equals("0")) {
-
+				return 1;
 			} else {
-				System.out.printf("%22s입력이 올바르지 않습니다.\n", " ");
+				MongleVisual.wrongInput();
 			}
 
 		}
