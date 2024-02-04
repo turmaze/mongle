@@ -136,7 +136,7 @@ public class MainMenu {
 				continue;
 			case "3":
 				System.out.printf("%22s공지사항 관리화면으로 이동합니다.\n\n", " ");
-				Inquiry.announcement();
+				Inquiry.adminAnnouncement();
 				continue;
 			case "4":
 				System.out.printf("%22s문의 관리화면으로 이동합니다.\n\n", " ");
