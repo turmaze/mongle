@@ -8,6 +8,11 @@ public class Encrypt {
 	
 	public static String AbcSalt;
 	
+	/**
+	 * password 암호화
+	 * @param pw
+	 * @return 암호화된 문자열
+	 */
 	public static String encrypt(String pw) {
 		Encrypt encrypt = new Encrypt();
 
@@ -20,12 +25,12 @@ public class Encrypt {
 		
 	}
 
-	
+
 	private static String getEncrypt(String pw, String salt) {
 		String output = "";
 		
 		try {
-			// SHA256 알고리즘
+
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			
 			//System.out.println("before pw+salt "+pw+salt); // test
@@ -65,7 +70,12 @@ public class Encrypt {
 		return sb.toString();
 	}
 	
-	
+	/**
+	 * 로그인 시 비밀번호 대조
+	 * @param 입력받은 pw 값
+	 * @param 사용자 데이터에 저장된 salt 값
+	 * @return 암호화된 문자열
+	 */
 	public static String LogInPw(String pw , String salt) {
 		return getEncrypt(pw,salt);	
 	}
