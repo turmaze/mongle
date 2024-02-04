@@ -1,7 +1,10 @@
 package com.mongle.service;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.nio.channels.SelectableChannel;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,6 +13,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
@@ -22,6 +27,7 @@ public class BlackList {
 
 		System.out.printf("\n%22s1. 블랙리스트 확인\r\n", " ");
 		System.out.printf("\n%22s2. 블랙리스트 등록\r\n", " ");
+		System.out.printf("\n%22s2. 퇄퇴\r\n", " ");
 		System.out.printf("\n%22s9. 홈으로\r\n", " ");
 		System.out.printf("\n%22s0. 이전으로\r\n", " ");
 		Scanner scan = new Scanner(System.in);
@@ -31,6 +37,9 @@ public class BlackList {
 			callBlackList();
 		} else if (input.equals("2")) {
 			addBlackList();
+		}else if (input.equals("3")) {
+			kickUser();
+			
 		} else if (input.equals("9")) {
 
 		} else if (input.equals("0")) {
@@ -111,7 +120,7 @@ public class BlackList {
 			if (s.equals("1")) {
 				changeBlacklevel(select);
 			} else if (s.equals("2")) {
-				kickUser(select);
+				//kickUser(select);
 			}
 
 		} catch (Exception e) {
@@ -121,29 +130,30 @@ public class BlackList {
 
 	}
 
-	private static void kickUser(String select) {
+	private static void kickUser() {
 		System.out.printf("\n%22s대상 아이디 입력: \r\n", " ");
 		Scanner scan = new Scanner(System.in);
 		String idcheck = scan.nextLine();
 		try {
 			JSONParser parser = new JSONParser();
-			JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
-			boolean check = false;
-			for (Object obj : list) {
-				if (((JSONObject) obj).get("level").equals("1")) {
-					idcheck = (String) ((JSONObject) obj).get("id");
-					String level = (String)((JSONObject)obj).get("level");
-					
-					break;
+			ArrayList<HashMap> list = DataBase.getUser();
+			String findID;
+			for (HashMap obj : list) {
+				if ((obj).get("id").equals(idcheck)) {
+					list.remove(obj);	
 				}
+			}
+			
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			File file = new File(ResourcePath.MEMBER);
+			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
+			FileWriter writer = new FileWriter(file, false); // 덮쓰
 
-			}
-			if (!idcheck.equals(null)) {
-				
-			} else {
-				System.out.printf("\n%22s잘못된 입력 \r\n", " ");
-				kickUser(select);
-			}
+			// String json = gson.toJson(user);
+			writer.write(gson.toJson(list));
+			writer.flush(); // 버퍼 비우기
+
+			writer.close();
 
 		} catch (Exception e) {
 			System.out.println("BlackList.addBlackList");

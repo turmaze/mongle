@@ -10,13 +10,10 @@ public class TestMain05 {
 		DataBase.dataLoad();
 		StartPage.startPage();
 		DataBase.changeData();
-//		LogIn.logIn();
 		
 		
 		
 		
-		//DataBase.changeData(DataBase.getPrivateUser(), "계좌", BankAccount.list);
-		//DataBase.changeData(DataBase.getUser(), "계좌", BankAccount.list);
 		DataBase.dataSave();
 		//SignOut.signOutService();
 		//MypageService.mypageService();
