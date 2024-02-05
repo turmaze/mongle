@@ -17,7 +17,7 @@ public class LoanFile {
 	 * 대출 상품 데이터 저장된 리스트
 	 */
 	private static final String LOAN = "dat\\loan.txt";
-	public static ArrayList<Loan> filelist = new ArrayList<>();
+	public static ArrayList<ManageLoan> filelist = new ArrayList<>();
 	
 	/**
 	 * 데이터 파일 로딩
@@ -29,7 +29,7 @@ public class LoanFile {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
-				LoanFile.filelist.add(new Loan(temp[0], Integer.parseInt(temp[1]),
+				LoanFile.filelist.add(new ManageLoan(temp[0], Integer.parseInt(temp[1]),
 											Float.parseFloat(temp[2]), Integer.parseInt(temp[3]),Integer.parseInt(temp[4])));
 			}
 
@@ -46,7 +46,7 @@ public class LoanFile {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(LoanFile.LOAN));
 
-			for (Loan acc : LoanFile.filelist) {
+			for (ManageLoan acc : LoanFile.filelist) {
 				String line = String.format("%s,%d,%f,%d,%d\r\n",acc.getloanName(),
 						acc.getprincipal(),acc.getRate(), acc.getloanPeriod(),
 						acc.getrPeriod());

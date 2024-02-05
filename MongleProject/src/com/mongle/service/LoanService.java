@@ -3,7 +3,7 @@ package com.mongle.service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.mongle.service.loan.Loan;
+import com.mongle.service.loan.ManageLoan;
 import com.mongle.view.MongleVisual;
 /**
  * 대출 관리 메인 메뉴 클래스
@@ -12,7 +12,7 @@ public class LoanService {
 		
 	public static void loanMenu() {
 		boolean loop = true;
-		Loan.openLoan();
+		ManageLoan.openLoan();
 		while(loop) {
 			MongleVisual.menuHeader("대출 관리");
 			System.out.println();
@@ -27,13 +27,13 @@ public class LoanService {
 			
 			if(sel.equals("1")) {
 				// 대출정보
-				Loan.checkLoan();				
+				ManageLoan.checkLoan();				
 			}else if(sel.equals("2")) {
 				// 대출연장
-				Loan.extension();
+				ManageLoan.extension();
 			}else if(sel.equals("3")) {
 				// 중도/전체 상환
-				Loan.calculrator();
+				ManageLoan.calculrator();
 			}else if(sel.equals("0")) {
 				break;
 				//

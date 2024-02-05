@@ -12,11 +12,11 @@ import com.mongle.view.MongleVisual;
 /**
  * 대출 클래스
  */
-public class Loan {
+public class ManageLoan {
 	/**
 	 * 대출 리스트
 	 */
-	public static ArrayList<Loan> loanlist = new ArrayList<>();
+	public static ArrayList<ManageLoan> loanlist = new ArrayList<>();
 
 	
 	private String loanName;//대출명
@@ -115,7 +115,7 @@ public class Loan {
 	 * @param loanPeriod대출기간
 	 * @param rPeriod	남은기간
 	 */
-	public Loan(String loanName, int principal, float rate, int loanPeriod, int rPeriod) {
+	public ManageLoan(String loanName, int principal, float rate, int loanPeriod, int rPeriod) {
 		super();
 		this.loanName = loanName;
 		this.principal = principal;
@@ -142,8 +142,8 @@ public class Loan {
 	public static  void openLoan() {
 		LoanFile.load();
 
-		Loan loan = new Loan(null, 0, 0, 0, 0);
-		for(Loan acc : LoanFile.filelist) {
+		ManageLoan loan = new ManageLoan(null, 0, 0, 0, 0);
+		for(ManageLoan acc : LoanFile.filelist) {
 
 			loan = acc;
 			LoanFile.filelist.remove(acc);
@@ -191,7 +191,7 @@ public class Loan {
 	 * 대출 상품 출력 규격 메서드
 	 * @param data 보유 대출 리스트
 	 */
-	public static void printLoanTable(ArrayList<Loan> data) { 
+	public static void printLoanTable(ArrayList<ManageLoan> data) { 
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("|%-9s\t|%,12d원\t|%6.1f%% |%5d개월 |%5d개월 |\n",  data.get(i).getloanName(),
 					data.get(i).getprincipal(), data.get(i).getRate(), data.get(i).getloanPeriod(),data.get(i).getrPeriod());
