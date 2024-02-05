@@ -28,7 +28,7 @@ public class DepoCalculator {
 		boolean loop = true;
 
 		while (loop) {
-			table = DepoSave.searchDepoSave(scan, table); // 예적금 검색
+			table = DepoSave.searchDepoSave(table); // 예적금 검색
 
 			System.out.println();
 			System.out.printf("%22s이자 계산(상품 번호 선택)\n", " ");
