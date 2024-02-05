@@ -8,12 +8,19 @@ import com.mongle.asset.DepoSave;
 import com.mongle.service.invest.InfoProduct;
 import com.mongle.view.MongleVisual;
 import com.mongle.service.AssetService;
-
+/**
+ * 이자계산 클래스
+ */
 public class DepoCalculator {
 	private static String bankDepo;
 	private static String titleDepo;
 	private static double rate;
-
+	/**
+	 * 상품별 이자 계산해주는 메서드
+	 * @param bank  은행명
+	 * @param title 상품명
+	 * @param rate  이자율
+	 */
 	public DepoCalculator(String bank, String title, double rate) {
 		// 이자 계산 생성자
 		this.bankDepo = bank;
@@ -21,7 +28,10 @@ public class DepoCalculator {
 		this.rate = rate;
 	}
 
-
+	/**
+	 * APi연동 예적금 상품 검색 메서드
+	 * @return  이자계산 기업명 + 상품명 + 기본금리 
+	 */
 	public static int depoSaveService() {
 		Scanner scan = new Scanner(System.in);
 		List<InfoProduct> table = new ArrayList<>(); // 예적금 정보 담을 리스트
@@ -69,7 +79,12 @@ public class DepoCalculator {
 		} // while
 		return 0;
 	}
-
+	/**
+	 * 
+	 * @param bankDepo2  은행명
+	 * @param titleDepo2 상품명
+	 * @param rate2      이자율
+	 */
 	private static void cal(String bankDepo2, String titleDepo2, double rate2) {
 		// 원금 X 해당 이율(3%) X 예입일로부터 지급 전일까지의 일수/365
 		Scanner sc = new Scanner(System.in);

@@ -4,11 +4,18 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import com.mongle.database.DataBase;
+import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
+import com.mongle.yourapp.LogIn;
 
 public class SafeSend {
 
@@ -66,13 +73,55 @@ public class SafeSend {
 
 	}
 	
-	public static void safeSendMoney(String fromwho, String fromacc
-									, String towho, String toacc
-									, String money, String senddate) {
+	public static boolean validSafe(String id) { //safesend설정 여부
+		for (HashMap map : DataBase.getUser()) {
+			if (map.get("id").equals(id)) {
+				return map.get("safesendsetting").equals("1"); //설정 했으면 true 리턴
+			}
+		}
+		return false;
+	}
+	
+	public static void safeGetMoney() {
+		
+		if (!validSafe(LogIn.primaryKey)) {
+			return;
+		}
 		
 		Scanner scan = new Scanner(System.in);
 		
-		if (DataBase.getPrivateUser().get(0).get("safesendsetting").equals("1")) {
+		String fromwho = null;
+		String fromacc = null;
+		String towho = null;
+		String toacc = null;
+		String money = null;
+		String senddate = null;
+		
+		JSONParser parser = new JSONParser();
+		try {
+			// FileReader 객체 생성
+			String path = ResourcePath.SAFE+"//"+LogIn.primaryKey+".dat";
+			FileReader reader = new FileReader(path);
+			File file = new File(path);
+			
+			if (!file.exists()) {
+				return;
+			}
+			
+			JSONObject jobj = (JSONObject) parser.parse(reader);
+			
+			fromwho = (String) jobj.get("보내는분");
+			fromacc = (String) jobj.get("출금 계좌");
+			towho = (String) jobj.get("받는분");
+			toacc = (String) jobj.get("송금 계좌");
+			money = (String) jobj.get("금액");
+			senddate = (String) jobj.get("날짜");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 			System.out.printf("%22s%s님으로부터 송금이 들어왔습니다.\n", " ", fromwho);
 			System.out.printf("%22s금액: %,d원\n", " ", money);
 			System.out.printf("%22s송금을 받으시겠습니까?(y/n)", " ");
@@ -87,28 +136,8 @@ public class SafeSend {
 				MongleVisual.wrongInput();
 			}
 			
-		}
+		
 		return;
 	}
 	
-	public static void safeSendAlam() {
-		String path = "송금 내역 경로"; //파일명=받는사람
-    	File file = new File(path);
-    	String wire = null;
-    	try {
-    		
-    		if (file.exists()) {
-    			BufferedReader reader = new BufferedReader(new FileReader(file));
-    			
-    			wire = reader.readLine();
-    			
-    			reader.close();
-    		}
-			
-		} catch (Exception e) {
-			System.out.println("SafeSend.safeSendAlam");
-			e.printStackTrace();
-		}
-	}
-
 }

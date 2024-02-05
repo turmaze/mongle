@@ -9,8 +9,14 @@ import com.mongle.view.MongleVisual;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AccountConnection {
+	
+	
+	/**
+	 * 계좌 연동하기 메서드
+	 * @return 사용자가 입력한 계좌 
+	 */
 	public static int connection() {
-		// 계좌 연동(불러)오기
+	
 		Scanner sc = new Scanner(System.in);
 
 		boolean tf = true;
@@ -51,7 +57,10 @@ public class AccountConnection {
 		}
 		return 0;
 	}
-
+	/**
+	 * 잔액 랜덤 생성
+	 * @return 계좌 연동 후 잔액 랜덤으로 넣기
+	 */
 	private static int randomAmount() {
 		// 잔액 랜덤으로 생성 > 범위: 1000000~3000000
 		int randomNumber = ThreadLocalRandom.current().nextInt(1000000, 3000001);

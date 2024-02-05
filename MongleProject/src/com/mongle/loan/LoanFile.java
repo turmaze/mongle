@@ -8,12 +8,20 @@ import java.util.ArrayList;
 
 import com.mongle.asset.GiveAccount;
 import com.mongle.resource.BankAccount;
-
+/**
+ * 대출 상품 데이터 클래스
+ */
 public class LoanFile {
+	/**
+	 * 대출 상품 데이터 파일 경로 저장
+	 * 대출 상품 데이터 저장된 리스트
+	 */
 	private static final String LOAN = "dat\\loan.txt";
 	public static ArrayList<Loan> filelist = new ArrayList<>();
 	
-	
+	/**
+	 * 데이터 파일 로딩
+	 */
 	public static void load() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(LoanFile.LOAN));
@@ -31,7 +39,9 @@ public class LoanFile {
 			e.getStackTrace();
 		}
 	}
-
+	/**
+	 * 데이터 파일 저장
+	 */
 	public static void save() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(LoanFile.LOAN));

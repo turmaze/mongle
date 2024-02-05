@@ -1,18 +1,20 @@
 package com.mongle.view;
 
+import java.io.IOException;
 import java.util.Scanner;
 
+import com.github.lalyos.jfiglet.FigletFont;
 import com.mongle.database.DataBase;
 
 public class MongleVisual {
-	
+
 	public static void pusher() {
 		DataBase.dataSave();
-		for (int i=0; i<30; i++) {
+		for (int i = 0; i < 30; i++) {
 			System.out.println();
 		}
 	}
-	
+
 	public static void stopper() {
 		Scanner scan = new Scanner(System.in);
 		DataBase.dataSave();
@@ -20,24 +22,24 @@ public class MongleVisual {
 		scan.nextLine();
 		pusher();
 	}
-	
+
 	public static void wrongInput() {
 		pusher();
 		System.out.printf("%22s입력이 올바르지 않습니다.\n\n", " ");
 		stopper();
 	}
-	
+
 	public static void successPrint() {
 		pusher();
 		System.out.printf("%22s완료되었습니다.\n\n", " ");
 		stopper();
 	}
-	
+
 	public static void choiceGuidePrint() {
 		System.out.println();
 		System.out.printf("%22s선택(번호): ", " ");
 	}
-	
+
 	public static void menuMove(String menuName) {
 		System.out.printf("\n%22s%s으로 이동합니다.\n\n", " ", menuName);
 		stopper();
@@ -48,17 +50,37 @@ public class MongleVisual {
 		// menuType 0 -> 가운데 + 세로 한줄
 		// menuType 1 -> 가운데 + 세로 두줄
 		// menuType 2 -> 위에 + 세로 한줄
-		
+
 		// menu -> 변수명 ex) 투자관리, 대출관리
-		
+
 	}
 
 	public static void menuHeader(String titleName) {
 		// 메뉴 헤더 화면
-		System.out.printf("%22s===================================\n"," ");
-		System.out.printf("%40s\n",titleName);
-		System.out.printf("%22s===================================\n"," ");
-		
+//		try {
+//			String title = FigletFont.convertOneLine("dat\\rectangles.flf", "( : Mongle : )");
+//			String title2 = FigletFont.convertOneLine("dat\\rectangles.flf", "Mongle : )");
+//			String title3 = FigletFont.convertOneLine("dat\\rectangles.flf", "$Mongle$");
+//			String tit = """
+// _____                 _      
+//|     | ___  ___  ___ | | ___ 
+//| | | || . ||   || . || || -_|
+//|_|_|_||___||_|_||_  ||_||___|
+//                 |___|        
+//					""";
+//			System.out.println(tit);
+//			System.out.println(title);
+//			System.out.println(title2);
+//			System.out.println(title3);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		System.out.printf("%22s╔═════════════════════════════════╗\n", " ");
+		System.out.printf("%40s\n", titleName);
+		System.out.printf("%22s╚═════════════════════════════════╝\n", " ");
+
 	}
 
 	private static void menuPage() {
@@ -66,21 +88,21 @@ public class MongleVisual {
 	}
 
 	private static void findAccPage() {
-		//계정 찾기 화면
-		
+		// 계정 찾기 화면
+
 	}
 
 	private static void signUpPage() {
-		//회원가입 화면
+		// 회원가입 화면
 	}
 
 	private static void loginPage() {
-		//로그인 화면
+		// 로그인 화면
 	}
 
 	private static void startPage() {
-		//첫 실행화면
-		
+		// 첫 실행화면
+
 	}
-	
+
 }
