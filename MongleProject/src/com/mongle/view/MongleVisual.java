@@ -57,26 +57,6 @@ public class MongleVisual {
 
 	public static void menuHeader(String titleName) {
 		// 메뉴 헤더 화면
-//		try {
-//			String title = FigletFont.convertOneLine("dat\\rectangles.flf", "( : Mongle : )");
-//			String title2 = FigletFont.convertOneLine("dat\\rectangles.flf", "Mongle : )");
-//			String title3 = FigletFont.convertOneLine("dat\\rectangles.flf", "$Mongle$");
-//			String tit = """
-// _____                 _      
-//|     | ___  ___  ___ | | ___ 
-//| | | || . ||   || . || || -_|
-//|_|_|_||___||_|_||_  ||_||___|
-//                 |___|        
-//					""";
-//			System.out.println(tit);
-//			System.out.println(title);
-//			System.out.println(title2);
-//			System.out.println(title3);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
 		System.out.printf("%22s╔═════════════════════════════════╗\n", " ");
 		System.out.printf("%40s\n", titleName);
 		System.out.printf("%22s╚═════════════════════════════════╝\n", " ");

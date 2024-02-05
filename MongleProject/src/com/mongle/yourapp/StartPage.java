@@ -15,7 +15,14 @@ public class StartPage {
 		while (loop) {
 			
 			MongleVisual.pusher();
-
+			String tit = """
+                            _____                 _      
+                           |     | ___  ___  ___ | | ___ 
+                           | | | || . ||   || . || || -_|
+                           |_|_|_||___||_|_||_  ||_||___|
+                                            |___|        
+			""";
+	System.out.println(tit);
 			MongleVisual.menuHeader("시작화면");
 			System.out.printf("\n%22s1. 로그인", " ");
 			System.out.printf("\n%22s2. 회원가입", " ");
