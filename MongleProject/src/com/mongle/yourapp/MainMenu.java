@@ -144,7 +144,7 @@ public class MainMenu {
 				continue;
 			case "4":
 				System.out.printf("%22s문의 관리화면으로 이동합니다.\n\n", " ");
-				WireTransferService.extracted();
+				Inquiry.adminInquiry();
 				continue;
 			case "5":
 				System.out.printf("%22s블랙리스트 화면으로 이동합니다.\n\n", " ");

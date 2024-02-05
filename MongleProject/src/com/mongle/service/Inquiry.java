@@ -234,7 +234,8 @@ public class Inquiry {
 								inqList.add(map);
 								inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 								System.out.printf("%22s완료되었습니다.\n", " ");
-								return;
+								adminInquiry(); //재귀...
+								
 							}
 						}
 					}//for
@@ -303,7 +304,7 @@ public class Inquiry {
 
 		inq.put("id", LogIn.primaryKey);
 		// inq.put("id", "primaryKey"); //test
-
+		
 		System.out.print("제목: ");
 		value = scanner.nextLine();
 		while ((titleExists(arrayList, value))) {
