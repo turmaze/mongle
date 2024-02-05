@@ -24,7 +24,7 @@ public class Validate {
 		}
 	}// id
 
-	private static boolean isIdDuplicate(String id) {
+	public static boolean isIdDuplicate(String id) {
 	
 		for (HashMap userData : DataBase.getUser()) {
 			// if (userData.containsValue(id)) {
@@ -68,9 +68,14 @@ public class Validate {
 		if(input.length()>8||input.length()<8) {
 			System.out.printf("\n%22s잘못된 입력입니다.\n"," ");
 			System.out.printf("\n%22s도움이 필요하시면 고객센터에 문의 해주세요\n"," ");
+			return false;
 		}
 	
 		int year = Integer.parseInt(input.substring(0, 4));
+		if(year>2020||year<1940) {
+			System.out.printf("\n%22s생년월일이 1940년 부터 2020년 사이여야 합니다.\n"," ");
+			return false;
+		}
 		int month = Integer.parseInt(input.substring(4, 6));
 		String regex;
 		if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {

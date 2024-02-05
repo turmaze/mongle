@@ -45,10 +45,15 @@ public class FindAcc {
 	private static void findMyPw() {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
+		int count = 1;
 		boolean loop = true;
 		try {
-			System.out.printf("\n%22s아이디(ID) 입력: ", " ");
-			user.setId(scan.nextLine());
+			do {
+				System.out.printf("\n%22s아이디(ID) 입력: ", " ");
+				user.setId(scan.nextLine());
+				count++;
+				choicePrint(count);
+			}while(!findMatch(user.getId()));
 			
 			String phone = SignUp.phoneCheck();
 			user.setPhone(phone);
@@ -88,6 +93,8 @@ public class FindAcc {
 							}
 						}
 						break;
+					}else {
+						System.out.printf("\n%22s다시입력하세요\n", " ");
 					}
 				}
 			} while (loop);
@@ -95,6 +102,36 @@ public class FindAcc {
 			System.out.println("FindAcc.findAcc");
 			e.printStackTrace();
 		}
+	}
+
+	public static void choicePrint(int count) {
+		if(count==3) {
+			System.out.printf("\n%22s계속 하시겠습니까? Y/N : ", " ");
+			Scanner scan = new Scanner(System.in);
+			String input = scan.nextLine();
+			if(input.equals("y")||input.equals("Y")){
+				findMyPw();
+			}else if(input.equals("n")||input.equals("N")) {
+				findAcc();
+			}else {
+				System.out.printf("\n%22s잘못 입력하셨습니다", " ");
+				choicePrint(3);
+			}
+		}
+	}
+	
+	public static boolean findMatch(String id) {
+		
+		for (HashMap userData : DataBase.getUser()) {
+			// if (userData.containsValue(id)) {
+			if (id.equals(userData.get("id"))) {
+				return true; // 중복된 ID가 있음
+			}else {
+				System.out.printf("\n%22s다시 입력해주세요", " ");
+
+			}
+		}
+		return false; // 중복된 ID가 없음
 	}
 
 	private static void findMyId() {
