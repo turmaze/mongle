@@ -15,3 +15,4 @@ https://docs.google.com/document/d/1id4xTTHKi3gepJE_MYx7qUG5FDs5FYqV/edit
 
 # 5. 순서도
 
+![image](https://github.com/turmaze/mongle/assets/150693016/5f802a5e-3a4a-4c48-9e36-869455518e34)
