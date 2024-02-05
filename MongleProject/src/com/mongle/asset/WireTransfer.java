@@ -1,8 +1,13 @@
 package com.mongle.asset;
 
+import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
@@ -28,13 +33,17 @@ public class WireTransfer {
 				// 송금하기
 				MongleVisual.menuMove("송금 화면");
 				transaction();
+				
 			} else if (sel.equals("2")) {
 				MongleVisual.menuMove("더치페이 화면");
 				// 더치페이
 				dutchpay();
+				
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("예약송금 화면");
 				// 예약송금
+				reserveTransfer(scanner);
+				
 			} else if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
 				// 이전으로
@@ -106,10 +115,11 @@ public class WireTransfer {
 
 	private static void shareMessage(String who) {
 
-		System.out.printf("%22s메세지로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송합니다.", " ");
+		System.out.printf("%22s메세지로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송했습니다.", " ");
 		System.out.println();
 	}
 
+	
 	private static void reserveTransfer(Scanner scanner) {
 		// 예약송금 로직 구현
 
@@ -150,18 +160,25 @@ public class WireTransfer {
 			System.out.printf("%22s[오류 발생] 정수단위로 입력해주세요.", " ");
 			return;
 		}
-
+boolean loop = true;
 		// 송금 확인 메시지
-		System.out.print("[" + year + "년 " + month + "월 " + day + "일 " + hour + "시]에 예약 송금하시겠습니까? (예/아니오): ");
+		System.out.printf("%22s[" + year + "년 " + month + "월 " + day + "일 " + hour + "시]에 예약 송금하시겠습니까? (y/n): ", " ");
+		
+		while(loop) {
 		String confirm = scanner.next();
 
-		if (confirm.equalsIgnoreCase("예")) {
+		if (confirm.equals("y")) {
+			System.out.println();
 			// 예약 송금 로직
-			System.out.println("예약이 완료되었습니다. 예약 시간: " + year + "년 " + month + "월 " + day + "일 " + hour + "시");
-		} else if (confirm.equalsIgnoreCase("아니오")) {
-			System.out.println("예약이 취소되었습니다.");
+			System.out.printf("%22s 예약이 완료되었습니다. 예약 시간: " + year + "년 " + month + "월 " + day + "일 " + hour + "시\n", " ");
+			MongleVisual.stopper();
+			break;
+		} else if (confirm.equals("n")) {
+			System.out.printf("%22s 예약이 취소되었습니다.", " ");
+			break;
 		} else {
-			System.out.println("올바른 선택을 해주세요.");
+			System.out.printf("%22s 올바른 선택을 해주세요.", " ");
+		}
 		}
 
 //        private static void transferMoney(int depositAmount ) {
@@ -179,9 +196,9 @@ public class WireTransfer {
 
 	public static int transaction() {
 		Scanner scan = new Scanner(System.in);
-		System.out.printf("%22s송금할 금액을 입력 하세요:", " ");
-		int money = scan.nextInt();
-		scan.nextLine();
+//		System.out.printf("%22s송금할 금액을 입력 하세요:", " ");
+//		int money = scan.nextInt();
+//		scan.nextLine();
 
 		MongleVisual.pusher();
 
@@ -194,18 +211,33 @@ public class WireTransfer {
 		print(filteredList); // json 에서 가져온 데이터
 		System.out.printf("%s\n", header);
 		System.out.println();
-		System.out.printf("%22s송금할 계좌를 선택해 주세요.\n", " ");
+		System.out.printf("%22s 출금할 계좌를 선택해 주세요(번호 입력)\n", " ");
 		MongleVisual.choiceGuidePrint();
 		String sel = scan.nextLine();
 
 		boolean loop = true;
 		while (loop) {
 			System.out.println();
-
 			try {
 				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
 					BankAccount acc = BankAccount
 							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
+					System.out.printf("%22s 송금할 계좌의 은행명을 입력하세요:", " ");
+					String bankName = scan.nextLine();
+					
+					System.out.printf("%22s 송금할 계좌번호를 입력하세요( - 포함):", " ");
+					String accountNumber = scan.nextLine();
+					
+					//유효성 검사
+					 if (acc.getAccountNumber().equals(accountNumber)) {
+		                    System.out.printf("%22s 송금할 계좌번호를 다시 확인해주세요.\n", " ");
+		                    continue; 
+		                }
+					
+					System.out.printf("%22s 송금할 금액을 입력 하세요:", " ");
+					int money = scan.nextInt();
+					scan.nextLine();
+					
 					if (acc.getDepositAmount() >= money) {
 						int rest = acc.getDepositAmount() - money;
 						History.make(acc.getAccountNumber(), "송금", -money);
