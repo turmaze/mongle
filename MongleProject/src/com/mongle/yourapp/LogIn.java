@@ -65,7 +65,7 @@ public class LogIn {
 						checkSalt = (String)((JSONObject)obj).get("salt");
 					}
 				}
-				if(checkID.equals(user.getId())&&checkPW.equals(Encrypt.LogInPw(user.getPw(), checkSalt))) {
+				if(checkID.equals(user.getId())&&(checklevel.equals("1")||checklevel.equals("2"))&&checkPW.equals(Encrypt.LogInPw(user.getPw(), checkSalt))) {
 					//로그인 상태 
 					System.out.printf("\n%22s로그인 성공\r\n", " ");
 					primaryKey = user.getId();
