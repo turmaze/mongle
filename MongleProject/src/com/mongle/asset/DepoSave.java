@@ -113,6 +113,7 @@ public class DepoSave {
 						MongleVisual.menuMove("가입 화면");
 						System.out.printf("%22s%s / %s\n", " ", acc.bankDepo, acc.titleDepo);
 						signUp(acc.bankDepo, acc.titleDepo);
+						DataBase.dataSave();
 						loop = false;
 					} else if (sel.equals("8")) {
 						table.clear();
