@@ -66,6 +66,7 @@ public class MainMenu {
 				continue;
 			case "4":
 				System.out.printf("%22s고객센터 화면으로 이동합니다.\n\n", " ");
+				Inquiry.mebmerAnnouncement();
 				continue;
 			case "5":
 				System.out.printf("%22sMyPage 화면으로 이동합니다.\n\n", " ");
