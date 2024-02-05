@@ -1,0 +1,85 @@
+[
+  {
+    "infoagree": "1",
+    "salt": "c516505f550bec968bd9694118bf758eff265272",
+    "attend": [
+      {
+        "attenddate": [
+          "2024-02-05"
+        ],
+        "emoji": "O",
+        "stratedate": "1"
+      }
+    ],
+    "level": "1",
+    "pw": "ee0983027f5efba828c1c7163dc93f00ef3ddae6ebcaf2fc6c28a67ea899cd06",
+    "invest": [
+      {
+        "amount": 3,
+        "titleDepo": "금",
+        "realTitle": "금",
+        "bankDepo": "금",
+        "price": 87590
+      },
+      {
+        "amount": 0,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "삼성전자",
+        "price": 0
+      },
+      {
+        "amount": 3,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "삼성전자",
+        "price": 73800
+      },
+      {
+        "amount": 3,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "삼성전자",
+        "price": 73900
+      },
+      {
+        "amount": 6,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "삼성전자",
+        "price": 73800
+      },
+      {
+        "amount": 400,
+        "titleDepo": "주식",
+        "realTitle": "주식",
+        "bankDepo": "삼성전자",
+        "price": 74000
+      }
+    ],
+    "birth": "19990314",
+    "safesendsetting": "0",
+    "point": "10",
+    "useragree": "1",
+    "phone": "01023341234",
+    "name": "황시원",
+    "id": "zxcv",
+    "credscore": "908",
+    "account": [
+      {
+        "depositAmount": 1187656587,
+        "titleDepo": "카카오뱅크 정기예금",
+        "bankDepo": "주식회사 카카오뱅크",
+        "history": [
+          {
+            "date": "2024-02-05 12:06:32",
+            "amount": -29600000,
+            "balance": 1187656587,
+            "memo": "삼성전자"
+          }
+        ],
+        "accountNumber": "3210-89-9876543"
+      }
+    ]
+  }
+]
