@@ -319,8 +319,11 @@ public class InvestmentView {
 				if (printNum == removeN) {
 					data.get(i).setAmount(total);
 				}
-				System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", printNum,
-						data.get(i).getTitleDepo(), data.get(i).getBankDepo(), data.get(i).getPrice(),
+				System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", " ", 
+						printNum,
+						data.get(i).getTitleDepo(), 
+						data.get(i).getBankDepo(),
+						data.get(i).getPrice(),
 						data.get(i).getAmount());
 				printNum++;
 			}
@@ -457,7 +460,7 @@ public class InvestmentView {
 			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
 			int totalPrice = stockcare2(Investment.list, removeN, "주식", num);
-			System.out.println(totalPrice);
+			
 
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
