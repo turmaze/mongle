@@ -34,9 +34,9 @@ public class MongleVisual {
 	}
 	
 	public static void menuMove(String menuName) {
-		pusher();
-		System.out.printf("%22s%s로 이동합니다.\n\n", " ", menuName);
+		System.out.printf("\n%22s%s로 이동합니다.\n\n", " ", menuName);
 		stopper();
+		pusher();
 	}
 
 	private static void menuList(String menu, int menuType) {

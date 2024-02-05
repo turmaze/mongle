@@ -191,6 +191,9 @@ public class DataBase {
 	 */
 	public static void dataSave() {
 		try {
+			if (!DataBase.privateUser.isEmpty()) {
+				changeData();
+			}
 
 			// set pretty printing
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
