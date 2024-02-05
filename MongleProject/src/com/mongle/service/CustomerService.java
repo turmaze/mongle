@@ -1,57 +1,65 @@
-//package com.mongle.service;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Scanner;
-//
-//import com.mongle.view.MongleVisual;
-//
-//public class CustomerService {
-//
-//	public static void main(String[] args) {
-//		csmenu();
-//
-//	}
-//
-//	public static void csmenu() {
-//		Scanner scan = new Scanner(System.in);
-//		MongleVisual.menuHeader("고객센터");
-//		ArrayList<Inquiry> list = new ArrayList<Inquiry>();
-//
-//		boolean loop = true;
-//
-//		while (loop) {
-//			System.out.printf("%22s1. 공지사항\n", " ");
-//			System.out.printf("%22s2. 문의하기\n", " ");
-//			System.out.printf("%22s3. 문의내역\n", " ");
-//			System.out.printf("%22s0. 이전으로\n", " ");
-//			System.out.println();
-//			System.out.printf("%22s선택(번호) :", " ");
-//			String sel = scan.nextLine();
-//
-//			switch (sel) {
-//			case "1":
-//				System.out.printf("%22s공지사항 화면으로 이동합니다.\n", " ");
-//				loop = false;
-//				break;
-//			case "2":
-//				System.out.println();
-//				list = inquiry(list);
-//				break;
-//			case "3":
-//				System.out.println();
-//				inquiryList(list);
-//				break;
-//			case "0":
-//				System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
-//				loop = false;
-//				break;
-//			default:
-//				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
-//			}
-//		}
-//	}
-//
+package com.mongle.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.mongle.view.MongleVisual;
+
+public class CustomerService {
+
+	public static int csmenu() {
+		Scanner scan = new Scanner(System.in);
+		MongleVisual.menuHeader("고객센터");
+		ArrayList<Inquiry> list = new ArrayList<Inquiry>();
+
+		boolean loop = true;
+		int r = -1;
+
+		while (loop) {
+			System.out.printf("%22s1. 공지사항\n", " ");
+			System.out.printf("%22s2. 문의하기\n", " ");
+			System.out.printf("%22s3. 문의내역\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
+			MongleVisual.choiceGuidePrint();
+			String sel = scan.nextLine();
+			Inquiry inq = new Inquiry();
+
+			switch (sel) {
+			case "1":
+				MongleVisual.menuMove("공지사항 화면");
+				r = Inquiry.mebmerAnnouncement();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
+			case "2":
+				MongleVisual.menuMove("문의 화면");
+				r = Inquiry.inquiry();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
+			case "3":
+				MongleVisual.menuMove("문의내역 화면");
+				r = Inquiry.checkInq();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
+			case "0":
+				MongleVisual.menuMove("이전 화면");
+				return 0;
+			default:
+				MongleVisual.wrongInput();
+			}
+		}
+		return 0;
+	}
+}
 //	private static void inquiryList(ArrayList<Inquiry> list) {
 //		Scanner scan = new Scanner(System.in);
 //
