@@ -1,4 +1,4 @@
-package com.mongle.asset;
+package com.mongle.service;
 
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
 import com.mongle.view.MongleVisual;
 
-public class WireTransfer {
+public class WireTransferService {
 
 	public static void extracted() {
 		Scanner scanner = new Scanner(System.in);
