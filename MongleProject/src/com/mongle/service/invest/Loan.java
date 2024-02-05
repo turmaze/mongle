@@ -140,10 +140,10 @@ public class Loan {
 	public static void applyLoan() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println();
-		System.out.printf("%22s대출 신청을 진행합니다.\n", " ");
-		System.out.printf("%22s고객님의 전화번호로 필요 서류를 안내해드리는 문자를 발송했습니다.\n", " ");
-		System.out.printf("%22s서류 구비 후 자격 심사를 위하여 가까운 대리점에 방문해주세요. 감사합니다.\n", " ");
-		System.out.printf("%22s(자격 심사에 따라 대출 기한, 금리 등 세부 사항을 안내해드릴 예정입니다.)\n", " ");
+		System.out.printf("%5s대출 신청을 진행합니다.\n", " ");
+		System.out.printf("%5s고객님의 전화번호로 필요 서류를 안내해드리는 문자를 발송했습니다.\n", " ");
+		System.out.printf("%5s서류 구비 후 자격 심사를 위하여 가까운 대리점에 방문해주세요. 감사합니다.\n", " ");
+		System.out.printf("%5s(자격 심사에 따라 대출 기한, 금리 등 세부 사항을 안내해드릴 예정입니다.)\n", " ");
 		System.out.println();
 
 		System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
@@ -158,9 +158,9 @@ public class Loan {
 	 * @return 대출 정보를 담은 리스트
 	 */
 	private static List<InfoProduct> searchLoan(List<InfoProduct> table, int index) { // 대출 검색기
-		String header = "+---+------------------------+-----------------------+--------+";
+		String header = "+----+-----------------------+-----------------------+--------+";
 		System.out.printf("%11s%s\n", " ", header);
-		System.out.printf("%11s|번호|          금융사          |          상품명         | 평균금리 |\n", " ");
+		System.out.printf("%11s|번호|         금융사         |         상품명        |평균금리|\n", " ");
 		System.out.printf("%11s%s\n", " ", header);
 		try {
 			URL url = new URL(
@@ -214,7 +214,7 @@ public class Loan {
 	public static void print(List<InfoProduct> data, int index) {
 		int printNum = 1;
 		for (int i = index; i < index + 7; i++) {
-			System.out.printf("%11s|%-3d|%-15s\t|%-15s\t|%7s%%|\n", " ", printNum, data.get(i).getBank(),
+			System.out.printf("%11s| %-3d|%-13s\t|%-10s\t|%7s%%|\n", " ", printNum, data.get(i).getBank(),
 					data.get(i).getTitle(), data.get(i).getRate());
 			printNum++;
 		}

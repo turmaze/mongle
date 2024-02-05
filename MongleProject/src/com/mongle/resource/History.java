@@ -178,7 +178,7 @@ public class History {
 	private static void transHistory(ArrayList<History> history, int index) {
 		String header = "+-------------------------+---------------+-------------+-----------------+";
 		System.out.printf("%s\n", header);
-		System.out.printf("|           날짜    \t  |      내역      |   거래 금액   |        잔액       |\n", " ");
+		System.out.printf("|           날짜    \t  |      내역     |  거래 금액   |       잔액      |\n", " ");
 		System.out.printf("%s\n", header);
 
 		print(history, index); // json 에서 가져온 데이터

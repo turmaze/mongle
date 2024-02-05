@@ -122,7 +122,7 @@ public class SafeSend {
 
 	public static void rejection() {
 		System.out.printf("%22s%s님께서 송금 받기를 거부하셨습니다.\n", " ", trans.get(0).get("toWho"));
-		System.out.printf("%22s송금하신 금액 %,d원이 환불 처리되었습니다.\n", " ", trans.get(0).get("money"));
+		System.out.printf("%22s송금하신 금액 %,d원이 환불 처리되었습니다.\n", " ", (int)trans.get(0).get("money"));
 		History.make(BankAccount.list.get(0).getAccountNumber(), "송금 취소 환불", (int) trans.get(0).get("money"));
 
 		MongleVisual.stopper();

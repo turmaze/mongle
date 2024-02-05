@@ -78,7 +78,7 @@ public class Gold {
 
 			MongleVisual.pusher();
 
-			MongleVisual.menuHeader("금");
+			MongleVisual.menuHeader("금 상품");
 
 			table = searchGold(table); // 금상품 검색 메서드
 
@@ -153,9 +153,9 @@ public class Gold {
 	 * @return 금 상품 시세 정보를 담은 리스트
 	 */
 	private static List<InfoProduct> searchGold(List<InfoProduct> table) {
-		String header = "+------------+---------------+----------+-----------+";
+		String header = "+------------+---------------+-----------+-----------+";
 		System.out.printf("%11s%s\n", " ", header);
-		System.out.printf("%11s|   고시날짜   |     상품명\t| 최고가(1g) | 최저가(1g) |\n", " ");
+		System.out.printf("%11s|  고시날짜  |     상품명\t| 최고가(1g)| 최저가(1g)|\n", " ");
 		System.out.printf("%11s%s\n", " ", header);
 		try {
 			String url = "https://apis.data.go.kr/1160100/service/GetGeneralProductInfoService/getGoldPriceInfo?serviceKey=lv9bpyNMeZHwgq4vZdHVxoieUgW3b1RwSLU5oQH1MJA6BCz4Y86MVwXLcW3ij7OL%2Be9wXLIx1CEuOaAKLyzxwA%3D%3D";
