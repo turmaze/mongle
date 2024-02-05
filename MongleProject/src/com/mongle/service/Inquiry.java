@@ -59,17 +59,17 @@ public class Inquiry {
 				// 관리자
 				if (levelValue.equals("2")) {
 
-					System.out.println();
-					MongleVisual.menuHeader("관리자 공지사항");
-
-					System.out.printf("\n%22s1. 공지사항 확인\n", " ");
-					System.out.printf("%22s2. 생성\n", " ");
-					System.out.printf("%22s3. 수정\n", " ");
-					System.out.printf("%22s4. 삭제\n\n", " ");
-					System.out.printf("%22s0. 이전으로\n\n", " ");
-
-					MongleVisual.choiceGuidePrint();
 					do {
+						System.out.println();
+						MongleVisual.menuHeader("관리자 공지사항");
+
+						System.out.printf("\n%22s1. 공지사항 확인\n", " ");
+						System.out.printf("%22s2. 생성\n", " ");
+						System.out.printf("%22s3. 수정\n", " ");
+						System.out.printf("%22s4. 삭제\n\n", " ");
+						System.out.printf("%22s0. 이전으로\n\n", " ");
+
+						MongleVisual.choiceGuidePrint();
 						switch (input = scanner.nextLine()) {
 						case "1":
 							inquiry.showTxt(annList);
@@ -446,22 +446,23 @@ public class Inquiry {
 						iterator.remove(); // 현재 항목 삭제
 						isDel = true;
 						System.out.printf("%22s\"%s\" 제목의 글이 삭제되었습니다.\n", " ", del);
-						break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
-					
-					} else if (!isDel) {
-					System.out.printf("%22s\"%s\" 제목의 글을 찾을 수 없습니다.\n", " ", del);
+						//break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
+						return;
 					}
+				}
+				if(!isDel) {
+					System.out.printf("%22s\"%s\" 제목의 글을 찾을 수 없습니다.\n", " ", del);
 				}
 
 			case "2":
 				arrayList.removeAll(arrayList);
 				System.out.printf("%22s전부 삭제되었습니다.", " ");
-				break;
+				return;
 
 			case "0":
 
 				// 이전으로 감
-				break;
+				return;
 
 			default:
 				System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n", " ", " ");
