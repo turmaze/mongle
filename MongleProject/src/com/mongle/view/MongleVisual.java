@@ -14,6 +14,7 @@ public class MongleVisual {
 		Scanner scan = new Scanner(System.in);
 		System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
 		scan.nextLine();
+		pusher();
 	}
 	
 	public static void wrongInput() {
