@@ -53,12 +53,40 @@ public class Point {
 
 	private static int pointList() {
 		
-		MongleVisual.menuHeader("포인트 내역");
+		Scanner scan = new Scanner(System.in);
+		
 		ArrayList<String> attenddate
 		= AttendList.list.get(0).getAttenddate();
 		
 		for (int i=0; i<attenddate.size(); i++) {
+			if (i%5==0) {
+				MongleVisual.pusher();
+			MongleVisual.menuHeader("포인트 내역");
+			}
 			System.out.printf("%22s|%s  | 출석 |   +10point\t|\n", " ", attenddate.get(i));
+			if (i!=0 && (i+1)%5==0 || i == (attenddate.size()-1)) {
+				MongleVisual.menuHeader("");
+				System.out.println();
+				while (true) {
+				System.out.printf("%22s1. 다음페이지\n", " ");
+				System.out.printf("%22s9. 홈으로\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
+				MongleVisual.choiceGuidePrint();
+				String sel = scan.nextLine();
+				if (sel.equals("1")) {
+					if (i == (attenddate.size()-1)) {
+						System.out.printf("%22s다음 페이지가 없습니다.\n\n", " ");
+					}break;
+				} else if (sel.equals("9")) {
+					return 9;
+				} else if (sel.equals("0")) {
+					return 0;
+				} else {
+					MongleVisual.wrongInput();
+				}
+				}
+					
+			}
 		}
 		
 		MongleVisual.stopper();
