@@ -13,7 +13,7 @@ import com.mongle.view.MongleVisual;
 public class Loan {
 
 	public static ArrayList<Loan> loanlist = new ArrayList<>();
-	public static ArrayList<Loan> myloanlist = new ArrayList<>();
+
 	
 	private String loanName;//대출명
 	private int principal; //원금
@@ -67,7 +67,7 @@ public class Loan {
 
 
 	public void setrPeriod(int rPeriod) {
-		this.rPeriod = rPeriod;
+		this.rPeriod += rPeriod;
 	}
 
 
@@ -126,7 +126,6 @@ public class Loan {
 			printLoanTable(loanlist); // json 에서 가져온 데이터
 			System.out.printf("%s\n", header);
 
-			System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			MongleVisual.choiceGuidePrint();
@@ -152,8 +151,23 @@ public class Loan {
 
 	public static void extension() {
 		Scanner sc = new Scanner(System.in);
-		String sel = "";
+		String sel;
+		int exten = 0;
 		System.out.printf("%22s대출을 연장 하시겠습니까?(y/n)"," ");
+		sel = sc.nextLine();
+		if(sel.equals("y") || sel.equals("Y")) {
+			//연장
+			System.out.printf("%22s기간을 몇 개월 연장 하시겠습니까?"," ");
+			exten += sc.nextInt();
+				
+			loanlist.get(0).setrPeriod(exten);
+			checkLoan();
+			
+			
+		}else {
+			System.out.printf("%22s이전 화면으로 돌아갑니다."," ");
+			
+		}
 		
 		
 	}
