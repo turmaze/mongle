@@ -20,16 +20,13 @@ import com.mongle.yourapp.StartPage;
 public class TestMain06 {
 	
 	public static void main(String[] args) {
+		programRun();
+	}
+
+	private static void programRun() {
 		DataBase.dataLoad();
 		StartPage.startPage();
-		DataBase.changeData();
 		DataBase.dataSave();
-//		LocalDate ldate = LocalDate.now();
-//		String dates = ldate+"";
-//		Calendar date = Calendar.getInstance();
-//		System.out.println(ldate);
-//		System.out.println(date.get(Calendar.DATE));
-		
 	}
 	
 }
