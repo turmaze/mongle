@@ -1,13 +1,13 @@
-package com.mongle.asset;
+package com.mongle.service.asset;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import com.mongle.asset.DepoSave;
 import com.mongle.service.invest.InfoProduct;
 import com.mongle.view.MongleVisual;
 import com.mongle.service.AssetService;
+import com.mongle.service.asset.DepoSave;
 /**
  * 이자계산 클래스
  */

@@ -1,4 +1,4 @@
-package com.mongle.asset;
+package com.mongle.service.asset;
 
 import java.util.Scanner;
 

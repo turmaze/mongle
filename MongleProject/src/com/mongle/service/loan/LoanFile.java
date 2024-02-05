@@ -1,4 +1,4 @@
-package com.mongle.loan;
+package com.mongle.service.loan;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-import com.mongle.asset.GiveAccount;
 import com.mongle.resource.BankAccount;
+import com.mongle.service.asset.GiveAccount;
 /**
  * 대출 상품 데이터 클래스
  */

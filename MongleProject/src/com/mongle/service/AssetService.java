@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
-import com.mongle.asset.AccountConnection;
-import com.mongle.asset.DepoCalculator;
-import com.mongle.asset.DepoSave;
-import com.mongle.asset.GiveAccount;
+import com.mongle.service.asset.AccountConnection;
+import com.mongle.service.asset.DepoCalculator;
+import com.mongle.service.asset.DepoSave;
+import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
 
 public class AssetService {

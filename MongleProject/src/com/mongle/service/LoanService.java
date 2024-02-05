@@ -1,14 +1,14 @@
-package com.mongle.view;
+package com.mongle.service;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.mongle.loan.Loan;
-import com.mongle.service.AssetService;
+import com.mongle.service.loan.Loan;
+import com.mongle.view.MongleVisual;
 /**
  * 대출 관리 메인 메뉴 클래스
  */
-public class LoanView {
+public class LoanService {
 		
 	public static void loanMenu() {
 		boolean loop = true;

@@ -2,8 +2,9 @@ package com.mongle.view;
 
 import java.util.Scanner;
 
-import com.mongle.asset.DepoSave;
 import com.mongle.service.AssetService;
+import com.mongle.service.LoanService;
+import com.mongle.service.asset.DepoSave;
 
 public class AssertManagementView {
 
@@ -43,7 +44,7 @@ public class AssertManagementView {
 				}
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("대출 관리 화면");
-				LoanView.loanMenu();
+				LoanService.loanMenu();
 				if (r == 9) {
 					return 9;
 				} else {

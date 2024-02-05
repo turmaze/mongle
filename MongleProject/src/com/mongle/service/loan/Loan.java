@@ -1,13 +1,13 @@
-package com.mongle.loan;
+package com.mongle.service.loan;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.mongle.asset.GiveAccount;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
+import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
 /**
  * 대출 클래스
