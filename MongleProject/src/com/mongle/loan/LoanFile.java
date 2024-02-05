@@ -11,7 +11,7 @@ import com.mongle.resource.BankAccount;
 
 public class LoanFile {
 	private static final String LOAN = "dat\\loan.txt";
-	public static ArrayList<Loan> loanlist = new ArrayList<>();
+	public static ArrayList<Loan> filelist = new ArrayList<>();
 	
 	
 	public static void load() {
@@ -20,9 +20,9 @@ public class LoanFile {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				Object[] temp = line.split(",");
-				LoanFile.loanlist.add(new Loan((String)temp[0], (int)temp[1],
-											(float)temp[2], (int)temp[3],(int)temp[4]));
+				String[] temp = line.split(",");
+				LoanFile.filelist.add(new Loan(temp[0], Integer.parseInt(temp[1]),
+											Float.parseFloat(temp[2]), Integer.parseInt(temp[3]),Integer.parseInt(temp[4])));
 			}
 
 			reader.close();
@@ -36,9 +36,9 @@ public class LoanFile {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(LoanFile.LOAN));
 
-			for (Loan acc : LoanFile.loanlist) {
-				String line = String.format("%s,%d,%f,%d,%d\r\n",acc.getLoanName(),
-						acc.getPrincipal(),acc.getRate(), acc.getLoanPeriod(),
+			for (Loan acc : LoanFile.filelist) {
+				String line = String.format("%s,%d,%f,%d,%d\r\n",acc.getloanName(),
+						acc.getprincipal(),acc.getRate(), acc.getloanPeriod(),
 						acc.getrPeriod());
 				writer.write(line);
 			}
