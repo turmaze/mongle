@@ -31,6 +31,8 @@ public class FindAcc {
 		System.out.printf("\n%22s2. 비밀번호 찾기", " ");
 		System.out.printf("\n%22s0. 이전으로", " ");
 
+		System.out.println();
+		MongleVisual.choiceGuidePrint();
 		String choice = scan.nextLine();
 
 		if (choice.equals("1")) {
