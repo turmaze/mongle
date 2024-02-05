@@ -110,7 +110,6 @@ public class Gold {
 
 		// listGold.add(new Investment("금","금",price,num));
 		// Investment.list.add(listGold);
-		
 
 		return 0;
 	}
@@ -135,6 +134,7 @@ public class Gold {
 				if (Integer.parseInt(num) > 0) {
 
 					InvestService.transaction("금상품 구매", price, Integer.parseInt(num));
+					Investment.list.add(new Investment("금", "금", "금", price, Integer.parseInt(num)));
 
 					return Integer.parseInt(num);
 				}
@@ -143,7 +143,6 @@ public class Gold {
 			}
 		} // while
 		
-		Investment.list.add(new Investment("금", "금", "금", price, num));
 		return 0;
 	}
 
@@ -190,6 +189,7 @@ public class Gold {
 
 	/**
 	 * 표 형식으로 출력
+	 * 
 	 * @param data 출력할 리스트
 	 */
 	public static void print(List<InfoProduct> data) {
@@ -201,8 +201,9 @@ public class Gold {
 
 	/**
 	 * XML API 분석 및 내용 추출
-	 * @param tag 필요한 내용 명칭
-	 * @param eElement 내용을 찾아낼 Element 
+	 * 
+	 * @param tag      필요한 내용 명칭
+	 * @param eElement 내용을 찾아낼 Element
 	 * @return 찾아낸 정보
 	 */
 	public static String getTagValue(String tag, Element eElement) {
