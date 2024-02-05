@@ -231,23 +231,33 @@ public class InvestmentView {
             
             System.out.printf("%22s일괄매도할 상품번호를 선택하시오:", " ");
             int removeN = scan.nextInt();
-            System.out.printf("%22s정말로 해지하시겠습니까?\n", " ");
-            transaction(removeN, "주식");
-            //totalmoney(Investment.list,removeN,"금");
-            removeLoanInvestmentByJ(Investment.list, removeN,"주식");
-            //System.out.printf("%22s 매도가 완료 됐습니다.", " ");
-            System.out.println();
-            printAsciiTable(Investment.list,"주식");
-            
-            System.out.println();
-            
-            break;
            
-         }else {
-            loop = false;
-            
+            System.out.printf("%22s정말로 해지하시겠습니까? (y/n) : \n", " ");
+            System.out.printf("%22s 사용자 입력 : " , " ");
+            while(loop2) {
+            String answer = scan.nextLine();
+            	if(answer.equals("y")) {
+			         transaction(removeN, "주식");
+			         //totalmoney(Investment.list,removeN,"금");
+		            removeLoanInvestmentByJ(Investment.list, removeN,"주식");
+	                 printAsciiTable(Investment.list,"주식");
+				     break;
+				            }else if (answer.equals("n")) {
+				            	System.out.printf("%22s이전으로 돌아갑니다.", " ");
+				            	break;
+				            }
+            }
+         }else if(num2.equals("0")) {
+        	 loop = false;
          }
       }
+            
+            
+            
+          
+           
+         
+      
       
       
    }
