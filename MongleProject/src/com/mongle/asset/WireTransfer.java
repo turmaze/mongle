@@ -23,7 +23,7 @@ public class WireTransfer {
 			MongleVisual.menuHeader("송금");
 			System.out.println();
 			System.out.printf("%22s 1.송금하기\n", " ");
-			System.out.printf("%22s 2.더치페이\n", " ");
+			System.out.printf("%22s 2.정산하기\n", " ");
 			System.out.printf("%22s 3.예약송금\n", " ");
 			System.out.printf("%22s 0.이전으로\n", " ");
 			System.out.printf("%22s 번호를 입력하세요:", " ");
@@ -35,8 +35,8 @@ public class WireTransfer {
 				transaction();
 				
 			} else if (sel.equals("2")) {
-				MongleVisual.menuMove("더치페이 화면");
-				// 더치페이
+				MongleVisual.menuMove("정산하기 화면");
+				// 정산하기(더치페이)
 				dutchpay();
 				
 			} else if (sel.equals("3")) {
@@ -57,9 +57,9 @@ public class WireTransfer {
 	}// extracted
 
 	private static void dutchpay() {
-		// 더치페이 인원 설정 로직 구현
+		// 정산하기(더치페이) 인원 설정 로직 구현
 		Scanner scanner = new Scanner(System.in);
-		System.out.printf("%22s더치페이 금액을 설정하세요 (정수형태): ", "");
+		System.out.printf("%22s정산할 금액을 설정하세요 (정수형태): ", "");
 		int amount = 0;
 
 		// 정수 입력을 위한 예외 처리
@@ -76,24 +76,41 @@ public class WireTransfer {
 			return;
 		}
 
-		// 더치페이 금액 설정 로직
-		System.out.printf("%22s더치페이 금액이 " + amount + "원으로 설정되었습니다.\n", " ");
+		// 정산하기(더치페이)금액 설정 로직
+		System.out.printf("%22s 정산 금액이 " + amount + "원으로 설정되었습니다.\n", " ");
 
-		// 더치페이 금액 설정 로직 구현
-
-		System.out.printf("%22s지불 대상자를 입력하세요:", " ");
-		String who = scanner.next();
-
-		// 정산하기 요청 출력
-		System.out.printf("%22s%s님에게 정산하기를 요청합니다.\n", " ", who);
+		// 정산하기(더치페이) 금액 설정 로직 구현
+		System.out.printf("%22s 정산 인원을 설정하세요.:", " ");
+		int numberOfPeople = scanner.nextInt();
+		scanner.nextLine();
+		
+		
+		// 정산(더치페이)할 대상 선택하기
+		System.out.printf("%22s 정산 대상을 입력하세요.:\n", "");
+		String targetNamesInput = scanner.nextLine();
+		String[] targetNames = targetNamesInput.split("\\s+");
 
 		// 요청인원 출력
-		int totalPeople = 1; // 사용자 자신을 포함하여 1명
-		System.out.printf("%22s 더치페이 총 인원: %d명\n", " ", totalPeople + 1); // 사용자 자신을 포함하여 +1명
+		int totalPeople = targetNames.length + 1; // 입력된 대상의 수와 사용자 자신을 포함하여 총 인원 계산
+		System.out.printf("%22s 정산하기 총 인원: %d명\n", "", totalPeople);
+		
+		// 입력된 대상 출력
+		System.out.printf("%22s 정산 대상:\n", " ");
+		for (String name : targetNames) {
+		    System.out.println(name);
+		}
+
+		
+		// 정산하기 요청 출력
+		//System.out.printf("%22s%s님에게 정산하기를 요청합니다.\n", " ", who);
+
+		// 요청인원 출력
+		//int totalPeople = 1; // 사용자 자신을 포함하여 1명
+		//System.out.printf("%22s 정산하기 총 인원: %d명\n", " ", totalPeople + 1); // 사용자 자신을 포함하여 +1명
 		// 전체금액 : amount
 
 		// 더치페이 메시지 공유하기
-		shareMessage(who);
+		//shareMessage(who);
 
 		// 공유하기-메세지/카카오톡으로 전송하는 창 띄우기
 		System.out.printf("%22s 1. 메시지로 공유하기\n", " ");
@@ -130,7 +147,7 @@ public class WireTransfer {
 		int year = 2024;
 
 		// 이번달과 다음달까지 선택 가능하도록 설정
-		System.out.printf("%22s월을 입력하세요. 예약은 다음달까지만 가능합니다. (이번달: 1, 다음달: 2): ", " ");
+		System.out.printf("%22s월을 입력하세요. 예약은 다음달까지만 가능합니다. (24.02월: 1, 24.03월: 2): ", " ");
 		int month = scanner.nextInt();
 
 		if (month != 1 && month != 2) {
