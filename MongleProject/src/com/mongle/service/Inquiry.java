@@ -55,7 +55,7 @@ public class Inquiry {
 					System.out.printf("%22s4. 삭제\n\n", " ");
 					System.out.printf("%22s0. 이전으로\n\n", " ");
 
-					System.out.printf("%22s입력: ", " ");
+					MongleVisual.choiceGuidePrint();
 					do {
 						switch (input = scanner.nextLine()) {
 						case "1":
@@ -75,11 +75,11 @@ public class Inquiry {
 							inquiry.saveInq(annList, ResourcePath.ANNO);
 							break;
 						case "0":
-							System.out.printf("%22s관리자 페이지로 이동합니다.\n\n", " ");
+							MongleVisual.menuMove("관리자 페이지");
 							break;
 
 						default:
-							System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n", " ", " ");
+							MongleVisual.wrongInput();
 						}
 					} while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")
 							|| input.equals("0")));
@@ -97,8 +97,11 @@ public class Inquiry {
 
 	/**
 	 * 회원 공지사항 실행
+	 * 
+	 * @return 메뉴 이동의 위한 변수
 	 */
 	public static int mebmerAnnouncement() {
+		int r = -1;
 		try {
 			Scanner scanner = new Scanner(System.in);
 
@@ -115,18 +118,12 @@ public class Inquiry {
 
 					System.out.println();
 					MongleVisual.menuHeader("공지사항");
-
-					System.out.printf("\n%22s1. 공지사항 확인\n", " ");
-
+					inquiry.showTxt(annList);
 					System.out.printf("%22s9. 홈으로\n", " ");
 					System.out.printf("%22s0. 이전으로\n\n", " ");
 
-					MongleVisual.choiceGuidePrint();
 					do {
 						switch (input = scanner.nextLine()) {
-						case "1":
-							inquiry.showTxt(annList);
-							break;
 						case "9":
 							MongleVisual.menuMove("홈 화면");
 							return 9;
@@ -136,7 +133,7 @@ public class Inquiry {
 						default:
 							MongleVisual.wrongInput();
 						}
-					} while (!(input.equals("1") || input.equals("9") || input.equals("0")));
+					} while (!(input.equals("9") || input.equals("0")));
 
 				} // if
 
@@ -151,22 +148,60 @@ public class Inquiry {
 	} // memberAnnouncement() 끝
 
 	/**
-	 * 문의사항 실행
+	 * 문의 접수
+	 * 
+	 * @return 메뉴 이동의 위한 변수
 	 */
-	private void inquiry() {
-		// 1. 목록 확인
-		// 2. 글 수정 -> 수정할 글의 제목 받기 -> 수정내용 {답변:내용}으로 추가
-		// 3. 글 삭제
-		// 0. 이전으로
+	public static int inquiry() {
+		Inquiry inq = new Inquiry();
+		MongleVisual.menuHeader("문의하기");
+		inq.createInq(inqList);
+		System.out.printf("%22s문의가 접수되었습니다. 감사합니다.\n", " ");
 
+		MongleVisual.menuMove("이전 화면");
+		return 0;
+	}
+
+	/**
+	 * 문의 내역 확인
+	 * 
+	 * @return 메뉴 이동의 위한 변수
+	 */
+	public static int checkInq() {
+		Inquiry inq = new Inquiry();
+		MongleVisual.menuHeader("문의내역");
+		System.out.printf("%22s총 %d개의 문의내역이 존재합니다.\n", " ", inqList.size());
+		inq.showTxt(inqList);
+
+		return 0;
+	}
+
+	/**
+	 * 금지어 마스킹
+	 * 
+	 * @param txt 사용자가 입력한 내용
+	 * @return 금지어가 마스킹된 내용
+	 */
+	private static String masking(String txt) {
+		String[] forbidden = { "바보", "시발", "개새", "새끼", "멍청이", "멍청아", "병신", "등신", "머저리" };
+
+		for (String word : forbidden) {
+			if (txt.contains(word)) {
+				String clean = "";
+				clean = txt.replaceAll(word, "**");
+				return clean;
+			}
+		}
+		return txt;
 	}
 
 	/**
 	 * 생성
 	 * 
 	 * @param arrayList -> annList || inqList
+	 * @return 메뉴 이동의 위한 변수
 	 */
-	private void createInq(ArrayList<HashMap> arrayList) {
+	private int createInq(ArrayList<HashMap> arrayList) {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Object> inq = new HashMap<>();
 		String value;
@@ -177,11 +212,10 @@ public class Inquiry {
 		System.out.print("제목: ");
 		value = scanner.nextLine();
 		while ((titleExists(arrayList, value))) {
-			System.out.print("중복입니다. 재입력해주세요.\n");
+			System.out.println();
 			System.out.printf("제목: ");
 			value = scanner.nextLine();
 		}
-
 		inq.put("title", value);
 
 		System.out.printf("첫 줄에서 ':q!' 시 종료\n");
@@ -197,10 +231,12 @@ public class Inquiry {
 		}
 
 		String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
+		content = masking(content);
 		inq.put("txt", content);
 
-		annList.add(inq);
+		arrayList.add(inq);
 		// System.out.println(arrayList); //testcode
+		return 0;
 	}
 
 	/**
@@ -211,10 +247,19 @@ public class Inquiry {
 	 * @return 중복인지(true) 아닌지(false)
 	 */
 	private boolean titleExists(ArrayList<HashMap> arrayList, String title) {
+		String[] forbidden = { "바보", "시발", "개새", "새끼", "멍청이", "멍청아", "병신", "등신", "머저리" };
+		for (String word : forbidden) {
+			if (title.contains(word)) {
+				System.out.printf("금지어가 포함되어있습니다. 재입력해주세요.\n", " ");
+				return true;
+			}
+		}
+
 		for (HashMap<String, Object> map : arrayList) {
 			if (map.containsKey("title")) {
 				String existingTitle = (String) map.get("title");
 				if (existingTitle.equalsIgnoreCase(title)) {
+					System.out.print("중복입니다. 재입력해주세요.\n");
 					return true;
 				}
 			}
@@ -357,8 +402,9 @@ public class Inquiry {
 	 * 내용 확인
 	 * 
 	 * @param arrayList -> annList || inqList
+	 * @return 메뉴 이동의 위한 변수
 	 */
-	private void showTxt(ArrayList<HashMap> arrayList) {
+	private int showTxt(ArrayList<HashMap> arrayList) {
 		Scanner scanner = new Scanner(System.in);
 		Inquiry inquiry = new Inquiry();
 
@@ -401,14 +447,13 @@ public class Inquiry {
 
 				break;
 			case "0":
-				// 이전으로 감
-				break;
+				return 0;
 
 			default:
-				System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n", " ", " ");
+				MongleVisual.wrongInput();
 			}
 		} while (!(select.equals("1") || select.equals("0")));
-
+		return 0;
 	}
 
 	/**

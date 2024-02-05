@@ -9,10 +9,10 @@ public class ResourcePath {
 		 */
 		public final static String MEMBER = "dat\\member.json";
 	
-		/*
-		 관리자 
-		 */
-		public final static String ADMIN = "dat\\admin.json";
+//		/*
+//		 관리자 
+//		 */
+//		public final static String ADMIN = "dat\\admin.json";
 
 		
 		/*

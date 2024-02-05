@@ -8,6 +8,7 @@ import com.mongle.main.Main;
 import com.mongle.resource.Investment;
 import com.mongle.service.AssetService;
 import com.mongle.service.BlackList;
+import com.mongle.service.CustomerService;
 import com.mongle.service.Inquiry;
 import com.mongle.service.InvestService;
 import com.mongle.service.MypageService;
@@ -66,7 +67,7 @@ public class MainMenu {
 				continue;
 			case "4":
 				System.out.printf("%22s고객센터 화면으로 이동합니다.\n\n", " ");
-				Inquiry.mebmerAnnouncement();
+				r = CustomerService.csmenu();
 				continue;
 			case "5":
 				System.out.printf("%22sMyPage 화면으로 이동합니다.\n\n", " ");

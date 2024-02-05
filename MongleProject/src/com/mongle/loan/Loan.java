@@ -3,36 +3,40 @@ package com.mongle.loan;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.mongle.asset.GiveAccount;
 import com.mongle.resource.BankAccount;
+import com.mongle.resource.History;
+import com.mongle.view.MongleVisual;
 
 public class Loan {
 
 	public static ArrayList<Loan> loanlist = new ArrayList<>();
+	public static ArrayList<Loan> myloanlist = new ArrayList<>();
 	
 	private String loanName;//대출명
 	private int principal; //원금
 	private float rate; //이자율
 	private int loanPeriod; // 대출기간(개월)
-	private int period; //남은기간
+	private int rPeriod; //남은기간
 
-	public String getLoanName() {
+	public String getloanName() {
 		return loanName;
 	}
 
 
-	public void setLoanName(String loanName) {
+	public void setloanName(String loanName) {
 		this.loanName = loanName;
 	}
 
 
-	public int getPrincipal() {
+	public int getprincipal() {
 		return principal;
 	}
 
 
-	public void setPrincipal(int principal) {
+	public void setprincipal(int principal) {
 		this.principal = principal;
 	}
 
@@ -47,12 +51,12 @@ public class Loan {
 	}
 
 
-	public int getLoanPeriod() {
+	public int getloanPeriod() {
 		return loanPeriod;
 	}
 
 
-	public void setLoanPeriod(int loanPeriod) {
+	public void setloanPeriod(int loanPeriod) {
 		this.loanPeriod = loanPeriod;
 	}
 
@@ -67,7 +71,7 @@ public class Loan {
 	}
 
 
-	private int rPeriod; //남은 기간(개월)
+	
 
 	
 	public Loan(String loanName, int principal, float rate, int loanPeriod, int rPeriod) {
@@ -89,4 +93,68 @@ public class Loan {
 	
 	
 	
+	public static  void openLoan() {
+		LoanFile.load();
+
+		Loan loan = new Loan(null, 0, 0, 0, 0);
+		for(Loan acc : LoanFile.filelist) {
+
+			loan = acc;
+			LoanFile.filelist.remove(acc);
+			break;
+		}
+		loanlist.add(loan);
+		
+		LoanFile.save();
+	
+		
+	}
+	
+	
+	
+	public static void checkLoan() {
+		// 헤더 출력
+		Scanner scan = new Scanner(System.in);
+		int r = -1;
+
+		while (true) {
+
+			String header = "+---------------+---------------+--------+---------+--------+";
+			System.out.printf("%s\n", header);
+			System.out.printf("|      대출명    \t|       원금   \t|  이자율  |  대출기간 | 남은기간  |\n", " ");
+			System.out.printf("%s\n", header);
+			printLoanTable(loanlist); // json 에서 가져온 데이터
+			System.out.printf("%s\n", header);
+
+			System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
+			System.out.printf("%22s9. 홈으로\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
+			MongleVisual.choiceGuidePrint();
+
+			String sel = scan.nextLine();
+			if(sel.equals("0")) {
+				break;
+			}
+		
+
+		}
+
+	}
+	
+	public static void printLoanTable(ArrayList<Loan> data) { // 표에 반복해서 출력하는 메서드
+		for (int i = 0; i < data.size(); i++) {
+			System.out.printf("|%-9s\t|%,12d원\t|%6.1f%% |%5d개월 |%5d개월 |\n",  data.get(i).getloanName(),
+					data.get(i).getprincipal(), data.get(i).getRate(), data.get(i).getloanPeriod(),data.get(i).getrPeriod());
+
+		}
+	}
+
+
+	public static void extension() {
+		Scanner sc = new Scanner(System.in);
+		String sel = "";
+		System.out.printf("%22s대출을 연장 하시겠습니까?(y/n)"," ");
+		
+		
+	}
 }

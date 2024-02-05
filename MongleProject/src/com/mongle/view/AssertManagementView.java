@@ -43,7 +43,7 @@ public class AssertManagementView {
 				}
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("대출 관리 화면");
-///////////////////////////대출 관리 기능 추가
+				LoanView.loanMenu();
 				if (r == 9) {
 					return 9;
 				} else {
