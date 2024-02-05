@@ -73,10 +73,10 @@ public class SafeSend {
 
 	}
 	
-	public static boolean validSafe(String id) {
+	public static boolean validSafe(String id) { //safesend설정 여부
 		for (HashMap map : DataBase.getUser()) {
 			if (map.get("id").equals(id)) {
-				return map.get("safesendsetting").equals("1");
+				return map.get("safesendsetting").equals("1"); //설정 했으면 true 리턴
 			}
 		}
 		return false;
@@ -140,24 +140,4 @@ public class SafeSend {
 		return;
 	}
 	
-	public static void safeSendAlam() {
-		String path = "송금 내역 경로"; //파일명=받는사람
-    	File file = new File(path);
-    	String wire = null;
-    	try {
-    		
-    		if (file.exists()) {
-    			BufferedReader reader = new BufferedReader(new FileReader(file));
-    			
-    			wire = reader.readLine();
-    			
-    			reader.close();
-    		}
-			
-		} catch (Exception e) {
-			System.out.println("SafeSend.safeSendAlam");
-			e.printStackTrace();
-		}
-	}
-
 }
