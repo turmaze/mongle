@@ -131,7 +131,7 @@ public class BlackList {
 	}
 
 	private static void kickUser() {
-		System.out.printf("\n%22s대상 아이디 입력: \r\n", " ");
+		System.out.printf("\n%22s대상 아이디 입력: ", " ");
 		Scanner scan = new Scanner(System.in);
 		String idcheck = scan.nextLine();
 		try {
@@ -140,20 +140,23 @@ public class BlackList {
 			String findID;
 			for (HashMap obj : list) {
 				if ((obj).get("id").equals(idcheck)) {
-					list.remove(obj);	
+					list.remove(obj);
+					break;
 				}
 			}
+		
+			DataBase.dataSave();
 			
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			File file = new File(ResourcePath.MEMBER);
-			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
-			FileWriter writer = new FileWriter(file, false); // 덮쓰
-
-			// String json = gson.toJson(user);
-			writer.write(gson.toJson(list));
-			writer.flush(); // 버퍼 비우기
-
-			writer.close();
+//			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//			File file = new File(ResourcePath.MEMBER);
+//			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
+//			FileWriter writer = new FileWriter(file, false); // 덮쓰
+//
+//			// String json = gson.toJson(user);
+//			writer.write(gson.toJson(list));
+//			writer.flush(); // 버퍼 비우기
+//
+//			writer.close();
 
 		} catch (Exception e) {
 			System.out.println("BlackList.addBlackList");
