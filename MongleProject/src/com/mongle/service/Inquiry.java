@@ -1,8 +1,10 @@
 package com.mongle.service;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -378,15 +380,20 @@ public class Inquiry {
 	 * @param arrayList arrayList -> annList || inqList
 	 */
 	private void showTitleList(ArrayList<HashMap> arrayList) {
+	
+		
+		
+		
 		TitleList.clear();
 		int count = 1;
 
-		for (HashMap<String, Object> map : arrayList) {
-			if (map.containsKey("title")) {
-				String title = (String) map.get("title");
-				TitleList.add(title);
+			for (HashMap<String, Object> map : arrayList) {
+				if (map.containsKey("title")) {
+					String title = (String) map.get("title");
+					TitleList.add(title);
+				}
 			}
-		}
+
 
 		System.out.printf("\n%22s-----------------------------------\n", " ");
 		System.out.printf("%22s\t\t     목록\n", " ");
@@ -395,6 +402,11 @@ public class Inquiry {
 
 		}
 		System.out.printf("\n%22s-----------------------------------\n\n", " ");
+		
+		if(arrayList.isEmpty()) {
+			System.out.printf("%22s내용이 없습니다\n\n", " ");
+			MongleVisual.stopper();
+		}
 
 	}
 
@@ -408,12 +420,15 @@ public class Inquiry {
 		Scanner scanner = new Scanner(System.in);
 		Inquiry inquiry = new Inquiry();
 
+		
 		boolean found = false;
 
 		String select;
 		do {
 			System.out.println();
 			showTitleList(arrayList);
+			if(arrayList.isEmpty())
+				return 0;
 			System.out.printf("%22s1. 내용확인\n%22s0. 이전으로\n\n", " ", " ");
 			System.out.printf("%22s입력: ", " ");
 
