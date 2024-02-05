@@ -99,7 +99,9 @@ public class MainMenu {
 				}
 				continue;
 			case "0":
+				System.out.println();
 				System.out.printf("%22s로그아웃합니다.\n\n", " ");
+				MongleVisual.stopper();
 				loop = false;
 				break;
 			default:
