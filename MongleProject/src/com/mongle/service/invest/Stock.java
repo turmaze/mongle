@@ -82,7 +82,7 @@ public class Stock {
 
 				String sel = scan.nextLine();
 				
-				MongleVisual.pusher();
+				System.out.println();
 				
 				if (sel.equals("1")) {
 					System.out.printf("%22s종목명: ", " ");

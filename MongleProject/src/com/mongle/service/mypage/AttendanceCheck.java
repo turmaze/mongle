@@ -50,7 +50,8 @@ public class AttendanceCheck {
 			printCalendar(Integer.parseInt(date[0]), Integer.parseInt(date[1]), nowEmoji);
 
 			String emojiString = "출석 마크"; // 출석 표시 마크 이름 (수정 예정?)
-
+			System.out.printf("%22s연속출석: %s일\n", " ", AttendList.list.get(0).getStratedate());
+			System.out.println();
 			System.out.printf("%22s1. %s 변경(현재: %s)\n", " ", emojiString, nowEmoji);
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");

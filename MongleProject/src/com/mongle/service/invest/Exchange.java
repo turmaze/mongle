@@ -94,6 +94,7 @@ public class Exchange {
 					index++;
 					if (index >= fx.size()) {
 						System.out.println("다음 페이지가 없습니다.");
+						index = fx.size()-1;
 						break;
 					}
 					JSONObject obj = new JSONObject();
@@ -125,9 +126,15 @@ public class Exchange {
 				String price = "";
 
 				if (sel.equals("1")) {
-					index -= 4;
+					if (index != fx.size()-1) {
+						index -= 4;
+					} else {
+						index = fx.size()-2;
+					}
 				} else if (sel.equals("2")) {
-					index -= 3;
+					if (index != fx.size()-1) {
+						index -= 3;
+					}
 				} else if (sel.equals("3")) {
 					index -= 2;
 				} else if (sel.equals("4")) {
