@@ -42,7 +42,7 @@ public class WireTransfer {
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("예약송금 화면");
 				// 예약송금
-				reserveTransfer(scanner);
+				reserveTransfer();
 				
 			} else if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
@@ -120,8 +120,9 @@ public class WireTransfer {
 	}
 
 	
-	private static void reserveTransfer(Scanner scanner) {
+	private static void reserveTransfer() {
 		// 예약송금 로직 구현
+		Scanner scanner = new Scanner(System.in);
 
 		System.out.printf("%22s예약할 시간을 입력하세요.\n", " ");
 
