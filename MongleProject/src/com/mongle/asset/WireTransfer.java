@@ -1,13 +1,8 @@
 package com.mongle.asset;
 
-import java.io.FileReader;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
@@ -37,7 +32,7 @@ public class WireTransfer {
 			} else if (sel.equals("2")) {
 				MongleVisual.menuMove("정산하기 화면");
 				// 정산하기(더치페이)
-				dutchpay();
+				dutchpay(Integer.parseInt(sel));
 				
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("예약송금 화면");
@@ -56,7 +51,7 @@ public class WireTransfer {
 
 	}// extracted
 
-	private static void dutchpay() {
+	private static void dutchpay(int shareChoice) {
 		// 정산하기(더치페이) 인원 설정 로직 구현
 		Scanner scanner = new Scanner(System.in);
 		System.out.printf("%22s정산할 금액을 설정하세요 (정수형태): ", "");
@@ -67,7 +62,7 @@ public class WireTransfer {
 			amount = scanner.nextInt();
 		} catch (Exception e) {
 			System.out.printf("%22s[오류 발생] 정수단위로 입력해주세요.", " ");
-			scanner.nextLine(); // 버퍼 비우기
+			scanner.nextLine(); // 
 			return;
 		}
 
@@ -86,21 +81,52 @@ public class WireTransfer {
 		
 		
 		// 정산(더치페이)할 대상 선택하기
-		System.out.printf("%22s 정산 대상을 입력하세요.:\n", "");
+		System.out.printf("%22s 정산 대상을 입력하세요.:\n", " ");
 		String targetNamesInput = scanner.nextLine();
 		String[] targetNames = targetNamesInput.split("\\s+");
 
 		// 요청인원 출력
 		int totalPeople = targetNames.length + 1; // 입력된 대상의 수와 사용자 자신을 포함하여 총 인원 계산
 		System.out.printf("%22s 정산하기 총 인원: %d명\n", "", totalPeople);
-		
-		// 입력된 대상 출력
-		System.out.printf("%22s 정산 대상:\n", " ");
-		for (String name : targetNames) {
-		    System.out.println(name);
-		}
+		// 사용자에게 카카오톡 또는 메세지로 공유할지 선택하도록 안내
+        System.out.printf("%22s정산 결과를 어떻게 공유하시겠습니까?\n", " ");
+        System.out.printf("%22s1. 카카오톡으로 공유하기\n", " ");
+        System.out.printf("%22s2. 메세지로 공유하기\n", " ");
+        System.out.printf("%22s 번호를 입력하세요: ", " ");
+        String shareOption = scanner.nextLine();
 
+        switch (shareOption) {
+        case "1":
+            shareKakaoTalk(totalPeople);
+            System.out.printf("%22s카카오톡으로 공유하기 - \"메시지 전송이 완료되었습니다.\"", " ");
+            break;
+            
+        case "2":
+            shareMessage(totalPeople);
+            System.out.printf("%22s메세지로 공유하기 - \"메시지 전송이 완료되었습니다.\"", " ");
+            break;
+        default:
+            System.out.println("잘못된 입력입니다. 기본 설정으로 메시지를 공유합니다.");
+            shareMessage(totalPeople);
+    }
+
+    scanner.close();
 		
+	 }
+
+    private static void shareMessage(int totalPeople) {
+        System.out.printf("%22s메세지로 공유하기 - \"%d명에게 지불 요청 메시지를 전송했습니다.\"\n", " ", totalPeople);
+        System.out.println();
+    }
+
+    private static void shareKakaoTalk(int totalPeople) {
+        System.out.printf("%22s카카오톡으로 공유하기 - \"%d명에게 지불 요청 메시지를 전송했습니다.\"\n", " ", totalPeople - 1);
+        System.out.println();
+    }
+
+//    private static void reserveTransfer() {
+//        Scanner scanner = new Scanner(System.in);
+//    
 		// 정산하기 요청 출력
 		//System.out.printf("%22s%s님에게 정산하기를 요청합니다.\n", " ", who);
 
@@ -112,30 +138,31 @@ public class WireTransfer {
 		// 더치페이 메시지 공유하기
 		//shareMessage(who);
 
-		// 공유하기-메세지/카카오톡으로 전송하는 창 띄우기
-		System.out.printf("%22s 1. 메시지로 공유하기\n", " ");
-		System.out.printf("%22s 2. 카카오톡으로 공유하기\n", " ");
-		System.out.printf("%22s 공유 옵션을 선택하세요: \n", " ");
-		int shareChoice = scanner.nextInt();
-
-		switch (shareChoice) {
-		case 1:
-
-			break;
-		case 2:
-
-			break;
-		default:
-			System.out.printf("%22s올바른 공유 옵션을 선택하세요.", " ");
-		}
-	}// dutchpay
-
-	private static void shareMessage(String who) {
-
-		System.out.printf("%22s메세지로 공유하기 - \"" + who + "\"에게 지불 요청 메시지를 전송했습니다.", " ");
-		System.out.println();
-	}
-
+		 // 정산 대상 총 인원 정보 전달하여 메시지로 공유하기
+//        switch (shareChoice) {
+//            case 1:
+//                shareMessage(totalPeople);
+//                break;
+//            case 2:
+//                shareKakaoTalk(totalPeople);
+//                break;
+//            default:
+//                System.out.printf("%22s올바른 공유 옵션을 선택하세요.", " ");
+//        }
+//
+//        scanner.close();
+//    }
+//
+//    private static void shareMessage(int totalPeople) {
+//        System.out.printf("%22s메세지로 공유하기 - \"%d명에게 지불 요청 메시지를 전송했습니다.\n", " ", totalPeople);
+//        System.out.println();
+//    }
+//
+//    private static void shareKakaoTalk(int totalPeople) {
+//        // 카카오톡 공유 기능 구현
+//        System.out.printf("%22s카카오톡으로 공유하기 - \"%d명에게 지불 요청 메시지를 전송했습니다.", " ", totalPeople-1);
+//        System.out.println();
+    }
 	
 	private static void reserveTransfer() {
 		// 예약송금 로직 구현
