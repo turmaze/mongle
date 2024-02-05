@@ -137,7 +137,6 @@ public class BlackList {
 		try {
 			JSONParser parser = new JSONParser();
 			ArrayList<HashMap> list = DataBase.getUser();
-			String findID;
 			for (HashMap obj : list) {
 				if ((obj).get("id").equals(idcheck)) {
 					list.remove(obj);
@@ -146,17 +145,6 @@ public class BlackList {
 			}
 		
 			DataBase.dataSave();
-			
-//			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//			File file = new File(ResourcePath.MEMBER);
-//			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
-//			FileWriter writer = new FileWriter(file, false); // 덮쓰
-//
-//			// String json = gson.toJson(user);
-//			writer.write(gson.toJson(list));
-//			writer.flush(); // 버퍼 비우기
-//
-//			writer.close();
 
 		} catch (Exception e) {
 			System.out.println("BlackList.addBlackList");
