@@ -233,7 +233,7 @@ boolean loop = true;
 					 if (acc.getAccountNumber().equals(accountNumber)) {
 		                    System.out.printf("%22s 송금할 계좌번호를 다시 확인해주세요.\n", " ");
 		                    continue; 
-		                }
+		                } 
 					
 					System.out.printf("%22s 송금할 금액을 입력 하세요:", " ");
 					int money = scan.nextInt();
