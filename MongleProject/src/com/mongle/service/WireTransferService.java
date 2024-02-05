@@ -1,4 +1,4 @@
-package com.mongle.service;
+package com.mongle.asset;
 
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +8,7 @@ import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
 import com.mongle.view.MongleVisual;
 
-public class WireTransferService {
+public class WireTransfer {
 
 	public static void extracted() {
 		Scanner scanner = new Scanner(System.in);
@@ -99,6 +99,7 @@ public class WireTransferService {
         case "1":
             shareKakaoTalk(totalPeople);
             System.out.printf("%22s카카오톡으로 공유하기 - \"메시지 전송이 완료되었습니다.\"", " ");
+            MongleVisual.stopper();
             break;
             
         case "2":
