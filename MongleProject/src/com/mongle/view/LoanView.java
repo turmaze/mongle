@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import com.mongle.loan.Loan;
 import com.mongle.service.AssetService;
-
+/**
+ * 대출 관리 메인 메뉴 클래스
+ */
 public class LoanView {
 		
 	public static void loanMenu() {

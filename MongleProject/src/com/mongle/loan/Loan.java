@@ -9,9 +9,13 @@ import com.mongle.asset.GiveAccount;
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
 import com.mongle.view.MongleVisual;
-
+/**
+ * 대출 클래스
+ */
 public class Loan {
-
+	/**
+	 * 대출 리스트
+	 */
 	public static ArrayList<Loan> loanlist = new ArrayList<>();
 
 	
@@ -20,52 +24,82 @@ public class Loan {
 	private float rate; //이자율
 	private int loanPeriod; // 대출기간(개월)
 	private int rPeriod; //남은기간
-
+	/**
+	 * 대출명 Getter
+	 * @return 대출명
+	 */
 	public String getloanName() {
 		return loanName;
 	}
 
-
+	/**
+	 * 대출명 Setter
+	 * @param loanName 대출명
+	 */
 	public void setloanName(String loanName) {
 		this.loanName = loanName;
 	}
 
-
+	/**
+	 * 원금 Getter
+	 * @return 대출 금액
+	 */
 	public int getprincipal() {
 		return principal;
 	}
 
-
+	/**
+	 * 원금 Setter
+	 * @param principal 원금
+	 */
 	public void setprincipal(int principal) {
 		this.principal = principal;
 	}
 
-
+	/**
+	 * 이자율 Getter
+	 * @return 이자율
+	 */
 	public float getRate() {
 		return rate;
 	}
 
-
+	/**
+	 * 이자율 Setter
+	 * @param rate 이자율
+	 */
 	public void setRate(float rate) {
 		this.rate = rate;
 	}
 
-
+	/**
+	 * 대출 기간 Getter
+	 * @return 대출기간
+	 */
 	public int getloanPeriod() {
 		return loanPeriod;
 	}
 
-
+	/**
+	 * 대출 기간 Setter
+	 * @param loanPeriod 대출기간 
+	 */
 	public void setloanPeriod(int loanPeriod) {
 		this.loanPeriod = loanPeriod;
 	}
 
-
+	/**
+	 * 대출 남은기간 getter
+	 * @return 남은기간
+	 */
 	public int getrPeriod() {
 		return rPeriod;
 	}
 
-
+	/**
+	 * 남은기간 Setter
+	 * @param 연장기간
+	 */
 	public void setrPeriod(int rPeriod) {
 		this.rPeriod += rPeriod;
 	}
@@ -73,7 +107,14 @@ public class Loan {
 
 	
 
-	
+	/**
+	 * 대출 생성자
+	 * @param loanName  대출명
+	 * @param principal 대출금액
+	 * @param rate		이자율
+	 * @param loanPeriod대출기간
+	 * @param rPeriod	남은기간
+	 */
 	public Loan(String loanName, int principal, float rate, int loanPeriod, int rPeriod) {
 		super();
 		this.loanName = loanName;
@@ -83,7 +124,10 @@ public class Loan {
 		this.rPeriod = rPeriod;
 	}
 
-
+	/**
+	 * "Loan [대출명=" + loanName + ", 원금=" + principal + ", 이자율=" + rate + ", 대출 기간="
+			+ loanPeriod + ", 남은기간=" + rPeriod + "]";
+	 */
 	@Override
 	public String toString() {
 		return "Loan [대출명=" + loanName + ", 원금=" + principal + ", 이자율=" + rate + ", 대출 기간="
@@ -92,7 +136,9 @@ public class Loan {
 	
 	
 	
-	
+	/**
+	 * 대출 상품 저장 메서드
+	 */
 	public static  void openLoan() {
 		LoanFile.load();
 
@@ -111,7 +157,9 @@ public class Loan {
 	}
 	
 	
-	
+	/**
+	 * 대출 상품 출력 메서드
+	 */
 	public static void checkLoan() {
 		// 헤더 출력
 		Scanner scan = new Scanner(System.in);
@@ -139,7 +187,10 @@ public class Loan {
 		}
 
 	}
-	
+	/**
+	 * 대출 상품 출력 규격 메서드
+	 * @param data 보유 대출 리스트
+	 */
 	public static void printLoanTable(ArrayList<Loan> data) { 
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("|%-9s\t|%,12d원\t|%6.1f%% |%5d개월 |%5d개월 |\n",  data.get(i).getloanName(),
@@ -148,7 +199,9 @@ public class Loan {
 		}
 	}
 
-
+	/**
+	 * 대출 기간 연장 메서드
+	 */
 	public static void extension() {
 		Scanner sc = new Scanner(System.in);
 		String sel;
@@ -176,7 +229,9 @@ public class Loan {
 		
 	}
 
-
+	/**
+	 * 중도 상환 수수료 계산기
+	 */
 	public static void calculrator() {
 		//  중도 상환 수수료 계산기
 		String header = "+---------------+---------------+--------+---------+--------+";
