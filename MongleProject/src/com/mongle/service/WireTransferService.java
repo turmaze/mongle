@@ -81,7 +81,7 @@ public class WireTransferService {
 		
 		
 		// 정산(더치페이)할 대상 선택하기
-		System.out.printf("%22s 정산 대상을 입력하세요.:\n", " ");
+		System.out.printf("%22s 정산 대상을 입력하세요.:", " ");
 		String targetNamesInput = scanner.nextLine();
 		String[] targetNames = targetNamesInput.split("\\s+");
 
@@ -98,30 +98,38 @@ public class WireTransferService {
         switch (shareOption) {
         case "1":
             shareKakaoTalk(totalPeople);
-            System.out.printf("%22s카카오톡으로 공유하기 - \"메시지 전송이 완료되었습니다.\"", " ");
-            MongleVisual.stopper();
+            System.out.printf("%22s카카오톡으로 공유하기 - \"메시지 전송이 완료되었습니다.\"\n", " ");
+            System.out.printf("%22s.\n", " ");
+            System.out.printf("%22s.\n", " ");
+            System.out.printf("%22s.\n", " ");
+            System.out.printf("%22s 금액이 모두 모였습니다.\n", " ");
+            
             break;
             
         case "2":
             shareMessage(totalPeople);
             System.out.printf("%22s메세지로 공유하기 - \"메시지 전송이 완료되었습니다.\"", " ");
+            System.out.printf("%22s.\n", " ");
+            System.out.printf("%22s.\n", " ");
+            System.out.printf("%22s.\n", " ");
+            System.out.printf("%22s금액이 전부 모아졌습니다.\n", " ");
+            
             break;
         default:
             System.out.println("잘못된 입력입니다. 기본 설정으로 메시지를 공유합니다.");
             shareMessage(totalPeople);
     }
 
-    scanner.close();
 		
 	 }
 
     private static void shareMessage(int totalPeople) {
-        System.out.printf("%22s메세지로 공유하기 - \"%d명에게 지불 요청 메시지를 전송했습니다.\"\n", " ", totalPeople);
+        System.out.printf("%22s메세지로 공유하기 - \"%d명에게 지불 요청 메시지를 전송중...\"\n", " ", totalPeople);
         System.out.println();
     }
 
     private static void shareKakaoTalk(int totalPeople) {
-        System.out.printf("%22s카카오톡으로 공유하기 - \"%d명에게 지불 요청 메시지를 전송했습니다.\"\n", " ", totalPeople - 1);
+        System.out.printf("%22s카카오톡으로 공유하기 - \"%d명에게 지불 요청 메시지를 전송중...\"\n", " ", totalPeople - 1);
         System.out.println();
     }
 
