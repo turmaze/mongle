@@ -15,7 +15,7 @@ import com.mongle.yourapp.StartPage;
 
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main() {
 		programRun();
 	}
 
