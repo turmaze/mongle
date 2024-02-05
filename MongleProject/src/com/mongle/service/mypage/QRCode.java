@@ -3,8 +3,14 @@ package com.mongle.service.mypage;
 import java.util.Scanner;
 
 import com.mongle.view.MongleVisual;
-
+/**
+ * QRcode 클래스
+ */
 public class QRCode {
+	/**
+	 * QRcode 화면 호출
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int qr() {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuHeader("결제용 QR코드");
