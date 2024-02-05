@@ -136,7 +136,7 @@ public class MainMenu {
 				continue;
 			case "2":
 				System.out.printf("%22s데이터 관리화면으로 이동합니다.\n\n", " ");
-				WireTransferService.extracted();
+				DataManage.dataManage();
 				continue;
 			case "3":
 				System.out.printf("%22s공지사항 관리화면으로 이동합니다.\n\n", " ");

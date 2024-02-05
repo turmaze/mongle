@@ -142,7 +142,7 @@ public class SignUp {
 		String phone;
 		do {
 			System.out.printf("\n%22s(예시: 01033448899)"," ");
-			System.out.printf("\n%22s3. 전화번호: "," ");	
+			System.out.printf("\n%22s6. 전화번호: "," ");	
 			phone = scan.nextLine();
 			if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
 				phone = phone.replace("-", "");
@@ -159,7 +159,7 @@ public class SignUp {
 		String name;
 		do {
 			System.out.printf("\n%22s(2~5자리 한글)\n"," ");
-			System.out.printf("\n%22s3.이름: "," ");	
+			System.out.printf("\n%22s4.이름: "," ");	
 			name = scan.nextLine();
 			}
 			while(!Validate.validName(name));
@@ -171,7 +171,7 @@ public class SignUp {
 		String birth;
 		do {
 			System.out.printf("\n%22s(예시 19990314)\n"," ");
-			System.out.printf("\n%22s3. 생년월일: "," ");	
+			System.out.printf("\n%22s5. 생년월일: "," ");	
 			birth = scan.nextLine();
 		}while(!Validate.validBirth(birth));
 		return birth;
