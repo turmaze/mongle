@@ -2,9 +2,12 @@ package com.mongle.view;
 
 import java.util.Scanner;
 
+import com.mongle.database.DataBase;
+
 public class MongleVisual {
 	
 	public static void pusher() {
+		DataBase.dataSave();
 		for (int i=0; i<30; i++) {
 			System.out.println();
 		}
@@ -12,6 +15,7 @@ public class MongleVisual {
 	
 	public static void stopper() {
 		Scanner scan = new Scanner(System.in);
+		DataBase.dataSave();
 		System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
 		scan.nextLine();
 		pusher();
