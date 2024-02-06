@@ -97,7 +97,7 @@ public class InvestService {
 	}
 
 	/**
-	 * 투자 이후 자산 내역 갱신
+	 * 투자 & 자산 내역 갱신
 	 * 
 	 * @param memo  투자한 내용
 	 * @param price 구매한 투자 상품 가격
@@ -108,31 +108,30 @@ public class InvestService {
 		Scanner scan = new Scanner(System.in);
 
 		MongleVisual.pusher();
-
+MongleVisual.menuHeader("주문 결제 계좌 선택");
 		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
-		System.out.printf("|번호|       금융사   \t|         상품명      \t|     계좌번호\t|       잔액       |\n", " ");
+		System.out.printf("|번호|       금융사   \t|         상품명      \t|        계좌번호\t|       잔액       |\n", " ");
 		System.out.printf("%s\n", header);
 		List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
 				.collect(Collectors.toList());
 		print(filteredList); // json 에서 가져온 데이터
 		System.out.printf("%s\n", header);
-		System.out.printf("%22s주문 내역을 결제할 계좌를 선택해주세요.\n", " ");
+		System.out.printf("%22s주문 내역을 결제할 계좌(번호) 선택\n", " ");
 		System.out.printf("%22s0. 이전으로\n", " ");
 		boolean loop = true;
 
 		while (loop) {
 			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
+
 			int totalPrice = price * num;
 
-			if (sel.equals("0")) {
-				MongleVisual.menuMove("이전 화면");
-				return 1;
-			}
-
 			try {
-				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
+				if (sel.equals("0")) {
+					MongleVisual.menuMove("이전 화면");
+					return 1;
+				} else if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
 					BankAccount acc = BankAccount
 							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
 					if (acc.getDepositAmount() > totalPrice) {

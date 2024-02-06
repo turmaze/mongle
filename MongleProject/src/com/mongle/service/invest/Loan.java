@@ -24,7 +24,6 @@ public class Loan {
 	/**
 	 * 대출 내역
 	 */
-	
 
 	/**
 	 * 대출 정보 생성자
@@ -160,7 +159,7 @@ public class Loan {
 	private static List<InfoProduct> searchLoan(List<InfoProduct> table, int index) { // 대출 검색기
 		String header = "+----+-----------------------+-----------------------+--------+";
 		System.out.printf("%11s%s\n", " ", header);
-		System.out.printf("%11s|번호|         금융사         |         상품명        |평균금리|\n", " ");
+		System.out.printf("%11s|번호|         금융사        |         상품명        |평균금리|\n", " ");
 		System.out.printf("%11s%s\n", " ", header);
 		try {
 			URL url = new URL(
@@ -180,19 +179,21 @@ public class Loan {
 			JSONArray option = (JSONArray) res.get("optionList");
 
 			for (Object product : list) {
-				String bank = (String) ((JSONObject) product).get("kor_co_nm");
-				String title = (String) ((JSONObject) product).get("fin_prdt_nm");
-				String code = (String) ((JSONObject) product).get("fin_prdt_cd");
-				double rate = 0;
+				if (((JSONObject) product).get("kor_co_nm").toString().length() < 8) {
+					String bank = (String) ((JSONObject) product).get("kor_co_nm");
+					String title = (String) ((JSONObject) product).get("fin_prdt_nm");
+					String code = (String) ((JSONObject) product).get("fin_prdt_cd");
+					double rate = 0;
 
-				for (Object opt : option) {
-					if (((JSONObject) opt).get("fin_prdt_cd").equals(code)) {
-						rate = Double.parseDouble(((JSONObject) opt).get("crdt_grad_avg").toString());
-						break;
+					for (Object opt : option) {
+						if (((JSONObject) opt).get("fin_prdt_cd").equals(code)) {
+							rate = Double.parseDouble(((JSONObject) opt).get("crdt_grad_avg").toString());
+							break;
+						}
 					}
+					InfoProduct d = new InfoProduct(bank, title, "", rate, 0);
+					table.add(d);
 				}
-				InfoProduct d = new InfoProduct(bank, title, "", rate, 0);
-				table.add(d);
 			}
 			print(table, index);
 
@@ -214,7 +215,7 @@ public class Loan {
 	public static void print(List<InfoProduct> data, int index) {
 		int printNum = 1;
 		for (int i = index; i < index + 7; i++) {
-			System.out.printf("%11s| %-3d|%-13s\t|%-10s\t|%7s%%|\n", " ", printNum, data.get(i).getBank(),
+			System.out.printf("%11s| %-3d|%-12s\t|%-12s\t|%7s%%|\n", " ", printNum, data.get(i).getBank(),
 					data.get(i).getTitle(), data.get(i).getRate());
 			printNum++;
 		}
