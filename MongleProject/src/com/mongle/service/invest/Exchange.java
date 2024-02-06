@@ -16,39 +16,77 @@ import com.mongle.resource.Investment;
 import com.mongle.service.InvestService;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 환전(외화 상품) 클래스
+ */
 public class Exchange {
-
+	/**
+	 * 외화 상품 보유 내역
+	 */
 	public static int buyPrice;
 	public static int buyAmount;
-	public static ArrayList<Investment> listExchange = new ArrayList<>();
 	public static String realname;
+	public static ArrayList<Investment> listExchange = new ArrayList<>();
 	
-	
-
+	/**
+	 * 매입한 외화 이름 Getter
+	 * 
+	 * @return 매입한 외화 이름
+	 */
 	public static String getRealname() {
 		return realname;
 	}
-
+	
+	/**
+	 * 매입한 외화 이름 Setter
+	 * 
+	 * @return realname 매입한 외화 이름
+	 */
 	public static void setRealname(String realname) {
 		Exchange.realname = realname;
 	}
-
+	
+	/**
+	 * 매입한 외화 가격 Getter
+	 * 
+	 * @return 매입한 외화 가격
+	 */
 	public static int getBuyPrice() {
 		return buyPrice;
 	}
-
+	
+	/**
+	 * 매입한 외화 가격 Setter
+	 * 
+	 * @return buyPrice 매입한 외화 가격
+	 */
 	public static void setBuyPrice(int buyPrice) {
 		Exchange.buyPrice = buyPrice;
 	}
-
+	
+	/**
+	 * 매입한 외화 수량 Getter
+	 * 
+	 * @return 매입한 외화 수량
+	 */
 	public static int getBuyAmount() {
 		return buyAmount;
 	}
-
+	
+	/**
+	 * 매입한 외화 가격 Setter
+	 * 
+	 * @return buyArice 매입한 외화 수량
+	 */
 	public static void setBuyAmount(int buyAmount) {
 		Exchange.buyAmount = buyAmount;
 	}
-
+	
+	/**
+	 * 외화 시세 검색 및 주문
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int exchangeService() {
 
 		int r = -1;
