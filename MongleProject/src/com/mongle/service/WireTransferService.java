@@ -105,6 +105,7 @@ public class WireTransferService {
 			System.out.printf("%22s 금액이 모두 모였습니다.\n", " ");
 			History.make(BankAccount.list.get(0).getAccountNumber(), "더치페이 정산",
 					((amount / numberOfPeople) * (numberOfPeople - 1)));
+			MongleVisual.menuMove("이전 화면");
 			break;
 
 		case "2":
@@ -116,6 +117,7 @@ public class WireTransferService {
 			System.out.printf("%22s금액이 모두 모였습니다.\n", " ");
 			History.make(BankAccount.list.get(0).getAccountNumber(), "더치페이 정산",
 					((amount / numberOfPeople) * (numberOfPeople - 1)));
+			MongleVisual.menuMove("이전 화면");
 			break;
 
 		default:
@@ -216,14 +218,14 @@ public class WireTransferService {
 
 		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
-		System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t\t|       잔액       |\n");
+		System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t|       잔액       |\n");
 		System.out.printf("%s\n", header);
 		List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
 				.collect(Collectors.toList());
 		print(filteredList); // json 에서 가져온 데이터
 		System.out.printf("%s\n", header);
 		System.out.println();
-		System.out.printf("%22s 출금할 계좌를 선택해 주세요(번호 입력)\n", " ");
+		System.out.printf("%22s출금할 계좌를 선택해 주세요(번호 입력)\n", " ");
 		MongleVisual.choiceGuidePrint();
 		String sel = scan.nextLine();
 
@@ -234,19 +236,19 @@ public class WireTransferService {
 				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
 					BankAccount acc = BankAccount
 							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
-					System.out.printf("%22s 송금 계좌의 은행명", " ");
+					System.out.printf("%22s송금 계좌의 은행명", " ");
 					String bankName = scan.nextLine();
 
-					System.out.printf("%22s 송금 계좌번호 입력( - 포함):", " ");
+					System.out.printf("%22s송금 계좌번호 입력( - 포함):", " ");
 					String accountNumber = scan.nextLine();
 
 					// 유효성 검사
 					if (acc.getAccountNumber().equals(accountNumber)) {
-						System.out.printf("%22s 송금 계좌번호 다시 확인.\n", " ");
+						System.out.printf("%22s송금 계좌번호 다시 확인.\n", " ");
 						continue;
 					}
 
-					System.out.printf("%22s 송금 금액 입력:", " ");
+					System.out.printf("%22s송금 금액 입력:", " ");
 					int money = scan.nextInt();
 					scan.nextLine();
 
