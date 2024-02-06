@@ -58,10 +58,25 @@ public class FindAcc {
 				choicePrint(count);
 			}while(!findMatch(user.getId()));
 			
-			String phone = SignUp.phoneCheck();
+			String phone;
+			do {
+				System.out.printf("\n%22s(예시: 01033448899)"," ");
+				System.out.printf("\n%22s전화번호: "," ");	
+				phone = scan.nextLine();
+				if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
+					phone = phone.replace("-", "");
+					phone = phone.replace(" ", "");
+					phone = phone.replace(".", "");
+				}
+			}while(!Validate.validPhone(phone));
 			user.setPhone(phone);
-			
-			String name = SignUp.nameCheck();
+			String name;
+			do {
+				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
+				System.out.printf("\n%22s이름: "," ");	
+				name = scan.nextLine();
+				}
+				while(!Validate.validName(name));
 			user.setName(name);
 			
 			JSONParser parser = new JSONParser();

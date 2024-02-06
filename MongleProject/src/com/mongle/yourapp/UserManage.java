@@ -22,6 +22,7 @@ public class UserManage {
 
 		System.out.printf("\n%22s1. 이름 수정\r\n", " ");
 		System.out.printf("\n%22s2. 회원 강제 탈퇴\r\n", " ");
+		System.out.printf("\n%22s0. 이전으로\r\n", " ");
 		System.out.println();
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.choiceGuidePrint();
@@ -31,7 +32,7 @@ public class UserManage {
 		}else if(choice.equals("2")) {
 			BlackList.kickUser();
 		}else {
-			
+			return;
 		}
 	}
 

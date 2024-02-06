@@ -22,16 +22,18 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
+import com.mongle.view.MongleVisual;
 
 public class DataManage {
 	public static void dataManage() {
 		System.out.printf("\n%22s데이터 출력\n"," ");
 		System.out.printf("\n%22s출력하시고 싶은 데이터를 선택해주세요\n"," ");
 		System.out.printf("\n%22s1. 이용자수 (일,월,년)\n"," ");
-		System.out.printf("\n%22s1. 이용자수 (일,월,년)\n"," ");
 		System.out.printf("\n%22s2. 총 연결된 계좌수\n"," ");
 		System.out.printf("\n%22s3. 거래가 Mongle에서 일어난 횟수 (일,월,년)\n"," ");
 		System.out.printf("\n%22s4. 은행별 등록된 계좌 계수\n"," ");
+		System.out.println();
+		MongleVisual.choiceGuidePrint();
 		Scanner scan = new Scanner(System.in);
 		String choice = scan.nextLine();
 		
@@ -51,20 +53,46 @@ public class DataManage {
 	
 	
 
-	private static void userNum() {
+	private static int userNum() {
 		int count = 0 ;
 		
 		System.out.printf("\n%22s1. 이용자수 (일)\n"," ");
 		System.out.printf("\n%22s2. 이용자수 (월)\n"," ");
 		System.out.printf("\n%22s3. 이용자수 (년)\n"," ");
+		System.out.println();
+		MongleVisual.choiceGuidePrint();
+		Scanner scan = new Scanner(System.in);
+		String choice = scan.nextLine();
+		//dataGet(count);
+		if(choice.equals("1")) {
+			dataGet(1);
+		}else if(choice.equals("2")){
+			dataGet(2);
+		}else if(choice.equals("3")) {
+			dataGet(3);
+		}
+		return 0;
+	}
+
+	public static int dataGet(int count) {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 		ArrayList<String> checkdate = new ArrayList<String>();
 		Calendar c1 = Calendar.getInstance();
-		
 		String currentDate = String.format("%tF\n", c1);
 		currentDate = currentDate.replace("-", "");
-		int cdate = Integer.parseInt(currentDate);
+		int numCount = 0;
+		int cdate = 0;
+		if(count ==1) {
+			 cdate = Integer.parseInt(currentDate.substring(0, 8));
+		}else if (count==2) {
+			 cdate = Integer.parseInt(currentDate.substring(0, 6));
+		}else if(count==3) {
+			 cdate = Integer.parseInt(currentDate.substring(0, 4));
+		}else {
+			MongleVisual.wrongInput();
+			return 0;
+		}
 		
 		
 		System.out.println(currentDate);
@@ -83,30 +111,22 @@ public class DataManage {
 					for(Object key: array) {
 						JSONObject aten = (JSONObject)key;
 						JSONArray n = (JSONArray) aten.get("attenddate");
-                        System.out.println(n.size());
                         ArrayList<String> date = (ArrayList<String>) aten.get("attenddate");
                         for (String check : date) {
                         	check = check.replace("-", "");
-                        	System.out.println(check);
                         	int chdate = Integer.parseInt(check);
                             if(cdate==chdate) {
-                            	count++;
+                            	numCount++;
                             }
                         }
 					}
 				}
 			}
-			System.out.println("일별유저 : "+count);
+			System.out.printf("\n%22s일별유저 : %d\r\n"," ",numCount);
 		} catch (Exception e) {
 			System.out.println("DataManage.userNum");
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		dataManage();
+		return cdate;
 	}
 }
