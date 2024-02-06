@@ -150,9 +150,9 @@ public class DepoSave {
 		System.out.printf("%22s검색(은행 이름) : ", " ");
 		String name = scan.nextLine();
 
-		String header = "+---+----------------+----------------------------+-------+--------+--------+";
+		String header = "+----+-----------------+----------------------------------+---------+-----------+----------+";
 		System.out.printf("%s\n", header);
-		System.out.printf("|번호|      금융사      |           상품명      \t  |  기간  | 기본금리 | 최고금리 |\n");
+		System.out.printf("|번호|      금융사     |           상품명           \t  |   기간  | 기본금리 | 최고금리 |\n");
 		System.out.printf("%s\n", header);
 		table = searchAPI(table, name, apiDepo);
 		table = searchAPI(table, name, apiSave);
@@ -222,7 +222,7 @@ public class DepoSave {
 	 */
 	public static void print(List<InfoProduct> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < (data.size() > 7 ? 7 : data.size()); i++) {
-			System.out.printf("|%-3d|%-14s|%-20s\t  |%4s개월|%7s%%|%7s%%|\n", i + 1, data.get(i).getBank(),
+			System.out.printf("|%-3d|%-14s|%-20s\t  |%5s개월|%9s%%|%10s%%|\n", i + 1, data.get(i).getBank(),
 					data.get(i).getTitle(), data.get(i).getPeriod(), data.get(i).getRate(), data.get(i).getMaxRate());
 		}
 	}
