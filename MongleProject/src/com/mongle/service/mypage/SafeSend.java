@@ -28,79 +28,99 @@ import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
 
+/**
+ * 안심 송금 클래스
+ */
 public class SafeSend {
 
-	private String fromwho; // 보내는 분
-	private String fromacc;// "출금 계좌");
-	private String towho; // 받는분");
-	private String toacc;// 송금 계좌");
-	private String money;// 금액");
+	private String fromWho;
+	private String fromAcc;
+	private String toWho;
+	private String toAcc;
+	private String money;
 
+	/**
+	 * 안심 송금 내역 저장소
+	 */
 	public static ArrayList<SafeSend> trans = new ArrayList<>();
 
+	/**
+	 * 안심 송금 내역 생성자
+	 * 
+	 * @param fromWho 보내는 분
+	 * @param fromAcc 출금 계좌
+	 * @param toWho   받는 분
+	 * @param toAcc   송금 계좌
+	 * @param money   금액
+	 */
 	public SafeSend(String fromwho, String fromacc, String towho, String toacc, String money) {
 		super();
-		this.fromwho = fromwho;
-		this.fromacc = fromacc;
-		this.towho = towho;
-		this.toacc = toacc;
+		this.fromWho = fromwho;
+		this.fromAcc = fromacc;
+		this.toWho = towho;
+		this.toAcc = toacc;
 		this.money = money;
 	}
 
-	@Override
-	public String toString() {
-		return "SafeSend [fromwho=" + fromwho + ", fromacc=" + fromacc + ", towho=" + towho + ", toacc=" + toacc
-				+ ", money=" + money + "]";
+	/**
+	 * 보내는 분 Getter
+	 * 
+	 * @return 보내는 분
+	 */
+	public String getFromWho() {
+		return fromWho;
 	}
 
-	public String getFromwho() {
-		return fromwho;
+	/**
+	 * 출금 계좌 Getter
+	 * 
+	 * @return 출금 계좌
+	 */
+	public String getFromAcc() {
+		return fromAcc;
 	}
 
-	public void setFromwho(String fromwho) {
-		this.fromwho = fromwho;
+	/**
+	 * 받는 분 Getter
+	 * 
+	 * @return 받는 분
+	 */
+	public String getToWho() {
+		return toWho;
 	}
 
-	public String getFromacc() {
-		return fromacc;
+	/**
+	 * 송금 계좌 Getter
+	 * 
+	 * @return 송금 계좌
+	 */
+	public String getToAcc() {
+		return toAcc;
 	}
 
-	public void setFromacc(String fromacc) {
-		this.fromacc = fromacc;
-	}
-
-	public String getTowho() {
-		return towho;
-	}
-
-	public void setTowho(String towho) {
-		this.towho = towho;
-	}
-
-	public String getToacc() {
-		return toacc;
-	}
-
-	public void setToacc(String toacc) {
-		this.toacc = toacc;
-	}
-
+	/**
+	 * 금액 Getter
+	 * 
+	 * @return 금액
+	 */
 	public String getMoney() {
 		return money;
 	}
 
-	public void setMoney(String money) {
-		this.money = money;
-	}
-
+	/**
+	 * 보내는 분 Getter
+	 * 
+	 * @return 보내는 분
+	 */
 	public static ArrayList<SafeSend> getTrans() {
 		return trans;
 	}
 
-	public static void setTrans(ArrayList<SafeSend> trans) {
-		SafeSend.trans = trans;
-	}
-
+	/**
+	 * 안심송금서비스 메뉴
+	 *
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int safeSendService() {
 
 		Scanner scan = new Scanner(System.in);
@@ -152,15 +172,28 @@ public class SafeSend {
 
 	}
 
-	public static boolean validSafe(String id) { // safesend설정 여부
+	/**
+	 * safesend 설정 여부
+	 * 
+	 * @param id 유저 아이디
+	 * @return 설정시 true, 미설정시 false
+	 */
+	public static boolean validSafe(String id) {
 		for (HashMap map : DataBase.getUser()) {
 			if (map.get("id").equals(id)) {
-				return map.get("safesendsetting").equals("1"); // 설정 했으면 true 리턴
+				return map.get("safesendsetting").equals("1");
 			}
 		}
 		return false;
 	}
 
+	/**
+	 * 안심송금 사용 설정시 안심송금 내역에 추가
+	 * 
+	 * @param accNum 사용자 계좌번호
+	 * @param toacc  송금할 계좌번호
+	 * @param money  금액
+	 */
 	public static void sendSafeMoney(String accNum, String toacc, int money) {
 		if (!validSafe(LogIn.primaryKey)) {
 			return;
@@ -173,9 +206,12 @@ public class SafeSend {
 
 	}
 
+	/**
+	 * 송금 후 수신자 거부 시 알림
+	 */
 	public static void rejection() {
 		load();
-		System.out.printf("%22s%s님께서 송금 받기를 거부하셨습니다.\n", " ", trans.get(0).getTowho());
+		System.out.printf("%22s%s님께서 송금 받기를 거부하셨습니다.\n", " ", trans.get(0).getToWho());
 		System.out.printf("%22s송금하신 금액 %,d원이 환불 처리되었습니다.\n", " ", Integer.parseInt(trans.get(0).getMoney()));
 		History.make(BankAccount.list.get(0).getAccountNumber(), "송금 취소 환불", Integer.parseInt(trans.get(0).getMoney()));
 		trans.remove(0);
@@ -183,6 +219,9 @@ public class SafeSend {
 		MongleVisual.stopper();
 	}
 
+	/**
+	 * 송금 시 알림
+	 */
 	public static void getSafeMoney() {
 
 		if (!validSafe(LogIn.primaryKey)) {
@@ -191,14 +230,14 @@ public class SafeSend {
 		load();
 		Scanner scan = new Scanner(System.in);
 
-		System.out.printf("%22s거래 기록이 없는 사용자(%s)가 송금을 보냈습니다.\n", " ", trans.get(0).getFromwho());
+		System.out.printf("%22s거래 기록이 없는 사용자(%s)가 송금을 보냈습니다.\n", " ", trans.get(0).getFromWho());
 		System.out.printf("%22s금액: %,d원\n", " ", Integer.parseInt(trans.get(0).getMoney()));
 		System.out.printf("%22s송금을 받으시겠습니까?(y/n)", " ");
 		String sel = scan.nextLine();
 		sel = sel.toLowerCase();
 
 		if (sel.equals("y")) {
-			History.make(BankAccount.list.get(0).getAccountNumber(), trans.get(0).getFromwho(),
+			History.make(BankAccount.list.get(0).getAccountNumber(), trans.get(0).getFromWho(),
 					Integer.parseInt(trans.get(0).getMoney()));
 			MongleVisual.successPrint();
 			trans.remove(0);
@@ -206,8 +245,6 @@ public class SafeSend {
 
 		} else if (sel.equals("n")) {
 			MongleVisual.stopper();
-			// 일단 아무일도 없는척
-			// fromwho의 fromacc로 money 반환 및 senddate 날짜 입력
 		} else {
 			MongleVisual.wrongInput();
 		}
@@ -215,6 +252,9 @@ public class SafeSend {
 		return;
 	}
 
+	/**
+	 * 안심 송금 내역 호출
+	 */
 	public static void load() {
 		try {
 			BufferedReader reader = new BufferedReader(
@@ -233,14 +273,17 @@ public class SafeSend {
 		}
 	}
 
+	/**
+	 * 안심 송금 내역 저장
+	 */
 	public static void save() {
 		try {
 			BufferedWriter writer = new BufferedWriter(
 					new FileWriter(ResourcePath.SAFE + "\\" + LogIn.primaryKey + ".dat"));
 			for (SafeSend s : trans) {
 
-				String line = String.format("%s,%s,%s,%s,%s\r\n", s.getFromwho(), s.getFromacc(), s.getTowho(),
-						s.getToacc(), s.getMoney());
+				String line = String.format("%s,%s,%s,%s,%s\r\n", s.getFromWho(), s.getFromAcc(), s.getToWho(),
+						s.getToAcc(), s.getMoney());
 				writer.write(line);
 			}
 
