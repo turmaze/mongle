@@ -35,11 +35,11 @@ public class Stock {
 	 * 주식 상품 보유 내역
 	 */
 	
-	public static String TOKEN;
-	public static String TOKENexpired;
-	public static int buyPrice = 0;
-	public static int buyAmount = 0;
-	public static String sel= "";
+	public static String TOKEN;			//api 접근 토큰
+	public static String TOKENexpired;	//api 접근 토큰 만료일
+	public static int buyPrice = 0;		//주식 매수가
+	public static int buyAmount = 0;	//주식 매수 수량
+	public static String sel= "";		//매수한 주식 명
 	public static ArrayList<Investment> listStock = new ArrayList<>();
 	
 	/**

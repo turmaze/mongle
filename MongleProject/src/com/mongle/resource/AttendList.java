@@ -7,7 +7,7 @@ import com.mongle.database.DataBase;
 import com.mongle.view.MongleVisual;
 
 /*
- * 포인트 관리 파트 멤버 클래스 입니다.
+ * 출석 멤버 클래스
  * */
 public class AttendList {
 	

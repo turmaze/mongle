@@ -24,9 +24,9 @@ public class Exchange {
 	 * 외화 상품 보유 내역
 	 */
 	
-	public static int buyPrice;
-	public static int buyAmount;
-	public static String realname;
+	public static int buyPrice;		//외화 매입 단가
+	public static int buyAmount;	//외화 매입 수량
+	public static String realname;	//매입한 외화명
 	
 	
 	/**
