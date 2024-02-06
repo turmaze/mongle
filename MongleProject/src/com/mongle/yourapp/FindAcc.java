@@ -94,10 +94,10 @@ public class FindAcc {
 
 						if (user.getName().equals(checkName) && user.getId().equals(checkID)
 								&& user.getPhone().equals(checkPhone)) {
-							System.out.printf("\n%22s(10~16자리 영문과 숫자 조합)\n"," ");
-							System.out.printf("\n%22s변경할 비밀번호 입력: ", " ");
 							String setPW ;
 							do {
+								System.out.printf("\n%22s(10~16자리 영문과 숫자 조합)\n"," ");
+								System.out.printf("\n%22s변경할 비밀번호 입력: ", " ");
 								setPW = scan.nextLine();
 							} while(!Validate.validPw(setPW));
 							System.out.printf("\n%22s변경할 비밀번호 다시입력: ", " ");
@@ -115,6 +115,7 @@ public class FindAcc {
 							}else {
 								MongleVisual.wrongInput();
 							}
+							break;
 						}
 						break;
 					}
