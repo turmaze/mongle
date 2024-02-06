@@ -407,7 +407,7 @@ public class Inquiry {
 						found = true;
 
 						System.out.printf("%22s제목 \"%s\"를 찾았습니다.\n", " ", input);
-						System.out.printf("첫 줄에서 ':q!' 시 종료\n");
+						System.out.printf("마지막 줄에서 ':q!'입력 후 enter 시 종료\n");
 						System.out.printf("수정: ");
 
 						StringBuilder contentBuilder = new StringBuilder(); // 내용을 저장할 StringBuilder를 생성합니다.
