@@ -193,13 +193,14 @@ public class Inquiry {
 		MongleVisual.menuHeader("문의 처리");
 	
 		if(inqList.isEmpty()) {
-			System.out.printf("%22문의가 없습니다\n\n", " ");
+			System.out.printf("%22s문의가 없습니다\n\n", " ");
 			MongleVisual.stopper();
 			return;
 		}
 
-		inquiry.showTitleList(inqList);		
-		System.out.printf("%22s1. 답변을 적으시겠습니까?\n", " ");
+		inquiry.showTitleList(inqList);	
+		System.out.println();
+		System.out.printf("%22s1. 답변하기\n", " ");
 		System.out.printf("%22s2. 문의 삭제\n", " ");	
 		System.out.printf("%22s0. 이전으로\n", " ");	
 		MongleVisual.choiceGuidePrint();
@@ -231,7 +232,6 @@ public class Inquiry {
 								String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
 								map.put("comment", content);
 	
-								inqList.add(map);
 								inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 								System.out.printf("%22s완료되었습니다.\n", " ");
 								adminInquiry(); //재귀...
@@ -243,10 +243,13 @@ public class Inquiry {
 				case "2":
 					inquiry.deleteInq(inqList);
 					inquiry.saveInq(inqList, ResourcePath.INQUIRY);
-					break;
+					MongleVisual.menuMove("관리자 페이지");
+					adminInquiry(); //재귀...
+					//break;
 				case "0":
 					MongleVisual.menuMove("관리자 페이지");
-					break;
+					adminInquiry(); //재귀...
+					//break;
 	
 				default:
 					MongleVisual.wrongInput();
@@ -403,8 +406,7 @@ public class Inquiry {
 						String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
 						map.put("txt", content);
 
-						arrayList.add(map);
-						//annList.add(map);
+						//arrayList.add(map);
 						System.out.printf("%22s수정되었습니다.\n", " ");
 
 						return;
@@ -430,6 +432,8 @@ public class Inquiry {
 		Inquiry inquiry = new Inquiry();
 
 		System.out.printf("%22s1. 선택 삭제\n%22s2. 전체 삭제\n", " ", " ");
+		System.out.printf("%22s0. 이전으로\n", " ");
+		
 		MongleVisual.choiceGuidePrint();
 
 		String input = "7";
