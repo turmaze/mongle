@@ -10,9 +10,14 @@ import com.mongle.service.mypage.QRCode;
 import com.mongle.service.mypage.SafeSend;
 import com.mongle.sign.SignOut;
 import com.mongle.view.MongleVisual;
-
+/**
+ * MyPage 클래스
+ */
 public class MypageService {
-
+/**
+ * MyPage 메뉴
+ * @return 메뉴 이동을 위한 변수
+ */
 	public static int mypageService() {
 
 		Scanner scan = new Scanner(System.in);
