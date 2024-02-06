@@ -1,6 +1,7 @@
 package com.mongle.service.mypage;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,19 +24,82 @@ import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
+import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
 
 public class SafeSend {
 
-//	private String fromwho; //보내는 분
-//	private String fromacc;//"출금 계좌");
-//	private String towho; //받는분");
-//	private String toacc;//송금 계좌");
-//	private String money;//금액");
-//	private String senddate;//날짜");
+	private String fromwho; // 보내는 분
+	private String fromacc;// "출금 계좌");
+	private String towho; // 받는분");
+	private String toacc;// 송금 계좌");
+	private String money;// 금액");
 
-	public static ArrayList<HashMap> trans = new ArrayList<HashMap>();
+	public static ArrayList<SafeSend> trans = new ArrayList<>();
+
+	public SafeSend(String fromwho, String fromacc, String towho, String toacc, String money) {
+		super();
+		this.fromwho = fromwho;
+		this.fromacc = fromacc;
+		this.towho = towho;
+		this.toacc = toacc;
+		this.money = money;
+	}
+
+	@Override
+	public String toString() {
+		return "SafeSend [fromwho=" + fromwho + ", fromacc=" + fromacc + ", towho=" + towho + ", toacc=" + toacc
+				+ ", money=" + money + "]";
+	}
+
+	public String getFromwho() {
+		return fromwho;
+	}
+
+	public void setFromwho(String fromwho) {
+		this.fromwho = fromwho;
+	}
+
+	public String getFromacc() {
+		return fromacc;
+	}
+
+	public void setFromacc(String fromacc) {
+		this.fromacc = fromacc;
+	}
+
+	public String getTowho() {
+		return towho;
+	}
+
+	public void setTowho(String towho) {
+		this.towho = towho;
+	}
+
+	public String getToacc() {
+		return toacc;
+	}
+
+	public void setToacc(String toacc) {
+		this.toacc = toacc;
+	}
+
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
+	public static ArrayList<SafeSend> getTrans() {
+		return trans;
+	}
+
+	public static void setTrans(ArrayList<SafeSend> trans) {
+		SafeSend.trans = trans;
+	}
 
 	public static int safeSendService() {
 
@@ -100,28 +165,21 @@ public class SafeSend {
 		if (!validSafe(LogIn.primaryKey)) {
 			return;
 		}
-		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date now = new Date();
-		String date = sdf1.format(now);
-		HashMap<String, Object> newTrans = new HashMap<String, Object>();
-
-		newTrans.put("fromWho", DataBase.getPrivateUser().get(0).get("name"));
-		newTrans.put("fromAcc", accNum);
-		newTrans.put("toWho", "홍길동");
-		newTrans.put("toAcc", toacc);
-		newTrans.put("money", money);
-		newTrans.put("sendDate", date);
-
-		trans.add(newTrans);
+		load();
+		SafeSend s = new SafeSend((String) DataBase.getPrivateUser().get(0).get("name"), accNum, "홍길동", toacc,
+				Integer.toString(money));
+		trans.add(s);
 		save();
 
 	}
 
 	public static void rejection() {
-		System.out.printf("%22s%s님께서 송금 받기를 거부하셨습니다.\n", " ", trans.get(0).get("toWho"));
-		System.out.printf("%22s송금하신 금액 %,d원이 환불 처리되었습니다.\n", " ", (int)trans.get(0).get("money"));
-		History.make(BankAccount.list.get(0).getAccountNumber(), "송금 취소 환불", (int) trans.get(0).get("money"));
-
+		load();
+		System.out.printf("%22s%s님께서 송금 받기를 거부하셨습니다.\n", " ", trans.get(0).getTowho());
+		System.out.printf("%22s송금하신 금액 %,d원이 환불 처리되었습니다.\n", " ", Integer.parseInt(trans.get(0).getMoney()));
+		History.make(BankAccount.list.get(0).getAccountNumber(), "송금 취소 환불", Integer.parseInt(trans.get(0).getMoney()));
+		trans.remove(0);
+		save();
 		MongleVisual.stopper();
 	}
 
@@ -130,43 +188,22 @@ public class SafeSend {
 		if (!validSafe(LogIn.primaryKey)) {
 			return;
 		}
-
+		load();
 		Scanner scan = new Scanner(System.in);
 
-		JSONParser parser = new JSONParser();
-		try {
-			// FileReader 객체 생성
-			String path = ResourcePath.SAFE + "//" + LogIn.primaryKey + ".dat";
-			FileReader reader = new FileReader(path);
-			File file = new File(path);
-			trans.clear();
-
-			if (!file.exists()) {
-				return;
-			}
-			JSONArray arr = (JSONArray) parser.parse(reader);
-			for (Object obj : arr) {
-				JSONObject item = (JSONObject) obj;
-				HashMap<String, Object> transData = new HashMap<>();
-				for (Object key : item.keySet()) {
-					transData.put((String) key, item.get((String) key));
-				}
-				trans.add(transData);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		System.out.printf("%22s%s님께서 송금을 보냈습니다.\n", " ", trans.get(0).get("fromWho"));
-		System.out.printf("%22s금액: %,d원\n", " ", trans.get(0).get("money"));
+		System.out.printf("%22s거래 기록이 없는 사용자(%s)가 송금을 보냈습니다.\n", " ", trans.get(0).getFromwho());
+		System.out.printf("%22s금액: %,d원\n", " ", Integer.parseInt(trans.get(0).getMoney()));
 		System.out.printf("%22s송금을 받으시겠습니까?(y/n)", " ");
 		String sel = scan.nextLine();
 		sel = sel.toLowerCase();
 
 		if (sel.equals("y")) {
-			History.make(BankAccount.list.get(0).getAccountNumber(), (String) trans.get(0).get("fromWho"),
-					(int) trans.get(0).get("money"));
+			History.make(BankAccount.list.get(0).getAccountNumber(), trans.get(0).getFromwho(),
+					Integer.parseInt(trans.get(0).getMoney()));
 			MongleVisual.successPrint();
+			trans.remove(0);
+			save();
+
 		} else if (sel.equals("n")) {
 			MongleVisual.stopper();
 			// 일단 아무일도 없는척
@@ -178,24 +215,42 @@ public class SafeSend {
 		return;
 	}
 
-	public static void save() {
+	public static void load() {
 		try {
+			BufferedReader reader = new BufferedReader(
+					new FileReader(ResourcePath.SAFE + "\\" + LogIn.primaryKey + ".dat"));
 
-			// set pretty printing
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			File file = new File(ResourcePath.SAFE + "//" + LogIn.primaryKey + ".dat");
-			FileWriter writer = new FileWriter(file, false); // 덮쓰
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] temp = line.split(",");
+				trans.add(new SafeSend(temp[0], temp[1], temp[2], temp[3], temp[4]));
+			}
 
-			writer.write(gson.toJson(trans));
-			writer.flush(); // 버퍼 비우기
-
-			writer.close();
+			reader.close();
 
 		} catch (Exception e) {
-			System.out.println("safesend");
-			e.printStackTrace();
+			e.getStackTrace();
 		}
+	}
 
+	public static void save() {
+		try {
+			BufferedWriter writer = new BufferedWriter(
+					new FileWriter(ResourcePath.SAFE + "\\" + LogIn.primaryKey + ".dat"));
+			for (SafeSend s : trans) {
+
+				String line = String.format("%s,%s,%s,%s,%s\r\n", s.getFromwho(), s.getFromacc(), s.getTowho(),
+						s.getToacc(), s.getMoney());
+				writer.write(line);
+			}
+
+			writer.close();
+			trans.clear();
+
+		} catch (Exception e) {
+			System.out.println("save");
+			e.getStackTrace();
+		}
 	}
 
 }
