@@ -10,6 +10,9 @@ import com.mongle.resource.History;
 import com.mongle.resource.Investment;
 import com.mongle.service.InvestService;
 
+/***
+ * 투자관리 클래스
+ */
 public class InvestmentView {
 
 	public static int addmenu() {
@@ -54,7 +57,11 @@ public class InvestmentView {
 		return 0;
 
 	}
-
+	
+/***
+ * 환전 관리 메서드
+ * @return 
+ */
 	private static int Exchangesave() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -104,7 +111,10 @@ public class InvestmentView {
 		return 0;
 
 	}
-
+/***
+ * 금 상품 관리 메서드
+ * @return
+ */
 	private static int goldsave() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -155,7 +165,10 @@ public class InvestmentView {
 		}
 		return 0;
 	}
-
+/***
+ * 주식 상품 관리 메서드
+ * @return
+ */
 	private static int stocksave() {
 
 		Scanner scan = new Scanner(System.in);
@@ -178,19 +191,19 @@ public class InvestmentView {
 			if (num2.equals("1")) { //// 매수
 
 				System.out.printf("%22s매수할 상품번호 선택: ", " ");
-				int removeN = scan.nextInt();
+				int plus = scan.nextInt();
 
 				System.out.printf("%22s수량 입력 : ", " ");
 				int num = scan.nextInt();
 
-				int total = stockcare(Investment.list, removeN, "주식", num); // 합쳐진 수..
-				transactionStock(removeN, "주식", num); // 계좌 골라서 넣기..
+				int total = stockcare(Investment.list, plus, "주식", num); // 합쳐진 수..
+				transactionStock(plus, "주식", num); // 계좌 골라서 넣기..
 
 				// 매수하고 상세보기 불러오기
 				System.out.println();
 				System.out.printf("%22s상세보기\n", " ");
 				System.out.println();
-				printTablePlusStock(Investment.list, "주식", total, removeN);
+				printTablePlusStock(Investment.list, "주식", total, plus);
 				System.out.println();
 				MongleVisual.stopper();
 				break;
@@ -229,7 +242,11 @@ public class InvestmentView {
 	}
 
 
-
+/***
+ * 금 상품 출력 메서드 
+ * @param data 투자 상품 불러오는 리스트
+ * @param invest 투자 상품 명
+ */
 
 
 	public static void printTableGold(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
@@ -251,6 +268,12 @@ public class InvestmentView {
 		}
 		System.out.printf("%22s%s\n", " ", header);
 	}
+	
+/***
+ * 환전 상품 관리 메서드 
+ * @param data 투자 상품 불러오는 리스트
+ * @param invest 투자 상품 명
+ */
 	public static void printTableEx(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+------------------------+--------------+------------+";
@@ -274,7 +297,11 @@ public class InvestmentView {
 		}
 		System.out.printf("%22s%s\n", " ", header);
 	}
-	
+	/***
+	 * 주식 상품 관리 메서드 
+	 * @param data 투자 상품 불러오는 리스트
+	 * @param invest 투자 상품 명
+	 */	
 	public static void printTableStock(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+---------------+---------------+------------+";
@@ -297,7 +324,14 @@ public class InvestmentView {
 		System.out.printf("%22s%s\n", " ", header);
 	}
 	
-	public static void printTablePlusStock(ArrayList<Investment> data, String invest, int total, int removeN) { 
+/***
+ * 매수 후 출력 메서드
+ * @param data 투자 상품 불러오는 리스트
+ * @param invest 투자 상품 명
+ * @param total 매수 후 변한 수량
+ * @param plus 매수할 상품번호
+ */
+	public static void printTablePlusStock(ArrayList<Investment> data, String invest, int total, int plus) { 
 
 		int j = 0;
 		int printNum = 1;
@@ -307,7 +341,7 @@ public class InvestmentView {
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
-				if (printNum == removeN) {
+				if (printNum == plus) {
 					data.get(i).setAmount(total);
 				}
 				System.out.printf("%22s|%3d | %5s\t|%7s\t|   %,.0f원\t|  %,5d개   |\n", " ", printNum,
@@ -319,8 +353,14 @@ public class InvestmentView {
 		}
 		System.out.printf("%22s%s\n", " ", header);
 	}
-	
 
+
+/***
+ * 투자 상품 판매 메서드
+ * @param data 투자 상품 불러오는 리스트
+ * @param removeN 판매하려는 상품 번호
+ * @param invest 판매하려는 투자 상품
+ */
 	private static void remove(ArrayList<Investment> data, int removeN, String invest) {
 		int j = 0;
 		for (int i = 0; i < data.size(); i++) {
@@ -334,6 +374,14 @@ public class InvestmentView {
 		}
 	}
 
+/***
+ * 주식 매수후 수량 계산 메서드   
+ * @param data 투자 상품 불러오는 리스트 
+ * @param removeN 매수하려는 상품 번호
+ * @param invest 판매하려는 투자 상품
+ * @param num 매수 수량 
+ * @return 기존 상품 수 + 매수 수량 
+ */
 	private static int stockcare(ArrayList<Investment> data, int removeN, String invest, int num) {
 		int j = 0;
 		int care = 0;
@@ -351,6 +399,13 @@ public class InvestmentView {
 		return care;
 	}
 
+/***
+ * 판매 후 가격 계산하는 메서드
+ * @param data 투자 상품 불러오는 리스트 
+ * @param removeN 판매하려는 상품 번호
+ * @param invest 판매하려는 투자 상품
+ * @return 판매하려는 상품의 가격 * 수량 > 계좌에 들어가는 값 
+ */
 	private static int totalmoney(ArrayList<Investment> data, int removeN, String invest) {
 		int j = 0;
 		int total = 0;
@@ -364,8 +419,15 @@ public class InvestmentView {
 		}
 		return total;
 	}
-
-	private static int stockcare2(ArrayList<Investment> data, int removeN, String invest, int num) {
+/***
+ * 매수 후 가격 계산하는 메서드
+ * @param data 투자 상품 불러오는 리스트 
+ * @param removeN 매수하려는 상품 번호
+ * @param invest 판매하려는 투자상품
+ * @param num 매수할 수량
+ * @return 매수 시장가 * 매수 수량 >  계좌에서 빠질 값
+ */
+	private static int stockmoney(ArrayList<Investment> data, int removeN, String invest, int num) {
 		int j = 0;
 		int money = 0;
 		for (int i = 0; i < data.size(); i++) {
@@ -380,6 +442,12 @@ public class InvestmentView {
 		return money;
 	}
 
+/***
+ * 수익이 입금될 계좌 선택 하는 메서드
+ * @param removeN 판매하려는 상품 번호
+ * @param invest 판매하려는 투자 상품
+ * @return
+ */
 	public static int transaction(int removeN, String invest) {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
@@ -427,7 +495,13 @@ public class InvestmentView {
 		}
 		return 0;
 	}
-
+/***
+ * 매도를 위한 계좌 선택 메서드
+ * @param removeN 판매하려는 상품 번호
+ * @param invest 판매하려는 투자 상품
+ * @param num 매수할 수량
+ * @return
+ */
 	public static int transactionStock(int removeN, String invest, int num) {
 		Scanner scan = new Scanner(System.in);
 
@@ -448,7 +522,7 @@ public class InvestmentView {
 		while (loop) {
 			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
-			int totalPrice = stockcare2(Investment.list, removeN, "주식", num);
+			int totalPrice = stockmoney(Investment.list, removeN, "주식", num);
 
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
