@@ -48,24 +48,24 @@ public class MainMenu {
 
 			switch (choice) {
 			case "1":
-				System.out.printf("%22s자산관리 화면으로 이동합니다.\n\n", " ");
+				MongleVisual.menuMove("자산관리 화면");
 				AssetManagementView.assetAdd();
 
 				continue;
 			case "2":
-				System.out.printf("%22s송금 화면으로 이동합니다.\n\n", " ");
+				MongleVisual.menuMove("송금 화면");
 				WireTransferService.extracted();
 				continue;
 			case "3":
-				System.out.printf("%22s투자 화면으로 이동합니다.\n\n", " ");
+				MongleVisual.menuMove("투자 화면");
 				r = InvestService.investMenu();
 				continue;
 			case "4":
-				System.out.printf("%22s고객센터 화면으로 이동합니다.\n\n", " ");
+				MongleVisual.menuMove("고객센터 화면");
 				r = CustomerService.csmenu();
 				continue;
 			case "5":
-				System.out.printf("%22sMyPage 화면으로 이동합니다.\n\n", " ");
+				MongleVisual.menuMove("MyPage 화면");
 				r = MypageService.mypageService();
 				continue;
 			case "9":

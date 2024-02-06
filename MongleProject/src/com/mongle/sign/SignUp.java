@@ -20,6 +20,7 @@ public class SignUp {
 		UserData userData = new UserData();
 		HashMap<String, Object> newUser = new HashMap<String, Object>();  
 
+		MongleVisual.menuMove("회원가입 화면");
 		
 		MongleVisual.menuHeader("회원가입");
 	

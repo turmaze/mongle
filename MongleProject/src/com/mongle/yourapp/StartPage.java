@@ -34,10 +34,8 @@ public class StartPage {
 
 
 			if (choice.equals("1")) {
-				MongleVisual.menuMove("로그인 화면");
 				LogIn.logIn();
 			} else if (choice.equals("2")) {
-				MongleVisual.menuMove("회원가입 화면");
 				SignUp.signUp();
 			} else if (choice.equals("3")) {
 				FindAcc.findAcc();
