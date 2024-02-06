@@ -6,6 +6,7 @@ import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.CreditScore;
 import com.mongle.service.mypage.EditInfo;
 import com.mongle.service.mypage.Point;
+import com.mongle.service.mypage.QRCode;
 import com.mongle.service.mypage.SafeSend;
 import com.mongle.sign.SignOut;
 import com.mongle.view.MongleVisual;
@@ -21,61 +22,70 @@ public class MypageService {
 			MongleVisual.pusher();
 			int r = -1;
 			MongleVisual.menuHeader("MyPage");
-			System.out.printf("%22s1. 개인정보 조회 및 수정\n", " ");
-			System.out.printf("%22s2. 신용점수\n", " ");
-			System.out.printf("%22s3. 안심송금서비스 설정\n", " ");
-			System.out.printf("%22s4. 출석체크\n", " ");
-			System.out.printf("%22s5. 포인트\n", " ");
-			System.out.printf("%22s6. 회원탈퇴\n", " ");
+			System.out.printf("%22s1. 결제용 QRcode\n", " ");
+			System.out.printf("%22s2. 개인정보 조회 및 수정\n", " ");
+			System.out.printf("%22s3. 신용점수\n", " ");
+			System.out.printf("%22s4. 안심송금서비스 설정\n", " ");
+			System.out.printf("%22s5. 출석체크\n", " ");
+			System.out.printf("%22s6. 포인트\n", " ");
+			System.out.printf("%22s7. 회원탈퇴\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-			System.out.println();
 
-			System.out.printf("%22s선택(번호) :", " ");
+			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
 
 			switch (sel) {
 			case "1":
-				System.out.printf("%22s개인정보 화면으로 이동합니다.\n", " ");
-				r = EditInfo.edit();
+				MongleVisual.menuMove("QRcode 화면");
+				r = QRCode.qr();
 				if (r == 9) {
 					return 9;
 				} else {
 					continue;
 				}
 			case "2":
-				System.out.printf("%22s신용점수 화면으로 이동합니다.\n", " ");
-				r = CreditScore.creditScoreService();
+				MongleVisual.menuMove("개인정보 화면");
+				r = EditInfo.edit();
 				if (r == 9) {
 					return 9;
 				} else {
 					continue;
 				}
 			case "3":
-				System.out.printf("%22s안심송금서비스 화면으로 이동합니다.\n", " ");
-				r = SafeSend.safeSendService();
+				MongleVisual.menuMove("신용점수 화면");
+				r = CreditScore.creditScoreService();
 				if (r == 9) {
 					return 9;
 				} else {
 					continue;
 				}
 			case "4":
-				System.out.printf("%22s출석체크 화면으로 이동합니다.\n", " ");
-				r = AttendanceCheck.attendanceCheckService();
+				MongleVisual.menuMove("안심송금서비스 설정 화면");
+				r = SafeSend.safeSendService();
+				
 				if (r == 9) {
 					return 9;
 				} else {
 					continue;
 				}
 			case "5":
-				System.out.printf("%22s포인트 화면으로 이동합니다.\n", " ");
-				r = Point.pointService();
+				MongleVisual.menuMove("출석체크 화면");
+				r = AttendanceCheck.attendanceCheckService();
 				if (r == 9) {
 					return 9;
 				} else {
 					continue;
 				}
 			case "6":
-				System.out.printf("%22s회원탈퇴 화면으로 이동합니다.\n", " ");
+				MongleVisual.menuMove("포인트 화면");
+				r = Point.pointService();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
+			case "7":
+				MongleVisual.menuMove("회원탈퇴 화면");
 				r = SignOut.signOutService();
 				if (r == 9) {
 					return 9;
@@ -83,11 +93,10 @@ public class MypageService {
 					continue;
 				}
 			case "0":
-				System.out.printf("%22s이전 화면으로 이동합니다.\n", " ");
-				loop = false;
-				break;
+				MongleVisual.menuMove("이전 화면");
+				return 0;
 			default:
-				System.out.printf("%22s올바른 번호를 입력해주세요.\n", " ");
+				MongleVisual.wrongInput();
 			}
 		}
 		return 0;
