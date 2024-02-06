@@ -212,34 +212,40 @@ public class WireTransferService {
 		}
 
 		// 시간은 정수형태로 입력받도록 함
-		System.out.printf("%22s시간을 입력하세요: ", " "); // 시간단위로만 입력받을 수 있음 ex) 13:26(x) // 13 (0)
-		int hour = scanner.nextInt();
+		System.out.printf("%22s시간을 입력하세요 (예: 01:26): ", " "); 
+		String timeInput = scanner.next();
+        String[] timeParts = timeInput.split(":");
+        if (timeParts.length != 2) {
+            System.out.printf("%22s[오류 발생] 올바른 형식으로 시간을 입력하세요 (hh:mm).", " ");
+            return;
+        }
+        int hour = Integer.parseInt(timeParts[0]);
+        int minute = Integer.parseInt(timeParts[1]);
 
-		if (hour < 0) {
-			System.out.printf("%22s[오류 발생] 정수단위로 입력.", " ");
-			return;
+        if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+            System.out.printf("%22s[오류 발생] 올바른 시간을 입력하세요 (00:00부터 23:59까지).", " ");
+            return;
 		}
 		boolean loop = true;
 		// 송금 확인 메시지
-		System.out.printf("%22s[" + year + "년 " + month + "월 " + day + "일 " + hour + "시]에 예약 송금하시겠습니까? (y/n): ", " ");
+		System.out.printf("%22s[" + year + "년 " + month + "월 " + day + "일 " + hour + "시 " + minute + "분]에 예약 송금하시겠습니까? (y/n): ", " ");
 
-		while (loop) {
-			String confirm = scanner.next();
+		while (true) {
+            String confirm = scanner.next();
 
-			if (confirm.equals("y")) {
-				System.out.println();
-				// 예약 송금 로직
-				System.out.printf("%22s 예약이 완료되었습니다. 예약 시간: " + year + "년 " + month + "월 " + day + "일 " + hour + "시\n",
-						" ");
-				MongleVisual.stopper();
-				break;
-			} else if (confirm.equals("n")) {
-				System.out.printf("%22s 예약이 취소되었습니다.", " ");
-				break;
-			} else {
-				System.out.printf("%22s 올바른 선택을 해주세요.", " ");
-			}
-		}
+            if (confirm.equals("y")) {
+                System.out.println();
+                String reservationTime = String.format("%d년 %d월 %d일 %d시 %d분", year, month, day, hour, minute);
+                System.out.printf("%22s 예약이 완료되었습니다. 예약 시간: %s\n", " ", reservationTime);
+                break;
+            } else if (confirm.equals("n")) {
+                System.out.printf("%22s 예약이 취소되었습니다.", " ");
+                break;
+            } else {
+                System.out.printf("%22s 올바른 선택을 해주세요.", " ");
+            }
+        }
+		
 
 //        private static void transferMoney(int depositAmount ) {
 //		Scanner sc = new Scanner(System.in);
