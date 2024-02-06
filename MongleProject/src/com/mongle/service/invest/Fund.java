@@ -4,8 +4,16 @@ import java.util.Scanner;
 
 import com.mongle.view.MongleVisual;
 
+/**
+ * 펀드 상품 클래스
+ */
 public class Fund {
-
+	
+	/**
+	 * 펀드 상품 검색
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int fundService() {
 
 		boolean loop = true;

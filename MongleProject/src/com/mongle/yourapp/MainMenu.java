@@ -48,7 +48,8 @@ public class MainMenu {
 			System.out.printf("\n%22s5. MyPage", " ");
 			System.out.printf("\n%22s9. 프로그램 종료", " ");
 			System.out.printf("\n%22s0. 로그아웃", " ");
-			System.out.printf("\n\r\n%22s선택번호: ", " ");
+			System.out.println();
+			MongleVisual.choiceGuidePrint();
 			String choice = scan.nextLine();
 
 			switch (choice) {
