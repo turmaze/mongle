@@ -241,6 +241,10 @@ public class ManageLoan {
 		printLoanTable(loanlist); 
 		System.out.printf("%s\n", header);
 		System.out.println();
+		System.out.printf("%22s 첫상환 후 3개월 이내 시 수수료 1%% 적용됩니다\n "," ");
+		System.out.printf("%21s 첫상환 후 6개월 이내 시 수수료 0.5%% 적용됩니다\n "," ");
+		System.out.printf("%21s 첫상환 후 6개월 이상 시 수수료 가 없습니다\n "," ");
+		System.out.println();
 		int a = loanlist.get(0).getloanPeriod();
 		int b = loanlist.get(0).getrPeriod();
 		int c = loanlist.get(0).getprincipal();
