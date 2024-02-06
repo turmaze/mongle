@@ -23,7 +23,7 @@ public class Gold {
 	/**
 	 * 금 상품 보유 내역
 	 */
-	public static ArrayList<Investment> listGold = new ArrayList<>();
+	
 	private static int price;
 	private static int num;
 
@@ -108,8 +108,7 @@ public class Gold {
 			} // while
 		} // while
 
-		// listGold.add(new Investment("금","금",price,num));
-		// Investment.list.add(listGold);
+		
 
 		return 0;
 	}
@@ -134,7 +133,7 @@ public class Gold {
 				if (Integer.parseInt(num) > 0) {
 
 					InvestService.transaction("금상품 구매", price, Integer.parseInt(num));
-					Investment.list.add(new Investment("금", "금", "금", price, Integer.parseInt(num)));
+					Investment.list.add(new Investment("금", "금", "금", Gold.price, Integer.parseInt(num)));
 
 					return Integer.parseInt(num);
 				}
