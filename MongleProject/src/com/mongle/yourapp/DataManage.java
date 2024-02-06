@@ -92,21 +92,9 @@ public class DataManage {
                             	count++;
                             }
                         }
-                        
-						
 					}
 				}
-				
-				
 			}
-			
-//	
-			
-			
-				
-	
-			System.out.println(count);
-			
 			System.out.println(count);
 		} catch (Exception e) {
 			System.out.println("DataManage.userNum");

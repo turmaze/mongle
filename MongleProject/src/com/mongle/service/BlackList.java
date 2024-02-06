@@ -22,9 +22,9 @@ import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.MainMenu;
 
 public class BlackList {
-	public static void blackList() {
+	public static int blackList() {
 
-		MongleVisual.menuHeader("블랙리스트 관리");
+		MongleVisual.menuMove("블랙리스트 관리");
 
 		System.out.printf("\n%22s1. 블랙리스트 확인\r\n", " ");
 		System.out.printf("\n%22s2. 블랙리스트 등록/수정\r\n", " ");
@@ -35,21 +35,27 @@ public class BlackList {
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 
+		
+		
+		
+		
 		if (input.equals("1")) {
 			callBlackList();
 		} else if (input.equals("2")) {
 			addBlackList();
 		} else if (input.equals("9")) {
-			
+			return 9;
 		} else if (input.equals("0")) {
-			
+			return 0;
 		} else {
 			MongleVisual.wrongInput();
 		}
+		return 0;
 
 	}
 
 	private static void addBlackList() {
+		MongleVisual.pusher();
 		System.out.printf("\n%22s대상 아이디 입력: ", " ");
 		Scanner scan = new Scanner(System.in);
 		String idcheck = scan.nextLine();
@@ -61,7 +67,6 @@ public class BlackList {
 				if (((JSONObject) obj).get("level").equals("1")) {
 					idcheck = (String) ((JSONObject) obj).get("id");
 					String level = (String)((JSONObject)obj).get("level");
-					
 					break;
 				}
 
@@ -81,6 +86,7 @@ public class BlackList {
 	}
 
 	private static void callBlackList() {
+		MongleVisual.pusher();
 		int count = 0;
 		try {
 			JSONParser parser = new JSONParser();
@@ -153,6 +159,7 @@ public class BlackList {
 	}
 
 	private static void changeBlacklevel(String select) {
+		MongleVisual.pusher();
 		Scanner scan = new Scanner(System.in);
 		UserData user = new UserData();
 		System.out.printf("\r\n%22s1. 블랙리스트 등급 상향하기\r\n", " ");

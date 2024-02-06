@@ -24,9 +24,6 @@ public class FindAcc {
 	public static void findAcc() {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuMove("계정 찾기");
-		
-
-		MongleVisual.pusher();
 		MongleVisual.menuHeader("아이디 / 비밀번호 찾기");
 
 		System.out.printf("\n%22s1. 아이디 찾기", " ");
@@ -43,6 +40,8 @@ public class FindAcc {
 			findMyPw();
 		} else if (choice.equals("0")) {
 			StartPage.startPage();
+		}else {
+			MongleVisual.wrongInput();
 		}
 	}
 
@@ -97,8 +96,6 @@ public class FindAcc {
 							}
 						}
 						break;
-					}else {
-						MongleVisual.wrongInput();
 					}
 				}
 			} while (loop);
