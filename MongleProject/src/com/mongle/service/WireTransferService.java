@@ -65,12 +65,12 @@ public class WireTransferService {
 		}
 
 		if (amount < 0) {
-			System.out.printf("%22s[오류 발생] 음수는 입력불가", " ");
+			System.out.printf("%22s[오류 발생] 음수는 입력 불가", " ");
 			return;
 		}
 
 		// 정산하기(더치페이)금액 설정 로직
-		System.out.printf("%22s 정산 금액이 " + amount + "원으로 설정되었습니다.\n", " ");
+		System.out.printf("%22s 정산 금액이 " + amount + "원으로 설정\n", " ");
 
 		// 정산하기(더치페이) 금액 설정 로직 구현
 		System.out.printf("%22s 정산 인원 설정:", " ");
@@ -182,13 +182,13 @@ public class WireTransferService {
 		// 예약송금 로직 구현
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.printf("%22s예약할 시간 입력.\n", " ");
+		System.out.printf("%22s예약 시간 입력.\n", " ");
 
 		// 년도는 수정이 불가능하므로 고정
 		int year = 2024;
 
 		// 이번달과 다음달까지 선택 가능하도록 설정
-		System.out.printf("%22s월을 설정하세요. 예약은 다음달까지만 가능 (24.02월: 1, 24.03월: 2): ", " ");
+		System.out.printf("%22s월을 입력하세요. 예약은 다음달까지만 가능 (24.02월: 1, 24.03월: 2): ", " ");
 		int month = scanner.nextInt();
 
 		if (month != 1 && month != 2) {
@@ -203,7 +203,7 @@ public class WireTransferService {
 			maxDay = 30; // 다음달의 말일
 		}
 
-		System.out.printf("%22s일을 입력하세요 (1일부터 " + maxDay + "일까지): ", " ");
+		System.out.printf("%22s일을 입력하세요. (1일부터 " + maxDay + "일까지): ", " ");
 		int day = scanner.nextInt();
 
 		if (day < 1 || day > maxDay) {
@@ -212,7 +212,7 @@ public class WireTransferService {
 		}
 
 		// 시간은 정수형태로 입력받도록 함
-		System.out.printf("%22s시간을 입력하세요 (예: 01:26): ", " "); 
+		System.out.printf("%22s시간 입력(예: 01:26): ", " "); 
 		String timeInput = scanner.next();
         String[] timeParts = timeInput.split(":");
         if (timeParts.length != 2) {
@@ -236,10 +236,10 @@ public class WireTransferService {
             if (confirm.equals("y")) {
                 System.out.println();
                 String reservationTime = String.format("%d년 %d월 %d일 %d시 %d분", year, month, day, hour, minute);
-                System.out.printf("%22s 예약이 완료되었습니다. 예약 시간: %s\n", " ", reservationTime);
+                System.out.printf("%22s 예약 완료.. 예약 시간: %s\n", " ", reservationTime);
                 break;
             } else if (confirm.equals("n")) {
-                System.out.printf("%22s 예약이 취소되었습니다.", " ");
+                System.out.printf("%22s 예약 취소", " ");
                 break;
             } else {
                 System.out.printf("%22s 올바른 선택을 해주세요.", " ");
