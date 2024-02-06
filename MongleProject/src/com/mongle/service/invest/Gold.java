@@ -23,7 +23,7 @@ public class Gold {
 	/**
 	 * 금 상품 보유 내역
 	 */
-	
+
 	private static int price;
 	private static int num;
 
@@ -108,8 +108,6 @@ public class Gold {
 			} // while
 		} // while
 
-		
-
 		return 0;
 	}
 
@@ -124,7 +122,7 @@ public class Gold {
 		boolean loop = true;
 		MongleVisual.pusher();
 		System.out.printf("%22s===================================\n", " ");
-		System.out.printf("%22s   \t  호가 %,d원\n", " ", price);
+		System.out.printf("%22s   \t 금 호가 %,d원\n", " ", price);
 		System.out.printf("%22s===================================\n", " ");
 		while (loop) {
 			System.out.printf("%22s주문 수량 입력(숫자):", " ");
@@ -132,16 +130,17 @@ public class Gold {
 				String num = scan.nextLine();
 				if (Integer.parseInt(num) > 0) {
 
-					InvestService.transaction("금상품 구매", price, Integer.parseInt(num));
-					Investment.list.add(new Investment("금", "금", "금", Gold.price, Integer.parseInt(num)));
-
+					int a = InvestService.transaction("금상품 구매", price, Integer.parseInt(num));
+					if (a != 1) {
+						Investment.list.add(new Investment("금", "금", "금", Gold.price, Integer.parseInt(num)));
+					}
 					return Integer.parseInt(num);
 				}
 			} catch (NumberFormatException e) {
 				MongleVisual.wrongInput();
 			}
 		} // while
-		
+
 		return 0;
 	}
 

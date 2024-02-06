@@ -128,7 +128,7 @@ public class InvestService {
 
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
-				return 0;
+				return 1;
 			}
 
 			try {

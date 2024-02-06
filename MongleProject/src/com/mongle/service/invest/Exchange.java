@@ -23,12 +23,11 @@ public class Exchange {
 	/**
 	 * 외화 상품 보유 내역
 	 */
-	
-	public static int buyPrice;		//외화 매입 단가
-	public static int buyAmount;	//외화 매입 수량
-	public static String realname;	//매입한 외화명
-	
-	
+
+	public static int buyPrice; // 외화 매입 단가
+	public static int buyAmount; // 외화 매입 수량
+	public static String realname; // 매입한 외화명
+
 	/**
 	 * 매입한 외화 이름 Getter
 	 * 
@@ -37,7 +36,7 @@ public class Exchange {
 	public static String getRealname() {
 		return realname;
 	}
-	
+
 	/**
 	 * 매입한 외화 이름 Setter
 	 * 
@@ -46,7 +45,7 @@ public class Exchange {
 	public static void setRealname(String realname) {
 		Exchange.realname = realname;
 	}
-	
+
 	/**
 	 * 매입한 외화 가격 Getter
 	 * 
@@ -55,7 +54,7 @@ public class Exchange {
 	public static int getBuyPrice() {
 		return buyPrice;
 	}
-	
+
 	/**
 	 * 매입한 외화 가격 Setter
 	 * 
@@ -64,7 +63,7 @@ public class Exchange {
 	public static void setBuyPrice(int buyPrice) {
 		Exchange.buyPrice = buyPrice;
 	}
-	
+
 	/**
 	 * 매입한 외화 수량 Getter
 	 * 
@@ -73,7 +72,7 @@ public class Exchange {
 	public static int getBuyAmount() {
 		return buyAmount;
 	}
-	
+
 	/**
 	 * 매입한 외화 수량 Setter
 	 * 
@@ -82,7 +81,7 @@ public class Exchange {
 	public static void setBuyAmount(int buyAmount) {
 		Exchange.buyAmount = buyAmount;
 	}
-	
+
 	/**
 	 * 외화 시세 검색 및 주문
 	 * 
@@ -144,7 +143,7 @@ public class Exchange {
 					index++;
 					if (index >= fx.size()) {
 						System.out.println("다음 페이지가 없습니다.");
-						index = fx.size()-1;
+						index = fx.size() - 1;
 						break;
 					}
 					JSONObject obj = new JSONObject();
@@ -177,13 +176,13 @@ public class Exchange {
 				String real = "";
 
 				if (sel.equals("1")) {
-					if (index != fx.size()-1) {
+					if (index != fx.size() - 1) {
 						index -= 4;
 					} else {
-						index = fx.size()-2;
+						index = fx.size() - 2;
 					}
 				} else if (sel.equals("2")) {
-					if (index != fx.size()-1) {
+					if (index != fx.size() - 1) {
 						index -= 3;
 					}
 				} else if (sel.equals("3")) {
@@ -205,7 +204,7 @@ public class Exchange {
 					continue;
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
-				real=  getFx(fx.get(index), "cur_nm") + "";
+				real = getFx(fx.get(index), "cur_nm") + "";
 				price = (String) getFx(fx.get(index), "tts");
 
 				MongleVisual.pusher();
@@ -236,10 +235,13 @@ public class Exchange {
 				if (sel.equals("y")) {
 					buyPrice = Integer.parseInt(price);
 					buyAmount = Integer.parseInt(amount);
-					InvestService.transaction("환전", buyPrice, buyAmount);
+					int a = InvestService.transaction("환전", buyPrice, buyAmount);
 					realname = real;
 					index = -1;
-					Investment.list.add(new Investment("환전", "", Exchange.getRealname(), Exchange.getBuyPrice(), Exchange.getBuyAmount()));
+					if (a != 1) {
+						Investment.list.add(new Investment("환전", "", Exchange.getRealname(), Exchange.getBuyPrice(),
+								Exchange.getBuyAmount()));
+					}
 					continue;
 				} else if (sel.equals("n")) {
 					MongleVisual.pusher();
@@ -254,7 +256,7 @@ public class Exchange {
 				}
 
 			}
-			
+
 			Investment.list.add(new Investment("환전", "환전", realname, Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 		} catch (Exception e) {
 			System.out.println("Exchange");
@@ -263,12 +265,12 @@ public class Exchange {
 		return r;
 
 	}// Exchange
-	
+
 	/**
 	 * JSONObject 분석 및 내용 추출
 	 * 
-	 * @param name		외화 명
-	 * @param element	내용을 찾아낼 element
+	 * @param name    외화 명
+	 * @param element 내용을 찾아낼 element
 	 * @return 찾아낸 정보
 	 */
 	private static Object getFx(Object name, String element) {
