@@ -27,6 +27,11 @@ import com.mongle.yourapp.MainMenu;
 public class Inquiry {
 	private static ArrayList<HashMap> annList = new ArrayList<HashMap>();
 	private static ArrayList<HashMap> inqList = new ArrayList<HashMap>();
+	private static ArrayList<HashMap> perInqList = new ArrayList<HashMap>();
+
+	public static ArrayList<HashMap> getPerInqList() {
+		return perInqList;
+	}
 
 	public static ArrayList<HashMap> getAnnList() {
 		return annList;
@@ -38,8 +43,6 @@ public class Inquiry {
 
 	private static ArrayList<String> titleList = new ArrayList<String>();
 	private static String sTitle;
-	
-	
 
 	/**
 	 * 관리자 공지사항 실행
@@ -90,7 +93,7 @@ public class Inquiry {
 							break;
 						case "0":
 							MongleVisual.menuMove("관리자 페이지");
-							//MainMenu.mainMenu("2");
+							// MainMenu.mainMenu("2");
 							break;
 
 						default:
@@ -161,8 +164,6 @@ public class Inquiry {
 
 	} // memberAnnouncement() 끝
 
-	
-	
 	/**
 	 * 문의 접수
 	 * 
@@ -180,89 +181,85 @@ public class Inquiry {
 		MongleVisual.menuMove("이전 화면");
 		return 0;
 	}
-	
 
 	/**
 	 * 관리자 문의사항 페이지
 	 */
- 	public static void adminInquiry() {
+	public static void adminInquiry() {
 		Inquiry inquiry = new Inquiry();
 		Scanner scanner = new Scanner(System.in);
-	
+
 		inquiry.loadInq(inqList, ResourcePath.INQUIRY);
 		MongleVisual.menuHeader("문의 처리");
-	
-		if(inqList.isEmpty()) {
+
+		if (inqList.isEmpty()) {
 			System.out.printf("%22s문의가 없습니다\n\n", " ");
 			MongleVisual.stopper();
 			MongleVisual.pusher();
-			
+
 			return;
 		}
-	
-		
+
 		String input = "7";
 		do {
-			inquiry.showTitleList(inqList);	
+			inquiry.showTitleList(inqList);
 			System.out.println();
 			System.out.printf("%22s1. 답변하기\n", " ");
-			System.out.printf("%22s2. 문의 삭제\n", " ");	
-			System.out.printf("%22s0. 이전으로\n", " ");	
+			System.out.printf("%22s2. 문의 삭제\n", " ");
+			System.out.printf("%22s0. 이전으로\n", " ");
 			MongleVisual.choiceGuidePrint();
-			
+
 			switch (input = scanner.nextLine()) {
-				case "1":
-					MongleVisual.pusher();
-					inquiry.showTxt(inqList);
-					for (HashMap<String, Object> map : inqList) {
-						if (map.containsKey("title")) { // title이라는 키가 있으면
-							String inputTitle = (String) map.get("title"); // title의 value를 가져오고
-							if (inputTitle.equalsIgnoreCase(sTitle)) { // 문자열 비교해서 맞으면
-	
-								
-								System.out.printf("첫 줄에서 ':q!' 시 종료\n");
-								System.out.printf("답변: ");
-	
-								StringBuilder contentBuilder = new StringBuilder(); // 내용을 저장할 StringBuilder를 생성합니다.
-								while (true) {
-									input = scanner.nextLine();
-									if (input.equals(":q!")) {
-										break; // :q!를 입력하면 루프를 종료합니다.
-									}
-									contentBuilder.append(input).append("\n"); // 내용을 StringBuilder에 추가하고 개행 문자를 넣습니다.
+			case "1":
+				MongleVisual.pusher();
+				inquiry.showTxt(inqList);
+				for (HashMap<String, Object> map : inqList) {
+					if (map.containsKey("title")) { // title이라는 키가 있으면
+						String inputTitle = (String) map.get("title"); // title의 value를 가져오고
+						if (inputTitle.equalsIgnoreCase(sTitle)) { // 문자열 비교해서 맞으면
+
+							System.out.printf("첫 줄에서 ':q!' 시 종료\n");
+							System.out.printf("답변: ");
+
+							StringBuilder contentBuilder = new StringBuilder(); // 내용을 저장할 StringBuilder를 생성합니다.
+							while (true) {
+								input = scanner.nextLine();
+								if (input.equals(":q!")) {
+									break; // :q!를 입력하면 루프를 종료합니다.
 								}
-	
-								String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
-								map.put("comment", content);
-	
-								inquiry.saveInq(inqList, ResourcePath.INQUIRY);
-								System.out.printf("%22s완료되었습니다.\n", " ");
-								adminInquiry();
-								
+								contentBuilder.append(input).append("\n"); // 내용을 StringBuilder에 추가하고 개행 문자를 넣습니다.
 							}
+
+							String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을
+																				// 제거합니다.
+							map.put("comment", content);
+
+							inquiry.saveInq(inqList, ResourcePath.INQUIRY);
+							System.out.printf("%22s완료되었습니다.\n", " ");
+							adminInquiry();
+
 						}
-					}//for
-					
-				case "2":
-					inquiry.deleteInq(inqList);
-					inquiry.saveInq(inqList, ResourcePath.INQUIRY);
-					MongleVisual.menuMove("문의 처리 페이지");
-					adminInquiry();
-					break;
-				case "0":
-					MongleVisual.menuMove("관리자 페이지");
-					MainMenu.mainMenu("2");
-					break;
-	
-				default:
-					MongleVisual.wrongInput();
+					}
+				} // for
+
+			case "2":
+				inquiry.deleteInq(inqList);
+				inquiry.saveInq(inqList, ResourcePath.INQUIRY);
+				MongleVisual.menuMove("문의 처리 페이지");
+				adminInquiry();
+				break;
+			case "0":
+				MongleVisual.menuMove("관리자 페이지");
+				MainMenu.mainMenu("2");
+				break;
+
+			default:
+				MongleVisual.wrongInput();
 			}
 		} while (!(input.equals("1") || input.equals("2") || input.equals("0")));
-		
-		
+
 	}
 
- 	
 	/**
 	 * 문의 내역 확인
 	 * 
@@ -272,8 +269,16 @@ public class Inquiry {
 		Inquiry inq = new Inquiry();
 		inq.loadInq(inqList, ResourcePath.INQUIRY);
 		MongleVisual.menuHeader("문의내역");
-		System.out.printf("%22s총 %d개의 문의내역이 존재합니다.\n", " ", inqList.size());
-		inq.showTxt(inqList);
+		ArrayList<HashMap> perInqList = new ArrayList<HashMap>();
+		for (HashMap<String, Object> map : inqList) {
+			if (map.get("id").equals(DataBase.getPrivateUser().get(0).get("id"))) {
+				perInqList.add(map);
+			}
+		}
+
+		System.out.printf("%22s총 %d개의 문의내역이 존재합니다.\n", " ", perInqList.size());
+
+		inq.showTxt(perInqList);
 
 		return 0;
 	}
@@ -309,13 +314,12 @@ public class Inquiry {
 		String value;
 
 		inq.put("id", LogIn.primaryKey);
-		
+
 		do {
 			System.out.println();
 			System.out.printf("제목: ");
-			value = scanner.nextLine();	
-		}
-		while ((titleExists(arrayList, value))); //중복제목, 공백 검사
+			value = scanner.nextLine();
+		} while ((titleExists(arrayList, value))); // 중복제목, 공백 검사
 
 		inq.put("title", value);
 
@@ -365,11 +369,11 @@ public class Inquiry {
 				}
 			}
 		}
-		if(title.trim().equals("") || title.trim().equals("\r\n") || title.trim().equals("\n") ) {
+		if (title.trim().equals("") || title.trim().equals("\r\n") || title.trim().equals("\n")) {
 			System.out.println("공백은 제목으로 사용할 수 없습니다.\n");
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -384,7 +388,7 @@ public class Inquiry {
 		Inquiry inquiry = new Inquiry();
 
 		inquiry.showTitleList(annList);
-		if(arrayList.isEmpty())
+		if (arrayList.isEmpty())
 			return;
 		do {
 			System.out.printf("%22s수정할 글의 제목을 입력해주세요\n", " ");
@@ -415,7 +419,7 @@ public class Inquiry {
 						String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
 						map.put("txt", content);
 
-						//arrayList.add(map);
+						// arrayList.add(map);
 						System.out.printf("%22s수정되었습니다.\n", " ");
 
 						return;
@@ -442,7 +446,7 @@ public class Inquiry {
 
 		System.out.printf("%22s1. 선택 삭제\n%22s2. 전체 삭제\n", " ", " ");
 		System.out.printf("%22s0. 이전으로\n", " ");
-		
+
 		MongleVisual.choiceGuidePrint();
 
 		String input = "7";
@@ -459,11 +463,11 @@ public class Inquiry {
 						iterator.remove(); // 현재 항목 삭제
 						isDel = true;
 						System.out.printf("%22s\"%s\" 제목의 글이 삭제되었습니다.\n", " ", del);
-						//break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
+						// break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
 						return;
 					}
 				}
-				if(!isDel) {
+				if (!isDel) {
 					System.out.printf("%22s\"%s\" 제목의 글을 찾을 수 없습니다.\n", " ", del);
 				}
 				return;
@@ -491,17 +495,16 @@ public class Inquiry {
 	 * @param arrayList arrayList -> annList || inqList
 	 */
 	private void showTitleList(ArrayList<HashMap> arrayList) {
-	
+
 		titleList.clear();
 		int count = 1;
 
-			for (HashMap<String, Object> map : arrayList) {
-				if (map.containsKey("title")) {
-					String title = (String) map.get("title");
-					titleList.add(title);
-				}
+		for (HashMap<String, Object> map : arrayList) {
+			if (map.containsKey("title")) {
+				String title = (String) map.get("title");
+				titleList.add(title);
 			}
-
+		}
 
 		System.out.printf("\n%22s-----------------------------------\n", " ");
 		System.out.printf("%22s\t\t     목록\n", " ");
@@ -510,8 +513,8 @@ public class Inquiry {
 
 		}
 		System.out.printf("\n%22s-----------------------------------\n\n", " ");
-		
-		if(arrayList.isEmpty()) {
+
+		if (arrayList.isEmpty()) {
 			System.out.printf("%22s내용이 없습니다\n\n", " ");
 			MongleVisual.stopper();
 		}
@@ -528,64 +531,63 @@ public class Inquiry {
 		Scanner scanner = new Scanner(System.in);
 		Inquiry inquiry = new Inquiry();
 
-		
 		boolean found = false;
 
 		String select;
 		do {
 			System.out.println();
 			showTitleList(arrayList);
-			if(arrayList.isEmpty())
+			if (arrayList.isEmpty())
 				return 0;
-			
-			
+
 			System.out.printf("%22s1. 내용확인\n", " ");
-			System.out.printf("%22s0. 이전으로\n", " ");	
+			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.println();
 			MongleVisual.choiceGuidePrint();
-			
+
 			switch (select = scanner.nextLine()) {
-				case "1":
-					do {
-						inquiry.showTitleList(arrayList);
-	
-						System.out.printf("%22s확인할 글의 제목을 입력해주세요\n", " ");
-						System.out.printf("%22s제목: ", " ");
-						
-						String input = scanner.nextLine();
-						sTitle = input;
-	
-						for (HashMap<String, Object> map : arrayList) {
-							if (map.containsKey("title")) { // title이라는 키가 있으면
-								String title = (String) map.get("title"); // title의 value를 가져오고
-								if (title.equalsIgnoreCase(input)) { // 문자열 비교해서 맞으면
-									found = true;
-									System.out.println("\n---------------------------------------------------------------");
-									System.out.println("제목: "+map.get("title")+"\n"); // 제목
-									System.out.println(map.get("txt")); // txt출력
-									
-									if(map.containsKey("comment")) {
-										System.out.println("\n---------------------------------------------------------------");
-										System.out.println("답변: "+"\n"); // 답변
-										System.out.println(map.get("comment"));
-									}
-									
-									System.out.println("\n---------------------------------------------------------------");
+			case "1":
+				do {
+					inquiry.showTitleList(arrayList);
+
+					System.out.printf("%22s확인할 글의 제목을 입력해주세요\n", " ");
+					System.out.printf("%22s제목: ", " ");
+
+					String input = scanner.nextLine();
+					sTitle = input;
+
+					for (HashMap<String, Object> map : arrayList) {
+						if (map.containsKey("title")) { // title이라는 키가 있으면
+							String title = (String) map.get("title"); // title의 value를 가져오고
+							if (title.equalsIgnoreCase(input)) { // 문자열 비교해서 맞으면
+								found = true;
+								System.out.println("\n---------------------------------------------------------------");
+								System.out.println("제목: " + map.get("title") + "\n"); // 제목
+								System.out.println(map.get("txt")); // txt출력
+
+								if (map.containsKey("comment")) {
+									System.out.println(
+											"\n---------------------------------------------------------------");
+									System.out.println("답변: " + "\n"); // 답변
+									System.out.println(map.get("comment"));
 								}
+
+								System.out.println("\n---------------------------------------------------------------");
 							}
 						}
-	
-						if (!found) { // 찾지 못했으면
-							System.out.printf("\n%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n\n", " ", input);
-						}
-	
-					} while (!found); // 찾을때 까지
-					break;	
-				case "0":
-					return 0;
-	
-				default:
-					MongleVisual.wrongInput();
+					}
+
+					if (!found) { // 찾지 못했으면
+						System.out.printf("\n%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n\n", " ", input);
+					}
+
+				} while (!found); // 찾을때 까지
+				break;
+			case "0":
+				return 0;
+
+			default:
+				MongleVisual.wrongInput();
 			}
 		} while (!(select.equals("1") || select.equals("0")));
 		return 0;
@@ -622,6 +624,7 @@ public class Inquiry {
 
 	/**
 	 * 불러오기
+	 * 
 	 * @param list -> annList || inqList
 	 * @param path -> esourcePath.ANNO || ResourcePath.INQUIRY
 	 */
