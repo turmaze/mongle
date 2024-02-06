@@ -8,6 +8,10 @@ import com.mongle.service.asset.DepoSave;
 
 public class AssetManagementView {
 
+	/***
+	 * 자산 관리 메뉴
+	 * @return
+	 */
 	public static int assertadd() {
 
 		boolean loop = true;

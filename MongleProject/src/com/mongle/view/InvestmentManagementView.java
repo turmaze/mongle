@@ -8,7 +8,10 @@ import com.mongle.service.invest.InvestmentManagementService;
  * 투자관리 클래스
  */
 public class InvestmentManagementView {
-
+/***
+ * 투자 관리 메뉴
+ * @return
+ */
 	public static int addmenu() {
 
 		Scanner scan = new Scanner(System.in);
