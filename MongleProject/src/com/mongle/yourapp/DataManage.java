@@ -64,8 +64,7 @@ public class DataManage {
 		Calendar c2 = Calendar.getInstance() ;
 		
 		String currentDate = String.format("%tF\n", c1);
-		//int resu = Integer.parseInt(currentDate);
-		//currentDate=currentDate.replace("-", "");
+		currentDate=currentDate.replace("-", "");
 		
 		Pattern pattern = Pattern.compile(currentDate);
 		//long today = Long.parseLong(currentDate);
@@ -85,15 +84,15 @@ public class DataManage {
 				if(array!=null) {
 					for(Object key: array) {
 						JSONObject aten = (JSONObject)key;
-						String result = aten.get("attenddate").toString();
-						System.out.println(result);
-						result = result.substring(2,12);
-						String[]arr = result.split("-");
-						c2.set(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
-						if(c1.equals(c2)) {
-							count++;
-						}
-						checkdate.add(result);
+						JSONArray n = (JSONArray) aten.get("attenddate");
+                        System.out.println(n.size());
+                        ArrayList<String> date = (ArrayList<String>) aten.get("attenddate");
+                        for (String check : date) {
+                            if(check.equals(currentDate)) {
+                            	count++;
+                            }
+                        }
+                        
 						
 					}
 				}

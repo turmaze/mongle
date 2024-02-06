@@ -19,6 +19,7 @@ import com.mongle.database.DataBase;
 import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
+import com.mongle.yourapp.MainMenu;
 
 public class BlackList {
 	public static void blackList() {
@@ -26,10 +27,11 @@ public class BlackList {
 		MongleVisual.menuHeader("블랙리스트 관리");
 
 		System.out.printf("\n%22s1. 블랙리스트 확인\r\n", " ");
-		System.out.printf("\n%22s2. 블랙리스트 등록\r\n", " ");
-		System.out.printf("\n%22s3. 회원 탈퇴\r\n", " ");
+		System.out.printf("\n%22s2. 블랙리스트 등록/수정\r\n", " ");
 		System.out.printf("\n%22s9. 홈으로\r\n", " ");
 		System.out.printf("\n%22s0. 이전으로\r\n", " ");
+		System.out.printf("\n%22s선택 입력: ", " ");
+		
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 
@@ -37,21 +39,18 @@ public class BlackList {
 			callBlackList();
 		} else if (input.equals("2")) {
 			addBlackList();
-		}else if (input.equals("3")) {
-			kickUser();
-			
 		} else if (input.equals("9")) {
-
+			
 		} else if (input.equals("0")) {
-			System.out.printf("\n%22s다시입력 부탁드립니다\r\n", " ");
+			
 		} else {
-
+			MongleVisual.wrongInput();
 		}
 
 	}
 
 	private static void addBlackList() {
-		System.out.printf("\n%22s대상 아이디 입력: \r\n", " ");
+		System.out.printf("\n%22s대상 아이디 입력: ", " ");
 		Scanner scan = new Scanner(System.in);
 		String idcheck = scan.nextLine();
 		try {
@@ -70,7 +69,7 @@ public class BlackList {
 			if (!idcheck.equals(null)) {
 				changeBlacklevel(idcheck);
 			} else {
-				System.out.printf("\n%22s잘못된 입력 \r\n", " ");
+				MongleVisual.wrongInput();
 				addBlackList();
 			}
 
@@ -158,6 +157,7 @@ public class BlackList {
 		UserData user = new UserData();
 		System.out.printf("\r\n%22s1. 블랙리스트 등급 상향하기\r\n", " ");
 		System.out.printf("\n%22s2. 블랙리스트 등급 하향하기\r\n", " ");
+		System.out.printf("\n%22s선택 입력: ", " ");
 		String choice = scan.nextLine();
 		String level;
 		try {
@@ -175,6 +175,7 @@ public class BlackList {
 							System.out.printf("\r\n%22s이미 블랙리스트입니다\r\n", " ");
 						}
 						obj.replace("level", level);
+						System.out.printf("\r\n%22s블랙 리스트 등록 완료\r\n", " ");
 
 					} else if (choice.equals("2")) {
 						level = "1";
@@ -182,9 +183,9 @@ public class BlackList {
 							System.out.printf("\r\n%22s이미 일반 회원입니다\r\n", " ");
 						}
 						obj.replace("level", level);
+						System.out.printf("\r\n%22s블랙 리스트 수정완료\r\n", " ");
 					}
-				} else {
-				}
+				} 
 			}
 
 		} catch (Exception e) {

@@ -23,6 +23,8 @@ import com.mongle.view.MongleVisual;
 public class FindAcc {
 	public static void findAcc() {
 		Scanner scan = new Scanner(System.in);
+		MongleVisual.menuMove("계정 찾기");
+		
 
 		MongleVisual.pusher();
 		MongleVisual.menuHeader("아이디 / 비밀번호 찾기");
@@ -91,12 +93,12 @@ public class FindAcc {
 								loop = false;
 								break;
 							}else {
-								System.out.printf("\n%22s다시입력하세요\n", " ");
+								MongleVisual.wrongInput();
 							}
 						}
 						break;
 					}else {
-						System.out.printf("\n%22s다시입력하세요\n", " ");
+						MongleVisual.wrongInput();
 					}
 				}
 			} while (loop);
@@ -128,11 +130,9 @@ public class FindAcc {
 			// if (userData.containsValue(id)) {
 			if (id.equals(userData.get("id"))) {
 				return true; // 중복된 ID가 있음
-			}else {
-				System.out.printf("\n%22s다시 입력해주세요", " ");
-
 			}
 		}
+		MongleVisual.wrongInput();
 		return false; // 중복된 ID가 없음
 	}
 
@@ -162,7 +162,8 @@ public class FindAcc {
 					System.out.printf("\n%22s아이디: %s", " ", findID);
 					break;
 				}else {
-					System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
+					//System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
+					MongleVisual.wrongInput();
 					findMyId();
 				}
 			} while (true);
