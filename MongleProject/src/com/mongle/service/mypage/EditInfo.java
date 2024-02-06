@@ -49,7 +49,7 @@ public class EditInfo {
 			System.out.printf("%22s2. 전화번호 변경\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
-
+			MongleVisual.choiceGuidePrint();
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
 				System.out.println();
