@@ -79,8 +79,12 @@ public class FindAcc {
 
 						if (user.getName().equals(checkName) && user.getId().equals(checkID)
 								&& user.getPhone().equals(checkPhone)) {
+							System.out.printf("\n%22s(10~16자리 영문과 숫자 조합)\n"," ");
 							System.out.printf("\n%22s변경할 비밀번호 입력: ", " ");
-							String setPW = SignUp.pwCheck();
+							String setPW ;
+							do {
+								setPW = scan.nextLine();
+							} while(!Validate.validPw(setPW));
 							System.out.printf("\n%22s변경할 비밀번호 다시입력: ", " ");
 							String checksetPW = scan.nextLine();
 							if (setPW.equals(checksetPW)) {
@@ -88,9 +92,11 @@ public class FindAcc {
 								String finPw = Encrypt.encrypt(setPW);
 								(obj).replace("salt", Encrypt.AbcSalt);
 								(obj).replace("pw", finPw);
-								System.out.printf("\n%22s비밀번호 변경완료", " ");
+								System.out.printf("\n%22s비밀번호 변경완료\r\n", " ");
+								MongleVisual.stopper();
+								MongleVisual.pusher();
 								loop = false;
-								break;
+								return;
 							}else {
 								MongleVisual.wrongInput();
 							}
@@ -98,7 +104,7 @@ public class FindAcc {
 						break;
 					}
 				}
-			} while (loop);
+			} while (loop==true);
 		} catch (Exception e) {
 			System.out.println("FindAcc.findAcc");
 			e.printStackTrace();
@@ -141,7 +147,7 @@ public class FindAcc {
 			user.setPhone(phone);
 			String name = SignUp.nameCheck();
 			user.setName(name);
-			
+			boolean check = true;
 			JSONParser parser = new JSONParser();
 			JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
 			do {
@@ -154,7 +160,8 @@ public class FindAcc {
 						checkPhone = (String) ((JSONObject) obj).get("phone");
 						checkName = (String) ((JSONObject) obj).get("name");
 						if (user.getName().equals(checkName) && user.getPhone().equals(checkPhone)) {
-							System.out.printf("\n%22s아이디는 %s입니다", " ", findID);
+							System.out.printf("\n%22s아이디는 %s입니다\r\n", " ", findID);
+							check = false;
 							break;
 						}else {
 							//System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
@@ -163,8 +170,7 @@ public class FindAcc {
 						}
 					}
 				}
-				System.out.printf("\n%22s아이디는 %s입니다", " ", findID);
-			} while (true);
+			} while (check==true);
 		} catch (Exception e) {
 			System.out.println("FindAcc.findAcc");
 			e.printStackTrace();
