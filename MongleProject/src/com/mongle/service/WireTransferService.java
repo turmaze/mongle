@@ -8,7 +8,9 @@ import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
 import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.MongleVisual;
-
+/**
+ * 송금관리 클래스
+ */
 public class WireTransferService {
 
 	public static int extracted() {
@@ -64,6 +66,12 @@ public class WireTransferService {
 		return 0;
 	}// extracted
 
+/**
+ * 정산하기
+ * @param shareChoice
+ * @return 메뉴 이동을 위한 변수
+ */
+	
 	private static int dutchpay(int shareChoice) {
 		// 정산하기(더치페이) 인원 설정 로직 구현
 		Scanner scanner = new Scanner(System.in);
@@ -144,16 +152,31 @@ public class WireTransferService {
 		return 0;
 	}
 
+	
+	/**
+	 * 정산 메세지 전송-메세지
+	 * @param totalPeople 정산 총 인원(자신 포함)
+	 */
 	private static void shareMessage(int totalPeople) {
 		System.out.printf("%22s메세지로 공유하기 - \"%d명에게 지불 요청 메시지를 전송중...\"\n", " ", totalPeople);
 		System.out.println();
 	}
-
+	
+	/**
+	 * 정산메세지 전송-카카오톡
+	 * @param totalPeople 정산 총 인원(자신 포함)
+	 */
+	
 	private static void shareKakaoTalk(int totalPeople) {
 		System.out.printf("%22s카카오톡으로 공유하기 - \"%d명에게 지불 요청 메시지를 전송중...\"\n", " ", totalPeople - 1);
 		System.out.println();
 	}
 
+	/**
+	 * 예약 송금
+	 * @return 메뉴 이동을 위한 변수
+	 */
+	
 	private static int reserveTransfer() {
 		// 예약송금 로직 구현
 		Scanner scanner = new Scanner(System.in);
@@ -239,6 +262,11 @@ public class WireTransferService {
 		return 0;
 	}
 
+	
+	/**
+	 * 송금하기 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int transaction() {
 		Scanner scan = new Scanner(System.in);
 
@@ -286,7 +314,7 @@ public class WireTransferService {
 						System.out.println();
 						System.out.printf("%22s송금 완료.\n", " ");
 						System.out.printf("%22s송금 후 잔액 %,d원.\n", " ", rest);
-						
+
 						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 						loop = false;
