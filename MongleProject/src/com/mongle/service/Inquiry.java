@@ -36,7 +36,7 @@ public class Inquiry {
 		return inqList;
 	}
 
-	private static ArrayList<String> TitleList = new ArrayList<String>();
+	private static ArrayList<String> titleList = new ArrayList<String>();
 	private static String sTitle;
 	
 	
@@ -181,12 +181,10 @@ public class Inquiry {
 		return 0;
 	}
 	
-	//문의하기 들어가면
-	// 제목 리스트 보여주고 1. 문의 확인 0. 이전 화면
-	// 문의 확인시 제목 적어서 내용 확인
-	// 1. 답변을 적으시겠습니까? 0. 이전 화면 -> 제목 리스트 보여주는 란
-	// 답변은 받고 제목 찾아서 거기에 (댓글:txt)
-	
+
+	/**
+	 * 관리자 문의사항 페이지
+	 */
  	public static void adminInquiry() {
 		Inquiry inquiry = new Inquiry();
 		Scanner scanner = new Scanner(System.in);
@@ -199,14 +197,7 @@ public class Inquiry {
 			MongleVisual.stopper();
 			return;
 		}
-
-//		inquiry.showTitleList(inqList);	
-//		System.out.println();
-//		System.out.printf("%22s1. 답변하기\n", " ");
-//		System.out.printf("%22s2. 문의 삭제\n", " ");	
-//		System.out.printf("%22s0. 이전으로\n", " ");	
-//		MongleVisual.choiceGuidePrint();
-		
+	
 		
 		String input = "7";
 		do {
@@ -498,20 +489,20 @@ public class Inquiry {
 	 */
 	private void showTitleList(ArrayList<HashMap> arrayList) {
 	
-		TitleList.clear();
+		titleList.clear();
 		int count = 1;
 
 			for (HashMap<String, Object> map : arrayList) {
 				if (map.containsKey("title")) {
 					String title = (String) map.get("title");
-					TitleList.add(title);
+					titleList.add(title);
 				}
 			}
 
 
 		System.out.printf("\n%22s-----------------------------------\n", " ");
 		System.out.printf("%22s\t\t     목록\n", " ");
-		for (String title : TitleList) {
+		for (String title : titleList) {
 			System.out.printf("%22s%d. %s\n", " ", count++, title);
 
 		}
@@ -628,6 +619,11 @@ public class Inquiry {
 
 	}
 
+	/**
+	 * 불러오기
+	 * @param list -> annList || inqList
+	 * @param path -> esourcePath.ANNO || ResourcePath.INQUIRY
+	 */
 	public void loadInq(ArrayList list, String path) {
 		JSONParser parser = new JSONParser();
 		try {
