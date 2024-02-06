@@ -78,8 +78,10 @@ public class Validate {
 		}
 		int month = Integer.parseInt(input.substring(4, 6));
 		String regex;
+		regex= "((19|20)\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))";
+		
 		if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-			regex = "^((19|20)\\d{2})(0[1-9]|1[1,2])(0[1-9]|[12][0-9]|3[01])$";
+			regex = "((19|20)\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01]))";
 		} else if (month == 2) {
 			if (year % 4 == 0) {
 				regex = "^((19|20)\\d{2})(02)(0[1-9]|1[0-9]|2[0-9])$";
