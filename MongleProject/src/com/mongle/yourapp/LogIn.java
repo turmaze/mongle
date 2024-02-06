@@ -30,13 +30,14 @@ public class LogIn {
 	
 	public static void logIn() {	
 		try {
+			MongleVisual.menuMove("로그인 화면");
 			userLogin();
 		} catch (Exception e) {
 			System.out.println("LogIn.logIn");
 			e.printStackTrace();
 		}
 	}
-	private static String userLogin() {
+	private static void userLogin() {
 		String checklevel = "" ; 
 		int count = 0;
 		try {
@@ -45,6 +46,7 @@ public class LogIn {
 			UserData user = new UserData();
 			Scanner scan = new Scanner(System.in);
 			JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
+			MongleVisual.pusher();
 			MongleVisual.menuHeader("로그인");
 			String checkID = "";
 			String checkPW = "";
@@ -74,7 +76,7 @@ public class LogIn {
 					MongleVisual.stopper();
 					MainMenu.mainMenu(checklevel);
 					//DataBase.loadPrivateUser(LogIn.primaryKey);
-					return checklevel;
+					return;
 					
 				}else {
 					System.out.printf("\n%22s로그인 실패\r\n", " ");
@@ -83,13 +85,15 @@ public class LogIn {
 				
 				if(count==3) {
 					System.out.printf("\n%22s다시 시도하시겠습니까? Y/N\r\n", " ");
+					MongleVisual.choiceGuidePrint();
 					String choice = scan.nextLine();
 					if(choice.equals("Y")||choice.equals("y")) {
 						count=0;
 					}else if(choice.equals("N")||choice.equals("n")) {
-						return checklevel;
+						return;
 					}else {
 						System.out.printf("\n%22s잘못된 입력\r\n", " ");
+						return;
 					}
 				}
 			} while (!checkID.equals(user.getId())||count==3||!checkPW.equals(user.getPw()));
@@ -101,7 +105,7 @@ public class LogIn {
 			
 		}
 		
-		return checklevel;
+		return;
 	}
 
 //

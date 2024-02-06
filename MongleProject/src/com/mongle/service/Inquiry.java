@@ -576,6 +576,7 @@ public class Inquiry {
 								}
 
 								System.out.println("\n---------------------------------------------------------------");
+								MongleVisual.stopper();
 							}
 						}
 					}
