@@ -12,17 +12,11 @@ import com.mongle.service.Inquiry;
 import com.mongle.service.InvestService;
 import com.mongle.service.MypageService;
 import com.mongle.service.WireTransferService;
-import com.mongle.service.mypage.AttendanceCheck;
-import com.mongle.service.mypage.CreditScore;
-import com.mongle.service.mypage.Point;
-import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.AssetManagementView;
-import com.mongle.view.InvestmentView;
 import com.mongle.view.MongleVisual;
 
 public class MainMenu {
 	public static void mainMenu(String level) {
-		
 
 		if (level.equals("1")) {
 			userMenu();
@@ -38,7 +32,7 @@ public class MainMenu {
 
 		while (loop) {
 			MongleVisual.pusher();
-			
+
 			MongleVisual.menuHeader("메인메뉴");
 
 			System.out.printf("\n%22s1. 자산관리", " ");
@@ -54,9 +48,9 @@ public class MainMenu {
 
 			switch (choice) {
 			case "1":
-				System.out.printf("%22s자산관리 화면으로 이동합니다.\n\n", " ");			
-				AssetManagementView.assertadd();
-				
+				System.out.printf("%22s자산관리 화면으로 이동합니다.\n\n", " ");
+				AssetManagementView.assetAdd();
+
 				continue;
 			case "2":
 				System.out.printf("%22s송금 화면으로 이동합니다.\n\n", " ");
@@ -79,25 +73,25 @@ public class MainMenu {
 				String sel = scan.nextLine();
 				sel = sel.toLowerCase();
 				if (sel.equals("y")) {
-					
+
 					System.out.printf("\n%22s프로그램을 종료합니다.", " ");
-					
+
 					DataBase.changeData();
-					
+
 					DataBase.dataSave();
-					
+
 					System.exit(0);
-					
+
 				} else if (sel.equals("n")) {
-					
+
 					MongleVisual.pusher();
 					System.out.printf("\n%22s종료를 취소합니다.\n", " ");
 					MongleVisual.stopper();
-					
+
 				} else {
-					
+
 					MongleVisual.wrongInput();
-					
+
 				}
 				continue;
 			case "0":
@@ -116,24 +110,24 @@ public class MainMenu {
 
 	private static void adminMenu() {
 		boolean loop = true;
-		while(loop) {
+		while (loop) {
 			Scanner scan = new Scanner(System.in);
-			
+
 			MongleVisual.menuHeader("관리자 페이지");
-			
+
 			System.out.printf("\n%22s1. 회원 관리", " ");
 			System.out.printf("\n%22s2. 데이터 관리", " ");
 			System.out.printf("\n%22s3. 공지사항 관리", " ");
 			System.out.printf("\n%22s4. 문의 처리", " ");
 			System.out.printf("\n%22s5. 블랙리스트", " ");
 			System.out.printf("\n%22s0. 로그아웃", " ");
-			
+
 			System.out.printf("\n%22s선택번호: ", " ");
 			String choice = scan.nextLine();
 			switch (choice) {
 			case "1":
 				System.out.printf("%22s회원 관리화면으로 이동합니다.\n\n", " ");
-				
+
 				continue;
 			case "2":
 				System.out.printf("%22s데이터 관리화면으로 이동합니다.\n\n", " ");
@@ -158,9 +152,9 @@ public class MainMenu {
 			default:
 				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
 			}
-			
+
 		}
-		//System.out.println(choice);
+		// System.out.println(choice);
 
 	}
 }

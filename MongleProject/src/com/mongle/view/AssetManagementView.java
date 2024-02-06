@@ -12,7 +12,7 @@ public class AssetManagementView {
 	 * 자산 관리 메뉴
 	 * @return
 	 */
-	public static int assertadd() {
+	public static int assetAdd() {
 
 		boolean loop = true;
 		int r = -1;
