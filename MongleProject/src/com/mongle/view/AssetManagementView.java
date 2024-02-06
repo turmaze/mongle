@@ -36,7 +36,7 @@ public class AssetManagementView {
 
 			} else if (sel.equals("2")) {
 				MongleVisual.menuMove("투자 관리 화면");
-				r = InvestmentView.addmenu();
+				r = InvestmentManagementView.addmenu();
 				if (r == 9) {
 					return 9;
 				} else {
