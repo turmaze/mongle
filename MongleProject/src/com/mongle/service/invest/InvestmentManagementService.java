@@ -20,7 +20,7 @@ public class InvestmentManagementService {
  * 환전 관리 메서드
  * @return 
  */
-	public static int Exchangesave() {
+	public static int ExchangeSave() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		System.out.println();
@@ -73,7 +73,7 @@ public class InvestmentManagementService {
  * 금 상품 관리 메서드
  * @return
  */
-	public static int goldsave() {
+	public static int goldSave() {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		System.out.println();
@@ -127,7 +127,7 @@ public class InvestmentManagementService {
  * 주식 상품 관리 메서드
  * @return
  */
-	public static int stocksave() {
+	public static int stockSave() {
 
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;

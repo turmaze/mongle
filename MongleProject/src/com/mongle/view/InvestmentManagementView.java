@@ -31,13 +31,13 @@ public class InvestmentManagementView {
 
 			if (num.equals("1")) { // 주식
 				MongleVisual.menuMove("주식 관리 화면");
-				InvestmentManagementService.stocksave();
+				InvestmentManagementService.stockSave();
 			} else if (num.equals("2")) { // 금
 				MongleVisual.menuMove("금 상품 관리 화면");
-				InvestmentManagementService.goldsave();
+				InvestmentManagementService.goldSave();
 			} else if (num.equals("3")) {// 환전
 				MongleVisual.menuMove("외화 관리 화면");
-				InvestmentManagementService.Exchangesave();			
+				InvestmentManagementService.ExchangeSave();			
 			} else if (num.equals("9")) { // 홈으로
 				MongleVisual.menuMove("홈 화면");
 				return 9;
