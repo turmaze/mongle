@@ -61,13 +61,11 @@ public class DataManage {
 		String input = scan.nextLine();
 		ArrayList<String> checkdate = new ArrayList<String>();
 		Calendar c1 = Calendar.getInstance();
-		Calendar c2 = Calendar.getInstance() ;
 		
 		String currentDate = String.format("%tF\n", c1);
-		currentDate=currentDate.replace("-", "");
+		currentDate = currentDate.replace("-", "");
+		int cdate = Integer.parseInt(currentDate);
 		
-		Pattern pattern = Pattern.compile(currentDate);
-		//long today = Long.parseLong(currentDate);
 		
 		System.out.println(currentDate);
 		JSONParser parser = new JSONParser();
@@ -88,14 +86,17 @@ public class DataManage {
                         System.out.println(n.size());
                         ArrayList<String> date = (ArrayList<String>) aten.get("attenddate");
                         for (String check : date) {
-                            if(check.equals(currentDate)) {
+                        	check = check.replace("-", "");
+                        	System.out.println(check);
+                        	int chdate = Integer.parseInt(check);
+                            if(cdate==chdate) {
                             	count++;
                             }
                         }
 					}
 				}
 			}
-			System.out.println(count);
+			System.out.println("일별유저 : "+count);
 		} catch (Exception e) {
 			System.out.println("DataManage.userNum");
 			e.printStackTrace();
