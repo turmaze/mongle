@@ -17,13 +17,29 @@ public class ManageLoan {
 	 * 대출 리스트
 	 */
 	public static ArrayList<ManageLoan> loanlist = new ArrayList<>();
-
 	
-	private String loanName;//대출명
-	private int principal; //원금
-	private float rate; //이자율
-	private int loanPeriod; // 대출기간(개월)
-	private int rPeriod; //남은기간
+	/**
+	 * 대출 생성자
+	 * @param loanName  대출명
+	 * @param principal 대출금액
+	 * @param rate		이자율
+	 * @param loanPeriod대출기간
+	 * @param rPeriod	남은기간
+	 */
+	public ManageLoan(String loanName, int principal, float rate, int loanPeriod, int rPeriod) {
+		super();
+		this.loanName = loanName;
+		this.principal = principal;
+		this.rate = rate;
+		this.loanPeriod = loanPeriod;
+		this.rPeriod = rPeriod;
+	}
+	
+	private String loanName;
+	private int principal; 
+	private float rate;
+	private int loanPeriod;
+	private int rPeriod; 
 	/**
 	 * 대출명 Getter
 	 * @return 대출명
@@ -107,22 +123,7 @@ public class ManageLoan {
 
 	
 
-	/**
-	 * 대출 생성자
-	 * @param loanName  대출명
-	 * @param principal 대출금액
-	 * @param rate		이자율
-	 * @param loanPeriod대출기간
-	 * @param rPeriod	남은기간
-	 */
-	public ManageLoan(String loanName, int principal, float rate, int loanPeriod, int rPeriod) {
-		super();
-		this.loanName = loanName;
-		this.principal = principal;
-		this.rate = rate;
-		this.loanPeriod = loanPeriod;
-		this.rPeriod = rPeriod;
-	}
+
 
 	/**
 	 * "Loan [대출명=" + loanName + ", 원금=" + principal + ", 이자율=" + rate + ", 대출 기간="
@@ -161,7 +162,7 @@ public class ManageLoan {
 	 * 대출 상품 출력 메서드
 	 */
 	public static void checkLoan() {
-		// 헤더 출력
+	
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
 
@@ -210,7 +211,7 @@ public class ManageLoan {
 		sel = sc.nextLine();
 	
 		if(sel.equals("y") || sel.equals("Y")) {
-			//연장
+		
 			System.out.printf("%22s기간을 몇 개월 연장 하시겠습니까?"," ");
 			exten += sc.nextInt();
 				
@@ -233,7 +234,7 @@ public class ManageLoan {
 	 * 중도 상환 수수료 계산기
 	 */
 	public static void calculrator() {
-		//  중도 상환 수수료 계산기
+
 		String header = "+---------------+---------------+--------+---------+--------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|      대출명    \t|       원금   \t|  이자율  |  대출기간 | 남은기간  |\n", " ");
