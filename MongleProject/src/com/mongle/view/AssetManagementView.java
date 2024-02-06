@@ -6,7 +6,7 @@ import com.mongle.service.AssetService;
 import com.mongle.service.LoanService;
 import com.mongle.service.asset.DepoSave;
 
-public class AssertManagementView {
+public class AssetManagementView {
 
 	public static int assertadd() {
 

@@ -16,7 +16,7 @@ import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.CreditScore;
 import com.mongle.service.mypage.Point;
 import com.mongle.service.mypage.SafeSend;
-import com.mongle.view.AssertManagementView;
+import com.mongle.view.AssetManagementView;
 import com.mongle.view.InvestmentView;
 import com.mongle.view.MongleVisual;
 
@@ -54,7 +54,7 @@ public class MainMenu {
 			switch (choice) {
 			case "1":
 				System.out.printf("%22s자산관리 화면으로 이동합니다.\n\n", " ");			
-				AssertManagementView.assertadd();
+				AssetManagementView.assertadd();
 				
 				continue;
 			case "2":

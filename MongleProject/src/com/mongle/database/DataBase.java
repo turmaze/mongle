@@ -19,7 +19,9 @@ import com.mongle.resource.History;
 import com.mongle.resource.Investment;
 import com.mongle.resource.ResourcePath;
 import com.mongle.yourapp.LogIn;
-
+/**
+ * 데이터베이스 클래스
+ */
 public class DataBase {
 
 	static ArrayList<HashMap> user = new ArrayList<HashMap>();
