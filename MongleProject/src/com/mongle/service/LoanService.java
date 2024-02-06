@@ -12,8 +12,9 @@ public class LoanService {
 		/**
 		 * 대출 관리 메인 메뉴 출력
 		 */
-	public static void loanMenu() {
+	public static int loanMenu() {
 		boolean loop = true;
+		int r = -1;
 		ManageLoan.openLoan();
 		while(loop) {
 			MongleVisual.menuHeader("대출 관리");
@@ -28,21 +29,41 @@ public class LoanService {
 			String sel = sc.nextLine();
 			
 			if(sel.equals("1")) {
-				
-				ManageLoan.checkLoan();				
+				MongleVisual.menuHeader("대출 정보 화면");
+				r = ManageLoan.checkLoan();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			}else if(sel.equals("2")) {
-		
-				ManageLoan.extension();
+				MongleVisual.menuHeader("대출 연장 화면");
+				r = ManageLoan.extension();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			}else if(sel.equals("3")) {
-			
-				ManageLoan.calculrator();
+				MongleVisual.menuHeader("중도 상환 수수료 계산기");
+				r=ManageLoan.calculrator();
+				if(r==9) {
+					return 9;
+				} else {
+					continue;
+				}
 			}else if(sel.equals("0")) {
-				break;
+				MongleVisual.menuMove("이전 화면");
+				return 0;
 			
+			}else if(sel.equals("9")){
+				MongleVisual.menuMove("홈 화면");
+				return 9;
 			}else {
 				MongleVisual.wrongInput();
 			}
 		}
+		return 0;
 	}
-	 
+	
 }
