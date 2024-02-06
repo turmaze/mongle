@@ -90,6 +90,7 @@ public class Inquiry {
 							break;
 						case "0":
 							MongleVisual.menuMove("관리자 페이지");
+							//MainMenu.mainMenu("2");
 							break;
 
 						default:
@@ -199,16 +200,23 @@ public class Inquiry {
 			return;
 		}
 
-		inquiry.showTitleList(inqList);	
-		System.out.println();
-		System.out.printf("%22s1. 답변하기\n", " ");
-		System.out.printf("%22s2. 문의 삭제\n", " ");	
-		System.out.printf("%22s0. 이전으로\n", " ");	
-		MongleVisual.choiceGuidePrint();
+//		inquiry.showTitleList(inqList);	
+//		System.out.println();
+//		System.out.printf("%22s1. 답변하기\n", " ");
+//		System.out.printf("%22s2. 문의 삭제\n", " ");	
+//		System.out.printf("%22s0. 이전으로\n", " ");	
+//		MongleVisual.choiceGuidePrint();
 		
 		
 		String input = "7";
 		do {
+			inquiry.showTitleList(inqList);	
+			System.out.println();
+			System.out.printf("%22s1. 답변하기\n", " ");
+			System.out.printf("%22s2. 문의 삭제\n", " ");	
+			System.out.printf("%22s0. 이전으로\n", " ");	
+			MongleVisual.choiceGuidePrint();
+			
 			switch (input = scanner.nextLine()) {
 				case "1":
 					inquiry.showTxt(inqList);
@@ -235,7 +243,7 @@ public class Inquiry {
 	
 								inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 								System.out.printf("%22s완료되었습니다.\n", " ");
-								adminInquiry(); //재귀...
+								adminInquiry();
 								
 							}
 						}
@@ -244,13 +252,13 @@ public class Inquiry {
 				case "2":
 					inquiry.deleteInq(inqList);
 					inquiry.saveInq(inqList, ResourcePath.INQUIRY);
-					MongleVisual.menuMove("관리자 페이지");
-					adminInquiry(); //재귀...
-					//break;
+					MongleVisual.menuMove("문의 처리 페이지");
+					adminInquiry();
+					break;
 				case "0":
 					MongleVisual.menuMove("관리자 페이지");
-					adminInquiry(); //재귀...
-					//break;
+					MainMenu.mainMenu("2");
+					break;
 	
 				default:
 					MongleVisual.wrongInput();
@@ -307,15 +315,14 @@ public class Inquiry {
 		String value;
 
 		inq.put("id", LogIn.primaryKey);
-		// inq.put("id", "primaryKey"); //test
 		
-		System.out.print("제목: ");
-		value = scanner.nextLine();
-		while ((titleExists(arrayList, value))) {
+		do {
 			System.out.println();
 			System.out.printf("제목: ");
-			value = scanner.nextLine();
+			value = scanner.nextLine();	
 		}
+		while ((titleExists(arrayList, value))); //중복제목, 공백 검사
+
 		inq.put("title", value);
 
 		System.out.printf("첫 줄에서 ':q!' 시 종료\n");
@@ -359,11 +366,16 @@ public class Inquiry {
 			if (map.containsKey("title")) {
 				String existingTitle = (String) map.get("title");
 				if (existingTitle.equalsIgnoreCase(title)) {
-					System.out.print("중복입니다. 재입력해주세요.\n");
+					System.out.println("중복입니다. 재입력해주세요.\n");
 					return true;
 				}
 			}
 		}
+		if(title.trim().equals("") || title.trim().equals("\r\n") || title.trim().equals("\n") ) {
+			System.out.println("공백은 제목으로 사용할 수 없습니다.\n");
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -378,6 +390,8 @@ public class Inquiry {
 		Inquiry inquiry = new Inquiry();
 
 		inquiry.showTitleList(annList);
+		if(arrayList.isEmpty())
+			return;
 		do {
 			System.out.printf("%22s수정할 글의 제목을 입력해주세요\n", " ");
 			System.out.printf("%22s제목: ", " ");
@@ -458,6 +472,7 @@ public class Inquiry {
 				if(!isDel) {
 					System.out.printf("%22s\"%s\" 제목의 글을 찾을 수 없습니다.\n", " ", del);
 				}
+				return;
 
 			case "2":
 				arrayList.removeAll(arrayList);
