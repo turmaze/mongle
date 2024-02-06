@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.mongle.resource.BankAccount;
 import com.mongle.resource.History;
+import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.MongleVisual;
 
 public class WireTransferService {
@@ -17,11 +18,11 @@ public class WireTransferService {
 		while (loop) {
 			MongleVisual.menuHeader("송금");
 			System.out.println();
-			System.out.printf("%22s 1.송금하기\n", " ");
-			System.out.printf("%22s 2.정산하기\n", " ");
-			System.out.printf("%22s 3.예약송금\n", " ");
-			System.out.printf("%22s 0.이전으로\n", " ");
-			System.out.printf("%22s 번호를 입력하세요:", " ");
+			System.out.printf("%22s1.송금하기\n", " ");
+			System.out.printf("%22s2.정산하기\n", " ");
+			System.out.printf("%22s3.예약송금\n", " ");
+			System.out.printf("%22s0.이전으로\n", " ");
+			MongleVisual.choiceGuidePrint();
 			String sel = scanner.nextLine();
 
 			if (sel.equals("1")) {
@@ -236,26 +237,26 @@ public class WireTransferService {
 				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
 					BankAccount acc = BankAccount
 							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
-					System.out.printf("%22s송금 계좌의 은행명", " ");
+					System.out.printf("%22s송금 계좌의 은행명 : ", " ");
 					String bankName = scan.nextLine();
 
-					System.out.printf("%22s송금 계좌번호 입력( - 포함):", " ");
+					System.out.printf("%22s송금 계좌번호 입력( - 포함) : ", " ");
 					String accountNumber = scan.nextLine();
 
 					// 유효성 검사
 					if (acc.getAccountNumber().equals(accountNumber)) {
-						System.out.printf("%22s송금 계좌번호 다시 확인.\n", " ");
+						System.out.printf("%22s송금 계좌번호를 확인 후 다시 입력해주세요.\n", " ");
 						continue;
 					}
 
-					System.out.printf("%22s송금 금액 입력:", " ");
+					System.out.printf("%22s송금 금액 입력 : ", " ");
 					int money = scan.nextInt();
 					scan.nextLine();
 
 					if (acc.getDepositAmount() >= money) {
 						int rest = acc.getDepositAmount() - money;
 						History.make(acc.getAccountNumber(), "송금", -money);
-
+						SafeSend.sendSafeMoney(acc.getAccountNumber(), bankName + " " + accountNumber, money);
 						System.out.println();
 						System.out.printf("%22s송금 완료.\n", " ");
 						System.out.printf("%22s송금 후 잔액 %,d원.\n", " ", rest);

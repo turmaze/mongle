@@ -47,9 +47,6 @@ public class SafeSend {
 
 			MongleVisual.menuHeader("안심송금서비스");
 
-			System.out.println();
-			System.out.println();
-
 			System.out.printf("%22s1. 사용 설정\n", " ");
 			System.out.printf("%22s2. 미사용 설정\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
