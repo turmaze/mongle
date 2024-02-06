@@ -291,7 +291,7 @@ public class DepoSave {
 		int count = 0;
 		for (int i = 6; i > count; i--) {
 
-			System.out.println("비밀번호를 입력해 주세요:");
+			System.out.printf("%22s비밀번호를 입력해 주세요:"," ");
 			checkPW = sc.nextLine();
 			if (userData.get("pw").equals(Encrypt.LogInPw(checkPW, (String) userData.get("salt")))) {
 				// 가입성공
@@ -302,7 +302,7 @@ public class DepoSave {
 			} else {
 				// 비밀번호 불일치
 				System.out.printf("%22s불일치\n", " ");
-				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.", " ", i - 1);
+				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.\n", " ", i - 1);
 
 			}
 
