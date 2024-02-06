@@ -19,7 +19,7 @@ import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.Encrypt;
 
 /**
- * 예 적금 클래스
+ * 예적금 클래스
  */
 public class DepoSave {
 	private static String bankDepo;
@@ -291,7 +291,7 @@ public class DepoSave {
 		int count = 0;
 		for (int i = 6; i > count; i--) {
 
-			System.out.printf("%22s비밀번호를 입력해 주세요:"," ");
+			System.out.printf("%22s비밀번호를 입력해 주세요:", " ");
 			checkPW = sc.nextLine();
 			if (userData.get("pw").equals(Encrypt.LogInPw(checkPW, (String) userData.get("salt")))) {
 				// 가입성공
