@@ -20,7 +20,7 @@ public class LoanFile {
 	public static ArrayList<ManageLoan> filelist = new ArrayList<>();
 	
 	/**
-	 * 데이터 파일 로딩
+	 * 데이터  파일 로딩
 	 */
 	public static void load() {
 		try {

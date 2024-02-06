@@ -41,7 +41,7 @@ public class ManageLoan {
 	}
 
 	/**
-	 * 원금 Getter
+	 * 원금  Getter
 	 * @return 대출 금액
 	 */
 	public int getprincipal() {

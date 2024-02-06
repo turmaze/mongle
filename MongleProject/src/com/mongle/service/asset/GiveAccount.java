@@ -19,7 +19,7 @@ public class GiveAccount {
 	public static ArrayList<BankAccount> glist = new ArrayList<>();
 
 	/**
-	 * 데이터 파일 로딩
+	 * 데이터  파일 로딩
 	 */
 	public static void load() {
 		try {

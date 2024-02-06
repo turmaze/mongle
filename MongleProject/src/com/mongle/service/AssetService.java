@@ -10,11 +10,16 @@ import com.mongle.service.asset.DepoCalculator;
 import com.mongle.service.asset.DepoSave;
 import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
-
+/**
+ * 계좌 관리 클래스
+ */
 public class AssetService {
-
+	/**
+	 * 계좌 관리 메뉴
+	 * @return 선택 번호
+	 */
 	public static int assmenu() {
-		// 메뉴 헤더 화면
+		
 		boolean loop = true;
 		int r = -1;
 		while (loop) {
@@ -75,10 +80,13 @@ public class AssetService {
 		}
 		return 0;
 
-	}// choice
-
+	}
+	/**
+	 * 보유 계좌 리스트 출력
+	 * @return 선택 번호
+	 */
 	public static int checkDepo() {
-		// 헤더 출력
+		
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
 
@@ -88,7 +96,7 @@ public class AssetService {
 			System.out.printf("%s\n", header);
 			System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n", " ");
 			System.out.printf("%s\n", header);
-			printAsciiTable(BankAccount.list); // json 에서 가져온 데이터
+			printAsciiTable(BankAccount.list);
 			System.out.printf("%s\n", header);
 
 			System.out.printf("%22s거래 내역 확인(계좌 선택)\n", " ");
@@ -116,16 +124,12 @@ public class AssetService {
 
 	}
 
-//	public static void pause() {
-//
-//		Scanner sc = new Scanner(System.in);
-//		System.out.println();
-//		System.out.print("계속하려면 엔터를 입력하세요.");
-//		sc.nextLine();
-//		System.out.println(); // 위 아래 구분 위해 엔터 하나씩 넣어놓음
-//	}
 
-	public static void printAsciiTable(ArrayList<BankAccount> data) { // 표에 반복해서 출력하는 메서드
+	/**
+	 * 보유 계좌 리스트 규격
+	 * @param data 보유 계좌 리스트
+	 */
+	public static void printAsciiTable(ArrayList<BankAccount> data) { 
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getAccountNumber(), data.get(i).getDepositAmount());
@@ -133,4 +137,4 @@ public class AssetService {
 		}
 	}
 
-}// class
+}

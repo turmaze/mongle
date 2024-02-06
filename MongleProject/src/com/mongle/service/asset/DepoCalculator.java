@@ -99,7 +99,7 @@ public class DepoCalculator {
 
 		int mat = period * maturit;
 		int result = 0;
-		// 만기금액 * 이자/100
+	
 		result = (int) (mat * (rate2 / 100));
 		System.out.println();
 		System.out.printf("%22s매달 %,d만원 %d개월 입금 시 이자: %,d원\n", " ", maturit, period, result);

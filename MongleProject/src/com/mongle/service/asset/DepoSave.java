@@ -19,7 +19,7 @@ import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.Encrypt;
 
 /**
- * 예적금 클래스
+ * 예 적금 클래스
  */
 public class DepoSave {
 	private static String bankDepo;

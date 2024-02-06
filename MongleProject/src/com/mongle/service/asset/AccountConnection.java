@@ -62,7 +62,7 @@ public class AccountConnection {
 	 * @return 계좌 연동 후 잔액 랜덤으로 넣기
 	 */
 	private static int randomAmount() {
-		// 잔액 랜덤으로 생성 > 범위: 1000000~3000000
+	
 		int randomNumber = ThreadLocalRandom.current().nextInt(1000000, 3000001);
 		return randomNumber;
 
