@@ -23,6 +23,7 @@ public class Exchange {
 	/**
 	 * 외화 상품 보유 내역
 	 */
+	
 	public static int buyPrice;
 	public static int buyAmount;
 	public static String realname;
@@ -74,7 +75,7 @@ public class Exchange {
 	}
 	
 	/**
-	 * 매입한 외화 가격 Setter
+	 * 매입한 외화 수량 Setter
 	 * 
 	 * @return buyArice 매입한 외화 수량
 	 */
@@ -262,9 +263,16 @@ public class Exchange {
 		return r;
 
 	}// Exchange
-
-	private static Object getFx(Object obj, String element) {
-		return ((JSONObject) obj).get(element);
+	
+	/**
+	 * JSONObject 분석 및 내용 추출
+	 * 
+	 * @param name		외화 명
+	 * @param element	내용을 찾아낼 element
+	 * @return 찾아낸 정보
+	 */
+	private static Object getFx(Object name, String element) {
+		return ((JSONObject) name).get(element);
 	}
 
 }
