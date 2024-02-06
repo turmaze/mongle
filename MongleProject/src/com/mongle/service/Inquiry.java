@@ -195,6 +195,8 @@ public class Inquiry {
 		if(inqList.isEmpty()) {
 			System.out.printf("%22s문의가 없습니다\n\n", " ");
 			MongleVisual.stopper();
+			MongleVisual.pusher();
+			
 			return;
 		}
 	
@@ -210,6 +212,7 @@ public class Inquiry {
 			
 			switch (input = scanner.nextLine()) {
 				case "1":
+					MongleVisual.pusher();
 					inquiry.showTxt(inqList);
 					for (HashMap<String, Object> map : inqList) {
 						if (map.containsKey("title")) { // title이라는 키가 있으면
