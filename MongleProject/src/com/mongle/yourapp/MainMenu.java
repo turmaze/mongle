@@ -127,7 +127,7 @@ public class MainMenu {
 			switch (choice) {
 			case "1":
 				System.out.printf("%22s회원 관리화면으로 이동합니다.\n\n", " ");
-
+				UserManage.userManage();
 				continue;
 			case "2":
 				System.out.printf("%22s데이터 관리화면으로 이동합니다.\n\n", " ");
