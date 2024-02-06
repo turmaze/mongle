@@ -19,7 +19,7 @@ import com.mongle.view.MongleVisual;
 public class UserManage {
 	public static void userManage() {
 		MongleVisual.menuMove("회원관리 관리");
-
+		MongleVisual.menuHeader("회원관리 관리");
 		System.out.printf("\n%22s1. 이름 수정\r\n", " ");
 		System.out.printf("\n%22s2. 회원 강제 탈퇴\r\n", " ");
 		System.out.printf("\n%22s0. 이전으로\r\n", " ");

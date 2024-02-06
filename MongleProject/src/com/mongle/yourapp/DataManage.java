@@ -1,6 +1,7 @@
 package com.mongle.yourapp;
 
 import java.io.FileReader;
+import java.security.KeyStore.TrustedCertificateEntry;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -95,7 +96,8 @@ public class DataManage {
 		}
 		
 		
-		System.out.println(currentDate);
+		
+		//System.out.println(currentDate);
 		JSONParser parser = new JSONParser();
 		try {
 			// FileReader 객체 생성
@@ -112,22 +114,39 @@ public class DataManage {
 						JSONObject aten = (JSONObject)key;
 						JSONArray n = (JSONArray) aten.get("attenddate");
                         ArrayList<String> date = (ArrayList<String>) aten.get("attenddate");
+                        int attendence = 0;
                         for (String check : date) {
                         	check = check.replace("-", "");
-                        	if(count==z)
-                        	int chdate = Integer.parseInt(check);
-                            if(cdate==chdate) {
+                        	if(count ==1) {
+                        		attendence = Integer.parseInt(check.substring(0, 8));
+                        	}else if (count==2) {
+                        		attendence = Integer.parseInt(currentDate.substring(0, 6));
+                        	}else {
+                        		attendence = Integer.parseInt(currentDate.substring(0, 4));
+                        	}
+                   			
+                   		}
+                            if(cdate==attendence) {
                             	numCount++;
                             }
                         }
 					}
 				}
+			if(count ==1) {
+				System.out.printf("\n%22s일별유저 : %d\r\n"," ",numCount);
+			}else if (count==2) {
+				System.out.printf("\n%22s월별유저 : %d\r\n"," ",numCount);
+			}else {
+				System.out.printf("\n%22s년별유저 : %d\r\n"," ",numCount);
+				
 			}
-			System.out.printf("\n%22s일별유저 : %d\r\n"," ",numCount);
+			
 		} catch (Exception e) {
-			System.out.println("DataManage.userNum");
+			System.out.println("DataManage.dataGet");
 			e.printStackTrace();
 		}
 		return cdate;
+		
+	
 	}
 }

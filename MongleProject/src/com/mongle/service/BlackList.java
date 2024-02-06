@@ -148,6 +148,8 @@ public class BlackList {
 			for (HashMap obj : list) {
 				if ((obj).get("id").equals(idcheck)) {
 					list.remove(obj);
+					System.out.printf("\n%22s완료\r\n", " ");
+					
 					break;
 				}
 			}
