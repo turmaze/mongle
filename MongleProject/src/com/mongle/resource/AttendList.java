@@ -15,13 +15,14 @@ public class AttendList {
 	private String stratedate; //연속 출석일
 	private String emoji; //출석 표시 이모지
 	
+	/*
+	 * 출석 정보 리스트
+	 * */
 	public static ArrayList<AttendList> list = new ArrayList<>();
-	 	
-	public void pointItem(ArrayList<String> attenddate,String stratedate) {
-		this.attenddate = attenddate;
-		this.stratedate = stratedate;
-	}
 	
+	/*
+	 * 
+	 * */
 	public AttendList(ArrayList<String> attenddate, String stratedate, String emoji) {
 		this.attenddate = attenddate;
 		this.stratedate = stratedate;
