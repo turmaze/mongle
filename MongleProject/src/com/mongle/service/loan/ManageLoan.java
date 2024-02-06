@@ -10,7 +10,7 @@ import com.mongle.resource.History;
 import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
 /**
- * 대출 클래스
+ * 대출클래스
  */
 public class ManageLoan {
 	/**
@@ -252,10 +252,10 @@ public class ManageLoan {
 		int result = a-b;
 		
 		if(result <= 3) {
-			System.out.printf("%22s %s을 중도 상환시 수수료 %,d원 입니다\n. "," ",loanlist.get(0).getloanName(),c/100);
+			System.out.printf("%22s %s을 중도 상환시 수수료 %,d원 입니다\n "," ",loanlist.get(0).getloanName(),c/100);
 		}
 		else if(result > 3 && result <= 6) {
-			System.out.printf("%22s %s을 중도 상환시 수수료 %,d원 입니다\n. "," ",loanlist.get(0).getloanName(),(c/100)/2);
+			System.out.printf("%22s %s을 중도 상환시 수수료 %,d원 입니다\n "," ",loanlist.get(0).getloanName(),(c/100)/2);
 		}
 		else {
 			System.out.printf("%22s %s을 6개월 이상 상환 하셔서 수수료가 없습니다 ! \n"," ",loanlist.get(0).getloanName());
