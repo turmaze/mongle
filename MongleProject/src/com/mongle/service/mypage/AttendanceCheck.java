@@ -28,8 +28,16 @@ import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
 
+/**
+ * 출석 체크 클래스
+ */
 public class AttendanceCheck {
 
+	/**
+	 * 출석 체크 조회
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int attendanceCheckService() {
 		Scanner scan = new Scanner(System.in);
 
@@ -72,7 +80,12 @@ public class AttendanceCheck {
 		}
 
 	}
-
+	
+	/**
+	 * 출석 마크 변경
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	private static int attendEmojiChange(String emojiString) {
 
 		Scanner scan = new Scanner(System.in);
@@ -119,7 +132,10 @@ public class AttendanceCheck {
 		return 1;
 
 	}
-
+	
+	/**
+	 * 출석 정보 파일 읽기
+	 */
 	public static void attendanceload() {
 		JSONArray arr = (JSONArray) DataBase.getPrivateUser().get(0).get("attend");
 		if (arr != null) {
@@ -131,7 +147,10 @@ public class AttendanceCheck {
 			}
 		}
 	}
-
+	
+	/**
+	 * 출석 체크
+	 */
 	public static void autoAttendance() {
 
 		Calendar yesterdate = Calendar.getInstance();
@@ -182,7 +201,10 @@ public class AttendanceCheck {
 		AttendList.getPoint();
 
 	}
-
+	
+	/**
+	 * 출석 체크 달력 출력
+	 */
 	private static void printCalendar(int year, int month, String nowEmoji) {
 		LocalDate date = LocalDate.now();
 		String dates = date + "";
@@ -272,32 +294,14 @@ public class AttendanceCheck {
 			}
 
 		}
-//		for (int i=1; i<=lastDay; i++) {
-//			
-//			System.out.printf("%3d\t", i);
-//			
-//			//토요일 개행
-//			//if (i % 7 == 6) {
-//			if ((i + dayOfWeek) % 7 == 0) {
-//				System.out.println();
-//				System.out.print("\t\t");
-//				System.out.printf("%3s\t", "X");
-//				System.out.printf("%3s\t", "X");
-//				System.out.printf("%3s\t", "X");
-//				System.out.printf("%3s\t", "X");
-//				System.out.printf("%3s\t", "X");
-//				System.out.printf("%3s\t", "X");
-//				System.out.printf("%3s\t", "X");
-//				
-//				System.out.println();
-//				System.out.printf("%8s\t", " ");
-//				
-//			}
-//			
-//		}
 
 	}
-
+	
+	/**
+	 * 출석일 리스트
+	 * 
+	 * @return ArrayList<Integer> list 출석일 리스트
+	 */
 	public static ArrayList<Integer> attendDayList() {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (String day : AttendList.list.get(0).getAttenddate()) {
@@ -307,7 +311,12 @@ public class AttendanceCheck {
 		Collections.sort(list);
 		return list;
 	}
-
+	
+	/**
+	 * 월 말일
+	 * 
+	 * @return 월 마지막 날 날짜
+	 */
 	private static int getLastDay(int year, int month) {
 
 		switch (month) {
@@ -331,11 +340,11 @@ public class AttendanceCheck {
 		return 0;
 	}
 
-	// 메서드명 패턴
-	// 1. 반환값 getXXX()
-	// 2. setXXX(인자값)
-	// 3. boolean isXXX()
-
+	/**
+	 * 윤년 검사
+	 * 
+	 * @return 윤년 여부
+	 */
 	private static boolean isLeafYear(int year) {
 
 		if (year % 4 == 0) {
@@ -354,6 +363,11 @@ public class AttendanceCheck {
 
 	}
 
+	/**
+	 * 요일
+	 * 
+	 * @return 요일
+	 */
 	private static int getDayOfWeek(int year, int month) {
 
 		// 서기 1년 1월 1일 ~ year년 month월 오늘

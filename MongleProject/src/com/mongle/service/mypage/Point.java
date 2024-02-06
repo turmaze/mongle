@@ -14,8 +14,16 @@ import com.mongle.database.DataBase;
 import com.mongle.resource.AttendList;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 포인트 클래스
+ */
 public class Point {
 	
+	/**
+	 * 포인트 조회 및 메뉴 이동
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int pointService() {
 		Scanner scan = new Scanner(System.in);
 
@@ -44,14 +52,21 @@ public class Point {
 					return 9;
 				}
 			} else if (sel.equals("9")) {
+				MongleVisual.menuMove("메인 화면");
 				return 9;
 			} else if (sel.equals("0")) {
+				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
 		}
 
 	}
-
+	
+	/**
+	 * 포인트 내역 조회 및 메뉴 이동
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	private static int pointList() {
 		
 		Scanner scan = new Scanner(System.in);
@@ -79,8 +94,10 @@ public class Point {
 						System.out.printf("%22s다음 페이지가 없습니다.\n\n", " ");
 					}break;
 				} else if (sel.equals("9")) {
+					MongleVisual.menuMove("메인 화면");
 					return 9;
 				} else if (sel.equals("0")) {
+					MongleVisual.menuMove("이전 화면");
 					return 0;
 				} else {
 					MongleVisual.wrongInput();
