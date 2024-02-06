@@ -9,7 +9,9 @@ import com.mongle.view.MongleVisual;
  * 대출 관리 메인 메뉴 클래스
  */
 public class LoanService {
-		
+		/**
+		 * 대출 관리 메인 메뉴 출력
+		 */
 	public static void loanMenu() {
 		boolean loop = true;
 		ManageLoan.openLoan();
@@ -26,17 +28,17 @@ public class LoanService {
 			String sel = sc.nextLine();
 			
 			if(sel.equals("1")) {
-				// 대출정보
+				
 				ManageLoan.checkLoan();				
 			}else if(sel.equals("2")) {
-				// 대출연장
+		
 				ManageLoan.extension();
 			}else if(sel.equals("3")) {
-				// 중도/전체 상환
+			
 				ManageLoan.calculrator();
 			}else if(sel.equals("0")) {
 				break;
-				//
+			
 			}else {
 				MongleVisual.wrongInput();
 			}
