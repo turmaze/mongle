@@ -17,13 +17,13 @@ public class CustomerService {
 	 */
 	public static int csmenu() {
 		Scanner scan = new Scanner(System.in);
-		MongleVisual.menuHeader("고객센터");
 		ArrayList<Inquiry> list = new ArrayList<Inquiry>();
 
 		boolean loop = true;
 		int r = -1;
 
 		while (loop) {
+			MongleVisual.menuHeader("고객센터");
 			System.out.printf("%22s1. 공지사항\n", " ");
 			System.out.printf("%22s2. 문의하기\n", " ");
 			System.out.printf("%22s3. 문의내역\n", " ");
