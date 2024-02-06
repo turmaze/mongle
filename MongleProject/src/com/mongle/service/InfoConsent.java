@@ -56,8 +56,8 @@ public class InfoConsent {
 			if(choice.equals("y")||choice.equals("Y")) {
 				result = 1;
 			}else if (choice.equals("n")||choice.equals("N")) {
-				System.out.printf("\n%22s동의 하지 않으시면 회원가입이 불가능합니다. y\r\n", "");
-				System.out.printf("\n%22s동의서에 동의하시나요?  y/n\r\n", " ");
+				System.out.printf("\n%22s동의 하지 않으시면 회원가입이 불가능합니다. \r\n", "");
+				System.out.printf("\n%22s동의서에 동의하시나요?  y/n", " ");
 				String sel = scan.nextLine();
 				if (sel.equals("y") || sel.equals("Y")) {
 					result =1;

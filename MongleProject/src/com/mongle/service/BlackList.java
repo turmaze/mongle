@@ -25,6 +25,7 @@ public class BlackList {
 	public static int blackList() {
 
 		MongleVisual.menuMove("블랙리스트 관리");
+		MongleVisual.menuHeader("블랙리스트 관리");
 
 		System.out.printf("\n%22s1. 블랙리스트 확인\r\n", " ");
 		System.out.printf("\n%22s2. 블랙리스트 등록/수정\r\n", " ");
@@ -124,8 +125,10 @@ public class BlackList {
 
 			if (s.equals("1")) {
 				changeBlacklevel(select);
+				return;
 			} else if (s.equals("2")) {
 				kickUser();
+				return;
 			}
 
 		} catch (Exception e) {
@@ -183,7 +186,7 @@ public class BlackList {
 						}
 						obj.replace("level", level);
 						System.out.printf("\r\n%22s블랙 리스트 등록 완료\r\n", " ");
-
+						
 					} else if (choice.equals("2")) {
 						level = "1";
 						if (level.equals(findlevel)) {
@@ -199,6 +202,6 @@ public class BlackList {
 			System.out.println("BlackList.changeBlacklevel");
 			e.printStackTrace();
 		}
-
+		return;
 	}
 }

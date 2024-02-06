@@ -114,6 +114,7 @@ public class DataManage {
                         ArrayList<String> date = (ArrayList<String>) aten.get("attenddate");
                         for (String check : date) {
                         	check = check.replace("-", "");
+                        	if(count==z)
                         	int chdate = Integer.parseInt(check);
                             if(cdate==chdate) {
                             	numCount++;
