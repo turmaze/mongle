@@ -547,7 +547,7 @@ public class Inquiry {
 			
 			System.out.printf("%22s1. 내용확인\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");	
-			
+			System.out.println();
 			MongleVisual.choiceGuidePrint();
 			
 			switch (select = scanner.nextLine()) {
@@ -577,19 +577,18 @@ public class Inquiry {
 									}
 									
 									System.out.println("\n---------------------------------------------------------------");
+									MongleVisual.stopper();
+									MongleVisual.pusher();
 								}
 							}
 						}
 	
 						if (!found) { // 찾지 못했으면
-							System.out.printf("%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n", " ", input);
+							System.out.printf("\n%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n\n", " ", input);
 						}
 	
 					} while (!found); // 찾을때 까지
-	
-					break;
-				case "2":
-					
+					break;	
 				case "0":
 					return 0;
 	
