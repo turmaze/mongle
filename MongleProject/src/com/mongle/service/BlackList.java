@@ -110,9 +110,14 @@ public class BlackList {
 				blackList();
 			}else {
 				do {
+					System.out.printf("\r\n%22s0. 돌아가기\r\n", " ");
 					System.out.printf("\r\n%22s작업할 아이디를 선택해주세요\r", " ");
-					System.out.printf("\n%22s번호 선택: \r\n", " ");
+					
+					System.out.printf("\n%22s번호 선택: ", " ");
 					String pick = scan.nextLine();
+					if(pick.equals("0")) {
+						return;
+					}
 					select = dark.get(Integer.parseInt(pick) - 1);
 					
 				} while (select.equals(null));
@@ -121,6 +126,7 @@ public class BlackList {
 
 			System.out.printf("\r\n%22s1. 블랙리스트 등급 조정하기\r\n", " ");
 			System.out.printf("\r\n%22s2. 유저 탈퇴시키기\r", " ");
+			System.out.printf("\n%22s번호 선택: ", " ");
 			String s = scan.nextLine();
 
 			if (s.equals("1")) {
