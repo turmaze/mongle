@@ -193,7 +193,7 @@ public class Inquiry {
 		MongleVisual.menuHeader("문의 처리");
 
 		if (inqList.isEmpty()) {
-			System.out.printf("%22s문의가 없습니다\n\n", " ");
+			System.out.printf("\n%22s문의가 없습니다\n\n", " ");
 			MongleVisual.stopper();
 			MongleVisual.pusher();
 
@@ -203,6 +203,8 @@ public class Inquiry {
 		String input = "7";
 		do {
 			inquiry.showTitleList(inqList);
+			System.out.printf("%22s총 %d개의 문의내역이 존재합니다.\n", " ", inqList.size());
+
 			System.out.println();
 			System.out.printf("%22s1. 답변하기\n", " ");
 			System.out.printf("%22s2. 문의 삭제\n", " ");
@@ -243,6 +245,7 @@ public class Inquiry {
 				} // for
 
 			case "2":
+				MongleVisual.pusher();
 				inquiry.deleteInq(inqList);
 				inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 				MongleVisual.menuMove("문의 처리 페이지");
