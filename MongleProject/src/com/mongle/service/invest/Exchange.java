@@ -21,6 +21,17 @@ public class Exchange {
 	public static int buyPrice;
 	public static int buyAmount;
 	public static ArrayList<Investment> listExchange = new ArrayList<>();
+	public static String realname;
+	
+	
+
+	public static String getRealname() {
+		return realname;
+	}
+
+	public static void setRealname(String realname) {
+		Exchange.realname = realname;
+	}
 
 	public static int getBuyPrice() {
 		return buyPrice;
@@ -124,6 +135,7 @@ public class Exchange {
 
 				String fxName = "";
 				String price = "";
+				String real = "";
 
 				if (sel.equals("1")) {
 					if (index != fx.size()-1) {
@@ -154,6 +166,7 @@ public class Exchange {
 					continue;
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
+				real=  getFx(fx.get(index), "cur_nm") + "";
 				price = (String) getFx(fx.get(index), "tts");
 
 				MongleVisual.pusher();
@@ -185,8 +198,9 @@ public class Exchange {
 					buyPrice = Integer.parseInt(price);
 					buyAmount = Integer.parseInt(amount);
 					InvestService.transaction("환전", buyPrice, buyAmount);
+					realname = real;
 					index = -1;
-					Investment.list.add(new Investment("환전", "", "", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
+					Investment.list.add(new Investment("환전", "", Exchange.getRealname(), Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 					continue;
 				} else if (sel.equals("n")) {
 					MongleVisual.pusher();
@@ -201,9 +215,8 @@ public class Exchange {
 				}
 
 			}
-			// listExchange.add(new Investment("환전", "환전", Exchange.getBuyPrice(),
-			// Exchange.getBuyAmount()));
-			Investment.list.add(new Investment("환전", "환전", "환전", Exchange.getBuyPrice(), Exchange.getBuyAmount()));
+			
+			Investment.list.add(new Investment("환전", "환전", realname, Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 		} catch (Exception e) {
 			System.out.println("Exchange");
 			e.printStackTrace();
