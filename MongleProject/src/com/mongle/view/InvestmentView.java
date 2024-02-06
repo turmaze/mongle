@@ -61,7 +61,7 @@ public class InvestmentView {
 		System.out.println();
 		System.out.printf("%22s상세 보기\n", " ");
 		System.out.println();
-		printAsciiTableEx(Investment.list, "환전");
+		printTableEx(Investment.list, "환전");
 		System.out.println();
 		while (loop) {
 			System.out.println();
@@ -88,11 +88,11 @@ public class InvestmentView {
 						break;
 					}
 				}
-				removeLoanInvestmentByJ(Investment.list, removeN, "환전");
+				remove(Investment.list, removeN, "환전");
 				System.out.println();
 				System.out.printf("%22s상세보기\n ", " ");
 				System.out.println();
-				printAsciiTableEx(Investment.list, "환전");
+				printTableEx(Investment.list, "환전");
 				System.out.println();
 				MongleVisual.stopper();
 
@@ -111,7 +111,7 @@ public class InvestmentView {
 		System.out.println();
 		System.out.printf("%22s상세 보기\n", " ");
 		System.out.println();
-		printAsciiTable(Investment.list, "금");
+		printTableGold(Investment.list, "금");
 
 		while (loop) {
 			
@@ -139,11 +139,11 @@ public class InvestmentView {
 						break;
 					}
 				}
-				removeLoanInvestmentByJ(Investment.list, removeN, "금");
+				remove(Investment.list, removeN, "금");
 				System.out.println();
 				System.out.printf("%22s상세보기\n ", " ");
 				System.out.println();
-				printAsciiTable(Investment.list, "금");
+				printTableGold(Investment.list, "금");
 				System.out.println();
 				MongleVisual.stopper();
 
@@ -164,7 +164,7 @@ public class InvestmentView {
 		System.out.println();
 		System.out.printf("%22s상세 보기\n", " ");
 		System.out.println();
-		printAsciiTableStock(Investment.list, "주식");
+		printTableStock(Investment.list, "주식");
 
 			System.out.println();
 			System.out.printf("%22s옵션 : \n", " ");
@@ -190,7 +190,7 @@ public class InvestmentView {
 				System.out.println();
 				System.out.printf("%22s상세보기\n", " ");
 				System.out.println();
-				printAsciiTable222(Investment.list, "주식", total, removeN);
+				printTablePlusStock(Investment.list, "주식", total, removeN);
 				System.out.println();
 				MongleVisual.stopper();
 				break;
@@ -208,11 +208,11 @@ public class InvestmentView {
 					if (answer.equals("y")) {
 						transaction(removeN, "주식");
 
-						removeLoanInvestmentByJ(Investment.list, removeN, "주식");
+						remove(Investment.list, removeN, "주식");
 						System.out.println();
 						System.out.printf("%22s상세보기\n", " ");
 						System.out.println();
-						printAsciiTableStock(Investment.list, "주식");
+						printTableStock(Investment.list, "주식");
 						System.out.println();
 						MongleVisual.stopper();
 						return 0;
@@ -228,31 +228,11 @@ public class InvestmentView {
 		return 0;
 	}
 
-	public static void printAsciiTableStock(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
-		int j = 0;
-		String header = "+----+------------+---------------+---------------+------------+";
-		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
-		System.out.printf("%22s%s\n", " ", header);
-		for (int i = 0; i < data.size(); i++) {
-			if (invest.equals(data.get(i).getRealTitle())) {
-				System.out.printf("%22s|%3d | %5s\t|%7s\t|   %,.0f원\t|  %,5d개   |\n", " ",
-						j + 1, 
-						data.get(i).getRealTitle(),
-						data.get(i).getBankDepo(), 
-						data.get(i).getPrice(), 
-						data.get(i).getAmount());
-				j++;
-				
-			}
-
-		}
-		System.out.printf("%22s%s\n", " ", header);
-	}
 
 
 
-	public static void printAsciiTable(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
+
+	public static void printTableGold(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
@@ -271,7 +251,7 @@ public class InvestmentView {
 		}
 		System.out.printf("%22s%s\n", " ", header);
 	}
-	public static void printAsciiTableEx(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
+	public static void printTableEx(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+------------------------+--------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
@@ -294,12 +274,30 @@ public class InvestmentView {
 		}
 		System.out.printf("%22s%s\n", " ", header);
 	}
+	
+	public static void printTableStock(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
+		int j = 0;
+		String header = "+----+------------+---------------+---------------+------------+";
+		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s%s\n", " ", header);
+		for (int i = 0; i < data.size(); i++) {
+			if (invest.equals(data.get(i).getRealTitle())) {
+				System.out.printf("%22s|%3d | %5s\t|%7s\t|   %,.0f원\t|  %,5d개   |\n", " ",
+						j + 1, 
+						data.get(i).getRealTitle(),
+						data.get(i).getBankDepo(), 
+						data.get(i).getPrice(), 
+						data.get(i).getAmount());
+				j++;
+				
+			}
 
-	public static void printAsciiTable222(ArrayList<Investment> data, String invest, int total, int removeN) { // 표에
-																												// 반복해서
-																												// 출력하는
-		
-																											// 메서드
+		}
+		System.out.printf("%22s%s\n", " ", header);
+	}
+	
+	public static void printTablePlusStock(ArrayList<Investment> data, String invest, int total, int removeN) { 
 
 		int j = 0;
 		int printNum = 1;
@@ -321,8 +319,9 @@ public class InvestmentView {
 		}
 		System.out.printf("%22s%s\n", " ", header);
 	}
+	
 
-	private static void removeLoanInvestmentByJ(ArrayList<Investment> data, int removeN, String invest) {
+	private static void remove(ArrayList<Investment> data, int removeN, String invest) {
 		int j = 0;
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {

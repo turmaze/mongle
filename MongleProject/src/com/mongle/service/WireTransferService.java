@@ -11,9 +11,9 @@ import com.mongle.view.MongleVisual;
 
 public class WireTransferService {
 
-	public static void extracted() {
+	public static int extracted() {
 		Scanner scanner = new Scanner(System.in);
-
+		int r = -1;
 		boolean loop = true;
 		while (loop) {
 			MongleVisual.menuHeader("송금");
@@ -28,49 +28,65 @@ public class WireTransferService {
 			if (sel.equals("1")) {
 				// 송금하기
 				MongleVisual.menuMove("송금 화면");
-				transaction();
-
+				r = transaction();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("2")) {
 				MongleVisual.menuMove("정산하기 화면");
 				// 정산하기(더치페이)
-				dutchpay(Integer.parseInt(sel));
-
+				r = dutchpay(Integer.parseInt(sel));
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("예약송금 화면");
 				// 예약송금
-				reserveTransfer();
-
+				r = reserveTransfer();
+				if (r == 9) {
+					return 9;
+				} else {
+					continue;
+				}
 			} else if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
 				// 이전으로
-				loop = false;
+				return 0;
 
 			} else {
 				MongleVisual.wrongInput();
 			}
 		}
-
+		return 0;
 	}// extracted
 
-	private static void dutchpay(int shareChoice) {
+	private static int dutchpay(int shareChoice) {
 		// 정산하기(더치페이) 인원 설정 로직 구현
 		Scanner scanner = new Scanner(System.in);
 		int amount = 0;
 		MongleVisual.menuHeader("정산하기");
 		// 정수 입력을 위한 예외 처리
-		try {
-			System.out.printf("%22s정산 금액 입력: ", " ");
-			amount = scanner.nextInt();
-		} catch (Exception e) {
-			scanner.nextLine(); //
-			return;
-		}
+		boolean loop = true;
+		while (loop) {
+			try {
+				System.out.printf("%22s정산 금액 입력: ", " ");
+				amount = scanner.nextInt();
+				if (amount < 0) {
+					System.out.printf("%22s잘못된 입력입니다. 다시 입력해주세요.", " ");
 
-		if (amount < 0) {
-			System.out.printf("%22s잘못된 입력입니다. 다시 입력해주세요.", " ");
-			return;
-		}
+				} else {
+					loop = false;
+				}
 
+			} catch (Exception e) {
+				e.getStackTrace();
+			}
+
+		}
 		// 정산하기(더치페이)금액 설정 로직
 		System.out.printf("%22s정산 금액이 " + amount + "원으로 설정되었습니다.\n", " ");
 		System.out.println();
@@ -107,7 +123,7 @@ public class WireTransferService {
 			History.make(BankAccount.list.get(0).getAccountNumber(), "더치페이 정산",
 					((amount / numberOfPeople) * (numberOfPeople - 1)));
 			MongleVisual.menuMove("이전 화면");
-			break;
+			return 0;
 
 		case "2":
 			shareMessage(totalPeople);
@@ -119,12 +135,13 @@ public class WireTransferService {
 			History.make(BankAccount.list.get(0).getAccountNumber(), "더치페이 정산",
 					((amount / numberOfPeople) * (numberOfPeople - 1)));
 			MongleVisual.menuMove("이전 화면");
-			break;
+			return 0;
 
 		default:
 			System.out.println("잘못된 입력입니다. 기본 설정으로 메시지를 공유합니다.");
 			shareMessage(totalPeople);
 		}
+		return 0;
 	}
 
 	private static void shareMessage(int totalPeople) {
@@ -137,7 +154,7 @@ public class WireTransferService {
 		System.out.println();
 	}
 
-	private static void reserveTransfer() {
+	private static int reserveTransfer() {
 		// 예약송금 로직 구현
 		Scanner scanner = new Scanner(System.in);
 
@@ -147,14 +164,21 @@ public class WireTransferService {
 
 		// 년도는 수정이 불가능하므로 고정
 		int year = 2024;
-
+		int month = 0;
+		int day = 0;
+		int hour = 0;
+		int minute = 0;
 		// 이번달과 다음달까지 선택 가능하도록 설정
-		System.out.printf("%22s24.02월 예약은 1번, 24.03월 예약은 2번(1,2 중 택 1): ", " ");
-		int month = scanner.nextInt();
+		boolean loop = true;
+		while (loop) {
+			System.out.printf("%22s24.02월 예약은 1번, 24.03월 예약은 2번(1,2 중 택 1): ", " ");
+			month = scanner.nextInt();
 
-		if (month != 1 && month != 2) {
-			System.out.printf("%22s잘못된 입력입니다.", " ");
-			return;
+			if (month != 1 && month != 2) {
+				System.out.printf("%22s잘못된 입력입니다.", " ");
+			} else {
+				loop = false;
+			}
 		}
 
 		int maxDay;
@@ -163,53 +187,56 @@ public class WireTransferService {
 		} else {
 			maxDay = 30; // 다음달의 말일
 		}
+		loop = true;
+		while (loop) {
+			System.out.printf("%22s예약 설정일 입력(1일부터 " + maxDay + "일 사이): ", " ");
+			day = scanner.nextInt();
 
-		System.out.printf("%22s예약 설정일 입력(1일부터 " + maxDay + "일 사이): ", " ");
-		int day = scanner.nextInt();
-
-		if (day < 1 || day > maxDay) {
-			System.out.printf("%22s올바른 날짜를 입력하세요.", " ");
-			return;
+			if (day < 1 || day > maxDay) {
+				System.out.printf("%22s올바른 날짜를 입력하세요.", " ");
+			} else {
+				loop = false;
+			}
 		}
+		loop = true;
+		while (loop) {
+			System.out.printf("%22s시간 입력(예: 01:26): ", " ");
+			System.out.println();
+			String timeInput = scanner.next();
+			String[] timeParts = timeInput.split(":");
+			if (timeParts.length != 2) {
+				System.out.printf("%22s[오류 발생] 올바른 형식으로 시간을 입력하세요 (hh:mm).", " ");
+			}
+			hour = Integer.parseInt(timeParts[0]);
+			minute = Integer.parseInt(timeParts[1]);
 
-		// 시간은 정수형태로 입력받도록 함
-		System.out.printf("%22s시간 입력(예: 01:26): ", " ");
-		System.out.println();
-		String timeInput = scanner.next();
-		String[] timeParts = timeInput.split(":");
-		if (timeParts.length != 2) {
-			System.out.printf("%22s[오류 발생] 올바른 형식으로 시간을 입력하세요 (hh:mm).", " ");
-			return;
+			if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+				System.out.printf("%22s[오류 발생] 올바른 시간을 입력하세요 (00:00부터 23:59까지).", " ");
+			} else {
+				loop = false;
+			}
 		}
-		int hour = Integer.parseInt(timeParts[0]);
-		int minute = Integer.parseInt(timeParts[1]);
-
-		if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
-			System.out.printf("%22s[오류 발생] 올바른 시간을 입력하세요 (00:00부터 23:59까지).", " ");
-			return;
-		}
-		boolean loop = true;
 		// 송금 확인 메시지
 		System.out.printf(
 				"%22s[" + year + "년 " + month + "월 " + day + "일 " + hour + "시 " + minute + "분]에 예약 송금하시겠습니까? (y/n): ",
 				" ");
-
-		while (true) {
+		loop = true;
+		while (loop) {
 			String confirm = scanner.next();
 
 			if (confirm.equals("y")) {
 				System.out.println();
 				String reservationTime = String.format("%d년 %d월 %d일 %d시 %d분", year, month, day, hour, minute);
 				System.out.printf("%22s예약 완료.. 예약 시간: %s\n", " ", reservationTime);
-				break;
+				loop = false;
 			} else if (confirm.equals("n")) {
 				System.out.printf("%22s예약 취소", " ");
-				break;
+				loop = false;
 			} else {
 				System.out.printf("%22s올바른 선택을 해주세요.", " ");
 			}
 		}
-
+		return 0;
 	}
 
 	public static int transaction() {
@@ -256,10 +283,10 @@ public class WireTransferService {
 					if (acc.getDepositAmount() >= money) {
 						int rest = acc.getDepositAmount() - money;
 						History.make(acc.getAccountNumber(), "송금", -money);
-						SafeSend.sendSafeMoney(acc.getAccountNumber(), bankName + " " + accountNumber, money);
 						System.out.println();
 						System.out.printf("%22s송금 완료.\n", " ");
 						System.out.printf("%22s송금 후 잔액 %,d원.\n", " ", rest);
+						
 						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 						loop = false;
