@@ -24,7 +24,7 @@ public class Loan {
 	/**
 	 * 대출 내역
 	 */
-	public static ArrayList<Investment> listLoan = new ArrayList<>();
+	
 
 	/**
 	 * 대출 정보 생성자

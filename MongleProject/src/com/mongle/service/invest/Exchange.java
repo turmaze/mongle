@@ -26,7 +26,7 @@ public class Exchange {
 	public static int buyPrice;
 	public static int buyAmount;
 	public static String realname;
-	public static ArrayList<Investment> listExchange = new ArrayList<>();
+	
 	
 	/**
 	 * 매입한 외화 이름 Getter

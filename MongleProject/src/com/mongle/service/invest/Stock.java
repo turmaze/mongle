@@ -35,7 +35,7 @@ public class Stock {
 	public static int buyAmount = 0;
 	public static String sel= "";
 	
-	public static ArrayList<Investment> listStock = new ArrayList<>();
+	
 	
 	public static int getBuyPrice() {
 		return buyPrice;
