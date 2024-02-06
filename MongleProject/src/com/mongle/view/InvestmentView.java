@@ -64,7 +64,7 @@ public class InvestmentView {
 		printAsciiTableEx(Investment.list, "환전");
 		System.out.println();
 		while (loop) {
-
+			System.out.println();
 			System.out.printf("%22s옵션 : \n", " ");
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -89,8 +89,12 @@ public class InvestmentView {
 					}
 				}
 				removeLoanInvestmentByJ(Investment.list, removeN, "환전");
+				System.out.println();
 				System.out.printf("%22s상세보기\n ", " ");
+				System.out.println();
 				printAsciiTableEx(Investment.list, "환전");
+				System.out.println();
+				MongleVisual.stopper();
 
 				break;
 			} else if (num4.equals("0")) {
@@ -110,7 +114,8 @@ public class InvestmentView {
 		printAsciiTable(Investment.list, "금");
 
 		while (loop) {
-
+			
+			System.out.println();
 			System.out.printf("%22s옵션 : \n", " ");
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -135,9 +140,12 @@ public class InvestmentView {
 					}
 				}
 				removeLoanInvestmentByJ(Investment.list, removeN, "금");
+				System.out.println();
 				System.out.printf("%22s상세보기\n ", " ");
 				System.out.println();
 				printAsciiTable(Investment.list, "금");
+				System.out.println();
+				MongleVisual.stopper();
 
 				break;
 			} else if (num3.equals("0")) {
@@ -179,10 +187,12 @@ public class InvestmentView {
 				transactionStock(removeN, "주식", num); // 계좌 골라서 넣기..
 
 				// 매수하고 상세보기 불러오기
+				System.out.println();
 				System.out.printf("%22s상세보기\n", " ");
 				System.out.println();
-				printAsciiTable222(Investment.list, "주식", total, removeN); // 리스트..
-				MongleVisual.pusher();
+				printAsciiTable222(Investment.list, "주식", total, removeN);
+				System.out.println();
+				MongleVisual.stopper();
 				break;
 				
 
@@ -199,10 +209,13 @@ public class InvestmentView {
 						transaction(removeN, "주식");
 
 						removeLoanInvestmentByJ(Investment.list, removeN, "주식");
+						System.out.println();
+						System.out.printf("%22s상세보기\n", " ");
+						System.out.println();
 						printAsciiTableStock(Investment.list, "주식");
-						MongleVisual.pusher();
-						
-						break;
+						System.out.println();
+						MongleVisual.stopper();
+						return 0;
 					} else if (answer.equals("n")) {
 						MongleVisual.menuMove("이전 화면");
 						break;
@@ -219,7 +232,7 @@ public class InvestmentView {
 		int j = 0;
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
-				System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%15f원\t|%,15d개|\n", " ",
+				System.out.printf("%22s|%-3d|%-7s\t|%-7s\t|%,.0f원\t|%,5d개|\n", " ",
 						j + 1, 
 						data.get(i).getRealTitle(),
 						data.get(i).getBankDepo(), 
@@ -231,28 +244,14 @@ public class InvestmentView {
 		}
 	}
 
-	public static void printAsciiTableLoan(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
-		int j = 0;
-		for (int i = 0; i < data.size(); i++) {
-			if (invest.equals(data.get(i).getRealTitle())) {
-				System.out.printf("%22s|%-3s|%-14s\t|%-18s\t|%15s\t|\n", " ",
-						j + 1, 
-						data.get(i).getRealTitle(),
-						data.get(i).getBankDepo(),
-						data.get(i).getTitleDepo());
 
-				j++;
-			}
-
-		}
-	}
 
 	public static void printAsciiTable(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
 
-				System.out.printf("%22s|%-3d|%-14s\t|%,15f원|%,15d개\n", " ",
+				System.out.printf("%22s|%-3d|%-7s\t|%,.0f원|%,5d개\n", " ",
 						j + 1, 
 						data.get(i).getRealTitle(),
 						data.get(i).getPrice(), 
@@ -266,7 +265,7 @@ public class InvestmentView {
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
 
-				System.out.printf("%22s|%-3d|%-14s\t|%-18s\t|%,15f원|%,15d개\n", " ",
+				System.out.printf("%22s|%-3d|%-7s\t|%-18s\t|%,.0f원|%,5d개\n", " ",
 						j + 1, 
 						data.get(i).getRealTitle(),
 						data.get(i).getTitleDepo(),
@@ -395,7 +394,7 @@ public class InvestmentView {
 						System.out.println();
 
 						System.out.printf("%22s완료되었습니다.\n", " ");
-						MongleVisual.stopper();
+						//MongleVisual.stopper();
 						loop = false;
 					}
 				} else {
@@ -444,7 +443,8 @@ public class InvestmentView {
 						System.out.println();
 
 						System.out.printf("%22s매수가 완료되었습니다.\n", " ");
-						MongleVisual.stopper();
+						
+						//MongleVisual.stopper();
 						loop = false;
 					}
 				} else {
