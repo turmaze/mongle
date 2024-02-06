@@ -232,7 +232,7 @@ public class InvestmentView {
 		int j = 0;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   현재가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -254,10 +254,14 @@ public class InvestmentView {
 
 	public static void printAsciiTable(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
+		String header = "+----+------------+---------------+------------+";
+		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%22s|번호|         \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
 
-				System.out.printf("%22s|%-3d|%-7s\t|%,.0f원|%,5d개\n", " ",
+				System.out.printf("%22s|%3d | %5s\t|   %,.0f원\t|  %,5d개   |\n", " ",
 						j + 1, 
 						data.get(i).getRealTitle(),
 						data.get(i).getPrice(), 
@@ -265,13 +269,19 @@ public class InvestmentView {
 				j++;
 			}
 		}
+		System.out.printf("%22s%s\n", " ", header);
 	}
 	public static void printAsciiTableEx(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
+		String header = "+----+------------+------------------------+--------------+------------+";
+		System.out.printf("%22s%s\n", " ", header);
+		System.out.printf("%22s|번호|         \t|         외화명    \t |   주문가격\t|    수량    |\n", " ");
+		System.out.printf("%22s%s\n", " ", header);
+		
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
 
-				System.out.printf("%22s|%-3d|%-7s\t|%-18s\t|%,.0f원|%,5d개\n", " ",
+				System.out.printf("%22s|%3d | %5s\t|%12s\t |    %,.0f원\t|  %,5d개   |\n", " ",
 						j + 1, 
 						data.get(i).getRealTitle(),
 						data.get(i).getTitleDepo(),
@@ -282,6 +292,7 @@ public class InvestmentView {
 				
 			}
 		}
+		System.out.printf("%22s%s\n", " ", header);
 	}
 
 	public static void printAsciiTable222(ArrayList<Investment> data, String invest, int total, int removeN) { // 표에
@@ -294,7 +305,7 @@ public class InvestmentView {
 		int printNum = 1;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   현재가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
