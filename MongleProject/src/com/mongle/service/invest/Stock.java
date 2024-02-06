@@ -27,40 +27,80 @@ import com.mongle.resource.UserData;
 import com.mongle.service.InvestService;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 주식 클래스
+ */
 public class Stock {
+	/**
+	 * 주식 상품 보유 내역
+	 */
 	
 	public static String TOKEN;
 	public static String TOKENexpired;
 	public static int buyPrice = 0;
 	public static int buyAmount = 0;
 	public static String sel= "";
+	public static ArrayList<Investment> listStock = new ArrayList<>();
 	
-	
-	
+	/**
+	 * 매입한 주식 가격 Getter
+	 * 
+	 * @return 매입한 주식 가격
+	 */
 	public static int getBuyPrice() {
 		return buyPrice;
 	}
-
+	
+	/**
+	 * 매입한 주식 가격 Setter
+	 * 
+	 * @return buyPrice 매입한 주식 가격
+	 */
 	public static void setBuyPrice(int buyPrice) {
 		Stock.buyPrice = buyPrice;
 	}
-
+	
+	/**
+	 * 매입한 주식 수량 Getter
+	 * 
+	 * @return 매입한 주식 수량
+	 */
 	public static int getBuyAmount() {
 		return buyAmount;
 	}
-
+	
+	/**
+	 * 매입한 주식 수량 Setter
+	 * 
+	 * @return buyArice 매입한 주식 수량
+	 */
 	public static void setBuyAmount(int buyAmount) {
 		Stock.buyAmount = buyAmount;
 	}
-
+	
+	/**
+	 * 매입한 주식 이름 Getter
+	 * 
+	 * @return 매입한 주식 이름
+	 */
 	public static String getSel() {
 		return sel;
 	}
-
+	
+	/**
+	 * 매입한 주식 이름 Setter
+	 * 
+	 * @return buyArice 매입한 주식 이름
+	 */
 	public static void setSel(String sel) {
 		Stock.sel = sel;
 	}
-
+	
+	/**
+	 * 주식 시세 검색 및 주문
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int stockService() {
 		try {
 
@@ -126,7 +166,6 @@ public class Stock {
 				
 				result = stockPrice((String)((JSONObject) item.get(0)).get("srtnCd"));
 				response = (JSONObject) parser.parse(result);
-				
 				body = (JSONObject) response.get("output");
 				int nowPrice = Integer.parseInt((String) body.get("stck_prpr"));
 				double priceRate = Double.parseDouble((String) body.get("prdy_ctrt"));
@@ -230,6 +269,12 @@ public class Stock {
 
 	}// stock
 	
+	/**
+	 * 주식 시세 정보 호출
+	 * 
+	 * @param 시세를 검색할 주식 종목코드
+	 * @return 검색한 주식의 현재시세 관련 정보
+	 */
 	public static String stockPrice(String cd) {
 
 		// 국내 주식 시세 조회
@@ -253,7 +298,17 @@ public class Stock {
 		}
         return result;
     }
-    public static String httpGetConnection(String UrlData, String ParamData,String TrId) throws IOException {
+	
+	/**
+	 * 주식 시세 api 호출
+	 * 
+	 * @param UrlData	api 주소
+	 * @param ParamData	메뉴코드
+	 * @param TrId		종목코드
+	 * @return 검색한 주식의 현재시세 관련 정보
+	 */
+    @SuppressWarnings("finally")
+	public static String httpGetConnection(String UrlData, String ParamData,String TrId) throws IOException {
         String totalUrl = "";
         totalUrl = UrlData.trim().toString();
 
@@ -298,6 +353,9 @@ public class Stock {
       }
     }
     
+    /**
+	 * 주식 시세 api 접근 토큰 발급
+	 */
     public static void serverToken() {
     	
         try {
@@ -344,7 +402,11 @@ public class Stock {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+	 * 토큰 유효성 검사
+	 * @return 토큰 만료 여부
+	 */
 	private static boolean invalidToken() {
 		LocalDate date = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -357,7 +419,10 @@ public class Stock {
 	}
 		return true;
 	}
-
+	
+	/**
+	 * 토큰 정보 파일 쓰기
+	 */
 	public static void setToken() {
 		
 		try {
@@ -378,6 +443,9 @@ public class Stock {
 		
 	}
 	
+	/**
+	 * 토큰 정보 파일 읽기
+	 */
 	public static void getToken() {
 		
 		try {
