@@ -153,16 +153,17 @@ public class FindAcc {
 						findID = (String) ((JSONObject) obj).get("id");
 						checkPhone = (String) ((JSONObject) obj).get("phone");
 						checkName = (String) ((JSONObject) obj).get("name");
+						if (user.getName().equals(checkName) && user.getPhone().equals(checkPhone)) {
+							System.out.printf("\n%22s아이디는 %s입니다", " ", findID);
+							break;
+						}else {
+							//System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
+							MongleVisual.wrongInput();
+							findMyId();
+						}
 					}
 				}
-				if (user.getName().equals(checkName) && user.getPhone().equals(checkPhone)) {
-					System.out.printf("\n%22s아이디: %s", " ", findID);
-					break;
-				}else {
-					//System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
-					MongleVisual.wrongInput();
-					findMyId();
-				}
+				System.out.printf("\n%22s아이디는 %s입니다", " ", findID);
 			} while (true);
 		} catch (Exception e) {
 			System.out.println("FindAcc.findAcc");
