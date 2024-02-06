@@ -27,7 +27,7 @@ public class InvestmentView {
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 
-			System.out.printf("%22s사용자 입력 : ", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 			String num = scan.nextLine();
 
 			if (num.equals("1")) { // 주식
@@ -70,7 +70,7 @@ public class InvestmentView {
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.println();
-			System.out.printf("%22s사용자 입력 : ", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 			String num4 = scan.nextLine();
 
 			if (num4.equals("1")) {
@@ -78,7 +78,7 @@ public class InvestmentView {
 				System.out.printf("%22s판매하고 싶은 상품 번호를 입력해 주세요 :", " ");
 				int removeN = scan.nextInt();
 				System.out.printf("%22s정말로 판매 하시겠습니까?(y/n)\n", " ");
-				System.out.printf("%22s사용자 입력 : ", " ");
+				System.out.printf("%22s선택(번호): ", " ");
 				while (loop2) {
 					String num = scan.nextLine();
 					if (num.equals("y")) {
@@ -116,7 +116,7 @@ public class InvestmentView {
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.println();
-			System.out.printf("%22s사용자 입력 : ", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 			String num4 = scan.nextLine();
 
 			if (num4.equals("1")) {
@@ -124,7 +124,7 @@ public class InvestmentView {
 				System.out.printf("%22s판매하고 싶은 상품 번호를 입력해 주세요 :", " ");
 				int removeN = scan.nextInt();
 				System.out.printf("%22s정말로 판매 하시겠습니까?(y/n)\n", " ");
-				System.out.printf("%22s사용자 입력 : ", " ");
+				System.out.printf("%22s사용자 번호 : ", " ");
 				while (loop) {
 					String num = scan.nextLine();
 					if (num.equals("y")) {
@@ -172,7 +172,7 @@ public class InvestmentView {
 				System.out.printf("%22s판매하고 싶은 상품 번호를 입력해 주세요 :", " ");
 				int removeN = scan.nextInt();
 				System.out.printf("%22s정말로 판매 하시겠습니까?(y/n)\n", " ");
-				System.out.printf("%22s사용자 입력 : ", " ");
+				System.out.printf("%22s선택(번호): ", " ");
 				while (loop) {
 					String num = scan.nextLine();
 					if (num.equals("y")) {
@@ -214,7 +214,7 @@ public class InvestmentView {
 			System.out.printf("%22s2. 일괄매도\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			System.out.println();
-			System.out.printf("%22s사용자 입력 : ", " ");
+			System.out.printf("%22s선택(번호): ", " ");
 			String num2 = scan.nextLine();
 
 			if (num2.equals("1")) { //// 매수
