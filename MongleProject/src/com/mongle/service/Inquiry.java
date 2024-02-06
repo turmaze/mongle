@@ -617,7 +617,7 @@ public class Inquiry {
 			writer.flush(); // 버퍼 비우기
 
 			writer.close();
-			System.out.printf("\n%22s저장완료\n\n", " "); // testcode
+			//System.out.printf("\n%22s저장완료\n\n", " "); // testcode
 
 		} catch (Exception e) {
 			System.out.println("DataBase.dataSave Error");
