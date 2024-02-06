@@ -73,6 +73,7 @@ public class Inquiry {
 						switch (input = scanner.nextLine()) {
 						case "1":
 							inquiry.showTxt(annList);
+							MongleVisual.pusher();
 
 							break;
 						case "2":
