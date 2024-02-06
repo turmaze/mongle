@@ -10,6 +10,9 @@ import com.mongle.resource.History;
 import com.mongle.resource.Investment;
 import com.mongle.view.MongleVisual;
 
+/***
+ * 투자관리 서비스 클래스
+ */
 public class InvestmentManagementService {
 	
 	
