@@ -173,6 +173,7 @@ public class InvestmentManagementService {
 						System.out.printf("%22s존재하지 않는 상품번호 입니다.\n", " ");
 						System.out.printf("%22s다시 입력해 주세요.", " ");
 						System.out.println();
+						break;
 					}else {
 					System.out.printf("%22s수량 입력 : ", " ");
 					int num = scan.nextInt();
@@ -203,15 +204,15 @@ public class InvestmentManagementService {
 					if(removeN>j) {
 						System.out.printf("%22s존재하지 않는 상품번호 입니다. \n", " ");
 						System.out.printf("%22s다시 입력해 주세요.", " ");
-						System.out.println();
+						System.out.println();          
 					}else {
 
 					System.out.printf("%22s정말로 매도하시겠습니까?\n", " ");
 					System.out.printf("%22s선택(y/n) : ", " ");
 					String answer = scan.nextLine();;
 						if (answer.equals("y")) {
-							if(transaction(removeN, "주식")==1) {
-								break;
+							if(transaction(removeN, "주식")==1) { // 0. 이전으로
+								return 0;
 							}else {
 
 							remove(Investment.list, removeN, "주식");
@@ -228,7 +229,7 @@ public class InvestmentManagementService {
 							
 						} else {
 							MongleVisual.wrongInput();
-							loop3=true;
+							//loop3=true;
 						}
 					}
 				} 
@@ -236,7 +237,7 @@ public class InvestmentManagementService {
 					return 0;
 			}else {
 					MongleVisual.wrongInput();
-					return 1;
+					break;
 			}
 			}
 		}
@@ -544,7 +545,7 @@ public class InvestmentManagementService {
 
 						System.out.printf("%22s매수가 완료되었습니다.\n", " ");
 
-						
+						    
 						loop = false;
 					}
 				} else {
