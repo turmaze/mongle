@@ -17,8 +17,6 @@ public class SignOut {
 
 		while (true) {
 
-			MongleVisual.pusher();
-
 			MongleVisual.menuHeader("회원 탈퇴");
 
 			System.out.println();

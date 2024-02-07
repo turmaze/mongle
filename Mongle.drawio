@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-01-25T08:38:11.751Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.21 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="hemKN91BoVF4dN9yNxLo" version="22.1.21" type="device">
+<mxfile host="Electron" modified="2024-02-07T00:18:15.221Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.0.2 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="YnRksEXOQFTG42qA7XWl" version="23.0.2" type="device">
   <diagram id="TyApCWpkgVofk_S0nbqM" name="페이지-1">
-    <mxGraphModel dx="1434" dy="2844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3500" pageHeight="2000" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="2836" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3500" pageHeight="2000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -224,13 +224,13 @@
         <mxCell id="hVk1g4Ngubs0jlIqTiFc-45" value="2. 주식" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e0e0e0;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;align=center;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="1534" y="156" width="160" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="hVk1g4Ngubs0jlIqTiFc-46" value="1. 국내 주식 추천&#xa;&#xa;2. 해외 주식 추천&#xa;&#xa;3. 구매&#xa;&#xa;0. 이전으로" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="hVk1g4Ngubs0jlIqTiFc-45" vertex="1">
+        <mxCell id="hVk1g4Ngubs0jlIqTiFc-46" value="1. 종목명 검색&#xa;&#xa;2. 코드명 검색&#xa;&#xa;0. 이전으로" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="hVk1g4Ngubs0jlIqTiFc-45" vertex="1">
           <mxGeometry y="26" width="160" height="104" as="geometry" />
         </mxCell>
         <mxCell id="hVk1g4Ngubs0jlIqTiFc-47" value="3. 펀드" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e0e0e0;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;align=center;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="1534" y="296" width="160" height="126" as="geometry" />
         </mxCell>
-        <mxCell id="hVk1g4Ngubs0jlIqTiFc-48" value="1. 펀드 상품 목록&#xa;&#xa;2. 가입&#xa;&#xa;0. 이전으로" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="hVk1g4Ngubs0jlIqTiFc-47" vertex="1">
+        <mxCell id="hVk1g4Ngubs0jlIqTiFc-48" value="1. 펀드 상품 검색&#xa;&#xa;0. 이전으로" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="hVk1g4Ngubs0jlIqTiFc-47" vertex="1">
           <mxGeometry y="26" width="160" height="100" as="geometry" />
         </mxCell>
         <mxCell id="hVk1g4Ngubs0jlIqTiFc-49" value="4. 대출" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e0e0e0;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;align=center;fontSize=14;" parent="1" vertex="1">

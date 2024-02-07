@@ -26,9 +26,9 @@ public class InvestmentManagementService {
 		System.out.println();
 		System.out.printf("%22s상세 보기\n", " ");
 		System.out.println();
-		printTableEx(Investment.list, "환전");
 		System.out.println();
 		while (loop) {
+			printTableEx(Investment.list, "환전");
 			System.out.println();
 			System.out.printf("%22s옵션 : \n", " ");
 			System.out.printf("%22s1. 판매 \n", " ");
@@ -40,6 +40,7 @@ public class InvestmentManagementService {
 				// 삭제 후 상세 불러오기
 				System.out.printf("%22s판매하고 싶은 외화 종류(번호) 입력 :", " ");
 				int removeN = scan.nextInt();
+				scan.nextLine();
 				System.out.printf("%22s정말로 판매 하시겠습니까?\n", " ");
 				System.out.printf("%22s선택(y/n) : ", " ");
 				while (loop) {
@@ -47,23 +48,32 @@ public class InvestmentManagementService {
 					if (num.equals("y")) {
 
 						transaction(removeN, "환전");
-						break;
+						remove(Investment.list, removeN, "환전");
+						System.out.println();
+						System.out.printf("%22s상세보기\n ", " ");
+						System.out.println();
+						printTableEx(Investment.list, "환전");
+						System.out.println();
+						MongleVisual.stopper();
+						
+						return 0;
 					} else if (num.equals("n")) {
 						MongleVisual.menuMove("이전 화면");
 						break;
+					} else {
+						MongleVisual.wrongInput();
+						break;
+				
 					}
+				
+				
+				
 				}
-				remove(Investment.list, removeN, "환전");
-				System.out.println();
-				System.out.printf("%22s상세보기\n ", " ");
-				System.out.println();
-				printTableEx(Investment.list, "환전");
-				System.out.println();
-				MongleVisual.stopper();
-
-				break;
+				
 			} else if (num4.equals("0")) {
 				return 0;
+			}else {
+				MongleVisual.wrongInput();
 			}
 		}
 		return 0;
@@ -79,10 +89,10 @@ public class InvestmentManagementService {
 		System.out.println();
 		System.out.printf("%22s상세 보기\n", " ");
 		System.out.println();
-		printTableGold(Investment.list, "금");
 
 		while (loop) {
 			
+			printTableGold(Investment.list, "금");
 			System.out.println();
 			System.out.printf("%22s옵션 : \n", " ");
 			System.out.printf("%22s1. 판매 \n", " ");
@@ -94,31 +104,39 @@ public class InvestmentManagementService {
 				// 삭제 후 상세 불러오기
 				System.out.printf("%22s판매할 상품 번호 입력 :", " ");
 				int removeN = scan.nextInt();
+				scan.nextLine();
 				System.out.printf("%22s정말로 판매 하시겠습니까?\n", " ");
 				System.out.printf("%22s선택(y/n): ", " ");
+				
 				while (loop) {
 					String num = scan.nextLine();
 					if (num.equals("y")) {
 
 						transaction(removeN, "금");
-						break;
+						remove(Investment.list, removeN, "금");
+						System.out.println();
+						System.out.printf("%22s상세보기\n ", " ");
+						System.out.println();
+						printTableGold(Investment.list, "금");
+						System.out.println();
+						MongleVisual.stopper();
+						return 0;
+						
 					} else if (num.equals("n")) {
 						MongleVisual.menuMove("이전 화면");
 						break;
+					} else {
+						MongleVisual.wrongInput();
+						break;
 					}
+					
 				}
-				remove(Investment.list, removeN, "금");
-				System.out.println();
-				System.out.printf("%22s상세보기\n ", " ");
-				System.out.println();
-				printTableGold(Investment.list, "금");
-				System.out.println();
-				MongleVisual.stopper();
-
-				break;
+				
 			} else if (num3.equals("0")) {
 				return 0;
 
+			}else {
+				MongleVisual.wrongInput();
 			}
 		}
 		return 0;
@@ -135,6 +153,8 @@ public class InvestmentManagementService {
 		System.out.println();
 		System.out.printf("%22s상세 보기\n", " ");
 		System.out.println();
+		while(loop) {
+			
 		printTableStock(Investment.list, "주식");
 
 			System.out.println();
@@ -150,9 +170,10 @@ public class InvestmentManagementService {
 
 				System.out.printf("%22s매수할 상품번호 선택: ", " ");
 				int plus = scan.nextInt();
-
+				scan.nextLine();
 				System.out.printf("%22s수량 입력 : ", " ");
 				int num = scan.nextInt();
+				scan.nextLine();
 
 				int total = stockcare(Investment.list, plus, "주식", num); // 합쳐진 수..
 				transactionStock(plus, "주식", num); // 계좌 골라서 넣기..
@@ -171,6 +192,7 @@ public class InvestmentManagementService {
 
 				System.out.printf("%22s일괄매도할 상품번호 선택 :", " ");
 				int removeN = scan.nextInt();
+				scan.nextLine();
 
 				System.out.printf("%22s정말로 매도하시겠습니까?\n", " ");
 				System.out.printf("%22s선택(y/n) : ", " ");
@@ -187,14 +209,23 @@ public class InvestmentManagementService {
 						System.out.println();
 						MongleVisual.stopper();
 						return 0;
+						
 					} else if (answer.equals("n")) {
 						MongleVisual.menuMove("이전 화면");
+						break;
+						
+					} else {
+						MongleVisual.wrongInput();
 						break;
 					}
 				}
 			} else if (num2.equals("0")) {
 				return 0;
+			} else {
+				MongleVisual.wrongInput();
+				break;
 			}
+		}
 		}
 		return 0;
 	}

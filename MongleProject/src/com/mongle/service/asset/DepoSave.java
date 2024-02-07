@@ -94,6 +94,7 @@ public class DepoSave {
 		boolean loop = true;
 
 		while (loop) {
+			MongleVisual.menuHeader("계좌 개설");
 			table = searchDepoSave(table); // 예적금 검색
 
 			System.out.println();
@@ -111,6 +112,7 @@ public class DepoSave {
 								table.get(Integer.parseInt(sel) - 1).getTitle());
 						;
 						MongleVisual.menuMove("가입 화면");
+						MongleVisual.menuHeader("예적금 가입");
 						System.out.printf("%22s%s / %s\n", " ", acc.bankDepo, acc.titleDepo);
 						signUp(acc.bankDepo, acc.titleDepo);
 						DataBase.dataSave();
@@ -145,11 +147,10 @@ public class DepoSave {
 		Scanner scan = new Scanner(System.in);
 		String apiDepo = "https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=e06ef138c067a4ff1a42504d0fefda36&topFinGrpNo=020000&pageNo=1";
 		String apiSave = "https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=efebe52a92c17a5bcee4c231f829a349&topFinGrpNo=020000&pageNo=1";
-
-		System.out.println();
+		
 		System.out.printf("%22s검색(은행 이름) : ", " ");
 		String name = scan.nextLine();
-
+	
 		String header = "+----+-----------------+----------------------------------+---------+-----------+----------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|번호|      금융사     |           상품명           \t  |   기간  | 기본금리 | 최고금리 |\n");

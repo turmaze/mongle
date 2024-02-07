@@ -14,7 +14,6 @@ public class StartPage {
 
 		while (loop) {
 			
-			//MongleVisual.pusher(); //여기 말고 각 페이지 끝날때 푸셔 넣어주세요
 			String tit = """
                             _____                 _      
                            |     | ___  ___  ___ | | ___ 
@@ -22,7 +21,7 @@ public class StartPage {
                            |_|_|_||___||_|_||_  ||_||___|
                                             |___|        
 			""";
-	System.out.println(tit);
+			System.out.println(tit);
 			MongleVisual.menuHeader("시작화면");
 			System.out.printf("\n%22s1. 로그인", " ");
 			System.out.printf("\n%22s2. 회원가입", " ");

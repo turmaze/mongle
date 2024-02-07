@@ -21,8 +21,6 @@ public class CreditScore {
 
 		while (loop) {
 
-			MongleVisual.pusher();
-
 			HashMap<String, Object> userData = new HashMap<String, Object>();
 			for (int i = 0; i < DataBase.getPrivateUser().size(); i++) {
 

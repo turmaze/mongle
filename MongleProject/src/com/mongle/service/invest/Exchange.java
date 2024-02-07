@@ -201,6 +201,7 @@ public class Exchange {
 					return 0;
 				} else {
 					MongleVisual.wrongInput();
+					index = -1;
 					continue;
 				}
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");

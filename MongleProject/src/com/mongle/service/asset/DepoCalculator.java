@@ -8,6 +8,7 @@ import com.mongle.service.invest.InfoProduct;
 import com.mongle.view.MongleVisual;
 import com.mongle.service.AssetService;
 import com.mongle.service.asset.DepoSave;
+
 /**
  * 이자계산 클래스
  */
@@ -15,8 +16,10 @@ public class DepoCalculator {
 	private static String bankDepo;
 	private static String titleDepo;
 	private static double rate;
+
 	/**
 	 * 상품별 이자 계산해주는 메서드
+	 * 
 	 * @param bank  은행명
 	 * @param title 상품명
 	 * @param rate  이자율
@@ -30,7 +33,8 @@ public class DepoCalculator {
 
 	/**
 	 * APi연동 예적금 상품 검색 메서드
-	 * @return  이자계산 기업명 + 상품명 + 기본금리 
+	 * 
+	 * @return 이자계산 기업명 + 상품명 + 기본금리
 	 */
 	public static int depoSaveService() {
 		Scanner scan = new Scanner(System.in);
@@ -38,6 +42,7 @@ public class DepoCalculator {
 		boolean loop = true;
 
 		while (loop) {
+			MongleVisual.menuHeader("이자계산기");
 			table = DepoSave.searchDepoSave(table); // 예적금 검색
 
 			System.out.println();
@@ -55,13 +60,12 @@ public class DepoCalculator {
 								table.get(Integer.parseInt(sel) - 1).getRate());
 						;
 						MongleVisual.menuMove("이자 계산 화면");
+						MongleVisual.menuHeader("이자계산기");
 						System.out.printf("%22s%s / %s / 금리: %.1f\n", " ", acc.bankDepo, acc.titleDepo, acc.rate);
 						cal(acc.bankDepo, acc.titleDepo, acc.rate);
-						
-						
-						
+						MongleVisual.menuMove("이전 화면");
+						return 0;
 					} else if (sel.equals("")) {
-
 						break;
 					} else if (sel.equals("9")) {
 						MongleVisual.menuMove("홈 화면");
@@ -79,6 +83,7 @@ public class DepoCalculator {
 		} // while
 		return 0;
 	}
+
 	/**
 	 * 
 	 * @param bankDepo2  은행명
@@ -99,13 +104,12 @@ public class DepoCalculator {
 
 		int mat = period * maturit;
 		int result = 0;
-	
+
 		result = (int) (mat * (rate2 / 100));
 		System.out.println();
 		System.out.printf("%22s매달 %,d만원 %d개월 입금 시 이자: %,d원\n", " ", maturit, period, result);
 		System.out.printf("%22s총 수령받으실 금액: %,d원\n", " ", mat + result);
 
 	}
-
 
 }// class

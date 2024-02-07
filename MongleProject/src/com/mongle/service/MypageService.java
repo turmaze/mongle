@@ -24,7 +24,6 @@ public class MypageService {
 		boolean loop = true;
 
 		while (loop) {
-			MongleVisual.pusher();
 			int r = -1;
 			MongleVisual.menuHeader("MyPage");
 			System.out.printf("%22s1. 결제용 QRcode\n", " ");

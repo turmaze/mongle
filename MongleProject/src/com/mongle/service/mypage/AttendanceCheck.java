@@ -48,8 +48,6 @@ public class AttendanceCheck {
 
 		while (true) {
 
-			MongleVisual.pusher();
-
 			MongleVisual.menuHeader("출석 체크");
 
 			System.out.println();
