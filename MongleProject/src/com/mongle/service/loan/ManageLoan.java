@@ -172,9 +172,9 @@ public class ManageLoan {
 
 		while (true) {
 
-			String header = "+---------------+---------------+--------+---------+--------+";
+			String header = "+---------------+---------------+--------+-----------+----------+";
 			System.out.printf("%s\n", header);
-			System.out.printf("|      대출명    \t|       원금   \t|  이자율  |  대출기간 | 남은기간  |\n", " ");
+			System.out.printf("|    대출명  \t|     원금   \t| 이자율 | 대출기간 | 남은기간 |\n", " ");
 			System.out.printf("%s\n", header);
 			printLoanTable(loanlist);
 			System.out.printf("%s\n", header);
@@ -238,16 +238,16 @@ public class ManageLoan {
 	public static int calculrator() {
 		Scanner scan = new Scanner(System.in);
 		while (true) {
-			String header = "+---------------+---------------+--------+---------+--------+";
+			String header = "+---------------+---------------+--------+-----------+----------+";
 			System.out.printf("%s\n", header);
-			System.out.printf("|      대출명    \t|       원금   \t|  이자율  |  대출기간 | 남은기간  |\n", " ");
+			System.out.printf("|    대출명  \t|     원금   \t| 이자율 | 대출기간 | 남은기간 |\n", " ");
 			System.out.printf("%s\n", header);
 			printLoanTable(loanlist);
 			System.out.printf("%s\n", header);
 			System.out.println();
-			System.out.printf("%22s 첫상환 후 3개월 이내 시 수수료 1%% 적용됩니다\n ", " ");
-			System.out.printf("%21s 첫상환 후 6개월 이내 시 수수료 0.5%% 적용됩니다\n ", " ");
-			System.out.printf("%21s 첫상환 후 6개월 이상 시 수수료 가 없습니다\n ", " ");
+			System.out.printf("%22s첫상환 후 3개월 이내 시 수수료 1%% 적용됩니다\n ", " ");
+			System.out.printf("%21s첫상환 후 6개월 이내 시 수수료 0.5%% 적용됩니다\n ", " ");
+			System.out.printf("%21s첫상환 후 6개월 이상 시 수수료 가 없습니다\n ", " ");
 			System.out.println();
 			int a = loanlist.get(0).getloanPeriod();
 			int b = loanlist.get(0).getrPeriod();
@@ -256,14 +256,14 @@ public class ManageLoan {
 			int result = a - b;
 
 			if (result <= 3) {
-				System.out.printf("%22s %s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
+				System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
 						result, c / 100);
 
 			} else if (result > 3 && result <= 6) {
-				System.out.printf("%22s %s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
+				System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
 						result, (c / 100) / 2);
 			} else {
-				System.out.printf("%22s %s을 6개월 이상 상환 하셔서 수수료가 없습니다 ! \n", " ", loanlist.get(0).getloanName());
+				System.out.printf("%22s%s을 6개월 이상 상환 하셔서 수수료가 없습니다 ! \n", " ", loanlist.get(0).getloanName());
 			}
 			System.out.println();
 			System.out.printf("%22s0. 이전으로", " ");
