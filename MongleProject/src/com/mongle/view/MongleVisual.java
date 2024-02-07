@@ -57,6 +57,9 @@ public class MongleVisual {
 
 	public static void menuHeader(String titleName) {
 		// 메뉴 헤더 화면
+		if (!titleName.equals("시작화면")) {
+			pusher();
+		}
 		System.out.printf("%22s╔═════════════════════════════════╗\n", " ");
 		System.out.printf("%40s\n", titleName);
 		System.out.printf("%22s╚═════════════════════════════════╝\n", " ");
