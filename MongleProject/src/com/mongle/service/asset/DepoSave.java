@@ -307,7 +307,8 @@ public class DepoSave {
 				// 가입성공
 				System.out.printf("%22s가입이 완료 되었습니다.\n", " ");
 				openDepo(bankDepo, titleDepo);
-				i -= 6;
+				MongleVisual.menuMove("이전 화면");
+				return;
 
 			} else {
 				// 비밀번호 불일치
@@ -316,8 +317,11 @@ public class DepoSave {
 
 			}
 			
+			
 		}
 		System.out.printf("%22s비밀번호가 총 5회 틀려 이전 화면으로 돌아갑니다.\n", " ");
+		MongleVisual.menuMove("이전 화면");
+		
 		
 	}// Reconfirm
 
