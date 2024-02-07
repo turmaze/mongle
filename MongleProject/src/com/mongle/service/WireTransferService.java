@@ -1,9 +1,11 @@
 package com.mongle.service;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.mongle.resource.BankAccount;
@@ -88,7 +90,7 @@ public class WireTransferService {
 				System.out.printf("%22s정산 금액 입력: ", " ");
 				amount = scanner.nextInt();
 				if (amount < 0) {
-					System.out.printf("%22s잘못된 입력입니다. 다시 입력해주세요.", " ");
+					System.out.printf("%22s입력오류.재입력하세요.", " ");
 				} else {
 					loop = false;
 				}
@@ -102,7 +104,7 @@ public class WireTransferService {
 		System.out.println();
 
 		// 정산하기(더치페이) 인원 설정 로직 구현
-		System.out.printf("%22s정산 요청 인원 설정:", " ");
+		System.out.printf("%22s정산 요청할 인원 설정:", " ");
 		int numberOfPeople = 0;
 		boolean validInput = false;
 
@@ -110,16 +112,18 @@ public class WireTransferService {
 			try {
 				numberOfPeople = scanner.nextInt();
 				scanner.nextLine();
-				if (numberOfPeople < 0) {
-					System.out.printf("%22s잘못된 입력입니다. 다시 입력해주세요.", " ");
+				if (numberOfPeople <= 0) {
+					System.out.printf("%22s입력오류. 재입력하세요", " ");
 				} else {
 					validInput = true;
 				}
 			} catch (InputMismatchException e) {
-				System.out.printf("%22s정수로 입력해주세요.", " ");
+				System.out.printf("%22s정수로 입력하세요", " ");
 				scanner.nextLine();
 			}
 		}
+		System.out.printf("%22s", " ");
+		scanner.nextLine();
 
 		// [정산금액/정산요청인원+1] 원을 정산요청할까요?
 		System.out.printf("%22s%,d원씩 %d명에게 정산요청할까요? (y/n)", " ", (amount / (numberOfPeople + 1)), numberOfPeople);
@@ -129,7 +133,7 @@ public class WireTransferService {
 			System.out.println("정산요청 취소");
 			return 0;
 		} else if (!confirm.equalsIgnoreCase("y")) {
-			System.out.println("잘못된 입력입니다. 기본 설정으로 진행합니다.");
+			System.out.println("입력오류. 기본 설정으로 진행합니다.");
 		}
 
 		double amountPerPerson = amount / (numberOfPeople + 1);
@@ -138,6 +142,24 @@ public class WireTransferService {
 		System.out.printf("%22s정산금액: %,d원\n", "", roundedAmountPerPerson);
 		System.out.println();
 
+		System.out.printf("%22s정산 요청 대상자의 전화번호(- 포함X):\n", " ");
+		Set<String> phoneNumbers = new HashSet<>(); // 전화번호 중복방지
+
+		for (int i = 0; i < numberOfPeople; i++) { // 정산 요청할 인원 설정만큼 입력 반복
+			while (true) {
+				System.out.printf("%22s010", " ");
+				String phoneNumber = scanner.nextLine().trim();
+				if (phoneNumber.length() != 8 || !phoneNumber.matches("[0-9]+")) {
+					System.out.printf("%22s입력오류(010으로 시작하는 8자의 숫자).\n", " ");
+				} else if (!phoneNumbers.add(phoneNumber)) { // 전화번호 중복방지
+					System.out.printf("%22s중복입력.다른 번호를 입력해주세요.\n", " ");
+				} else {
+					break;
+				}
+			}
+		}
+
+		System.out.println();
 		// 정산 결과 공유방법 선택 안내
 		System.out.printf("%22s정산 결과 공유방법 선택\n", " ");
 		System.out.println();
@@ -158,7 +180,7 @@ public class WireTransferService {
 			break;
 
 		default:
-			System.out.println("잘못된 입력입니다. 기본 설정으로 메시지를 공유합니다.");
+			System.out.println("잘못된 입력입니다. mongle로 공유합니다.");
 			shareMessage(numberOfPeople);
 		}
 		System.out.printf("%22s.\n", " ");
@@ -203,53 +225,59 @@ public class WireTransferService {
 
 		MongleVisual.menuHeader("예약 송금");
 		System.out.println();
-		System.out.printf("%22s예약희망 월 입력: ", " ");
+		System.out.printf("%22s2024년 내 예약 가능 ", " ");
+		System.out.println();
+		System.out.printf("%22s예약희망 월(月) 입력: ", " ");
 
 		int year = LocalDate.now().getYear();
 		int month = 0;
 		int day = 0;
-		int hour = 0; // hour 변수 선언 및 초기화
-		int minute = 0; // minute 변수 선언 및 초기화
+		int hour = 0; 
+		int minute = 0; 
 		boolean loop = true;
 
 		while (loop) {
 			try {
 				month = scanner.nextInt();
+
 				if (month < 1 || month > 12) {
-					System.out.printf("%22s유효한 월(1 ~ 12)을 입력하세요:", " ");
+					System.out.printf("%22s유효한 월(1月 ~ 12月) 입력:", " ");
 					continue;
 				}
-				System.out.printf("%22s예약희망 일 입력: ", " ");
+				System.out.println();
+				System.out.printf("%22s예약희망 일(日) 입력: ", " ");
 				day = scanner.nextInt();
 
 				LocalDate currentDate = LocalDate.now();
 				LocalDate userDate = LocalDate.of(year, month, day);
+				System.out.println();
 
 				if (userDate.isBefore(currentDate)) {
-					System.out.printf("%22s현재 날짜 이후의 날짜를 입력하세요:", " ");
+					System.out.printf("%22s예약희망 월(月) 입력 오류", " ");
+					System.out.printf("%22s예약 희망 월(月) 재입력하세요:", " ");
 					continue;
 				}
-
-				if (day < 1 || day > userDate.lengthOfMonth()) {
-					System.out.printf("%22s유효한 날짜를 입력하세요:", " ");
-					continue;
-				}
-
 				System.out.println();
+				if (day < 1 || day > userDate.lengthOfMonth()) {
+					System.out.printf("%22s예약희망 일(日) 입력 오류", " ");
+					System.out.printf("%22s유효한 일(日)재입력하세요:\n ", " ");
+					continue;
+				}
+
 				loop = true;
 				while (loop) {
 					System.out.printf("%22s시간 입력(예: 01:26): ", " ");
 					String timeInput = scanner.next();
 					String[] timeParts = timeInput.split(":");
 					if (timeParts.length != 2) {
-						System.out.printf("%22s[오류 발생] 올바른 형식으로 시간을 입력하세요 (hh:mm).", " ");
+						System.out.printf("%22s시간입력오류. 시간을 재입력하세요(hh:mm).\n", " ");
 						continue;
 					}
 					hour = Integer.parseInt(timeParts[0]);
 					minute = Integer.parseInt(timeParts[1]);
 
 					if (hour < 0 || hour > 23 || minute < 0 || minute > 59) {
-						System.out.printf("%22s[오류 발생] 올바른 시간을 입력하세요(00:00부터 23:59까지)\n", " ");
+						System.out.printf("%22s시간을 재입력하세요(00:00부터 23:59까지)\n", " ");
 						continue;
 					} else {
 						loop = false;
@@ -259,29 +287,31 @@ public class WireTransferService {
 				System.out.printf("%22s예약 희망 일자: %d월 %d일 %d시 %d분에 예약하시겠습니까? (y/n) ", " ", month, day, hour, minute);
 				String retry = scanner.next();
 				if (retry.equals("y")) {
-					System.out.printf("%22s예약 시간 설정 완료.\n", " ");
+					System.out.printf("%22s예약 시간 설정 완료. 출금계좌 선택창으로 이동합니다.\n", " ");
+					scanner.nextLine();
+					scanner.nextLine();
 				} else if (retry.equals("n")) {
-					System.out.printf("%22s예약 취소되었습니다.", " ");
-					loop = false; // 송금하기 메뉴로 돌아가기 위해 루프 종료
+					System.out.printf("%22s예약 취소", " ");
+					loop = false;
 					return 0;
 				} else {
 					System.out.printf("%22s올바른 선택을 해주세요.\n", " ");
-					loop = false; // 잘못된 입력이지만 계속 진행하지 않음
+					loop = false;
 				}
 			} catch (Exception e) {
-				System.out.printf("%22s잘못된 입력입니다. 다시 입력해주세요: ", " ");
+				System.out.printf("%22s예약희망 일(日) 입력 오류.일(日)재입력하세요:", " ");
 				scanner.nextLine();
 			}
-		}  transaction();
-		return 0;
+		}
 
+		transaction();
+		return 0;
 	}
 
 	public static int transaction() {
 		Scanner scan = new Scanner(System.in);
+		MongleVisual.menuHeader("송금하기");
 
-		MongleVisual.menuHeader("예약송금      출금계좌");
-		
 		System.out.println();
 		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
@@ -328,7 +358,7 @@ public class WireTransferService {
 
 					// 송금 계좌 은행 번호 선택
 					System.out.printf("%22s+---+-----------+\n", " ");
-					System.out.printf("%22s|번호|  은행명      |\n", " ");
+					System.out.printf("%22s|번호|  은행명     |\n", " ");
 					System.out.printf("%22s+---+-----------+\n", " ");
 					System.out.printf("%22s| 1 |   농협     |\n", " ");
 					System.out.printf("%22s| 2 |   기업     |\n", " ");
@@ -356,8 +386,8 @@ public class WireTransferService {
 					System.out.printf("%22s송금 계좌번호 입력( - 포함X): ", " ");
 					String accountNumber = scan.nextLine();
 
-					// 송금 계좌번호가 15자리를 초과하면 재입력
-					if (accountNumber.length() > 15) {
+					// 송금 계좌번호 11~15자리 입력
+					if (accountNumber.length() < 11 || accountNumber.length() > 15) {
 						System.out.printf("%22s송금 계좌번호를 확인 후 다시 입력해주세요.\n", " ");
 						continue;
 					} else {
@@ -379,8 +409,9 @@ public class WireTransferService {
 						History.make(acc.getAccountNumber(), "송금", -money);
 						System.out.println();
 						System.out.printf("%22s송금 완료.\n", " ");
+						System.out.println();
 						System.out.printf("%22s송금 후 잔액 %,d원.\n", " ", rest);
-
+						System.out.println();
 						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 						loop = false;
@@ -410,7 +441,6 @@ public class WireTransferService {
 	 */
 	public static int transaction1() {
 		Scanner scan = new Scanner(System.in);
-
 		MongleVisual.menuHeader("송금하기");
 
 		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
@@ -486,8 +516,8 @@ public class WireTransferService {
 					System.out.printf("%22s송금 계좌번호 입력( - 포함X): ", " ");
 					String accountNumber = scan.nextLine();
 
-					// 송금 계좌번호가 15자리를 초과하면 재입력
-					if (accountNumber.length() > 15) {
+					// 송금 계좌번호 11~15자리 입력
+					if (accountNumber.length() < 11 || accountNumber.length() > 15) {
 						System.out.printf("%22s송금 계좌번호를 확인 후 다시 입력해주세요.\n", " ");
 						continue;
 					} else {
