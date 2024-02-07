@@ -25,10 +25,18 @@ import com.mongle.service.mypage.Point;
 import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 로그인 클래스 
+ */
 public class LogIn {
-	
+	/**
+	 * 로그인 토큰
+	 */
 	public static String primaryKey;
 	
+	/**
+	 * 로그인 메서드
+	 */
 	public static void logIn() {	
 		try {
 			MongleVisual.menuMove("로그인 화면");

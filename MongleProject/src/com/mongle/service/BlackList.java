@@ -143,7 +143,9 @@ public class BlackList {
 		}
 
 	}
-
+	/**
+	 * 강재 탈퇴
+	 */
 	public static void kickUser() {
 		System.out.printf("\n%22s대상 아이디 입력: ", " ");
 		Scanner scan = new Scanner(System.in);

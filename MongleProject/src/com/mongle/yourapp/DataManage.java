@@ -13,7 +13,9 @@ import org.json.simple.parser.JSONParser;
 
 import com.mongle.resource.ResourcePath;
 import com.mongle.view.MongleVisual;
-
+/**
+ * 통계 가져오기
+ */
 public class DataManage {
 	public static void dataManage() {
 		System.out.printf("\n%22s데이터 출력\n", " ");
@@ -44,7 +46,9 @@ public class DataManage {
 		}
 
 	}
-
+	/**
+	 * 모든 
+	 */
 	private static void advanceCalc() {
 		int choice = userNum();
 		System.out.printf("\n%22s1. 기간별 이용자", " ");
