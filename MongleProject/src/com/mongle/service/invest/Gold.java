@@ -76,8 +76,7 @@ public class Gold {
 
 		while (loop) {
 
-			MongleVisual.menuHeader("금 상품");
-
+			
 			table = searchGold(table); // 금상품 검색 메서드
 
 			System.out.println();
