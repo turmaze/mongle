@@ -92,9 +92,9 @@ public class AssetService {
 
 		while (true) {	
 			MongleVisual.menuHeader("계좌 조회");
-			String header =  "+----+-----------------+----------------------------------+---------+-----------+----------+";
+			String header =  "+----+------------------+-----------------------+-----------------------+-----------------+";
 			System.out.printf("%s\n", header);
-			System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n", " ");
+			System.out.printf("|번호|      금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n", " ");
 			System.out.printf("%s\n", header);
 			printAsciiTable(BankAccount.list);
 			System.out.printf("%s\n", header);
@@ -131,7 +131,7 @@ public class AssetService {
 	 */
 	public static void printAsciiTable(ArrayList<BankAccount> data) { 
 		for (int i = 0; i < data.size(); i++) {
-			System.out.printf("|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),
+			System.out.printf("|%-3d |%-12s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getAccountNumber(), data.get(i).getDepositAmount());
 
 		}

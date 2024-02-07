@@ -24,7 +24,7 @@ public class MongleVisual {
 	}
 
 	public static void wrongInput() {
-		pusher();
+		System.out.println();
 		System.out.printf("%22s입력이 올바르지 않습니다.\n\n", " ");
 		stopper();
 	}

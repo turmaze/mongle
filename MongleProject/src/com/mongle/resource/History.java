@@ -137,16 +137,16 @@ public class History {
 		transHistory(history, index);
 
 		while (loop) {
-			System.out.printf("%22s8. 거래 내역 더보기\n", " ");
-			System.out.printf("%22s9. 홈으로\n", " ");
-			System.out.printf("%22s0. 이전으로\n", " ");
 			while (loop) {
+				System.out.printf("%22s8. 거래 내역 더보기\n", " ");
+				System.out.printf("%22s9. 홈으로\n", " ");
+				System.out.printf("%22s0. 이전으로\n", " ");
 				MongleVisual.choiceGuidePrint();
 				String sel = scan.nextLine();
 				try {
 					if (sel.equals("8")) {
-						if (history.size() < 10) {
-							System.out.printf("%22s더이상 불러올 내역이 없습니다.\n", " ");
+						if ((history.size()-index) < 10) {
+							System.out.printf("\n%22s더이상 불러올 내역이 없습니다.\n\n", " ");
 						} else {
 							index += 10;
 							transHistory(history, index);
