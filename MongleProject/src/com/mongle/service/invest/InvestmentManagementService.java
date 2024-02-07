@@ -175,7 +175,9 @@ public class InvestmentManagementService {
 					scan.nextLine();
 
 					int total = stockcare(Investment.list, plus, "주식", num); // 합쳐진 수..
-					transactionStock(plus, "주식", num); // 계좌 골라서 넣기..
+					if(transactionStock(plus, "주식", num)==0) {
+						break;// 계좌 골라서 넣기..
+					}else {
 
 					// 매수하고 상세보기 불러오기
 					MongleVisual.menuHeader("보유 주식 상세보기");
@@ -184,7 +186,7 @@ public class InvestmentManagementService {
 					MongleVisual.stopper();
 					return 0;
 
-					}} else if (num2.equals("2")) { // 일괄매도
+					}}} else if (num2.equals("2")) { // 일괄매도
 
 					System.out.printf("%22s일괄매도할 상품번호 선택 :", " ");
 					int removeN = scan.nextInt();
@@ -199,7 +201,9 @@ public class InvestmentManagementService {
 					while (loop2) {
 						String answer = scan.nextLine();
 						if (answer.equals("y")) {
-							transaction(removeN, "주식");
+							if(transaction(removeN, "주식")==1) {
+								break;
+							}else {
 
 							remove(Investment.list, removeN, "주식");
 							MongleVisual.menuHeader("보유 주식 상세보기");
@@ -207,7 +211,7 @@ public class InvestmentManagementService {
 							System.out.println();
 							MongleVisual.stopper();
 							return 0;
-						} else if (answer.equals("n")) {
+							}} else if (answer.equals("n")) {
 							MongleVisual.menuMove("이전 화면");
 							return 0;
 						} else {
@@ -237,7 +241,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|   구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -290,7 +294,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -412,7 +416,7 @@ public class InvestmentManagementService {
 	 * @param removeN 매수하려는 상품 번호
 	 * @param invest  판매하려는 투자상품
 	 * @param num     매수할 수량
-	 * @return 매수 시장가 * 매수 수량 > 계좌에서 빠질 값
+	 * @return 매수 구매가 * 매수 수량 > 계좌에서 빠질 값
 	 */
 	public static int stockmoney(ArrayList<Investment> data, int removeN, String invest, int num) {
 		int j = 0;

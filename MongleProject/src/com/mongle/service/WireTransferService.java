@@ -88,17 +88,17 @@ public class WireTransferService {
 		while (loop) {
 			try {
 				System.out.printf("%22s정산 금액 입력: ", " ");
-				amount = scanner.nextInt();
-				if (amount < 0) {
+				String input = scanner.nextLine();
+				if (Integer.parseInt(input) < 0) {
 					System.out.printf("%22s입력오류.재입력하세요.", " ");
 				} else {
+					amount = Integer.parseInt(input);
 					loop = false;
 				}
-			} catch (Exception e) {
-				e.getStackTrace();
+			} catch (NumberFormatException e) {
+				MongleVisual.wrongInput();
 			}
 		}
-
 		// 정산하기(더치페이)금액 설정 로직
 		System.out.printf("%22s정산 금액이 %d원으로 설정되었습니다.\n", " ", amount);
 		System.out.println();
@@ -487,20 +487,20 @@ public class WireTransferService {
 							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
 
 					// 송금 계좌 은행 번호 선택
-					System.out.printf("%22s+---+-----------+\n", " ");
-					System.out.printf("%22s|번호|  은행명      |\n", " ");
-					System.out.printf("%22s+---+-----------+\n", " ");
-					System.out.printf("%22s| 1 |   농협     |\n", " ");
-					System.out.printf("%22s| 2 |   기업     |\n", " ");
-					System.out.printf("%22s| 3 |   국민     |\n", " ");
-					System.out.printf("%22s| 4 |   신한     |\n", " ");
-					System.out.printf("%22s| 5 |   우리     |\n", " ");
-					System.out.printf("%22s| 6 |   하나     |\n", " ");
-					System.out.printf("%22s| 7 |   씨티     |\n", " ");
-					System.out.printf("%22s| 8 |   산업     |\n", " ");
-					System.out.printf("%22s| 9 |   수협     |\n", " ");
-					System.out.printf("%22s|10 |   카카오    |\n", " ");
-					System.out.printf("%22s+---+-----------+\n", " ");
+					System.out.printf("%22s+----+---------------+\n", " ");
+					System.out.printf("%22s|번호|   은행명|\n", " ");
+					System.out.printf("%22s+----+---------------+\n", " ");
+					System.out.printf("%22s| 1  |     농협     |\n", " ");
+					System.out.printf("%22s| 2  |     기업     |\n", " ");
+					System.out.printf("%22s| 3  |     국민     |\n", " ");
+					System.out.printf("%22s| 4  |     신한     |\n", " ");
+					System.out.printf("%22s| 5  |     우리     |\n", " ");
+					System.out.printf("%22s| 6  |     하나     |\n", " ");
+					System.out.printf("%22s| 7  |     씨티     |\n", " ");
+					System.out.printf("%22s| 8  |     산업     |\n", " ");
+					System.out.printf("%22s| 9  |     수협     |\n", " ");
+					System.out.printf("%22s| 10 |     카카오|\n", " ");
+					System.out.printf("%22s+----+---------------+\n", " ");
 					System.out.printf("%22s송금할 은행을 선택하세요(번호 입력): ", " ");
 					int bankChoice = Integer.parseInt(scan.nextLine());
 
