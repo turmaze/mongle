@@ -14,7 +14,6 @@ public class StartPage {
 
 		while (loop) {
 			
-			//MongleVisual.pusher(); //여기 말고 각 페이지 끝날때 푸셔 넣어주세요
 			String tit = """
                             _____                 _      
                            |     | ___  ___  ___ | | ___ 
