@@ -83,6 +83,7 @@ public class LogIn {
 					AttendanceCheck.autoAttendance();
 					MongleVisual.stopper();
 					SafeSend.getSafeMoney();
+					SafeSend.getSafeMoney();
 					MainMenu.mainMenu(checklevel);
 					//DataBase.loadPrivateUser(LogIn.primaryKey);
 					return;

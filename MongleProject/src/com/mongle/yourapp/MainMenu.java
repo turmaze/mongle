@@ -29,6 +29,7 @@ public class MainMenu {
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
 		boolean loop = true;
+		MongleVisual.menuMove("메인메뉴");
 
 		while (loop) {
 			MongleVisual.menuHeader("메인메뉴");

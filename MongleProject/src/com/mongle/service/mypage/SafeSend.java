@@ -255,13 +255,13 @@ public class SafeSend {
 					History.make(BankAccount.list.get(0).getAccountNumber(), trans.get(0).getFromWho(),
 							Integer.parseInt(trans.get(0).getMoney()));
 					System.out.printf("\n%22s완료되었습니다.\n", " ");
-					MongleVisual.menuMove("메인 화면");
+					MongleVisual.stopper();
 					trans.remove(0);
 					save();
 					loop = false;
 				} else if (sel.equals("n")) {
 					System.out.printf("\n%22s송금 거부 처리가 완료되었습니다.\n", " ");
-					MongleVisual.menuMove("메인 화면");
+					MongleVisual.stopper();
 					trans.remove(0);
 					save();
 					loop = false;
