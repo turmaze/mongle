@@ -24,10 +24,10 @@ public class FindAcc {
 	public static void findAcc() {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuMove("계정 찾기");
-		MongleVisual.menuHeader("아이디 / 비밀번호 찾기");
+		MongleVisual.menuHeader("아이디 / 비밀번호 재설정");
 
 		System.out.printf("\n%22s1. 아이디 찾기", " ");
-		System.out.printf("\n%22s2. 비밀번호 찾기", " ");
+		System.out.printf("\n%22s2. 비밀번호 재설정", " ");
 		System.out.printf("\n%22s0. 이전으로", " ");
 
 		System.out.println();
@@ -159,9 +159,25 @@ public class FindAcc {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
 		try {
-			String phone = SignUp.phoneCheck();
+			String phone;
+			do {
+				System.out.printf("\n%22s(예시: 01033448899)"," ");
+				System.out.printf("\n%22s전화번호: "," ");	
+				phone = scan.nextLine();
+				if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
+					phone = phone.replace("-", "");
+					phone = phone.replace(" ", "");
+					phone = phone.replace(".", "");
+				}
+			}while(!Validate.validPhone(phone));
 			user.setPhone(phone);
-			String name = SignUp.nameCheck();
+			String name;
+			do {
+				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
+				System.out.printf("\n%22s이름: "," ");	
+				name = scan.nextLine();
+				}
+				while(!Validate.validName(name));
 			user.setName(name);
 			boolean check = true;
 			JSONParser parser = new JSONParser();
