@@ -22,6 +22,7 @@ import com.mongle.resource.ResourcePath;
 import com.mongle.resource.UserData;
 import com.mongle.service.mypage.AttendanceCheck;
 import com.mongle.service.mypage.Point;
+import com.mongle.service.mypage.SafeSend;
 import com.mongle.view.MongleVisual;
 
 public class LogIn {
@@ -73,6 +74,7 @@ public class LogIn {
 					DataBase.loadPrivateUser(LogIn.primaryKey);
 					AttendanceCheck.autoAttendance();
 					MongleVisual.stopper();
+					SafeSend.getSafeMoney();
 					MainMenu.mainMenu(checklevel);
 					//DataBase.loadPrivateUser(LogIn.primaryKey);
 					return;

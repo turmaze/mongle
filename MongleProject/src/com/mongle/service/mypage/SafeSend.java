@@ -134,6 +134,8 @@ public class SafeSend {
 				state = "미사용";
 			}
 
+			MongleVisual.pusher();
+
 			MongleVisual.menuHeader("안심송금서비스");
 			System.out.println();
 			System.out.printf("%22s현재 설정: %s\n", " ", state);
@@ -235,26 +237,37 @@ public class SafeSend {
 		}
 		load();
 		Scanner scan = new Scanner(System.in);
+		boolean loop = true;
 
-		System.out.printf("%22s거래 기록이 없는 사용자(%s)가 송금을 보냈습니다.\n", " ", trans.get(0).getFromWho());
-		System.out.printf("%22s금액: %,d원\n", " ", Integer.parseInt(trans.get(0).getMoney()));
-		System.out.printf("%22s송금을 받으시겠습니까?(y/n)", " ");
-		String sel = scan.nextLine();
-		sel = sel.toLowerCase();
+		if (trans.get(0).getToWho().equals((String) DataBase.getPrivateUser().get(0).get("name"))) {
+			MongleVisual.menuHeader("송금 알림");
+			System.out.printf("%22s거래 기록이 없는 사용자(%s)가 송금을 보냈습니다.\n", " ", trans.get(0).getFromWho());
+			System.out.printf("%22s금액: %,d원\n", " ", Integer.parseInt(trans.get(0).getMoney()));
+			System.out.println();
+			while (loop) {
+				System.out.printf("%22s송금을 받으시겠습니까?(y/n)", " ");
+				String sel = scan.nextLine();
+				sel = sel.toLowerCase();
 
-		if (sel.equals("y")) {
-			History.make(BankAccount.list.get(0).getAccountNumber(), trans.get(0).getFromWho(),
-					Integer.parseInt(trans.get(0).getMoney()));
-			MongleVisual.successPrint();
-			trans.remove(0);
-			save();
-
-		} else if (sel.equals("n")) {
-			MongleVisual.stopper();
-		} else {
-			MongleVisual.wrongInput();
+				if (sel.equals("y")) {
+					History.make(BankAccount.list.get(0).getAccountNumber(), trans.get(0).getFromWho(),
+							Integer.parseInt(trans.get(0).getMoney()));
+					System.out.printf("\n%22s완료되었습니다.\n", " ");
+					MongleVisual.menuMove("메인 화면");
+					trans.remove(0);
+					save();
+					loop = false;
+				} else if (sel.equals("n")) {
+					System.out.printf("\n%22s송금 거부 처리가 완료되었습니다.\n", " ");
+					MongleVisual.menuMove("메인 화면");
+					trans.remove(0);
+					save();
+					loop = false;
+				} else {
+					MongleVisual.wrongInput();
+				}
+			}
 		}
-
 		return;
 	}
 
