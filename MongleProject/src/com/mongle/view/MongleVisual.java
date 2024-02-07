@@ -10,7 +10,7 @@ public class MongleVisual {
 
 	public static void pusher() {
 		DataBase.dataSave();
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 20; i++) {
 			System.out.println();
 		}
 	}
@@ -20,7 +20,6 @@ public class MongleVisual {
 		DataBase.dataSave();
 		System.out.printf("%22s계속하시려면 엔터를 눌러주세요\n", " ");
 		scan.nextLine();
-		pusher();
 	}
 
 	public static void wrongInput() {
@@ -30,7 +29,7 @@ public class MongleVisual {
 	}
 
 	public static void successPrint() {
-		pusher();
+		System.out.println();
 		System.out.printf("%22s완료되었습니다.\n\n", " ");
 		stopper();
 	}
@@ -43,7 +42,6 @@ public class MongleVisual {
 	public static void menuMove(String menuName) {
 		System.out.printf("\n%22s%s으로 이동합니다.\n\n", " ", menuName);
 		stopper();
-		pusher();
 	}
 
 	private static void menuList(String menu, int menuType) {
@@ -57,7 +55,7 @@ public class MongleVisual {
 
 	public static void menuHeader(String titleName) {
 		// 메뉴 헤더 화면
-		if (!titleName.equals("시작화면")) {
+		if (!titleName.equals("시작화면")&&!titleName.equals("")) {
 			pusher();
 		}
 		System.out.printf("%22s╔═════════════════════════════════╗\n", " ");

@@ -30,8 +30,6 @@ public class Point {
 		while (true) {
 			int r = -1;
 			
-			MongleVisual.pusher();
-			
 			MongleVisual.menuHeader("포 인 트");
 
 			System.out.println();
@@ -76,7 +74,6 @@ public class Point {
 		
 		for (int i=0; i<attenddate.size(); i++) {
 			if (i%5==0) {
-				MongleVisual.pusher();
 			MongleVisual.menuHeader("포인트 내역");
 			}
 			System.out.printf("%22s|%s  | 출석 |   +10point\t|\n", " ", attenddate.get(i));

@@ -134,8 +134,6 @@ public class SafeSend {
 				state = "미사용";
 			}
 
-			MongleVisual.pusher();
-
 			MongleVisual.menuHeader("안심송금서비스");
 			System.out.println();
 			System.out.printf("%22s현재 설정: %s\n", " ", state);

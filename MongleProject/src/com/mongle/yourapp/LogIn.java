@@ -46,7 +46,6 @@ public class LogIn {
 			UserData user = new UserData();
 			Scanner scan = new Scanner(System.in);
 			JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
-			MongleVisual.pusher();
 			MongleVisual.menuHeader("로그인");
 			String checkID = "";
 			String checkPW = "";
