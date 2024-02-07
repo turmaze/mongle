@@ -125,13 +125,21 @@ public class SafeSend {
 
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
+		String state = "";
 
 		while (loop) {
+			if (DataBase.getPrivateUser().get(0).get("safesendsetting").equals("1")) {
+				state = "사용";
+			} else {
+				state = "미사용";
+			}
 
 			MongleVisual.pusher();
 
 			MongleVisual.menuHeader("안심송금서비스");
-
+			System.out.println();
+			System.out.printf("%22s현재 설정: %s\n", " ", state);
+			System.out.println();
 			System.out.printf("%22s1. 사용 설정\n", " ");
 			System.out.printf("%22s2. 미사용 설정\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
