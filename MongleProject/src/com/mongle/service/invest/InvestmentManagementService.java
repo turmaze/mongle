@@ -47,15 +47,17 @@ public class InvestmentManagementService {
 				while (loop) {
 					String num = scan.nextLine();
 					if (num.equals("y")) {
-
-						transaction(removeN, "환전");
+						if(transaction(removeN, "환전")==1) {
+							break;
+						}else {
+						
 						remove(Investment.list, removeN, "환전");
 						MongleVisual.menuHeader("보유 외화 상세보기");
 						printTableEx(Investment.list, "환전");
 						System.out.println();
 						MongleVisual.stopper();
 						return 0;
-					} else if (num.equals("n")) {
+						}} else if (num.equals("n")) {
 						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
@@ -85,6 +87,7 @@ public class InvestmentManagementService {
 		while (loop) {
 
 			int j = printTableGold(Investment.list, "금");
+			//System.out.println("이거여?");
 			System.out.println();
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -106,15 +109,18 @@ public class InvestmentManagementService {
 				while (loop) {
 					String num = scan.nextLine();
 					if (num.equals("y")) {
-
-						transaction(removeN, "금");
+						if(transaction(removeN, "금")==1) {
+							break;
+						}else {
+						//transaction(removeN, "금");
+						
 						remove(Investment.list, removeN, "금");
 						MongleVisual.menuHeader("보유 금 상품 상세보기");
 						printTableGold(Investment.list, "금");
 						System.out.println();
 						MongleVisual.stopper();
 						return 0;
-					} else if (num.equals("n")) {
+						}} else if (num.equals("n")) {
 						MongleVisual.menuMove("이전 화면");
 						return 0;
 					} else {
@@ -145,7 +151,7 @@ public class InvestmentManagementService {
 		MongleVisual.menuHeader("보유 주식 상세보기");
 		while (loop) {
 
-			printTableStock(Investment.list, "주식");
+			int j = printTableStock(Investment.list, "주식");
 
 			System.out.println();
 			System.out.printf("%22s1. 매수\n", " ");
@@ -160,6 +166,10 @@ public class InvestmentManagementService {
 					System.out.printf("%22s매수할 상품번호 선택: ", " ");
 					int plus = scan.nextInt();
 					scan.nextLine();
+					if(plus>j) {
+						System.out.printf("%22s잘못된 입력입니다. 다시 입력해 주세요", " ");
+						System.out.println();
+					}else {
 					System.out.printf("%22s수량 입력 : ", " ");
 					int num = scan.nextInt();
 					scan.nextLine();
@@ -174,11 +184,15 @@ public class InvestmentManagementService {
 					MongleVisual.stopper();
 					return 0;
 
-				} else if (num2.equals("2")) { // 일괄매도
+					}} else if (num2.equals("2")) { // 일괄매도
 
 					System.out.printf("%22s일괄매도할 상품번호 선택 :", " ");
 					int removeN = scan.nextInt();
 					scan.nextLine();
+					if(removeN>j) {
+						System.out.printf("%22s잘못된 입력입니다. 다시 입력해 주세요", " ");
+						System.out.println();
+					}else {
 
 					System.out.printf("%22s정말로 매도하시겠습니까?\n", " ");
 					System.out.printf("%22s선택(y/n) : ", " ");
@@ -201,7 +215,7 @@ public class InvestmentManagementService {
 							break;
 						}
 					}
-				} else if (num2.equals("0")) {
+					}} else if (num2.equals("0")) {
 					return 0;
 				} else {
 					MongleVisual.wrongInput();
@@ -223,7 +237,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|   구매가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|   시장가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -247,7 +261,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+------------------------+--------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|         외화명    \t |    구매가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|         외화명    \t |   주문가격\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 
 		for (int i = 0; i < data.size(); i++) {
@@ -272,11 +286,11 @@ public class InvestmentManagementService {
 	 * @param data   투자 상품 불러오는 리스트
 	 * @param invest 투자 상품 명
 	 */
-	public static void printTableStock(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
+	public static int printTableStock(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   구매가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -289,6 +303,7 @@ public class InvestmentManagementService {
 
 		}
 		System.out.printf("%22s%s\n", " ", header);
+		return j;
 	}
 
 	/***
@@ -426,9 +441,9 @@ public class InvestmentManagementService {
 		boolean loop = true;
 
 		MongleVisual.menuHeader("계좌 선택");
-		String header = "+----+------------------+-----------------------+-----------------------+-----------------+";
+		String header = "+----+----------------------------+----------------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
-		System.out.printf("|번호|      금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n");
+		System.out.printf("|번호|      금융사       \t|           상품명      \t |            계좌번호\t|       잔액      |\n");
 		System.out.printf("%s\n", header);
 		List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
 				.collect(Collectors.toList());
@@ -443,6 +458,7 @@ public class InvestmentManagementService {
 			int totalPrice = totalmoney(Investment.list, removeN, invest);
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
+				//System.out.printf("%22s이전으로 돌아갑니다.", " ");
 				return 1;
 			}
 
@@ -480,7 +496,7 @@ public class InvestmentManagementService {
 		Scanner scan = new Scanner(System.in);
 
 		MongleVisual.menuHeader("계좌 선택");
-		String header = "+----+------------------+-----------------------+-----------------------+-----------------+";
+		String header = "+----+-----------------------+----------------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|번호|      금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n");
 		System.out.printf("%s\n", header);
