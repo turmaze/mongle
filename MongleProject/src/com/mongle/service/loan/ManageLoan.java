@@ -235,7 +235,7 @@ public class ManageLoan {
 			}
 		}
 	}else if(sel.equals("n") || sel.equals("N")) {
-		System.out.printf("%22s이전 화면으로 돌아갑니다.\n", " ");
+		MongleVisual.menuMove("이전 화면");
 		return 0;
 	}else {
 		MongleVisual.wrongInput();
