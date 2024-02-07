@@ -237,7 +237,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|   구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -290,7 +290,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -412,7 +412,7 @@ public class InvestmentManagementService {
 	 * @param removeN 매수하려는 상품 번호
 	 * @param invest  판매하려는 투자상품
 	 * @param num     매수할 수량
-	 * @return 매수 시장가 * 매수 수량 > 계좌에서 빠질 값
+	 * @return 매수 구매가 * 매수 수량 > 계좌에서 빠질 값
 	 */
 	public static int stockmoney(ArrayList<Investment> data, int removeN, String invest, int num) {
 		int j = 0;
