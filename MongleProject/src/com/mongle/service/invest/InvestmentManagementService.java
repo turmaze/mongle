@@ -175,7 +175,9 @@ public class InvestmentManagementService {
 					scan.nextLine();
 
 					int total = stockcare(Investment.list, plus, "주식", num); // 합쳐진 수..
-					transactionStock(plus, "주식", num); // 계좌 골라서 넣기..
+					if(transactionStock(plus, "주식", num)==0) {
+						break;// 계좌 골라서 넣기..
+					}else {
 
 					// 매수하고 상세보기 불러오기
 					MongleVisual.menuHeader("보유 주식 상세보기");
@@ -184,7 +186,7 @@ public class InvestmentManagementService {
 					MongleVisual.stopper();
 					return 0;
 
-					}} else if (num2.equals("2")) { // 일괄매도
+					}}} else if (num2.equals("2")) { // 일괄매도
 
 					System.out.printf("%22s일괄매도할 상품번호 선택 :", " ");
 					int removeN = scan.nextInt();
@@ -199,7 +201,9 @@ public class InvestmentManagementService {
 					while (loop2) {
 						String answer = scan.nextLine();
 						if (answer.equals("y")) {
-							transaction(removeN, "주식");
+							if(transaction(removeN, "주식")==1) {
+								break;
+							}else {
 
 							remove(Investment.list, removeN, "주식");
 							MongleVisual.menuHeader("보유 주식 상세보기");
@@ -207,7 +211,7 @@ public class InvestmentManagementService {
 							System.out.println();
 							MongleVisual.stopper();
 							return 0;
-						} else if (answer.equals("n")) {
+							}} else if (answer.equals("n")) {
 							MongleVisual.menuMove("이전 화면");
 							return 0;
 						} else {
