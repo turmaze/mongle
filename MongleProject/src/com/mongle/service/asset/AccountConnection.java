@@ -18,14 +18,14 @@ public class AccountConnection {
 
 		Scanner sc = new Scanner(System.in);
 		String bd = "";
-		boolean tff=true;
-		while(tff) {
-		MongleVisual.menuHeader("계좌 연동");
-		System.out.printf("%22s기업,국민,농협,신한,우리,하나 은행만 연동이 가능합니다.\n", " ");
-		System.out.printf("%22s은행명: ", " ");
-		bd = sc.nextLine();
-		tff=bankName(bd);
-		
+		boolean tff = true;
+		while (tff) {
+			MongleVisual.menuHeader("계좌 연동");
+			System.out.printf("%22s기업,국민,농협,신한,우리,하나 은행만 연동이 가능합니다.\n", " ");
+			System.out.printf("%22s은행명: ", " ");
+			bd = sc.nextLine();
+			tff = bankName(bd);
+
 		}
 		boolean tf = true;
 		while (tf) {
@@ -68,17 +68,20 @@ public class AccountConnection {
 
 		return 0;
 	}
-
+	/**
+	 * 은행명 유효성 검사
+	 * @param 사용자가 입력한 은행명
+	 * @return 은행명
+	 */
 	public static boolean bankName(String bd) {
-		String [] banklist = {"기업","국민","농협","신한","우리","하나"};
-		for(String str : banklist) {
-			if(str.equals(bd)) {
-				return false;			
+		String[] banklist = { "기업", "국민", "농협", "신한", "우리", "하나" };
+		for (String str : banklist) {
+			if (str.equals(bd)) {
+				return false;
 			}
 		}
 		return true;
-		
-	
+
 	}
 
 	/**
