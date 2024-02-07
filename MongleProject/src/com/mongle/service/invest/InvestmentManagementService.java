@@ -247,7 +247,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+------------------------+--------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|         외화명    \t |   주문가격\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|         외화명    \t |    구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 
 		for (int i = 0; i < data.size(); i++) {
@@ -276,7 +276,7 @@ public class InvestmentManagementService {
 		int j = 0;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
@@ -305,7 +305,7 @@ public class InvestmentManagementService {
 		int printNum = 1;
 		String header = "+----+------------+---------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
-		System.out.printf("%22s|번호|         \t|    상품명 \t|   시장가\t|    수량    |\n", " ");
+		System.out.printf("%22s|번호|         \t|    상품명 \t|   구매가\t|    수량    |\n", " ");
 		System.out.printf("%22s%s\n", " ", header);
 		for (int i = 0; i < data.size(); i++) {
 			if (invest.equals(data.get(i).getRealTitle())) {
