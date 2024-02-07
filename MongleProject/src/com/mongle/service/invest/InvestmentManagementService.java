@@ -458,9 +458,9 @@ public class InvestmentManagementService {
 		boolean loop = true;
 
 		MongleVisual.menuHeader("계좌 선택");
-		String header = "+----+----------------------------+----------------------------+-----------------------+-----------------+";
+		String header = "+----+------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
-		System.out.printf("|번호|      금융사       \t|           상품명      \t |            계좌번호\t|       잔액      |\n");
+		System.out.printf("|번호|      금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n");
 		System.out.printf("%s\n", header);
 		List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
 				.collect(Collectors.toList());
@@ -513,7 +513,7 @@ public class InvestmentManagementService {
 		Scanner scan = new Scanner(System.in);
 
 		MongleVisual.menuHeader("계좌 선택");
-		String header = "+----+-----------------------+----------------------------+-----------------------+-----------------+";
+		String header = "+----+------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|번호|      금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n");
 		System.out.printf("%s\n", header);
