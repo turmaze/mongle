@@ -25,7 +25,8 @@ public class InvestmentManagementService {
 		boolean loop = true;
 		MongleVisual.menuHeader("보유 외화 상세보기");
 		while (loop) {
-			printTableEx(Investment.list, "환전");
+			int j =printTableEx(Investment.list, "환전");
+			//int j = printTableExs(Investment.list, "환전");
 			System.out.println();
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -37,6 +38,10 @@ public class InvestmentManagementService {
 				System.out.printf("%22s판매하고 싶은 외화 종류(번호) 입력 :", " ");
 				int removeN = scan.nextInt();
 				scan.nextLine();
+				if(removeN > j) {
+					System.out.printf("%22s잘못된 입력입니다. 다시 입력해 주세요 : ", " ");
+					System.out.println();
+				}else {
 				System.out.printf("%22s정말로 판매 하시겠습니까?\n", " ");
 				System.out.printf("%22s선택(y/n) : ", " ");
 				while (loop) {
@@ -58,7 +63,7 @@ public class InvestmentManagementService {
 						break;
 					}
 				}
-			} else if (num4.equals("0")) {
+				}} else if (num4.equals("0")) {
 				return 0;
 			} else {
 				MongleVisual.wrongInput();
@@ -79,7 +84,7 @@ public class InvestmentManagementService {
 
 		while (loop) {
 
-			printTableGold(Investment.list, "금");
+			int j = printTableGold(Investment.list, "금");
 			System.out.println();
 			System.out.printf("%22s1. 판매 \n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
@@ -91,6 +96,10 @@ public class InvestmentManagementService {
 				System.out.printf("%22s판매할 상품 번호 입력 :", " ");
 				int removeN = scan.nextInt();
 				scan.nextLine();
+				if(removeN > j) {
+					System.out.printf("%22s잘못된 입력입니다. 다시 입력해 주세요 : ", " ");
+					System.out.println();
+				}else {
 				System.out.printf("%22s정말로 판매 하시겠습니까?\n", " ");
 				System.out.printf("%22s선택(y/n): ", " ");
 
@@ -113,7 +122,7 @@ public class InvestmentManagementService {
 						break;
 					}
 				}
-			} else if (num3.equals("0")) {
+				}} else if (num3.equals("0")) {
 				return 0;
 
 			} else {
@@ -210,7 +219,7 @@ public class InvestmentManagementService {
 	 * @param invest 투자 상품 명
 	 */
 
-	public static void printTableGold(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
+	public static int printTableGold(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+---------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
@@ -225,6 +234,7 @@ public class InvestmentManagementService {
 			}
 		}
 		System.out.printf("%22s%s\n", " ", header);
+		return j;
 	}
 
 	/***
@@ -233,7 +243,7 @@ public class InvestmentManagementService {
 	 * @param data   투자 상품 불러오는 리스트
 	 * @param invest 투자 상품 명
 	 */
-	public static void printTableEx(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
+	public static int printTableEx(ArrayList<Investment> data, String invest) { // 표에 반복해서 출력하는 메서드
 		int j = 0;
 		String header = "+----+------------+------------------------+--------------+------------+";
 		System.out.printf("%22s%s\n", " ", header);
@@ -252,7 +262,9 @@ public class InvestmentManagementService {
 			}
 		}
 		System.out.printf("%22s%s\n", " ", header);
+		return j;
 	}
+	
 
 	/***
 	 * 주식 상품 관리 메서드
