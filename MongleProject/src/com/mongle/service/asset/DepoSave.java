@@ -237,19 +237,28 @@ public class DepoSave {
 	public static void signUp(String bankDepo, String titleDepo) {
 		Scanner sc = new Scanner(System.in);
 		boolean tf = true;
+		while(tf) {
 		System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)", " ");
 		String answer = sc.nextLine();
 
+
+				
 		if (answer.equals("y") || answer.equals("Y")) {
 
 			Reconfirm(); /// 비밀번호 검사
+			tf=false;
 
-		} else {
+		} else if(answer.equals("n") || answer.equals("N")){
+			
 			MongleVisual.menuMove("이전 화면");
+			tf=false;
 
+		}else {
+			MongleVisual.wrongInput();
+			
 		}
-
-	}// DepositSignUp
+	}
+}// DepositSignUp
 
 	/**
 	 * 계좌 생성을 위한 데이터 호출
@@ -306,8 +315,10 @@ public class DepoSave {
 				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.\n", " ", i - 1);
 
 			}
-
+			
 		}
+		System.out.printf("%22s비밀번호가 총 5회 틀려 이전 화면으로 돌아갑니다.\n", " ");
+		
 	}// Reconfirm
 
 }// class

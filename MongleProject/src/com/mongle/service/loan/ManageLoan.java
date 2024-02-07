@@ -216,18 +216,29 @@ public class ManageLoan {
 		String sel;
 		int exten = 0;
 		Scanner scan = new Scanner(System.in);
+		boolean tf = true;
+		
 		System.out.printf("%22s대출을 연장 하시겠습니까?(y/n)", " ");
 		sel = scan.nextLine();
-
+		
 		if (sel.equals("y") || sel.equals("Y")) {
-
+			while(tf) {
 			System.out.printf("%22s기간을 몇 개월 연장 하시겠습니까?", " ");
-			exten += scan.nextInt();
-
+			exten = scan.nextInt();
+			if(exten > 0 && exten<=12) {
 			loanlist.get(0).setrPeriod(exten);
 			checkLoan();
-		
-	
+			tf=false;
+			}else {
+				System.out.println();
+				System.out.printf("%22s최대 연장 기간은 12개월 입니다.\n", " ");
+			}
+		}
+	}else if(sel.equals("n") || sel.equals("N")) {
+		System.out.printf("%22s이전 화면으로 돌아갑니다.\n", " ");
+		return 0;
+	}else {
+		MongleVisual.wrongInput();
 	}
 		return 0;
 	}
@@ -254,21 +265,23 @@ public class ManageLoan {
 			int c = loanlist.get(0).getprincipal();
 
 			int result = a - b;
-
-			if (result <= 3) {
+			if(result>0) {
+			    if (result <= 3) {
 				System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
 						result, c / 100);
 
 			} else if (result > 3 && result <= 6) {
 				System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
 						result, (c / 100) / 2);
-			} else {
+			} else{
 				System.out.printf("%22s%s을 6개월 이상 상환 하셔서 수수료가 없습니다 ! \n", " ", loanlist.get(0).getloanName());
 			}
+		}
+			
 			System.out.println();
 			System.out.printf("%22s0. 이전으로", " ");
 			MongleVisual.choiceGuidePrint();
-
+			//중도 상환 수수료 계산기 상환 개월 수 최소값 0
 			String sel = scan.nextLine();
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
