@@ -132,7 +132,7 @@ public class Stock {
 						MongleVisual.wrongInput();
 						continue;
 					}
-					sel = "&likeSrtnCd=" + URLEncoder.encode(sel, "UTF-8");
+					sel = "&itmsNm=" + URLEncoder.encode(sel, "UTF-8");
 
 				} else if (sel.equals("2")) {
 					System.out.printf("%22s코드명: ", " ");
