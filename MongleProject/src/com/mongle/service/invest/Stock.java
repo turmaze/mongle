@@ -127,11 +127,21 @@ public class Stock {
 
 				if (sel.equals("1")) {
 					System.out.printf("%22s종목명: ", " ");
-					sel = "&itmsNm=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
+					sel = scan.nextLine();
+					if (sel.equals("")) {
+						MongleVisual.wrongInput();
+						continue;
+					}
+					sel = "&likeSrtnCd=" + URLEncoder.encode(sel, "UTF-8");
 
 				} else if (sel.equals("2")) {
 					System.out.printf("%22s코드명: ", " ");
-					sel = "&likeSrtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
+					sel = scan.nextLine();
+					if (sel.equals("")) {
+						MongleVisual.wrongInput();
+						continue;
+					}
+					sel = "&likeSrtnCd=" + URLEncoder.encode(sel, "UTF-8");
 				} else if (sel.equals("9")) {
 					MongleVisual.menuMove("홈 화면");
 					return 9;
