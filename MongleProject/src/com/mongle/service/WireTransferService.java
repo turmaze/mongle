@@ -370,7 +370,7 @@ public class WireTransferService {
 					System.out.printf("%22s| 8  |   산업   |\n", " ");
 					System.out.printf("%22s| 9  |   수협   |\n", " ");
 					System.out.printf("%22s| 10 |   카카오 |\n", " ");
-					System.out.printf("%22s+---+-----------+\n", " ");
+					System.out.printf("%22s+----+-----------+\n", " ");
 					System.out.printf("%22s송금할 은행을 선택하세요(번호 입력): ", " ");
 					int bankChoice = Integer.parseInt(scan.nextLine());
 
@@ -412,135 +412,6 @@ public class WireTransferService {
 						System.out.println();
 						System.out.printf("%22s송금 후 잔액 %,d원.\n", " ", rest);
 						System.out.println();
-						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
-						scan.nextLine();
-						loop = false;
-						return 0;
-
-					} else if (acc.getDepositAmount() < money) {
-						System.out.printf("%22s계좌 잔액 부족\n", " ");
-						System.out.printf("%22s다시 선택하세요.\n", " ");
-					}
-				} else if (sel.equals("0")) {
-					MongleVisual.menuMove("이전 화면");
-					return 0;
-				} else {
-					MongleVisual.wrongInput();
-				}
-			} catch (NumberFormatException e) {
-				MongleVisual.wrongInput();
-			}
-		}
-		return 0;
-	}
-
-	/**
-	 * 송금하기
-	 * 
-	 * @return 메뉴 이동을 위한 변수
-	 */
-	public static int transaction1() {
-		Scanner scan = new Scanner(System.in);
-		MongleVisual.menuHeader("송금하기");
-
-		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
-		System.out.printf("%s\n", header);
-		System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t|       잔액       |\n");
-		System.out.printf("%s\n", header);
-		List<BankAccount> filteredList = BankAccount.list.stream().filter(acc -> acc.getTitleDepo().contains("예금"))
-				.collect(Collectors.toList());
-		print(filteredList); // json 에서 가져온 데이터
-		System.out.printf("%s\n", header);
-		System.out.println();
-		System.out.printf("%22s출금할 계좌를 선택해 주세요(번호 입력)\n", " ");
-		MongleVisual.choiceGuidePrint();
-		String sel = scan.nextLine();
-		BankAccount selectedAccount = null;
-		do {
-			try {
-				int selectedIndex = Integer.parseInt(sel) - 1;
-				if (selectedIndex >= 0 && selectedIndex < filteredList.size()) {
-					selectedAccount = filteredList.get(selectedIndex);
-					// 선택한 계좌가 유효한지 확인
-					if (selectedAccount == null) {
-						System.out.printf("%22s선택한 계좌가 존재하지 않습니다.\n", " ");
-					} else {
-						break;
-					}
-				} else {
-					System.out.printf("%22s올바른 번호를 입력해주세요:", " ");
-				}
-			} catch (NumberFormatException e) {
-				System.out.printf("%22s올바른 번호를 입력해주세요:", " ");
-			}
-
-			// 다시 선택 받음
-			sel = scan.nextLine();
-		} while (true);
-
-		boolean loop = true;
-		while (loop) {
-			System.out.println();
-			try {
-				if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= filteredList.size()) {
-					BankAccount acc = BankAccount
-							.findAccount(filteredList.get(Integer.parseInt(sel) - 1).getAccountNumber());
-
-					// 송금 계좌 은행 번호 선택
-					System.out.printf("%22s+----+---------------+\n", " ");
-					System.out.printf("%22s|번호|   은행명|\n", " ");
-					System.out.printf("%22s+----+---------------+\n", " ");
-					System.out.printf("%22s| 1  |     농협     |\n", " ");
-					System.out.printf("%22s| 2  |     기업     |\n", " ");
-					System.out.printf("%22s| 3  |     국민     |\n", " ");
-					System.out.printf("%22s| 4  |     신한     |\n", " ");
-					System.out.printf("%22s| 5  |     우리     |\n", " ");
-					System.out.printf("%22s| 6  |     하나     |\n", " ");
-					System.out.printf("%22s| 7  |     씨티     |\n", " ");
-					System.out.printf("%22s| 8  |     산업     |\n", " ");
-					System.out.printf("%22s| 9  |     수협     |\n", " ");
-					System.out.printf("%22s| 10 |     카카오|\n", " ");
-					System.out.printf("%22s+----+---------------+\n", " ");
-					System.out.printf("%22s송금할 은행을 선택하세요(번호 입력): ", " ");
-					int bankChoice = Integer.parseInt(scan.nextLine());
-
-					// 유효성 검사
-					if (bankChoice < 1 || bankChoice > 10) {
-						System.out.printf("%22s올바른 은행 번호를 선택해주세요.\n", " ");
-						continue;
-					}
-
-					String[] bankNames = { "농협", "기업", "국민", "신한", "우리", "하나", "씨티", "산업", "수협", "카카오" };
-					String bankName = bankNames[bankChoice - 1];
-
-					System.out.printf("%22s송금 계좌번호 입력( - 포함X): ", " ");
-					String accountNumber = scan.nextLine();
-
-					// 송금 계좌번호 11~15자리 입력
-					if (accountNumber.length() < 11 || accountNumber.length() > 15) {
-						System.out.printf("%22s송금 계좌번호를 확인 후 다시 입력해주세요.\n", " ");
-						continue;
-					} else {
-
-						// 유효성 검사-숫자만 입력가능하도록
-						boolean isNumber = accountNumber.matches("[0-9]+");
-						if (!isNumber) {
-							System.out.printf("%22s송금 계좌번호를 확인 후 다시 입력해주세요.\n", " ");
-							continue;
-						}
-					}
-
-					System.out.printf("%22s송금 금액 입력 : ", " ");
-					int money = scan.nextInt();
-					scan.nextLine();
-
-					if (acc.getDepositAmount() >= money) {
-						int rest = acc.getDepositAmount() - money;
-						History.make(acc.getAccountNumber(), "송금", -money);
-						System.out.println();
-						System.out.printf("%22s송금 완료.\n", " ");
-						System.out.printf("%22s송금 후 잔액 %,d원.\n", " ", rest);
-
 						System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 						scan.nextLine();
 						loop = false;
