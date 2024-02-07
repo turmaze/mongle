@@ -238,7 +238,9 @@ public class SafeSend {
 		load();
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
-
+		if (trans.isEmpty()) {
+			return;
+		}
 		if (trans.get(0).getToWho().equals((String) DataBase.getPrivateUser().get(0).get("name"))) {
 			MongleVisual.menuHeader("송금 알림");
 			System.out.printf("%22s거래 기록이 없는 사용자(%s)가 송금을 보냈습니다.\n", " ", trans.get(0).getFromWho());
