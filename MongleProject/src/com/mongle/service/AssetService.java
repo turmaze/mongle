@@ -90,9 +90,9 @@ public class AssetService {
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
 
-		while (true) {
-
-			String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
+		while (true) {	
+			     
+			String header =  "+----+-----------------+----------------------------------+---------+-----------+----------+";
 			System.out.printf("%s\n", header);
 			System.out.printf("|번호|       금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n", " ");
 			System.out.printf("%s\n", header);
