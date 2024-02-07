@@ -115,11 +115,11 @@ public class DataManage {
 			}
 			
 			if (count == 1) {
-				System.out.printf("\n%22s일별이체 : %d\r\n", " ", num);
+				System.out.printf("\n%22s[일별이체 : %d]\r\n", " ", num);
 			} else if (count == 2) {
-				System.out.printf("\n%22s월별이체 : %d\r\n", " ", num);
+				System.out.printf("\n%22s[월별이체 : %d]\r\n", " ", num);
 			} else {
-				System.out.printf("\n%22s년별이체 : %d\r\n", " ", num);
+				System.out.printf("\n%22s[년별이체 : %d]\r\n", " ", num);
 			}
 			
 		} catch (Exception e) {
@@ -162,7 +162,7 @@ public class DataManage {
 						repeat++;
 					}
 				}
-				System.out.printf("\n%22s%s: %d개\r\n", " ", uniqueExt.get(i),repeat);
+				System.out.printf("\n%22s[%s: %d개]\r\n", " ", uniqueExt.get(i),repeat);
 			}
 		} catch (Exception e) {
 			System.out.println("DataManage.accNum");
@@ -194,7 +194,7 @@ public class DataManage {
 					}
 				}
 			}
-			System.out.printf("\n%22s총계좌수: %d\r\n", " ", num);
+			System.out.printf("\n%22s[총계좌수: %d]\r\n", " ", num);
 		} catch (Exception e) {
 			System.out.println("DataManage.accNum");
 			e.printStackTrace();
@@ -205,9 +205,9 @@ public class DataManage {
 	private static int userNum() {
 		int count = 0;
 
-		System.out.printf("\n%22s1. 이용자수 (일)\n", " ");
-		System.out.printf("\n%22s2. 이용자수 (월)\n", " ");
-		System.out.printf("\n%22s3. 이용자수 (년)\n", " ");
+		System.out.printf("\n%22s1. 단위 (일)\n", " ");
+		System.out.printf("\n%22s2. 단위 (월)\n", " ");
+		System.out.printf("\n%22s3. 단위 (년)\n", " ");
 		System.out.println();
 		MongleVisual.choiceGuidePrint();
 		Scanner scan = new Scanner(System.in);
@@ -278,11 +278,11 @@ public class DataManage {
 				}
 			}
 			if (count == 1) {
-				System.out.printf("\n%22s일별유저 : %d\r\n", " ", numCount);
+				System.out.printf("\n%22s[일별유저 : %d]\r\n", " ", numCount);
 			} else if (count == 2) {
-				System.out.printf("\n%22s월별유저 : %d\r\n", " ", numCount);
+				System.out.printf("\n%22s[월별유저 : %d]\r\n", " ", numCount);
 			} else {
-				System.out.printf("\n%22s년별유저 : %d\r\n", " ", numCount);
+				System.out.printf("\n%22s[년별유저 : %d]\r\n", " ", numCount);
 
 			}
 
