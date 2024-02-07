@@ -39,7 +39,8 @@ public class InvestmentManagementService {
 				int removeN = scan.nextInt();
 				scan.nextLine();
 				if(removeN > j) {
-					System.out.printf("%22s존재하지 않는 상품번호 입니다. 다시 입력해 주세요 : ", " ");
+					System.out.printf("%22s존재하지 않는 상품번호 입니다. \n", " ");
+					System.out.printf("%22s다시 입력해 주세요.", " ");
 					System.out.println();
 				}else {
 				System.out.printf("%22s정말로 판매 하시겠습니까?\n", " ");
@@ -100,7 +101,8 @@ public class InvestmentManagementService {
 				int removeN = scan.nextInt();
 				scan.nextLine();
 				if(removeN > j) {
-					System.out.printf("%22s존재하지 않는 상품번호 입니다. 다시 입력해 주세요 : ", " ");
+					System.out.printf("%22s존재하지 않는 상품번호 입니다. \n", " ");
+					System.out.printf("%22s다시 입력해 주세요.", " ");
 					System.out.println();
 				}else {
 				System.out.printf("%22s정말로 판매 하시겠습니까?\n", " ");
@@ -168,7 +170,9 @@ public class InvestmentManagementService {
 					int plus = scan.nextInt();
 					scan.nextLine();
 					if(plus>j) {
-						System.out.printf("%22s존재하지 않는 상품번호 입니다. 다시 입력해 주세요", " ");
+						System.out.printf("%22s존재하지 않는 상품번호 입니다.\n", " ");
+						System.out.printf("%22s다시 입력해 주세요.", " ");
+						
 						System.out.println();
 					}else {
 					System.out.printf("%22s수량 입력 : ", " ");
@@ -198,7 +202,9 @@ public class InvestmentManagementService {
 					int removeN = scan.nextInt();
 					scan.nextLine();
 					if(removeN>j) {
-						System.out.printf("%22s존재하지 않는 상품번호 입니다. 다시 입력해 주세요", " ");
+						System.out.printf("%22s존재하지 않는 상품번호 입니다. \n", " ");
+						System.out.printf("%22s다시 입력해 주세요.", " ");
+						
 						System.out.println();
 					}else {
 
