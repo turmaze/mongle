@@ -76,8 +76,6 @@ public class Gold {
 
 		while (loop) {
 
-			MongleVisual.pusher();
-
 			MongleVisual.menuHeader("금 상품");
 
 			table = searchGold(table); // 금상품 검색 메서드
@@ -120,9 +118,9 @@ public class Gold {
 	public static int orderGold(int price) {
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
-		MongleVisual.pusher();
+		MongleVisual.menuHeader("금 상품 주문");
 		System.out.printf("%22s===================================\n", " ");
-		System.out.printf("%22s   \t 금 호가 %,d원\n", " ", price);
+		System.out.printf("%22s   \t 호가 %,d원\n", " ", price);
 		System.out.printf("%22s===================================\n", " ");
 		while (loop) {
 			System.out.printf("%22s주문 수량 입력(숫자):", " ");
@@ -151,6 +149,7 @@ public class Gold {
 	 * @return 금 상품 시세 정보를 담은 리스트
 	 */
 	private static List<InfoProduct> searchGold(List<InfoProduct> table) {
+		MongleVisual.menuHeader("금 상품 최근 시세");
 		String header = "+------------+---------------+-----------+-----------+";
 		System.out.printf("%11s%s\n", " ", header);
 		System.out.printf("%11s|  고시날짜  |     상품명\t| 최고가(1g)| 최저가(1g)|\n", " ");

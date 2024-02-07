@@ -137,7 +137,7 @@ public class History {
 		transHistory(history, index);
 
 		while (loop) {
-			System.out.printf("%22s8. 다음 페이지\n", " ");
+			System.out.printf("%22s8. 거래 내역 더보기\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			while (loop) {
@@ -176,7 +176,8 @@ public class History {
 	 * @param index   출력 시작값
 	 */
 	private static void transHistory(ArrayList<History> history, int index) {
-		String header = "+-------------------------+---------------------+-------------+-----------------+";
+		MongleVisual.menuHeader("거래 내역");
+		String header = "+-------------------------+---------------------+--------------+------------------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|           날짜    \t  |         내역        |  거래 금액   |       잔액      |\n", " ");
 		System.out.printf("%s\n", header);
@@ -194,7 +195,7 @@ public class History {
 	public static void print(ArrayList<History> data, int index) { // 표에 반복해서 출력하는 메서드
 
 		for (int i = index; i < ((data.size() < index + 10) ? data.size() : index + 10); i++) {
-			System.out.printf("|   %-10s   |  %10s\t|%,10d   |%,14d원  |\n", data.get(i).getDate(), data.get(i).getMemo(),
+			System.out.printf("|   %-10s   |  %10s\t| %,10d   |%,14d원  |\n", data.get(i).getDate(), data.get(i).getMemo(),
 					data.get(i).getAmount(), data.get(i).getBalance());
 
 		}
