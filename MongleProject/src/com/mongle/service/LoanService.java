@@ -23,7 +23,7 @@ public class LoanService {
 			System.out.printf("%22s 2.대출연장\n", " ");
 			System.out.printf("%22s 3.중도 상환 수수료 계산기\n", " ");
 			System.out.printf("%22s 0.이전으로\n", " ");
-			System.out.printf("%22s번호를 입력하세요:", " ");
+			MongleVisual.choiceGuidePrint();
 			
 			Scanner sc = new Scanner(System.in);
 			String sel = sc.nextLine();
