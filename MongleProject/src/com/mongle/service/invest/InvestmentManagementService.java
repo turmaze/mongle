@@ -144,10 +144,11 @@ public class InvestmentManagementService {
 	 * @return
 	 */
 	public static int stockSave() {
-
+		int count = 0;
 		Scanner scan = new Scanner(System.in);
 		boolean loop = true;
 		boolean loop2 = true;
+		boolean loop3 = true;
 		MongleVisual.menuHeader("보유 주식 상세보기");
 		while (loop) {
 
@@ -158,7 +159,7 @@ public class InvestmentManagementService {
 			System.out.printf("%22s2. 일괄매도\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			MongleVisual.choiceGuidePrint();
-			while (loop) {
+			while (loop2) {
 				String num2 = scan.nextLine();
 
 				if (num2.equals("1")) { //// 매수
@@ -175,19 +176,24 @@ public class InvestmentManagementService {
 					scan.nextLine();
 
 					int total = stockcare(Investment.list, plus, "주식", num); // 합쳐진 수..
-					if(transactionStock(plus, "주식", num)==0) {
-						break;// 계좌 골라서 넣기..
-					}else {
-
+					if(transactionStock(plus, "주식", num)==1) {
+						break;
+					}
+					//transactionStock(plus, "주식", num);
+					else {
 					// 매수하고 상세보기 불러오기
 					MongleVisual.menuHeader("보유 주식 상세보기");
 					printTablePlusStock(Investment.list, "주식", total, plus);
 					System.out.println();
 					MongleVisual.stopper();
 					return 0;
-
-					}}} else if (num2.equals("2")) { // 일괄매도
-
+					}
+							
+						}
+					
+				} else if (num2.equals("2")) { // 일괄매도
+				
+					while (loop3) {
 					System.out.printf("%22s일괄매도할 상품번호 선택 :", " ");
 					int removeN = scan.nextInt();
 					scan.nextLine();
@@ -198,8 +204,7 @@ public class InvestmentManagementService {
 
 					System.out.printf("%22s정말로 매도하시겠습니까?\n", " ");
 					System.out.printf("%22s선택(y/n) : ", " ");
-					while (loop2) {
-						String answer = scan.nextLine();
+					String answer = scan.nextLine();;
 						if (answer.equals("y")) {
 							if(transaction(removeN, "주식")==1) {
 								break;
@@ -211,20 +216,24 @@ public class InvestmentManagementService {
 							System.out.println();
 							MongleVisual.stopper();
 							return 0;
-							}} else if (answer.equals("n")) {
+							}
+							} else if (answer.equals("n")) {
 							MongleVisual.menuMove("이전 화면");
+							
 							return 0;
+							
 						} else {
 							MongleVisual.wrongInput();
-							break;
+							loop3=true;
 						}
 					}
-					}} else if (num2.equals("0")) {
+				} // 존재하는 상품이라면..
+			} else if (num2.equals("0")) {
 					return 0;
-				} else {
+			}else {
 					MongleVisual.wrongInput();
-					break;
-				}
+					return 1;
+			}
 			}
 		}
 		return 0;
@@ -519,7 +528,7 @@ public class InvestmentManagementService {
 
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
-				return 0;
+				return 1;
 			}
 
 			try {
