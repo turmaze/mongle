@@ -131,7 +131,7 @@ public class Stock {
 
 				} else if (sel.equals("2")) {
 					System.out.printf("%22s코드명: ", " ");
-					sel = "&srtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
+					sel = "&likeSrtnCd=" + URLEncoder.encode(scan.nextLine(), "UTF-8");
 				} else if (sel.equals("9")) {
 					MongleVisual.menuMove("홈 화면");
 					return 9;
