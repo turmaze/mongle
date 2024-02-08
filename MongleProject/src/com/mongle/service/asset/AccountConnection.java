@@ -56,11 +56,11 @@ public class AccountConnection {
 
 		boolean a = true;
 		while (a) {
-			System.out.printf("%22s0.홈으로: ", " ");
+			System.out.printf("%22s0.이전 으로: ", " ");
 			String sel = sc.nextLine();
 			if (sel.equals("0")) {
-				MongleVisual.menuMove("홈 화면");
-				return 9;
+				MongleVisual.menuMove("이전 화면");
+				return 0;
 			} else {
 				MongleVisual.wrongInput();
 			}
