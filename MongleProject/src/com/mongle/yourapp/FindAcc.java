@@ -36,10 +36,12 @@ public class FindAcc {
 
 		if (choice.equals("1")) {
 			findMyId();
+			return;
 		} else if (choice.equals("2")) {
 			findMyPw();
 		} else if (choice.equals("0")) {
-			StartPage.startPage();
+			//StartPage.startPage();
+			return;
 		}else {
 			MongleVisual.wrongInput();
 		}
@@ -63,6 +65,9 @@ public class FindAcc {
 				}
 				if(count ==3) {
 					count = choicePrint1(count);
+					if(count ==5) {
+						return;
+					}
 				}else {
 					count++;
 				}
@@ -85,6 +90,10 @@ public class FindAcc {
 				}
 				if(count ==3) {
 					count = choicePrint1(count);
+					if(count ==5) {
+						return;
+						
+					}
 				}else {
 					count++;
 				}
@@ -102,6 +111,9 @@ public class FindAcc {
 				}
 				if(count ==3) {
 					count = choicePrint1(count);
+					if(count ==5) {
+						return;
+					}
 				}else {
 					count++;
 				}
@@ -168,7 +180,7 @@ public class FindAcc {
 				if(input.equals("y")||input.equals("Y")){
 					count = 0;
 				}else if(input.equals("n")||input.equals("N")) {
-					findAcc();
+					count = 5;
 				}else {
 					System.out.printf("\n%22s잘못 입력하셨습니다", " ");
 					count = 3;
@@ -209,11 +221,11 @@ public class FindAcc {
 					phone = phone.replace(" ", "");
 					phone = phone.replace(".", "");
 				}
-				if(Validate.validPhone(phone)) {
-					loop = false;
-				}
 				if(count ==3) {
 					count = choicePrint1(count);
+					if(count ==5) {
+						return;
+					}
 				}else {
 					count++;
 				}
@@ -225,11 +237,14 @@ public class FindAcc {
 				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
 				System.out.printf("\n%22s이름: "," ");	
 				name = scan.nextLine();
-				if(Validate.validName(name)==true) {
+				if(Validate.validName(name)) {
 					loop= false;
 				}
 				if(count ==3) {
 					count = choicePrint1(count);
+					if(count ==5) {
+						return;
+					}
 				}else {
 					count++;
 				}

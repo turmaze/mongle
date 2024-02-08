@@ -44,6 +44,8 @@ public class StartPage {
 			} else {
 				MongleVisual.wrongInput();
 			}
+			
+			MongleVisual.pusher();
 		}
 	}
 }
