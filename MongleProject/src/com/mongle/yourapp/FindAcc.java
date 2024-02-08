@@ -221,6 +221,9 @@ public class FindAcc {
 					phone = phone.replace(" ", "");
 					phone = phone.replace(".", "");
 				}
+				if(Validate.validPhone(phone)) {
+					loop = false;
+				}
 				if(count ==3) {
 					count = choicePrint1(count);
 					if(count ==5) {
