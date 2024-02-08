@@ -112,7 +112,7 @@ public class Loan {
 						applyLoan();
 						// listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
 						Investment.list.add(new Investment("대출", loan.getBankLoan(), loan.getTitleLoan(), 0, 0));
-						return 9;
+						return 0;
 					} else if (sel.equals("8")) {
 						index += 7;
 						break;
@@ -145,7 +145,7 @@ public class Loan {
 		System.out.printf("%5s(자격 심사에 따라 대출 기한, 금리 등 세부 사항을 안내해드릴 예정입니다.)\n", " ");
 		System.out.println();
 
-		System.out.printf("%22s홈 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
+		System.out.printf("%22s이전 화면으로 돌아가려면 엔터를 눌러주세요.\n", " ");
 		scan.nextLine();
 	}
 
