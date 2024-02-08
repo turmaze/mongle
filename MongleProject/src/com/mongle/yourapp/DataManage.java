@@ -33,14 +33,19 @@ public class DataManage {
 
 		if (choice.equals("1")) {
 			dataGet(userNum());
+			MongleVisual.stopper();
 		} else if (choice.equals("2")) {
 			accNum();
+			MongleVisual.stopper();
 		} else if (choice.equals("3")) {
 			transNum(userNum());
+			MongleVisual.stopper();
 		} else if (choice.equals("4")) {
 			bankNum();
+			MongleVisual.stopper();
 		} else if(choice.equals("5")){
 			advanceCalc();
+			MongleVisual.stopper();
 		}else {
 			return;
 		}
