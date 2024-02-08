@@ -238,18 +238,22 @@ public class Inquiry {
 
 							inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 							System.out.printf("%22s완료되었습니다.\n", " ");
-							adminInquiry();
+							
+							//MongleVisual.menuMove("문의 처리 페이지");
+							break;
+							//adminInquiry();
 
 						}
 					}
 				} // for
+				break;
 
 			case "2":
 				MongleVisual.pusher();
 				inquiry.deleteInq(inqList);
 				inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 				MongleVisual.menuMove("문의 처리 페이지");
-				adminInquiry();
+				//adminInquiry();
 				break;
 			case "0":
 				MongleVisual.menuMove("관리자 페이지");
@@ -465,6 +469,7 @@ public class Inquiry {
 					if (map.get("title").equals(del)) {
 						iterator.remove(); // 현재 항목 삭제
 						isDel = true;
+						
 						System.out.printf("%22s\"%s\" 제목의 글이 삭제되었습니다.\n", " ", del);
 						// break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
 						return;
@@ -472,8 +477,9 @@ public class Inquiry {
 				}
 				if (!isDel) {
 					System.out.printf("%22s\"%s\" 제목의 글을 찾을 수 없습니다.\n", " ", del);
+					continue;
 				}
-				return;
+				break;
 
 			case "2":
 				arrayList.removeAll(arrayList);
