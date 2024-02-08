@@ -50,14 +50,21 @@ public class FindAcc {
 		Scanner scan = new Scanner(System.in);
 		int count = 1;
 		boolean loop = true;
+		count = 1;
 		try {
 			do {
+				loop = true;
 				System.out.printf("\n%22s아이디(ID) 입력: ", " ");
 				user.setId(scan.nextLine());
-				count++;
-				choicePrint(count);
-			}while(!findMatch(user.getId()));
-			
+				if(!findMatch(user.getId()))
+				
+				if(count ==3) {
+					count = choicePrint1(count);
+				}else {
+					count++;
+				}
+			}while(loop==true);
+			count = 1;
 			String phone;
 			do {
 				System.out.printf("\n%22s(예시: 01033448899)"," ");
@@ -68,15 +75,26 @@ public class FindAcc {
 					phone = phone.replace(" ", "");
 					phone = phone.replace(".", "");
 				}
+				if(count ==3) {
+					count = choicePrint1(count);
+				}else {
+					count++;
+				}
 			}while(!Validate.validPhone(phone));
 			user.setPhone(phone);
+			count = 1;
 			String name;
 			do {
+				choicePrint1(count);
 				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
 				System.out.printf("\n%22s이름: "," ");	
 				name = scan.nextLine();
+				if(count ==3) {
+					count = choicePrint1(count);
+				}else {
+					count++;
 				}
-				while(!Validate.validName(name));
+			}while(!Validate.validName(name));
 			user.setName(name);
 			
 			JSONParser parser = new JSONParser();
@@ -114,6 +132,7 @@ public class FindAcc {
 								return;
 							}else {
 								MongleVisual.wrongInput();
+								
 							}
 							break;
 						}
@@ -127,20 +146,22 @@ public class FindAcc {
 		}
 	}
 
-	public static void choicePrint(int count) {
+	
+	public static int choicePrint1(int count) {
 		if(count==3) {
 			System.out.printf("\n%22s계속 하시겠습니까? Y/N : ", " ");
 			Scanner scan = new Scanner(System.in);
 			String input = scan.nextLine();
 			if(input.equals("y")||input.equals("Y")){
-				findMyPw();
+				return 0;
 			}else if(input.equals("n")||input.equals("N")) {
 				findAcc();
 			}else {
 				System.out.printf("\n%22s잘못 입력하셨습니다", " ");
-				choicePrint(3);
+				return 3;
 			}
 		}
+		return count;
 	}
 	
 	public static boolean findMatch(String id) {
@@ -158,6 +179,8 @@ public class FindAcc {
 	private static void findMyId() {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
+		boolean check = true;
+		int count = 0;
 		try {
 			String phone;
 			do {
@@ -169,6 +192,13 @@ public class FindAcc {
 					phone = phone.replace(" ", "");
 					phone = phone.replace(".", "");
 				}
+				if(count ==3) {
+					count = choicePrint1(count);
+					
+				}else {
+					count++;
+				}
+				
 			}while(!Validate.validPhone(phone));
 			user.setPhone(phone);
 			String name;
@@ -176,10 +206,14 @@ public class FindAcc {
 				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
 				System.out.printf("\n%22s이름: "," ");	
 				name = scan.nextLine();
+				if(count ==3) {
+					count = choicePrint1(count);
+				}else {
+					count++;
 				}
-				while(!Validate.validName(name));
+			}while(!Validate.validName(name));
 			user.setName(name);
-			boolean check = true;
+			
 			JSONParser parser = new JSONParser();
 			JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
 			do {
@@ -194,9 +228,9 @@ public class FindAcc {
 						if (user.getName().equals(checkName) && user.getPhone().equals(checkPhone)) {
 							System.out.printf("\n%22s아이디는 %s입니다\r\n", " ", findID);
 							check = false;
-							break;
+							return;
 						}else {
-							//System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
+							System.out.printf("\n%22s유저 정보를 찾을수 없습니다. 다시 입력해주세요", " ");
 							MongleVisual.wrongInput();
 							findMyId();
 						}

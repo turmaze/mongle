@@ -57,9 +57,9 @@ public class Validate {
 			System.out.printf("\n%22s잘못된 입력입니다.\n", " ");
 			System.out.printf("\n%22s재입력 해주세요.\n", " ");
 	
-			return m.matches();
+			return false;
 		} else {
-			return m.matches();
+			return true;
 		}
 	}// name
 
