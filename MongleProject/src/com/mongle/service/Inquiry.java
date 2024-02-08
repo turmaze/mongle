@@ -253,7 +253,7 @@ public class Inquiry {
 				break;
 			case "0":
 				MongleVisual.menuMove("관리자 페이지");
-				MainMenu.mainMenu("2");
+				//MainMenu.mainMenu("2");
 				break;
 
 			default:
