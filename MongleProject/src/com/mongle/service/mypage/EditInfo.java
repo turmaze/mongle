@@ -65,6 +65,8 @@ public class EditInfo {
 			} else if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
 				return 0;
+			} else {
+				MongleVisual.wrongInput();
 			}
 		}
 		return 0;
