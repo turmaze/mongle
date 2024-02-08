@@ -56,8 +56,11 @@ public class FindAcc {
 				loop = true;
 				System.out.printf("\n%22s아이디(ID) 입력: ", " ");
 				user.setId(scan.nextLine());
-				if(!findMatch(user.getId()))
-				
+				if(findMatch(user.getId())) {
+					loop =false;
+				}else {
+					System.out.printf("\n%22s다시입력 해주세요 ", " ");
+				}
 				if(count ==3) {
 					count = choicePrint1(count);
 				}else {
@@ -67,36 +70,44 @@ public class FindAcc {
 			count = 1;
 			String phone;
 			do {
+				loop = true;
 				System.out.printf("\n%22s(예시: 01033448899)"," ");
 				System.out.printf("\n%22s전화번호: "," ");	
 				phone = scan.nextLine();
+				
 				if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
 					phone = phone.replace("-", "");
 					phone = phone.replace(" ", "");
 					phone = phone.replace(".", "");
 				}
+				if(Validate.validPhone(phone)) {
+					loop = false;
+				}
 				if(count ==3) {
 					count = choicePrint1(count);
 				}else {
 					count++;
 				}
-			}while(!Validate.validPhone(phone));
+			}while(loop);
 			user.setPhone(phone);
 			count = 1;
 			String name;
 			do {
-				choicePrint1(count);
+				loop = true;
 				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
 				System.out.printf("\n%22s이름: "," ");	
 				name = scan.nextLine();
+				if(Validate.validName(name)==true) {
+					loop= false;
+				}
 				if(count ==3) {
 					count = choicePrint1(count);
 				}else {
 					count++;
 				}
-			}while(!Validate.validName(name));
+			}while(loop);
 			user.setName(name);
-			
+			loop=true;
 			JSONParser parser = new JSONParser();
 			ArrayList<HashMap> list = DataBase.getUser();
 			do {
@@ -148,19 +159,22 @@ public class FindAcc {
 
 	
 	public static int choicePrint1(int count) {
-		if(count==3) {
-			System.out.printf("\n%22s계속 하시겠습니까? Y/N : ", " ");
-			Scanner scan = new Scanner(System.in);
-			String input = scan.nextLine();
-			if(input.equals("y")||input.equals("Y")){
-				return 0;
-			}else if(input.equals("n")||input.equals("N")) {
-				findAcc();
-			}else {
-				System.out.printf("\n%22s잘못 입력하셨습니다", " ");
-				return 3;
+		do {
+			
+			if(count==3) {
+				System.out.printf("\n%22s계속 하시겠습니까? Y/N : ", " ");
+				Scanner scan = new Scanner(System.in);
+				String input = scan.nextLine();
+				if(input.equals("y")||input.equals("Y")){
+					count = 0;
+				}else if(input.equals("n")||input.equals("N")) {
+					findAcc();
+				}else {
+					System.out.printf("\n%22s잘못 입력하셨습니다", " ");
+					count = 3;
+				}
 			}
-		}
+		}while(count ==3);
 		return count;
 	}
 	
@@ -172,7 +186,7 @@ public class FindAcc {
 				return true; // 중복된 ID가 있음
 			}
 		}
-		MongleVisual.wrongInput();
+		
 		return false; // 중복된 ID가 없음
 	}
 
@@ -180,38 +194,48 @@ public class FindAcc {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
 		boolean check = true;
+		boolean loop  = true;
 		int count = 0;
 		try {
 			String phone;
 			do {
+				loop = true;
 				System.out.printf("\n%22s(예시: 01033448899)"," ");
 				System.out.printf("\n%22s전화번호: "," ");	
 				phone = scan.nextLine();
+				
 				if(phone.contains("-")||phone.contains(" ")||phone.contains(".")) {
 					phone = phone.replace("-", "");
 					phone = phone.replace(" ", "");
 					phone = phone.replace(".", "");
 				}
+				if(Validate.validPhone(phone)) {
+					loop = false;
+				}
 				if(count ==3) {
 					count = choicePrint1(count);
-					
 				}else {
 					count++;
 				}
-				
-			}while(!Validate.validPhone(phone));
+			}while(loop);
 			user.setPhone(phone);
 			String name;
 			do {
+				loop = true;
 				System.out.printf("\n%22s(2~5자리 한글)\n"," ");
 				System.out.printf("\n%22s이름: "," ");	
 				name = scan.nextLine();
+				if(Validate.validName(name)==true) {
+					loop= false;
+				}
 				if(count ==3) {
 					count = choicePrint1(count);
 				}else {
 					count++;
 				}
-			}while(!Validate.validName(name));
+			}while(loop);
+			user.setName(name);
+			loop=true;
 			user.setName(name);
 			
 			JSONParser parser = new JSONParser();
