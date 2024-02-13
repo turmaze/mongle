@@ -24,19 +24,37 @@ import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
 import com.mongle.yourapp.MainMenu;
 
+/**
+ * 문의 관련 클래스
+ */
 public class Inquiry {
 	private static ArrayList<HashMap> annList = new ArrayList<HashMap>();
 	private static ArrayList<HashMap> inqList = new ArrayList<HashMap>();
 	private static ArrayList<HashMap> perInqList = new ArrayList<HashMap>();
 
+	/**
+	 * 개인 문의 사항 Getter
+	 * 
+	 * @return 개인 문의 사항 List
+	 */
 	public static ArrayList<HashMap> getPerInqList() {
 		return perInqList;
 	}
 
+	/**
+	 * 공지 사항 Getter
+	 * 
+	 * @return 공지 사항 List
+	 */
 	public static ArrayList<HashMap> getAnnList() {
 		return annList;
 	}
 
+	/**
+	 * 전체 문의 사항 Getter
+	 * 
+	 * @return 전체 문의 사항 List
+	 */
 	public static ArrayList<HashMap> getInqList() {
 		return inqList;
 	}
@@ -63,7 +81,6 @@ public class Inquiry {
 				if (levelValue.equals("2")) {
 
 					do {
-						System.out.println();
 						MongleVisual.menuHeader("관리자 공지사항");
 
 						System.out.printf("\n%22s1. 공지사항 확인\n", " ");
@@ -77,7 +94,6 @@ public class Inquiry {
 						case "1":
 							inquiry.showTxt(annList);
 							MongleVisual.pusher();
-
 							break;
 						case "2":
 							inquiry.createInq(annList);
@@ -93,7 +109,6 @@ public class Inquiry {
 							break;
 						case "0":
 							MongleVisual.menuMove("관리자 페이지");
-							// MainMenu.mainMenu("2");
 							break;
 
 						default:
@@ -101,11 +116,8 @@ public class Inquiry {
 						}
 					} while (!(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")
 							|| input.equals("0")));
-
 				} // if
-
 			} // while(true)
-
 		} catch (Exception e) {
 			System.out.println("announcement Error");
 			e.printStackTrace();
@@ -132,7 +144,6 @@ public class Inquiry {
 
 				// 회원
 				if (levelValue.equals("1")) {
-
 					System.out.println();
 					MongleVisual.menuHeader("공지사항");
 					inquiry.showTxt(annList);
@@ -151,11 +162,8 @@ public class Inquiry {
 							MongleVisual.wrongInput();
 						}
 					} while (!(input.equals("9") || input.equals("0")));
-
 				} // if
-
 			} // while(true)
-
 		} catch (Exception e) {
 			System.out.println("announcement Error");
 			e.printStackTrace();
@@ -177,7 +185,6 @@ public class Inquiry {
 		inq.saveInq(inqList, ResourcePath.INQUIRY);
 
 		System.out.printf("%22s문의가 접수되었습니다. 감사합니다.\n", " ");
-
 		MongleVisual.menuMove("이전 화면");
 		return 0;
 	}
@@ -196,7 +203,6 @@ public class Inquiry {
 			System.out.printf("\n%22s문의가 없습니다\n\n", " ");
 			MongleVisual.stopper();
 			MongleVisual.pusher();
-
 			return;
 		}
 
@@ -231,33 +237,24 @@ public class Inquiry {
 								}
 								contentBuilder.append(input).append("\n"); // 내용을 StringBuilder에 추가하고 개행 문자를 넣습니다.
 							}
-
 							String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을
 																				// 제거합니다.
 							map.put("comment", content);
-
 							inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 							System.out.printf("%22s완료되었습니다.\n", " ");
-							
-							//MongleVisual.menuMove("문의 처리 페이지");
 							break;
-							//adminInquiry();
-
 						}
 					}
 				} // for
 				break;
-
 			case "2":
 				MongleVisual.pusher();
 				inquiry.deleteInq(inqList);
 				inquiry.saveInq(inqList, ResourcePath.INQUIRY);
 				MongleVisual.menuMove("문의 처리 페이지");
-				//adminInquiry();
 				break;
 			case "0":
 				MongleVisual.menuMove("관리자 페이지");
-				//MainMenu.mainMenu("2");
 				break;
 
 			default:
@@ -282,9 +279,7 @@ public class Inquiry {
 				perInqList.add(map);
 			}
 		}
-
 		System.out.printf("%22s총 %d개의 문의내역이 존재합니다.\n", " ", perInqList.size());
-
 		inq.showTxt(perInqList);
 
 		return 0;
@@ -319,7 +314,6 @@ public class Inquiry {
 		Scanner scanner = new Scanner(System.in);
 		HashMap<String, Object> inq = new HashMap<>();
 		String value;
-
 		inq.put("id", LogIn.primaryKey);
 
 		do {
@@ -327,7 +321,6 @@ public class Inquiry {
 			System.out.printf("제목: ");
 			value = scanner.nextLine();
 		} while ((titleExists(arrayList, value))); // 중복제목, 공백 검사
-
 		inq.put("title", value);
 
 		System.out.printf("첫 줄에서 ':q!' 시 종료\n");
@@ -341,13 +334,11 @@ public class Inquiry {
 			}
 			contentBuilder.append(value).append("\n"); // 내용을 StringBuilder에 추가하고 개행 문자를 넣습니다.
 		}
-
 		String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
 		content = masking(content);
 		inq.put("txt", content);
 
 		arrayList.add(inq);
-		// System.out.println(arrayList); //testcode
 		return 0;
 	}
 
@@ -425,10 +416,7 @@ public class Inquiry {
 
 						String content = contentBuilder.toString().trim(); // StringBuilder의 내용을 문자열로 변환하고 양쪽 공백을 제거합니다.
 						map.put("txt", content);
-
-						// arrayList.add(map);
 						System.out.printf("%22s수정되었습니다.\n", " ");
-
 						return;
 					}
 				}
@@ -437,7 +425,6 @@ public class Inquiry {
 			if (!found) { // 찾지 못했으면
 				System.out.printf("%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n", " ", input);
 			}
-
 		} while (!found); // 찾을때 까지
 
 	}
@@ -453,7 +440,6 @@ public class Inquiry {
 
 		System.out.printf("%22s1. 선택 삭제\n%22s2. 전체 삭제\n", " ", " ");
 		System.out.printf("%22s0. 이전으로\n", " ");
-
 		MongleVisual.choiceGuidePrint();
 
 		String input = "7";
@@ -469,9 +455,8 @@ public class Inquiry {
 					if (map.get("title").equals(del)) {
 						iterator.remove(); // 현재 항목 삭제
 						isDel = true;
-						
+
 						System.out.printf("%22s\"%s\" 제목의 글이 삭제되었습니다.\n", " ", del);
-						// break; // 일치하는 첫 번째 항목을 삭제한 후 반복문 종료
 						return;
 					}
 				}
@@ -480,17 +465,12 @@ public class Inquiry {
 					continue;
 				}
 				break;
-
 			case "2":
 				arrayList.removeAll(arrayList);
 				System.out.printf("%22s전부 삭제되었습니다.", " ");
 				return;
-
 			case "0":
-
-				// 이전으로 감
 				return;
-
 			default:
 				System.out.printf("%22s잘못된 번호입니다.\n%22s다시 입력해주세요\n", " ", " ");
 			}
@@ -519,10 +499,8 @@ public class Inquiry {
 		System.out.printf("%22s\t\t     목록\n", " ");
 		for (String title : titleList) {
 			System.out.printf("%22s%d. %s\n", " ", count++, title);
-
 		}
 		System.out.printf("\n%22s-----------------------------------\n\n", " ");
-
 		if (arrayList.isEmpty()) {
 			System.out.printf("%22s내용이 없습니다\n\n", " ");
 			MongleVisual.stopper();
@@ -580,22 +558,18 @@ public class Inquiry {
 									System.out.println("답변: " + "\n"); // 답변
 									System.out.println(map.get("comment"));
 								}
-
 								System.out.println("\n---------------------------------------------------------------");
 								MongleVisual.stopper();
 							}
 						}
 					}
-
 					if (!found) { // 찾지 못했으면
 						System.out.printf("\n%22s제목 \"%s\"을 찾을 수 없습니다. 다시 입력해 주세요.\n\n", " ", input);
 					}
-
 				} while (!found); // 찾을때 까지
 				break;
 			case "0":
 				return 0;
-
 			default:
 				MongleVisual.wrongInput();
 			}
@@ -611,20 +585,14 @@ public class Inquiry {
 	 */
 	private void saveInq(ArrayList list, String path) {
 		try {
-
 			// set pretty printing
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			File file = new File(path);
-			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
 			FileWriter writer = new FileWriter(file, false); // 덮쓰
 
-			// String json = gson.toJson(user);
 			writer.write(gson.toJson(list));
 			writer.flush(); // 버퍼 비우기
-
 			writer.close();
-			//System.out.printf("\n%22s저장완료\n\n", " "); // testcode
-
 		} catch (Exception e) {
 			System.out.println("DataBase.dataSave Error");
 			e.printStackTrace();
@@ -641,9 +609,7 @@ public class Inquiry {
 	public void loadInq(ArrayList list, String path) {
 		JSONParser parser = new JSONParser();
 		try {
-			// FileReader 객체 생성
 			FileReader reader = new FileReader(path);
-			// JSON 데이터를 파싱하여 JSONArray로 변환
 			JSONArray userList = (JSONArray) parser.parse(reader);
 
 			list.clear(); // 기존 리스트를 비움
@@ -651,7 +617,6 @@ public class Inquiry {
 			while (iterator.hasNext()) {
 				JSONObject jsonObject = (JSONObject) iterator.next();
 				HashMap<String, Object> userData = new HashMap<>();
-				// 가정: JSON 객체의 모든 키는 문자열이고, 값도 문자열임
 				for (Object key : jsonObject.keySet()) {
 					userData.put((String) key, jsonObject.get(key));
 				}

@@ -13,10 +13,14 @@ import com.mongle.resource.History;
 import com.mongle.view.MongleVisual;
 
 /**
- * 송금관리 클래스
+ * 송금 관리 클래스
  */
 public class WireTransferService {
-
+	/**
+	 * 송금 메뉴
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int extracted() {
 		Scanner scanner = new Scanner(System.in);
 		int r = -1;
@@ -32,7 +36,6 @@ public class WireTransferService {
 			String sel = scanner.nextLine();
 
 			if (sel.equals("1")) {
-				// 송금하기
 				MongleVisual.menuMove("송금 화면");
 				r = transaction();
 				if (r == 9) {
@@ -42,7 +45,6 @@ public class WireTransferService {
 				}
 			} else if (sel.equals("2")) {
 				MongleVisual.menuMove("정산하기 화면");
-				// 정산하기(더치페이)
 				r = dutchpay();
 				if (r == 9) {
 					return 9;
@@ -51,7 +53,6 @@ public class WireTransferService {
 				}
 			} else if (sel.equals("3")) {
 				MongleVisual.menuMove("예약송금 화면");
-				// 예약송금
 				r = reserveTransfer();
 				if (r == 9) {
 					return 9;
@@ -60,9 +61,7 @@ public class WireTransferService {
 				}
 			} else if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");
-				// 이전으로
 				return 0;
-
 			} else {
 				MongleVisual.wrongInput();
 			}
@@ -76,7 +75,6 @@ public class WireTransferService {
 	 * @param shareChoice
 	 * @return 메뉴 이동을 위한 변수
 	 */
-
 	private static int dutchpay() {
 		// 정산하기(더치페이) 인원 설정 로직 구현
 		Scanner scanner = new Scanner(System.in);
@@ -216,7 +214,6 @@ public class WireTransferService {
 	 * 
 	 * @return 메뉴 이동을 위한 변수
 	 */
-
 	private static int reserveTransfer() {
 		// 예약송금 로직 구현
 		Scanner scanner = new Scanner(System.in);
@@ -306,6 +303,11 @@ public class WireTransferService {
 		return 0;
 	}
 
+	/**
+	 * 송금 업무
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int transaction() {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.menuHeader("송금하기");
@@ -429,6 +431,11 @@ public class WireTransferService {
 		return 0;
 	}
 
+	/**
+	 * 표로 출력
+	 * 
+	 * @param data 출력할 List
+	 */
 	public static void print(List<BankAccount> data) { // 표에 반복해서 출력하는 메서드
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("|%-3d|%-14s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),

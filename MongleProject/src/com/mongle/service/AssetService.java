@@ -10,16 +10,18 @@ import com.mongle.service.asset.DepoCalculator;
 import com.mongle.service.asset.DepoSave;
 import com.mongle.service.asset.GiveAccount;
 import com.mongle.view.MongleVisual;
+
 /**
  * 계좌 관리 클래스
  */
 public class AssetService {
 	/**
 	 * 계좌 관리 메뉴
+	 * 
 	 * @return 선택 번호
 	 */
 	public static int assmenu() {
-		
+
 		boolean loop = true;
 		int r = -1;
 		while (loop) {
@@ -32,10 +34,9 @@ public class AssetService {
 			System.out.printf("%22s 9.홈으로\n", " ");
 			System.out.printf("%22s 0.이전으로\n", " ");
 			MongleVisual.choiceGuidePrint();
-			
+
 			Scanner sc = new Scanner(System.in);
 			String sel = sc.nextLine();
-			//
 			if (sel.equals("1")) {
 				MongleVisual.menuMove("계좌 개설 화면");
 				r = DepoSave.depoSaveService();
@@ -81,18 +82,20 @@ public class AssetService {
 		return 0;
 
 	}
+
 	/**
 	 * 보유 계좌 리스트 출력
-	 * @return 선택 번호
+	 * 
+	 * @return 메뉴 이동을 위한 변수
 	 */
 	public static int checkDepo() {
-		
+
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
 
-		while (true) {	
+		while (true) {
 			MongleVisual.menuHeader("계좌 조회");
-			String header =  "+----+------------------+-----------------------+-----------------------+-----------------+";
+			String header = "+----+------------------+-----------------------+-----------------------+-----------------+";
 			System.out.printf("%s\n", header);
 			System.out.printf("|번호|      금융사   \t|         상품명      \t|         계좌번호\t|       잔액      |\n", " ");
 			System.out.printf("%s\n", header);
@@ -119,21 +122,19 @@ public class AssetService {
 				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
-
 		}
 
 	}
 
-
 	/**
-	 * 보유 계좌 리스트 규격
+	 * 보유 계좌 리스트 출력
+	 * 
 	 * @param data 보유 계좌 리스트
 	 */
-	public static void printAsciiTable(ArrayList<BankAccount> data) { 
+	public static void printAsciiTable(ArrayList<BankAccount> data) {
 		for (int i = 0; i < data.size(); i++) {
 			System.out.printf("|%-3d |%-12s\t|%-18s\t|%15s\t|%,15d원|\n", i + 1, data.get(i).getBankDepo(),
 					data.get(i).getTitleDepo(), data.get(i).getAccountNumber(), data.get(i).getDepositAmount());
-
 		}
 	}
 

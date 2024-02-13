@@ -19,6 +19,7 @@ import com.mongle.resource.History;
 import com.mongle.resource.Investment;
 import com.mongle.resource.ResourcePath;
 import com.mongle.yourapp.LogIn;
+
 /**
  * 데이터베이스 클래스
  */
@@ -27,9 +28,9 @@ public class DataBase {
 	static ArrayList<HashMap> user = new ArrayList<HashMap>();
 	static ArrayList<HashMap> privateUser = new ArrayList<HashMap>();
 
-	
 	/**
-	 	user getter
+	 * user getter
+	 * 
 	 * @return user
 	 */
 	public static ArrayList<HashMap> getUser() {
@@ -38,7 +39,8 @@ public class DataBase {
 
 	/**
 	 * user setter
-	 * @param user 
+	 * 
+	 * @param user
 	 */
 	public static void setUser(HashMap<String, Object> newUser) {
 		DataBase.user.add(newUser);
@@ -46,6 +48,7 @@ public class DataBase {
 
 	/**
 	 * privateUser getter
+	 * 
 	 * @return privateUser
 	 */
 	public static ArrayList<HashMap> getPrivateUser() {
@@ -54,6 +57,7 @@ public class DataBase {
 
 	/**
 	 * privateUser setter
+	 * 
 	 * @param privateUser
 	 */
 	public static void setPrivateUser(HashMap<String, Object> newUser) {
@@ -62,12 +66,12 @@ public class DataBase {
 
 	/**
 	 * 로그인 된 사용자 정보 불러오기
-	 * @param primaryKey
+	 * 
+	 * @param primaryKey 로그인 유저 아이디
 	 */
 	public static void loadPrivateUser(String primaryKey) {
 		JSONParser parser = new JSONParser();
 		try {
-
 			// JSON 파일을 읽어와 JsonArray로 파싱
 			FileReader reader = new FileReader(ResourcePath.MEMBER);
 			JSONArray jsonArray = (JSONArray) parser.parse(reader);
@@ -75,15 +79,10 @@ public class DataBase {
 			privateUser.clear();
 			BankAccount.list.clear();
 			Investment.list.clear();
-//            for (int i = 0; i < jsonArray.size(); i++) {
 			for (Object obj : jsonArray) {
-//                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
 				JSONObject item = (JSONObject) obj;
 
-				// id 값을 가진 데이터 확인
-//                String tempId = jsonObject.get("id").getAsString();
-
-				if (item.get("id").equals(primaryKey)) { // LogIn.primaryKey 로 꼭 바꾸기!!!!!!!!!!!!!!
+				if (item.get("id").equals(primaryKey)) {
 					HashMap<String, Object> userData = new HashMap<String, Object>();
 					for (Object key : item.keySet()) {
 						userData.put((String) key, item.get((String) key));
@@ -106,7 +105,8 @@ public class DataBase {
 									}
 									int num = (int) ((long) it.get("depositAmount"));
 									BankAccount b = new BankAccount((String) it.get("bankDepo"),
-											(String) it.get("titleDepo"), (String) it.get("accountNumber"), num, history);
+											(String) it.get("titleDepo"), (String) it.get("accountNumber"), num,
+											history);
 									BankAccount.list.add(b);
 								} else {
 									int num = (int) ((long) it.get("depositAmount"));
@@ -130,35 +130,30 @@ public class DataBase {
 								Investment.list.add(i);
 							}
 						}
-
 					}
 					privateUser.add(userData);
 				}
 			}
-
 			if (privateUser.isEmpty()) {
 				System.out.println(primaryKey + " 값을 가진 데이터가 존재하지 않습니다.");
 			}
-
-			// 가져온 값 출력
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	
 	/**
 	 * 특정 사용자의 특정(key) 데이터(value) 수정
-	 * @param arrayList
-	 * @param key
-	 * @param value
+	 * 
+	 * @param arrayList 수정할 리스트
+	 * @param key       수정할 분야
+	 * @param value     수정할 값
 	 */
 	public static void changeData(ArrayList<HashMap> arrayList, String key, Object value) {
 		// 기존 privateUser ArrayList에서 "id"가 "asd159"인 데이터의 "name" 수정
 		for (HashMap<String, Object> user : arrayList) {
-			if (user.get("id").equals(LogIn.primaryKey)) {// LogIn.primaryKey 로 바꾸기!!!!!!!!!!!!!!!!!!
+			if (user.get("id").equals(LogIn.primaryKey)) {
 				user.put(key, value);
-
 				break; // 수정한 후에는 루프 종료
 			}
 		}
@@ -168,10 +163,8 @@ public class DataBase {
 	 * 특정 사용자의 모든 데이터 갱신
 	 */
 	public static void changeData() { // user데이터 중 로그인 중인 primaryuser의 데이터를 갱신
-
 //		DataBase.changeData(DataBase.getUser(), "account", BankAccount.list); // sample
 //		DataBase.changeData(DataBase.getUser(), "invest", Investment.list); // sample
-
 		for (HashMap map : privateUser) {
 			map.put("account", BankAccount.list);
 			map.put("invest", Investment.list);
@@ -196,20 +189,13 @@ public class DataBase {
 			if (!DataBase.privateUser.isEmpty()) {
 				changeData();
 			}
-
-			// set pretty printing
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			File file = new File(ResourcePath.MEMBER);
-			// System.out.println(file.getAbsolutePath());// 경로 찾는 테스트 코드
 			FileWriter writer = new FileWriter(file, false); // 덮쓰
 
-			// String json = gson.toJson(user);
 			writer.write(gson.toJson(user));
 			writer.flush(); // 버퍼 비우기
-
 			writer.close();
-			//System.out.printf("\n%22ssave\n\n", " "); // testcode
-
 		} catch (Exception e) {
 			System.out.println("DataBase.dataSave Error");
 			e.printStackTrace();
@@ -220,14 +206,11 @@ public class DataBase {
 	/**
 	 * 파일에서 사용자 데이터 읽기
 	 */
-	// 파일에서 사용자 데이터 읽기
 	public static void dataLoad() {
 
 		JSONParser parser = new JSONParser();
 		try {
-			// FileReader 객체 생성
 			FileReader reader = new FileReader(ResourcePath.MEMBER);
-			// JSON 데이터를 파싱하여 JSONArray로 변환
 			JSONArray userList = (JSONArray) parser.parse(reader);
 
 			user.clear(); // 기존 리스트를 비움

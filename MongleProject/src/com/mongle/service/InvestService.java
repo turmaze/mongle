@@ -108,7 +108,7 @@ public class InvestService {
 		Scanner scan = new Scanner(System.in);
 
 		MongleVisual.pusher();
-MongleVisual.menuHeader("주문 결제 계좌 선택");
+		MongleVisual.menuHeader("주문 결제 계좌 선택");
 		String header = "+---+-------------------+-----------------------+-----------------------+-----------------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|번호|       금융사   \t|         상품명      \t|        계좌번호\t|       잔액       |\n", " ");
