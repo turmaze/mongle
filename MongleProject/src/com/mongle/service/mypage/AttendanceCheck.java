@@ -78,7 +78,7 @@ public class AttendanceCheck {
 		}
 
 	}
-	
+
 	/**
 	 * 출석 마크 변경
 	 * 
@@ -114,7 +114,7 @@ public class AttendanceCheck {
 			Matcher m1 = p1.matcher(sel);
 
 			if (m1.find()) {
-				String nowEmoji = emoji[Integer.parseInt(sel)-1];
+				String nowEmoji = emoji[Integer.parseInt(sel) - 1];
 				AttendList.list.get(0).setEmoji(nowEmoji);
 				MongleVisual.successPrint();
 			} else if (sel.equals("9")) {
@@ -124,13 +124,11 @@ public class AttendanceCheck {
 			} else {
 				MongleVisual.wrongInput();
 			}
-
 		}
-
 		return 1;
 
 	}
-	
+
 	/**
 	 * 출석 정보 파일 읽기
 	 */
@@ -145,7 +143,7 @@ public class AttendanceCheck {
 			}
 		}
 	}
-	
+
 	/**
 	 * 출석 체크
 	 */
@@ -166,7 +164,6 @@ public class AttendanceCheck {
 				add(today);
 			}
 		};
-
 		attendanceload();
 
 		if (AttendList.list.size() == 0) { // 회원가입 후 첫 로그인
@@ -193,13 +190,11 @@ public class AttendanceCheck {
 		if (b) {
 			strate = 1;
 		}
-
 		AttendList.list.get(0).setStratedate(strate + "");
 		AttendList.list.get(0).getAttenddate().add(today);
 		AttendList.getPoint();
-
 	}
-	
+
 	/**
 	 * 출석 체크 달력 출력
 	 */
@@ -252,7 +247,7 @@ public class AttendanceCheck {
 					// 두번째주~마지막 전 주
 					System.out.println();
 					System.out.printf("%8s\t", " "); // 정렬 공백
-					for (int k = i-6; k <= i; k++) {
+					for (int k = i - 6; k <= i; k++) {
 						if (attendlist.contains(k)) {
 							System.out.printf("%3s\t", nowEmoji);
 						} else if (k > today) {
@@ -276,7 +271,7 @@ public class AttendanceCheck {
 
 				System.out.printf("%8s\t", " ");
 
-				for (int j = i-lastDayOfWeek+2; j <= i; j++) {
+				for (int j = i - lastDayOfWeek + 2; j <= i; j++) {
 					if (attendlist.contains(j)) {
 						System.out.printf("%3s\t", nowEmoji);
 					} else if (j > today) {
@@ -285,16 +280,13 @@ public class AttendanceCheck {
 						System.out.printf("%3s\t", "X");
 					}
 				}
-
 				System.out.println();
 				System.out.println();
-
 			}
-
 		}
 
 	}
-	
+
 	/**
 	 * 출석일 리스트
 	 * 
@@ -309,7 +301,7 @@ public class AttendanceCheck {
 		Collections.sort(list);
 		return list;
 	}
-	
+
 	/**
 	 * 월 말일
 	 * 
@@ -370,18 +362,14 @@ public class AttendanceCheck {
 
 		// 서기 1년 1월 1일 ~ year년 month월 오늘
 		int date = 1;
-
 		int sum = 0; // 누적 변수
 
 		// 1. 1년 1월 1일 ~ 2023년 12월 31일 > 1년 365일
 		for (int i = 1; i < year; i++) {
-
 			sum += 365;
-
 			if (isLeafYear(i) == true) {
 				sum++;
 			}
-
 		}
 
 		// 2. 2024년 1월 1일 ~ 2024년 3월 31일 < 1달씩

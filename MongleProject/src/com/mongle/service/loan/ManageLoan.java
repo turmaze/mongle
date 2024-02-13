@@ -151,7 +151,6 @@ public class ManageLoan {
 
 		ManageLoan loan = new ManageLoan(null, 0, 0, 0, 0);
 		for (ManageLoan acc : LoanFile.filelist) {
-
 			loan = acc;
 			LoanFile.filelist.remove(acc);
 			break;
@@ -189,9 +188,7 @@ public class ManageLoan {
 			} else {
 				MongleVisual.wrongInput();
 			}
-
 		}
-
 	}
 
 	/**
@@ -204,7 +201,6 @@ public class ManageLoan {
 			System.out.printf("|%-9s\t|%,12d원\t|%6.1f%% |%5d개월 |%5d개월 |\n", data.get(i).getloanName(),
 					data.get(i).getprincipal(), data.get(i).getRate(), data.get(i).getloanPeriod(),
 					data.get(i).getrPeriod());
-
 		}
 	}
 
@@ -217,29 +213,29 @@ public class ManageLoan {
 		int exten = 0;
 		Scanner scan = new Scanner(System.in);
 		boolean tf = true;
-		
+
 		System.out.printf("%22s대출을 연장 하시겠습니까?(y/n)", " ");
 		sel = scan.nextLine();
-		
+
 		if (sel.equals("y") || sel.equals("Y")) {
-			while(tf) {
-			System.out.printf("%22s기간을 몇 개월 연장 하시겠습니까?", " ");
-			exten = scan.nextInt();
-			if(exten > 0 && exten<=12) {
-			loanlist.get(0).setrPeriod(exten);
-			checkLoan();
-			tf=false;
-			}else {
-				System.out.println();
-				System.out.printf("%22s최대 연장 기간은 12개월 입니다.\n", " ");
+			while (tf) {
+				System.out.printf("%22s기간을 몇 개월 연장 하시겠습니까?", " ");
+				exten = scan.nextInt();
+				if (exten > 0 && exten <= 12) {
+					loanlist.get(0).setrPeriod(exten);
+					checkLoan();
+					tf = false;
+				} else {
+					System.out.println();
+					System.out.printf("%22s최대 연장 기간은 12개월 입니다.\n", " ");
+				}
 			}
+		} else if (sel.equals("n") || sel.equals("N")) {
+			MongleVisual.menuMove("이전 화면");
+			return 0;
+		} else {
+			MongleVisual.wrongInput();
 		}
-	}else if(sel.equals("n") || sel.equals("N")) {
-		MongleVisual.menuMove("이전 화면");
-		return 0;
-	}else {
-		MongleVisual.wrongInput();
-	}
 		return 0;
 	}
 
@@ -265,23 +261,23 @@ public class ManageLoan {
 			int c = loanlist.get(0).getprincipal();
 
 			int result = a - b;
-			if(result>0) {
-			    if (result <= 3) {
-				System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
-						result, c / 100);
+			if (result > 0) {
+				if (result <= 3) {
+					System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
+							result, c / 100);
 
-			} else if (result > 3 && result <= 6) {
-				System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
-						result, (c / 100) / 2);
-			} else{
-				System.out.printf("%22s%s을 6개월 이상 상환 하셔서 수수료가 없습니다 ! \n", " ", loanlist.get(0).getloanName());
+				} else if (result > 3 && result <= 6) {
+					System.out.printf("%22s%s을 %d개월 상환 했습니다,중도 상환시 수수료 %,d원 입니다\n ", " ", loanlist.get(0).getloanName(),
+							result, (c / 100) / 2);
+				} else {
+					System.out.printf("%22s%s을 6개월 이상 상환 하셔서 수수료가 없습니다 ! \n", " ", loanlist.get(0).getloanName());
+				}
 			}
-		}
-			
+
 			System.out.println();
 			System.out.printf("%22s0. 이전으로", " ");
 			MongleVisual.choiceGuidePrint();
-			//중도 상환 수수료 계산기 상환 개월 수 최소값 0
+			// 중도 상환 수수료 계산기 상환 개월 수 최소값 0
 			String sel = scan.nextLine();
 			if (sel.equals("0")) {
 				MongleVisual.menuMove("이전 화면");

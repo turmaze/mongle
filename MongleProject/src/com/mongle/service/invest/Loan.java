@@ -22,10 +22,6 @@ public class Loan {
 	private static String titleLoan;
 
 	/**
-	 * 대출 내역
-	 */
-
-	/**
 	 * 대출 정보 생성자
 	 * 
 	 * @param bankLoan  대출 금융사
@@ -110,7 +106,6 @@ public class Loan {
 						System.out.printf("%22s%s / %s / %s%%\n", " ", loan.bankLoan, loan.titleLoan,
 								table.get(Integer.parseInt(sel) - 1 + index).getRate());
 						applyLoan();
-						// listLoan.add(new Investment(loan.getBankLoan(),loan.getTitleLoan(),0,0));
 						Investment.list.add(new Investment("대출", loan.getBankLoan(), loan.getTitleLoan(), 0, 0));
 						return 0;
 					} else if (sel.equals("8")) {

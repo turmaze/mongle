@@ -23,7 +23,6 @@ public class Exchange {
 	/**
 	 * 외화 상품 보유 내역
 	 */
-
 	public static int buyPrice; // 외화 매입 단가
 	public static int buyAmount; // 외화 매입 수량
 	public static String realname; // 매입한 외화명
@@ -90,25 +89,19 @@ public class Exchange {
 	public static int exchangeService() {
 
 		int r = -1;
-
 		String exchangeURL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=I2RthKfXSu7z1LFQH3mxZqouqGgL3KKm&searchdate=20240126&data=AP01";
 
 		try {
-
 			Scanner scan = new Scanner(System.in);
 			Boolean loop = true;
 			int index = -1;
 
 			while (loop) {
 
-				MongleVisual.pusher();
-
 				MongleVisual.menuHeader("환전");
-
 				System.out.println();
 				JSONArray jsonResult = new JSONArray();
 				try {
-
 					URL url = new URL(exchangeURL);
 					// JSON 결과
 					BufferedReader bf;
@@ -117,14 +110,12 @@ public class Exchange {
 
 					JSONParser parser = new JSONParser();
 					jsonResult = (JSONArray) parser.parse(result);
-
 				} catch (Exception e) {
 					System.out.println("연결 실패");
 					System.out.println("재시도 하시려면 엔터");
 					scan.nextLine();
 					continue;
 				}
-
 				String header = "+----+--------------------------+---------------+---------------+---------------+";
 				System.out.println(header);
 				System.out.printf("|%4s|     국가 및 통화명  \t|%5s구매시\t|%5s판매시\t|%3s매매기준율\t|\n", "", " ", " ", " ");
@@ -168,7 +159,6 @@ public class Exchange {
 				MongleVisual.choiceGuidePrint();
 
 				String sel = scan.nextLine();
-
 				System.out.println();
 
 				String fxName = "";
@@ -207,8 +197,6 @@ public class Exchange {
 				fxName = "선택하신 외화: " + getFx(fx.get(index), "cur_nm");
 				real = getFx(fx.get(index), "cur_nm") + "";
 				price = (String) getFx(fx.get(index), "tts");
-
-				MongleVisual.pusher();
 
 				MongleVisual.menuHeader(fxName);
 
@@ -255,9 +243,7 @@ public class Exchange {
 					index = -1;
 					continue;
 				}
-
 			}
-
 			Investment.list.add(new Investment("환전", "환전", realname, Exchange.getBuyPrice(), Exchange.getBuyAmount()));
 		} catch (Exception e) {
 			System.out.println("Exchange");

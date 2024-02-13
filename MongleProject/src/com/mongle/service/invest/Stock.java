@@ -34,7 +34,6 @@ public class Stock {
 	/**
 	 * 주식 상품 보유 내역
 	 */
-
 	public static String TOKEN; // api 접근 토큰
 	public static String TOKENexpired; // api 접근 토큰 만료일
 	public static int buyPrice = 0; // 주식 매수가
@@ -169,7 +168,6 @@ public class Stock {
 				JSONObject items = (JSONObject) body.get("items");
 				Long totalCount = (Long) body.get("totalCount");
 				JSONArray item = (JSONArray) items.get("item");
-				// System.out.println(jsonObject);
 
 				if (totalCount == 0) {
 					System.out.printf("%22s검색 결과가 없습니다.\n", " ");
@@ -244,9 +242,6 @@ public class Stock {
 							Investment.list.add(new Investment("주식", Stock.getSel(), "주식", Stock.getBuyPrice(),
 									Stock.getBuyAmount()));
 						}
-						// listStock.add(new Investment(Stock.getSel(),"대출", Stock.getBuyPrice(),
-						// Stock.getBuyAmount()));
-//						Investment.list.add(new Investment("주식", Stock.getSel(),"주식", Stock.getBuyPrice(), Stock.getBuyAmount()));
 
 					} else if (sel.equals("n")) {
 						System.out.printf("%22s거래가 취소되었습니다.\n", " ");
@@ -458,7 +453,6 @@ public class Stock {
 	public static void getToken() {
 
 		try {
-
 			String path = "src\\com\\mongle\\service\\invest\\token.dat";
 			File file = new File(path);
 

@@ -8,7 +8,7 @@ import com.mongle.view.MongleVisual;
  * 펀드 상품 클래스
  */
 public class Fund {
-	
+
 	/**
 	 * 펀드 상품 검색
 	 * 
@@ -24,18 +24,13 @@ public class Fund {
 
 		while (loop) {
 
-			MongleVisual.pusher();
-
 			MongleVisual.menuHeader("펀드");
-
 			System.out.println();
-
 			String header = "+---------------------------------+";
 			System.out.printf("%22s%s\n", " ", header);
 			System.out.printf("%22s|펀드상품 검색은 브라우저를 통해\t|\n", " ");
 			System.out.printf("%22s|외부 사이트를 이용합니다.\t|\n", " ");
 			System.out.printf("%22s%s\n", " ", header);
-
 			System.out.println();
 
 			System.out.printf("%22s1. 펀드상품 검색\n", " ");
@@ -70,7 +65,6 @@ public class Fund {
 				System.out.println();
 				System.out.println();
 			}
-
 		}
 		return 0;
 

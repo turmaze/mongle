@@ -52,7 +52,6 @@ public class CreditScore {
 				MongleVisual.menuMove("이전 화면");
 				return 0;
 			}
-
 		}
 		return 0;
 
