@@ -110,7 +110,6 @@ public class DepoSave {
 					if (Integer.parseInt(sel) >= 1 && Integer.parseInt(sel) <= (table.size() > 7 ? 7 : table.size())) {
 						DepoSave acc = new DepoSave(table.get(Integer.parseInt(sel) - 1).getBank(),
 								table.get(Integer.parseInt(sel) - 1).getTitle());
-						;
 						MongleVisual.menuMove("가입 화면");
 						MongleVisual.menuHeader("예적금 가입");
 						System.out.printf("%22s%s / %s\n", " ", acc.bankDepo, acc.titleDepo);
@@ -147,10 +146,10 @@ public class DepoSave {
 		Scanner scan = new Scanner(System.in);
 		String apiDepo = "https://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json?auth=e06ef138c067a4ff1a42504d0fefda36&topFinGrpNo=020000&pageNo=1";
 		String apiSave = "https://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json?auth=efebe52a92c17a5bcee4c231f829a349&topFinGrpNo=020000&pageNo=1";
-		
+
 		System.out.printf("%22s검색(은행 이름) : ", " ");
 		String name = scan.nextLine();
-	
+
 		String header = "+----+-----------------+----------------------------------+---------+-----------+----------+";
 		System.out.printf("%s\n", header);
 		System.out.printf("|번호|      금융사     |           상품명           \t  |   기간  | 기본금리 | 최고금리 |\n");
@@ -237,28 +236,21 @@ public class DepoSave {
 	public static void signUp(String bankDepo, String titleDepo) {
 		Scanner sc = new Scanner(System.in);
 		boolean tf = true;
-		while(tf) {
-		System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)", " ");
-		String answer = sc.nextLine();
+		while (tf) {
+			System.out.printf("%21s 선택한 상품이 맞으신가요?(y/n)", " ");
+			String answer = sc.nextLine();
 
-
-				
-		if (answer.equals("y") || answer.equals("Y")) {
-
-			Reconfirm(); /// 비밀번호 검사
-			tf=false;
-
-		} else if(answer.equals("n") || answer.equals("N")){
-			
-			MongleVisual.menuMove("이전 화면");
-			tf=false;
-
-		}else {
-			MongleVisual.wrongInput();
-			
+			if (answer.equals("y") || answer.equals("Y")) {
+				Reconfirm(); /// 비밀번호 검사
+				tf = false;
+			} else if (answer.equals("n") || answer.equals("N")) {
+				MongleVisual.menuMove("이전 화면");
+				tf = false;
+			} else {
+				MongleVisual.wrongInput();
+			}
 		}
-	}
-}// DepositSignUp
+	}// DepositSignUp
 
 	/**
 	 * 계좌 생성을 위한 데이터 호출
@@ -268,7 +260,6 @@ public class DepoSave {
 	 */
 	public static void openDepo(String bankDepo, String titleDepo) {
 		GiveAccount.load();
-
 		String AccountNumber = "";
 
 		for (BankAccount acc : GiveAccount.glist) {
@@ -300,7 +291,6 @@ public class DepoSave {
 		String checkPW = "";
 		int count = 0;
 		for (int i = 6; i > count; i--) {
-
 			System.out.printf("%22s비밀번호를 입력해 주세요:", " ");
 			checkPW = sc.nextLine();
 			if (userData.get("pw").equals(Encrypt.LogInPw(checkPW, (String) userData.get("salt")))) {
@@ -309,20 +299,15 @@ public class DepoSave {
 				openDepo(bankDepo, titleDepo);
 				MongleVisual.menuMove("이전 화면");
 				return;
-
 			} else {
 				// 비밀번호 불일치
 				System.out.printf("%22s불일치\n", " ");
 				System.out.printf("%22s총 %d회 더 입력하실 수 있습니다.\n", " ", i - 1);
-
 			}
-			
-			
 		}
 		System.out.printf("%22s비밀번호가 총 5회 틀려 이전 화면으로 돌아갑니다.\n", " ");
 		MongleVisual.menuMove("이전 화면");
-		
-		
+
 	}// Reconfirm
 
 }// class

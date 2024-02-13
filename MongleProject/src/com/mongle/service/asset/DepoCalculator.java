@@ -34,7 +34,7 @@ public class DepoCalculator {
 	/**
 	 * APi연동 예적금 상품 검색 메서드
 	 * 
-	 * @return 이자계산 기업명 + 상품명 + 기본금리
+	 * @return 메뉴 이동을 위한 변수
 	 */
 	public static int depoSaveService() {
 		Scanner scan = new Scanner(System.in);
@@ -58,7 +58,6 @@ public class DepoCalculator {
 						DepoCalculator acc = new DepoCalculator(table.get(Integer.parseInt(sel) - 1).getBank(),
 								table.get(Integer.parseInt(sel) - 1).getTitle(),
 								table.get(Integer.parseInt(sel) - 1).getRate());
-						;
 						MongleVisual.menuMove("이자 계산 화면");
 						MongleVisual.menuHeader("이자계산기");
 						System.out.printf("%22s%s / %s / 금리: %.1f\n", " ", acc.bankDepo, acc.titleDepo, acc.rate);
@@ -85,6 +84,7 @@ public class DepoCalculator {
 	}
 
 	/**
+	 * 이자계산
 	 * 
 	 * @param bankDepo2  은행명
 	 * @param titleDepo2 상품명
@@ -93,8 +93,6 @@ public class DepoCalculator {
 	private static void cal(String bankDepo2, String titleDepo2, double rate2) {
 		// 원금 X 해당 이율(3%) X 예입일로부터 지급 전일까지의 일수/365
 		Scanner sc = new Scanner(System.in);
-//		System.out.printf("%22s선택(번호) : ", " ");
-//		String sel = scan.nextLine();
 		System.out.println();
 		System.out.printf("%22s매달 납입 금액 :", " ");
 		int maturit = sc.nextInt();
@@ -109,7 +107,6 @@ public class DepoCalculator {
 		System.out.println();
 		System.out.printf("%22s매달 %,d만원 %d개월 입금 시 이자: %,d원\n", " ", maturit, period, result);
 		System.out.printf("%22s총 수령받으실 금액: %,d원\n", " ", mat + result);
-
 	}
 
 }// class

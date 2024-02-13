@@ -19,7 +19,7 @@ public class GiveAccount {
 	public static ArrayList<BankAccount> glist = new ArrayList<>();
 
 	/**
-	 * 데이터  파일 로딩
+	 * 데이터 파일 로딩
 	 */
 	public static void load() {
 		try {
@@ -30,9 +30,7 @@ public class GiveAccount {
 				String[] temp = line.split(",");
 				GiveAccount.glist.add(new BankAccount(temp[0], "", temp[1], 0));
 			}
-
 			reader.close();
-
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
@@ -49,14 +47,11 @@ public class GiveAccount {
 				String line = String.format("%s,%s\r\n", acc.getBankDepo(), acc.getAccountNumber());
 				writer.write(line);
 			}
-
 			writer.close();
-
 		} catch (Exception e) {
 			System.out.println("esave");
 			e.getStackTrace();
 		}
-
 	}
 
 }
