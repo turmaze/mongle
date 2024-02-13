@@ -61,7 +61,7 @@ public class BlackList {
 	/**
 	 * 블랙리스트 추가
 	 */
-	private static void addBlackList() {
+	public static void addBlackList() {
 		MongleVisual.pusher();
 		System.out.printf("\n%22s대상 아이디 입력: ", " ");
 		Scanner scan = new Scanner(System.in);
@@ -93,7 +93,7 @@ public class BlackList {
 	/**
 	 * 블랙리스트 호출
 	 */
-	private static void callBlackList() {
+	public static void callBlackList() {
 		MongleVisual.pusher();
 		int count = 0;
 		try {
@@ -174,7 +174,7 @@ public class BlackList {
 	 * 
 	 * @param select 사용자 id
 	 */
-	private static void changeBlacklevel(String select) {
+	public static void changeBlacklevel(String select) {
 		MongleVisual.pusher();
 		Scanner scan = new Scanner(System.in);
 		UserData user = new UserData();

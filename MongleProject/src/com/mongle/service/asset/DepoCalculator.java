@@ -32,7 +32,7 @@ public class DepoCalculator {
 	}
 
 	/**
-	 * APi연동 예적금 상품 검색 메서드
+	 * Api연동 예적금 상품 검색 메서드
 	 * 
 	 * @return 메뉴 이동을 위한 변수
 	 */
