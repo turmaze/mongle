@@ -6,11 +6,15 @@ import com.mongle.service.AssetService;
 import com.mongle.service.LoanService;
 import com.mongle.service.asset.DepoSave;
 
+/**
+ * 자산 관리 클래스
+ */
 public class AssetManagementView {
 
 	/***
 	 * 자산 관리 메뉴
-	 * @return
+	 * 
+	 * @return 메뉴 이동을 위한 변수
 	 */
 	public static int assetAdd() {
 
@@ -63,9 +67,7 @@ public class AssetManagementView {
 			} else {
 				MongleVisual.wrongInput();
 			}
-
 		}
 		return 0;
-
 	}
 }

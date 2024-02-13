@@ -8,10 +8,11 @@ import com.mongle.service.invest.InvestmentManagementService;
  * 투자관리 클래스
  */
 public class InvestmentManagementView {
-/***
- * 투자 관리 메뉴
- * @return
- */
+	/***
+	 * 투자 관리 메뉴
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int addmenu() {
 
 		Scanner scan = new Scanner(System.in);
@@ -37,22 +38,18 @@ public class InvestmentManagementView {
 				InvestmentManagementService.goldSave();
 			} else if (num.equals("3")) {// 환전
 				MongleVisual.menuMove("외화 관리 화면");
-				InvestmentManagementService.ExchangeSave();			
+				InvestmentManagementService.ExchangeSave();
 			} else if (num.equals("9")) { // 홈으로
 				MongleVisual.menuMove("홈 화면");
 				return 9;
-
 			} else if (num.equals("0")) { // 이전으로
 				MongleVisual.menuMove("이전 화면");
 				return 0;
-
 			} else {
 				loop = false;
-
 			}
 		}
 		return 0;
-
 	}
 
 }

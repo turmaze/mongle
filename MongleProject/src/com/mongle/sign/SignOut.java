@@ -10,8 +10,15 @@ import com.mongle.database.DataBase;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.LogIn;
 
+/**
+ * 회원 탈퇴 클래스
+ */
 public class SignOut {
-
+	/**
+	 * 회원 탈퇴 메뉴
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int signOutService() {
 		Scanner scan = new Scanner(System.in);
 
@@ -19,13 +26,11 @@ public class SignOut {
 
 			MongleVisual.menuHeader("회원 탈퇴");
 
-			System.out.println();
-
 			System.out.printf("%22s1. 탈퇴\n", " ");
 			System.out.printf("%22s9. 홈으로\n", " ");
 			System.out.printf("%22s0. 이전으로\n", " ");
 			MongleVisual.choiceGuidePrint();
-			
+
 			String sel = scan.nextLine();
 			if (sel.equals("1")) {
 				System.out.printf("%22s정말로 탈퇴 하시겠습니까?(y/n)", " ");
@@ -40,7 +45,6 @@ public class SignOut {
 					System.out.printf("%22s탈퇴가 취소되었습니다.", " ");
 					System.out.println();
 				}
-
 			} else if (sel.equals("9")) {
 				return 9;
 			} else if (sel.equals("0")) {
@@ -50,8 +54,10 @@ public class SignOut {
 		return 0;
 	}
 
+	/**
+	 * 회원 탈퇴 저장
+	 */
 	public static void setSignOut() {
-		
 		try {
 			JSONParser parser = new JSONParser();
 			ArrayList<HashMap> list = DataBase.getUser();
@@ -61,14 +67,10 @@ public class SignOut {
 					break;
 				}
 			}
-		
 			DataBase.dataSave();
-
 		} catch (Exception e) {
 			System.out.println("BlackList.addBlackList");
 			e.printStackTrace();
 		}
-		
 	}
-
 }
