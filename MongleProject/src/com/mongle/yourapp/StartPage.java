@@ -4,8 +4,13 @@ import java.util.Scanner;
 
 import com.mongle.sign.SignUp;
 import com.mongle.view.MongleVisual;
-
+/**
+ * 시작 화면 클래스
+ */
 public class StartPage {
+	/**
+	 * 시작 메뉴
+	 */
 	public static void startPage() {
 		Scanner scan = new Scanner(System.in);
 
@@ -30,7 +35,6 @@ public class StartPage {
 			MongleVisual.choiceGuidePrint();
 
 			choice = scan.nextLine();
-
 
 			if (choice.equals("1")) {
 				LogIn.logIn();

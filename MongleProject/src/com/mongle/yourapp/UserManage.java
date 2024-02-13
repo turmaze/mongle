@@ -16,7 +16,13 @@ import com.mongle.service.BlackList;
 import com.mongle.sign.SignUp;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 회원 관리 클래스
+ */
 public class UserManage {
+	/**
+	 * 회원 관리 메뉴
+	 */
 	public static void userManage() {
 		MongleVisual.menuMove("회원관리");
 		MongleVisual.menuHeader("회원관리");
@@ -27,24 +33,24 @@ public class UserManage {
 		Scanner scan = new Scanner(System.in);
 		MongleVisual.choiceGuidePrint();
 		String choice = scan.nextLine();
-		if(choice.equals("1")) {
+		if (choice.equals("1")) {
 			changeName();
-		}else if(choice.equals("2")) {
+		} else if (choice.equals("2")) {
 			BlackList.kickUser();
-		}else {
+		} else {
 			return;
 		}
 	}
 
+	/**
+	 * 이름 수정
+	 */
 	public static void changeName() {
 		UserData user = new UserData();
 		Scanner scan = new Scanner(System.in);
 		boolean check = true;
-		
+
 		try {
-//			JSONParser parser = new JSONParser();
-//			//JSONArray list = (JSONArray) parser.parse(new FileReader(ResourcePath.MEMBER));
-//			JSONArray list = (JSONArray) DataBase.getUser();
 			JSONParser parser = new JSONParser();
 			ArrayList<HashMap> list = DataBase.getUser();
 			do {
@@ -58,27 +64,26 @@ public class UserManage {
 					if ((obj).get("id").equals(inputID)) {
 						findID = (String) (obj).get("id");
 						checkPhone = (String) (obj).get("phone");
-						if(findID.equals(inputID)&&checkPhone.equals(inputPhone)) {
+						if (findID.equals(inputID) && checkPhone.equals(inputPhone)) {
 							System.out.printf("\n%22s변경할 이름 입력: ", " ");
 							String newNAME = scan.nextLine();
 							System.out.printf("\n%22s변경할 이름 다시입력: ", " ");
 							String newNAMECheck = scan.nextLine();
-							if(newNAME.equals(newNAMECheck)) {
-								( obj).replace("name", newNAME);
+							if (newNAME.equals(newNAMECheck)) {
+								(obj).replace("name", newNAME);
 								System.out.println((obj).get("name"));
 								DataBase.dataSave();
 								System.out.printf("\n%22s변경 완료\r\n", " ");
 								check = false;
 							}
-						}else {
+						} else {
 							System.out.printf("\n%22s해당 유저를 찾을수 없습니다  ", " ");
 						}
 					}
 				}
-				
-				
+
 			} while (check == true);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println();
 			e.printStackTrace();
 		}

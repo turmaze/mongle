@@ -13,10 +13,14 @@ import org.json.simple.parser.JSONParser;
 
 import com.mongle.resource.ResourcePath;
 import com.mongle.view.MongleVisual;
+
 /**
- * 통계 가져오기
+ * 통계 클래스
  */
 public class DataManage {
+	/**
+	 * 통계 호출
+	 */
 	public static void dataManage() {
 		System.out.printf("\n%22s데이터 출력\n", " ");
 		System.out.printf("\n%22s출력하시고 싶은 데이터를 선택해주세요\n", " ");
@@ -43,37 +47,43 @@ public class DataManage {
 		} else if (choice.equals("4")) {
 			bankNum();
 			MongleVisual.stopper();
-		} else if(choice.equals("5")){
+		} else if (choice.equals("5")) {
 			advanceCalc();
 			MongleVisual.stopper();
-		}else {
+		} else {
 			return;
 		}
 
 	}
+
 	/**
-	 * 모든 
+	 * 모든 통계 호출
 	 */
 	private static void advanceCalc() {
 		int choice = userNum();
 		System.out.printf("\n%22s1. 기간별 이용자", " ");
 		dataGet(choice);
 		System.out.println();
-		
+
 		System.out.printf("\n%22s2. 총계좌수", " ");
 		accNum();
 		System.out.println();
-		
+
 		System.out.printf("\n%22s3. 기간별 이체수", " ");
 		transNum(choice);
 		System.out.println();
-		
+
 		System.out.printf("\n%22s4. 계좌은행 분포", " ");
 		bankNum();
 		System.out.println();
-		
+
 	}
 
+	/**
+	 * 사용 횟수 통계
+	 * 
+	 * @param now 기간 단위(년, 월, 일)
+	 */
 	private static void transNum(int now) {
 		String choice = String.valueOf(now);
 		int count = 0;
@@ -82,7 +92,7 @@ public class DataManage {
 		String currentDate = String.format("%tF\n", c1);
 		int numCount = 0;
 		int cdate = 0;
-//		
+
 		String currentday = "";
 		if (choice.equals("1")) {
 			count = 1;
@@ -122,7 +132,7 @@ public class DataManage {
 					}
 				}
 			}
-			
+
 			if (count == 1) {
 				System.out.printf("\n%22s[일별이체 : %d]\r\n", " ", num);
 			} else if (count == 2) {
@@ -130,7 +140,7 @@ public class DataManage {
 			} else {
 				System.out.printf("\n%22s[년별이체 : %d]\r\n", " ", num);
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("DataManage.accNum");
 			e.printStackTrace();
@@ -138,6 +148,9 @@ public class DataManage {
 
 	}
 
+	/**
+	 * 계좌 은행 분포 통계
+	 */
 	private static void bankNum() {
 		int num = 0;
 		ArrayList<String> bankname = new ArrayList<String>();
@@ -155,23 +168,23 @@ public class DataManage {
 						JSONObject accget = (JSONObject) key;
 						String addition = (String) accget.get("bankDepo");
 						bankname.add(addition);
-						
+
 					}
 				}
 			}
 			bankname.sort(null);
-			
-			HashSet<String>set = new HashSet<String>(bankname);
-			
+
+			HashSet<String> set = new HashSet<String>(bankname);
+
 			List<String> uniqueExt = new ArrayList<String>(set);
-			for(int i = 0 ; i<uniqueExt.size();i++) {
+			for (int i = 0; i < uniqueExt.size(); i++) {
 				int repeat = 0;
-				for(int j = 0 ; j <bankname.size();j++) {
-					if(uniqueExt.get(i).equals(bankname.get(j))) {
+				for (int j = 0; j < bankname.size(); j++) {
+					if (uniqueExt.get(i).equals(bankname.get(j))) {
 						repeat++;
 					}
 				}
-				System.out.printf("\n%22s[%s: %d개]\r\n", " ", uniqueExt.get(i),repeat);
+				System.out.printf("\n%22s[%s: %d개]\r\n", " ", uniqueExt.get(i), repeat);
 			}
 		} catch (Exception e) {
 			System.out.println("DataManage.accNum");
@@ -180,6 +193,9 @@ public class DataManage {
 
 	}
 
+	/**
+	 * 계좌 갯수
+	 */
 	private static void accNum() {
 		int num = 0;
 		ArrayList<String> acc = new ArrayList<String>();
@@ -211,6 +227,11 @@ public class DataManage {
 
 	}
 
+	/**
+	 * 기간 단위 메뉴
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	private static int userNum() {
 		int count = 0;
 
@@ -221,7 +242,6 @@ public class DataManage {
 		MongleVisual.choiceGuidePrint();
 		Scanner scan = new Scanner(System.in);
 		String choice = scan.nextLine();
-		// dataGet(count);
 		if (choice.equals("1")) {
 			return 1;
 		} else if (choice.equals("2")) {
@@ -232,6 +252,12 @@ public class DataManage {
 		return 0;
 	}
 
+	/**
+	 * 총 사용자 수
+	 * 
+	 * @param count 기간 단위(년, 월, 일)
+	 * @return 기간 범위
+	 */
 	public static int dataGet(int count) {
 		Scanner scan = new Scanner(System.in);
 		ArrayList<String> checkdate = new ArrayList<String>();
@@ -250,13 +276,9 @@ public class DataManage {
 			MongleVisual.wrongInput();
 			return 0;
 		}
-
-		// System.out.println(currentDate);
 		JSONParser parser = new JSONParser();
 		try {
-			// FileReader 객체 생성
 			FileReader reader = new FileReader(ResourcePath.MEMBER);
-			// JSON 데이터를 파싱하여 JSONArray로 변환
 			JSONArray visit = (JSONArray) parser.parse(reader);
 
 			for (Object obj : visit) {
@@ -278,7 +300,6 @@ public class DataManage {
 							} else {
 								attendence = Integer.parseInt(currentDate.substring(0, 4));
 							}
-
 						}
 						if (cdate == attendence) {
 							numCount++;
@@ -292,14 +313,11 @@ public class DataManage {
 				System.out.printf("\n%22s[월별유저 : %d]\r\n", " ", numCount);
 			} else {
 				System.out.printf("\n%22s[년별유저 : %d]\r\n", " ", numCount);
-
 			}
-
 		} catch (Exception e) {
 			System.out.println("DataManage.dataGet");
 			e.printStackTrace();
 		}
 		return cdate;
-
 	}
 }

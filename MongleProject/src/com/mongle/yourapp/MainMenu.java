@@ -15,7 +15,15 @@ import com.mongle.service.WireTransferService;
 import com.mongle.view.AssetManagementView;
 import com.mongle.view.MongleVisual;
 
+/**
+ * 메인 메뉴 클래스
+ */
 public class MainMenu {
+	/**
+	 * 메인 메뉴
+	 * 
+	 * @param level 유저 레벨
+	 */
 	public static void mainMenu(String level) {
 
 		if (level.equals("1")) {
@@ -25,6 +33,9 @@ public class MainMenu {
 		}
 	}
 
+	/**
+	 * 일반 사용자 메뉴
+	 */
 	private static void userMenu() {
 		Scanner scan = new Scanner(System.in);
 		int r = -1;
@@ -49,7 +60,6 @@ public class MainMenu {
 			case "1":
 				MongleVisual.menuMove("자산관리 화면");
 				AssetManagementView.assetAdd();
-
 				continue;
 			case "2":
 				MongleVisual.menuMove("송금 화면");
@@ -72,25 +82,16 @@ public class MainMenu {
 				String sel = scan.nextLine();
 				sel = sel.toLowerCase();
 				if (sel.equals("y")) {
-
 					System.out.printf("\n%22s프로그램을 종료합니다.", " ");
-
 					DataBase.changeData();
-
 					DataBase.dataSave();
-
 					System.exit(0);
-
 				} else if (sel.equals("n")) {
-
 					MongleVisual.pusher();
 					System.out.printf("\n%22s종료를 취소합니다.\n", " ");
 					MongleVisual.stopper();
-
 				} else {
-
 					MongleVisual.wrongInput();
-
 				}
 				continue;
 			case "0":
@@ -102,11 +103,12 @@ public class MainMenu {
 			default:
 				MongleVisual.wrongInput();
 			}
-
 		}
-
 	}
 
+	/**
+	 * 관리자 메뉴
+	 */
 	private static void adminMenu() {
 		boolean loop = true;
 		while (loop) {
@@ -151,9 +153,7 @@ public class MainMenu {
 			default:
 				System.out.printf("%22s올바른 번호(숫자)를 입력해주세요.\n\n", " ");
 			}
-
 		}
-		// System.out.println(choice);
 
 	}
 }

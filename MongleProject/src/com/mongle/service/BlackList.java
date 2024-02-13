@@ -21,7 +21,15 @@ import com.mongle.resource.UserData;
 import com.mongle.view.MongleVisual;
 import com.mongle.yourapp.MainMenu;
 
+/**
+ * 블랙리스트 클래스
+ */
 public class BlackList {
+	/**
+	 * 블랙리스트 메뉴
+	 * 
+	 * @return 메뉴 이동을 위한 변수
+	 */
 	public static int blackList() {
 
 		MongleVisual.menuMove("블랙리스트 관리");
@@ -32,14 +40,10 @@ public class BlackList {
 		System.out.printf("\n%22s9. 홈으로\r\n", " ");
 		System.out.printf("\n%22s0. 이전으로\r\n", " ");
 		System.out.printf("\n%22s선택 입력: ", " ");
-		
+
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 
-		
-		
-		
-		
 		if (input.equals("1")) {
 			callBlackList();
 		} else if (input.equals("2")) {
@@ -52,9 +56,11 @@ public class BlackList {
 			MongleVisual.wrongInput();
 		}
 		return 0;
-
 	}
 
+	/**
+	 * 블랙리스트 추가
+	 */
 	private static void addBlackList() {
 		MongleVisual.pusher();
 		System.out.printf("\n%22s대상 아이디 입력: ", " ");
@@ -67,10 +73,9 @@ public class BlackList {
 			for (Object obj : list) {
 				if (((JSONObject) obj).get("level").equals("1")) {
 					idcheck = (String) ((JSONObject) obj).get("id");
-					String level = (String)((JSONObject)obj).get("level");
+					String level = (String) ((JSONObject) obj).get("level");
 					break;
 				}
-
 			}
 			if (!idcheck.equals(null)) {
 				changeBlacklevel(idcheck);
@@ -78,7 +83,6 @@ public class BlackList {
 				MongleVisual.wrongInput();
 				addBlackList();
 			}
-
 		} catch (Exception e) {
 			System.out.println("BlackList.addBlackList");
 			e.printStackTrace();
@@ -86,6 +90,9 @@ public class BlackList {
 
 	}
 
+	/**
+	 * 블랙리스트 호출
+	 */
 	private static void callBlackList() {
 		MongleVisual.pusher();
 		int count = 0;
@@ -104,31 +111,26 @@ public class BlackList {
 				}
 			}
 			String select = "";
-			
-			if(dark.size()==0) {
+
+			if (dark.size() == 0) {
 				System.out.printf("\r\n%22s블랙리스트에 등록된 회원이 없습니다\r\n", " ");
 				blackList();
-			}else {
+			} else {
 				do {
 					System.out.printf("\r\n%22s0. 돌아가기\r\n", " ");
 					System.out.printf("\r\n%22s작업할 아이디를 선택해주세요\r", " ");
-					
 					System.out.printf("\n%22s번호 선택: ", " ");
 					String pick = scan.nextLine();
-					if(pick.equals("0")) {
+					if (pick.equals("0")) {
 						return;
 					}
 					select = dark.get(Integer.parseInt(pick) - 1);
-					
 				} while (select.equals(null));
-				
 			}
-
 			System.out.printf("\r\n%22s1. 블랙리스트 등급 조정하기\r\n", " ");
 			System.out.printf("\r\n%22s2. 유저 탈퇴시키기\r", " ");
 			System.out.printf("\n%22s번호 선택: ", " ");
 			String s = scan.nextLine();
-
 			if (s.equals("1")) {
 				changeBlacklevel(select);
 				return;
@@ -136,15 +138,15 @@ public class BlackList {
 				kickUser();
 				return;
 			}
-
 		} catch (Exception e) {
 			System.out.println("BlackList.callBlackList");
 			e.printStackTrace();
 		}
 
 	}
+
 	/**
-	 * 강재 탈퇴
+	 * 강제 탈퇴
 	 */
 	public static void kickUser() {
 		System.out.printf("\n%22s대상 아이디 입력: ", " ");
@@ -157,20 +159,21 @@ public class BlackList {
 				if ((obj).get("id").equals(idcheck)) {
 					list.remove(obj);
 					System.out.printf("\n%22s완료\r\n", " ");
-					
 					break;
 				}
 			}
-		
 			DataBase.dataSave();
-
 		} catch (Exception e) {
 			System.out.println("BlackList.addBlackList");
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * 블랙리스트 레벨 수정
+	 * 
+	 * @param select 사용자 id
+	 */
 	private static void changeBlacklevel(String select) {
 		MongleVisual.pusher();
 		Scanner scan = new Scanner(System.in);
@@ -196,7 +199,6 @@ public class BlackList {
 						}
 						obj.replace("level", level);
 						System.out.printf("\r\n%22s블랙 리스트 등록 완료\r\n", " ");
-						
 					} else if (choice.equals("2")) {
 						level = "1";
 						if (level.equals(findlevel)) {
@@ -205,9 +207,8 @@ public class BlackList {
 						obj.replace("level", level);
 						System.out.printf("\r\n%22s블랙 리스트 수정완료\r\n", " ");
 					}
-				} 
+				}
 			}
-
 		} catch (Exception e) {
 			System.out.println("BlackList.changeBlacklevel");
 			e.printStackTrace();
